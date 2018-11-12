@@ -317,14 +317,59 @@
   </node>
   <node componentName="tFileInputMail" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputMail_1"/>
-    <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/admintalend/workspace-remote-prod/01234.mail&quot;"/>
+    <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_1_CURRENT_FILEPATH&quot;))"/>
     <elementParameter field="CLOSED_LIST" name="MAIL_TYPE" value="MIME"/>
     <elementParameter field="DIRECTORY" name="ATTACHMENT_PATH" value="&quot;C:/Users/admintalend/workspace-remote-prod/&quot;"/>
-    <elementParameter field="TABLE" name="MAIL_PARTS"/>
-    <elementParameter field="TABLE" name="MSG_MAIL_PARTS" show="false"/>
+    <elementParameter field="TABLE" name="MAIL_PARTS">
+      <elementValue elementRef="SCHEMA_COLUMN" value="TO"/>
+      <elementValue elementRef="MAIL_PART" value=""/>
+      <elementValue elementRef="MULTI_VALUE" value="false"/>
+      <elementValue elementRef="PART_SEPARATOR" value="&quot;&quot;"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="FROM"/>
+      <elementValue elementRef="MAIL_PART" value=""/>
+      <elementValue elementRef="MULTI_VALUE" value="false"/>
+      <elementValue elementRef="PART_SEPARATOR" value="&quot;&quot;"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CC"/>
+      <elementValue elementRef="MAIL_PART" value=""/>
+      <elementValue elementRef="MULTI_VALUE" value="false"/>
+      <elementValue elementRef="PART_SEPARATOR" value="&quot;&quot;"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SUBJECT"/>
+      <elementValue elementRef="MAIL_PART" value=""/>
+      <elementValue elementRef="MULTI_VALUE" value="false"/>
+      <elementValue elementRef="PART_SEPARATOR" value="&quot;&quot;"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="BODY"/>
+      <elementValue elementRef="MAIL_PART" value=""/>
+      <elementValue elementRef="MULTI_VALUE" value="false"/>
+      <elementValue elementRef="PART_SEPARATOR" value="&quot;&quot;"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Received"/>
+      <elementValue elementRef="MAIL_PART" value=""/>
+      <elementValue elementRef="MULTI_VALUE" value="false"/>
+      <elementValue elementRef="PART_SEPARATOR" value="&quot;&quot;"/>
+    </elementParameter>
+    <elementParameter field="TABLE" name="MSG_MAIL_PARTS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="TO"/>
+      <elementValue elementRef="MAIL_PART" value="From"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="FROM"/>
+      <elementValue elementRef="MAIL_PART" value="From"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CC"/>
+      <elementValue elementRef="MAIL_PART" value="From"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SUBJECT"/>
+      <elementValue elementRef="MAIL_PART" value="From"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="BODY"/>
+      <elementValue elementRef="MAIL_PART" value="From"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Received"/>
+      <elementValue elementRef="MAIL_PART" value="From"/>
+    </elementParameter>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tFileInputMail_1"/>
+    <metadata connector="FLOW" name="tFileInputMail_1">
+      <column comment="" key="false" length="-1" name="TO" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="FROM" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CC" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SUBJECT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="BODY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Received" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
   </node>
   <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="352" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_2"/>
@@ -339,11 +384,31 @@
     <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
     <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
     <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
-    <elementParameter field="TABLE" name="LENGTHS" show="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="TO"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="FROM"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CC"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SUBJECT"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="BODY"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Received"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
     <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tLogRow_2"/>
+    <metadata connector="FLOW" name="tLogRow_2">
+      <column comment="" key="false" length="-1" name="TO" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="FROM" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CC" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SUBJECT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="BODY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Received" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
   </node>
   <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tMap_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
@@ -374,12 +439,35 @@
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPOP_1" offsetLabelX="0" offsetLabelY="0" source="tPOP_1" target="tFileList_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
+  </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFileInputMail_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
   </connection>
   <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tFileInputMail_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputMail_1" target="tLogRow_2">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="CC"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="Received"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="SUBJECT"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="TO"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="FROM"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="BODY"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
   </connection>
@@ -398,13 +486,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_fef243c4-7fb2-428d-a85a-26a96dbcfe2e"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>7G3ly8OUoD3kkzKtH8dUqW76sL1CPQKYFOSFCZAo97ff14ZgD32YprlM9HTGdPOOdqgiaZeE0V5w
-B3TpxH0n5Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_9f0199da-accc-4487-9a76-def91cc8dff2"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>KVeDa7TcYU6eyZi2MuUK3uZbfH7WwbgO9plYv5hFndWbjWbzaKMWZObGUuCRwlmQWjobXaF4uT3q
-m7uzVR5+BA==</DigestValue></Reference></SignedInfo><SignatureValue>ZezB1SPbhN504z9TyxL47guGn2dPPDtqMpZw9UUDkgzea4/NXRvRmHE+H8XGX1ylg9StbWFgKg98
-PB6G15J60V2UFi/uXIb7XLyUIFm5mEsr6ouiRMJoGFPiez0eA8GnS9l83khaytoMwRhSVRzKzTHG
-jf79wnkZX+r6ZmkXtrJ2HZtdO7DqzSaZ2O0tTurIkUgwx3nH1ZS/uH6cmOrFjZoNT3qPIGaiSThx
-6PUnpBvjNIJHeMgj+FujHMMBGIOmzi9X4eOVbMCGFn/096guaRqboJ8+VnaeeV91/DFfADxxMVDL
-koheOPgCoQ5NQ7BSWRBDyu5pXFGwnqb3q/3UNg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_4b1a72af-3c7a-4ede-a4d9-349cef2f91f2"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>7E1IklZix6ysUBxcGulPkxqRmk6RK4YGY04GSbD5zOWsiCLHzsPhuHJjbOGt5H3mGOCpQnYgZy6X
+2IIvCKY6jg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_0a8a0428-b5b7-42b4-82ab-1b4bd912f103"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>K0mzlVkLZ3NO98xdYfEHTYok+37l1xlu8yQ3JEGcX3h4TVHvyYjQj/tlOPViyn2J3g3TKQ4kckCl
++smjd6lcjg==</DigestValue></Reference></SignedInfo><SignatureValue>QeOd5cLvXrbLoXY7neKirlrXr75VHLplGzPhoa4rkYGnYUhRf00zpOixKhL/xAhYTHBvYNI04rmm
+Lz4puRLOmKAOmwPxH6i/mpIxvtD9QZ6qxegq7X8MqR7fcVBQI84aGh7uOV9sy1wghKZysuKIU6ml
+IwzmRgbUyNL3peAwCVYbevpCW5ogxvqVoiB0KnLYSIbgRQ9sbdur9H9/PQxgawWltKq/A2e4QeNU
+tMc/OmNbBd2f1kobHc3QyV1cyPsJGoRZQNI6ZmquL+xtzaTTTdONZo4ds4KtCKn+vBHG09QgIk1n
+0u3kPckfmXOZNL4WU/BSKFm25nbscFz+HTc4nQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -428,4 +516,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_9f0199da-accc-4487-9a76-def91cc8dff2" Target="#_fef243c4-7fb2-428d-a85a-26a96dbcfe2e"><Timestamp>2018-11-12 10:17:35</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_0a8a0428-b5b7-42b4-82ab-1b4bd912f103" Target="#_4b1a72af-3c7a-4ede-a4d9-349cef2f91f2"><Timestamp>2018-11-12 10:21:52</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
