@@ -195,7 +195,7 @@
       <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables name="Var" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row2.date + &quot; &quot; + row2.time" name="timestamp" type="id_String"/>
       </varTables>
@@ -269,7 +269,7 @@
       <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileInputMail" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="64">
+  <node componentName="tFileInputMail" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputMail_1"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/admintalend/workspace-remote-prod/01234.mail&quot;"/>
     <elementParameter field="CLOSED_LIST" name="MAIL_TYPE" value="MIME"/>
@@ -280,20 +280,39 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileInputMail_1"/>
   </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="352" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_2"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false"/>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogRow_2"/>
+  </node>
   <node componentName="tPOP" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="64" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPOP_1"/>
-    <elementParameter field="TEXT" name="HOST" value="&quot;127.0.0.1&quot;"/>
-    <elementParameter field="TEXT" name="PORT" value="110"/>
-    <elementParameter field="TEXT" name="USERNAME" value="&quot;username&quot;"/>
-    <elementParameter field="PASSWORD" name="PASSWORD" value="PoLvNyVG2XWndNDdLn696A=="/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;fmvexch3.net.fmv.ch&quot;"/>
+    <elementParameter field="TEXT" name="PORT" value="143"/>
+    <elementParameter field="TEXT" name="USERNAME" value="&quot;eai.import&quot;"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" value="vzxJ1qSuI7QVoeDO8W930A=="/>
     <elementParameter field="DIRECTORY" name="OUTPUT_DIRECTORY" value="&quot;C:/Users/admintalend/workspace-remote-prod&quot;"/>
     <elementParameter field="TEXT" name="FILENAME_PATTERN" value="TalendDate.getDate(&quot;yyyyMMdd-hhmmss&quot;) + &quot;_&quot; + (counter_tPOP_1 + 1) + &quot;.mail&quot;"/>
     <elementParameter field="CHECK" name="ALL_EMAILS" value="true"/>
     <elementParameter field="CHECK" name="NEWER_EMAILS" show="false" value="true"/>
     <elementParameter field="TEXT" name="MAX_EMAILS" show="false" value="10"/>
     <elementParameter field="CHECK" name="DELETE_FROM_SERVER" value="false"/>
-    <elementParameter field="CLOSED_LIST" name="PROTOCOL" value="pop3"/>
-    <elementParameter field="CHECK" name="SPECIFY_MAIL_FOLDER" show="false" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="PROTOCOL" value="imap"/>
+    <elementParameter field="CHECK" name="SPECIFY_MAIL_FOLDER" value="false"/>
     <elementParameter field="TEXT" name="MAIL_FOLDER" show="false" value="&quot;INBOX&quot;"/>
     <elementParameter field="CHECK" name="USE_SSL" value="false"/>
     <elementParameter field="TABLE" name="ADVANCED_FILTER"/>
@@ -326,6 +345,10 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
+  <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tFileInputMail_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputMail_1" target="tLogRow_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
+  </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputDelimited_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
@@ -341,13 +364,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f1230087-4969-46f8-bd05-3e84d32f6dc5"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>niGjloYj/K3MlWUSe47/1ejk7sQ7OqhyR3Ud4qFGmWuzGxU4ETgaqSt1aIrk+NlGfasG/aRY4Qzn
-MwdeJKLySQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ee0c0bb2-7354-4a02-ae72-c52e660c1b8d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>1CY1rr33Lf9JDiy5/8yqn7ePmeUT8NyGhx2KiRVuHM0YOA1AeWy71E/mrT3+9tHvg6lrIO74p8bL
-GI+pnhM5pQ==</DigestValue></Reference></SignedInfo><SignatureValue>eudYKSIK5PNYaL+nvawyaumAyMzkj3Zd3FRxJ/nlzPc2zU1n8k8KoeANbMSAYzvMDJWhnsPnoMpm
-NDwRQKLsXGfe2qmcL1BBmxubQ6mZHl0Rt0FRlLW/ovq6RDLwkNaeh6igR8iaUK9hlQ2Kb5/gD0W4
-WfVHgm6049ggxdvrCBKztmrfiyVjyQC6zbQg9VXIr8bUTJpNWqDuh73YIR7BiCD+xUtqNPwBTTOw
-nDinqyWd1K+ckicwnTQE1IZl23xl8OgA5IZm7t0/JJ8jTIXZWppi2J43S4Tl++PCL3T0vwbRnTsL
-fvypnLZHiCvbf4WZaKNCGknSiG1+/Dht36qFBw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_53751192-d503-44a6-ae66-b8cdfc718def"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>V5Gl/M6A5PeP7tDPgDYJgJv32lf2VI/u2a4V+0mO9RRGaSISCciLxY51t8HbubFLC5VrEFVSpE6w
+0oouA0jR0w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_685f8529-9a4e-4930-94a2-2b760d3b9396"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>OGCdNMsdhem5jnLgp3Sxa/529AMOS6jjo8Ymc09h+jPQfTWxjwbIZJ1irBlvC5GV85AlVEq1KeUT
+6RI7L4zcbQ==</DigestValue></Reference></SignedInfo><SignatureValue>Ooze3ovGOMgVeICR7Glmp7xS8UPXT3jTvBBpysS21G+IozBB7ogb/a1oVAUlXfA+cCgVNKm90QMM
+bVmfSd9m8Bi44Ed96dyI//13S9VmNouEaBbmnyeUZxrhtRVYouo1jsd+kWUKxP31qf5cq4kowlgo
+1R3FnmTJqS6Jwfd+haMT0QNtK1t3PQeAPZ9619Z34wwdEsSiGaZjxpoJz6FY/m4R3wTQBbj8g80V
+c0RLkNMSVz/K5xhPb6pAQ1d8cIq2lY0ixlWdywm3GCrbnJyZmZH69LIHmGBaz5WMRrdd5oe/hUsS
+KOwUP+cMWYaQCmhuAOUyBa2suRYByq0X7ZY9Ow==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -371,4 +394,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ee0c0bb2-7354-4a02-ae72-c52e660c1b8d" Target="#_f1230087-4969-46f8-bd05-3e84d32f6dc5"><Timestamp>2018-11-12 09:55:41</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_685f8529-9a4e-4930-94a2-2b760d3b9396" Target="#_53751192-d503-44a6-ae66-b8cdfc718def"><Timestamp>2018-11-12 10:10:07</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
