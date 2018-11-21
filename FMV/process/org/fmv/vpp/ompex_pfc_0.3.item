@@ -312,7 +312,10 @@
     <metadata connector="FLOW" label="PFC_VPP" name="PFC_VPP">
       <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="timestampUTC" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="FLOW" label="PFC_VPP_unique" name="PFC_VPP_unique">
+      <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
@@ -321,9 +324,12 @@
         <mapperTableEntries expression="row2.date + &quot; &quot; + row2.time" name="timestampUTC" type="id_String"/>
       </varTables>
       <outputTables name="PFC_VPP" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="TalendDate.ADD_TO_DATE(TalendDate.parseDate(&quot;dd.MM.yyyy HH:mm&quot;,Var.timestamp), &quot;HH&quot;, 1) " name="timestamp" type="id_Date"/>
+        <mapperTableEntries expression=" Var.timestamp " name="timestamp" type="id_Date"/>
         <mapperTableEntries expression="row2.value  " name="value" type="id_Float"/>
-        <mapperTableEntries expression="TalendDate.formatDateInUTC(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;dd.MM.yyyy HH:mm&quot;,Var.timestamp)) " name="timestampUTC" nullable="true" type="id_String"/>
+      </outputTables>
+      <outputTables name="PFC_VPP_unique" sizeState="INTERMEDIATE">
+        <mapperTableEntries expression="Var.timestamp " name="timestamp" type="id_Date"/>
+        <mapperTableEntries expression="row2.value " name="value" type="id_Float"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row2" sizeState="INTERMEDIATE">
         <mapperTableEntries name="date" type="id_String"/>
@@ -333,16 +339,45 @@
       </inputTables>
     </nodeData>
   </node>
+  <node componentName="tUniqRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="0">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tUniqRow_1"/>
+    <elementParameter field="TABLE" name="UNIQUE_KEY">
+      <elementValue elementRef="SCHEMA_COLUMN" value="timestamp"/>
+      <elementValue elementRef="KEY_ATTRIBUTE" value="false"/>
+      <elementValue elementRef="CASE_SENSITIVE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="value"/>
+      <elementValue elementRef="KEY_ATTRIBUTE" value="false"/>
+      <elementValue elementRef="CASE_SENSITIVE" value="false"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="ONLY_ONCE_EACH_DUPLICATED_KEY" value="false"/>
+    <elementParameter field="CHECK" name="IS_VIRTUAL_COMPONENT" value="false"/>
+    <elementParameter field="OPENED_LIST" name="BUFFER_SIZE" show="false" value="M"/>
+    <elementParameter field="DIRECTORY" name="TEMP_DIRECTORY" show="false" value=""/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="PFC_VPP_unique" name="tUniqRow_1">
+      <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="UNIQUE" label="row1" name="row1">
+      <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="DUPLICATE" label="PFC_VPP_unique" name="DUPLICATE">
+      <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+    </metadata>
+  </node>
   <node componentName="tFileOutputMSDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="896" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputMSDelimited_1"/>
     <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
-    <elementParameter field="FILE" name="FILENAME" value="&quot;//FMVPOSTGRESQL/Import_TS$/pfc_ch.csv&quot;"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;//FMVPOSTGRESQL/Import_TS$/pfc_ch_bus.csv&quot;"/>
     <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;"/>
     <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;;&quot;"/>
     <elementParameter field="CHECK" name="USEMULTISEPARATOR" value="false"/>
     <elementParameter field="TEXT" name="BASED_ON_INPUT_SCHEMAS" show="false" value="true"/>
     <elementParameter field="TABLE" name="SCHEMAS">
-      <elementValue elementRef="SCHEMA" value="PFC_VPP"/>
+      <elementValue elementRef="SCHEMA" value="row1"/>
       <elementValue elementRef="PARENT_ROW" value=""/>
       <elementValue elementRef="PARENT_KEY_COLUMN" value=""/>
       <elementValue elementRef="KEY_COLUMN" value=""/>
@@ -359,12 +394,10 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="DELETE_EMPTYFILE" value="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="PFC_VPP" name="tFileOutputMSDelimited_1">
+    <metadata connector="UNIQUE" label="row1" name="row1">
       <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="timestampUTC" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
-    <metadata connector="FLOW" label="PFC_VPP" name="PFC_VPP"/>
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="-32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_3"/>
@@ -456,14 +489,13 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
-  <connection connectorName="FLOW" label="PFC_VPP" lineStyle="10" mergeOrder="1" metaname="PFC_VPP" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tFileOutputMSDelimited_1">
-    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
-      <elementValue elementRef="TRACE_COLUMN" value="timestampUTC"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-    </elementParameter>
+  <connection connectorName="FLOW" label="PFC_VPP_unique" lineStyle="0" metaname="PFC_VPP_unique" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tUniqRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="PFC_VPP"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="PFC_VPP_unique"/>
+  </connection>
+  <connection connectorName="UNIQUE" label="row1" lineStyle="10" mergeOrder="1" metaname="UNIQUE" offsetLabelX="0" offsetLabelY="0" source="tUniqRow_1" target="tFileOutputMSDelimited_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_3" offsetLabelX="0" offsetLabelY="0" source="tFileList_3" target="tFileDelete_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
@@ -501,13 +533,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_0758e160-d991-4012-8e15-b007758823d8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5OmUr7AT2p79eI8Z+KC6EEWwx5nuttacb41am8Pw17e5dhWmac2n7ijiyqqhzqr2wsSTLyC8Ca8x
-8BR/kYcJaA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_586dc776-783d-4cfe-8168-ae1d8c1b6a9b"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>HNNKMFHNY7fbf+d8o576ZfT8IRfs/miC/Xls9u6JTwBVf+zOfflLJ4cO9bEZrZI5CmKu2oyBv/ww
-Wc3oGQk/iw==</DigestValue></Reference></SignedInfo><SignatureValue>TZtxunwl4Qi7aL1DofSl1DvnH+4vDyi01n7p4dZwS2P3U3Gnj/lKE351tYa5Nn6WXmkJFKoAD1Fy
-JNu5AcQEqW3QgRroQLT4IcKoCMGhkWB2exctrKJl4aGX1oQvTZtN6Un0ALJ0PuYazDzombTxi8dc
-ky5kx4X/a5opyvVmttLXmD14s++eXKiDNFUtNOAc46M8Dawiou8qkxUygFnAHCwmazUknK9Ag6ws
-XOo4QG6+wePT8h7EDfz8nUsmcdApqGiJxm7o8NpTuw/ixIzbb5nMZAuVgeAqQN9zY8U4bu4Afjuq
-4288WilKSuENG9jV5H+sFnvVF7AUzQXDRYuLeQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_da50925f-2abb-431a-afd8-e2bca7f181ac"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>avw8EYic3ftk+FX7WvAd9F0174Uh/sVGx7/SE/q5C+BJbPg65QbRCtA7TMK1GrZTbxNAVmIxfMrw
+GRny7RdbxA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a3e809b5-d218-440b-8441-26c0e29c77e4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ECL1V1Su+QL6wl1V06bhd7RvKaaYT28R3CA62NNRJ1c5u43Th8UYsLSw+ypB3YMiHLoXRlaXXCMB
++x5zsvYKqQ==</DigestValue></Reference></SignedInfo><SignatureValue>AWGX2+6V9z2mg1l0VktJFHejoJwe6caScegYY3Eyle6bL6MzfP34iQX1RMHn+oDpP2QVHd1xbwpd
+kfiHA/sZtWFEkZ7YlC+3wdMxXfk6HsSt+P3Dnnmn+EuPFd5DytGKel7MC+xpSytXxvOY9ivqUSXI
+jnb1ztuf/ty4/SlGJBAWtZDB9jg5m+YlLfYtH9g4yfuO/1siY2JJRTacPHg5JZTOJnq2LgRzNdGo
+vgCJvAK1yiupxkDwi+kjiTC+9wlp1CtqGmiY1f3+Me4bLQyTA5NQCOq+Nb0KatN5/YKXLGgMLs22
+eanlJHauwoQs+NdahDf40BgCMGTf+05NAkfhCg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -531,4 +563,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_586dc776-783d-4cfe-8168-ae1d8c1b6a9b" Target="#_0758e160-d991-4012-8e15-b007758823d8"><Timestamp>2018-11-20 13:57:00</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a3e809b5-d218-440b-8441-26c0e29c77e4" Target="#_da50925f-2abb-431a-afd8-e2bca7f181ac"><Timestamp>2018-11-21 07:21:04</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
