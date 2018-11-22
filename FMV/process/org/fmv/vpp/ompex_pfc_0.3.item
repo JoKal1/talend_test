@@ -370,7 +370,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="928" posY="-96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//Code generated according to input schema and output schema&#10;//int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 4));&#10;int yearCheck = 2018;&#10;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Calendar cal = Calendar.getInstance();&#10;cal.set(yearCheck,3,1);&#10;&#10;System.out.println(format1.format(cal.getTime()));&#10;&#10;int dayWeek = cal.get(cal.DAY_OF_WEEK);&#10;&#10;System.out.println(dayWeek);&#10;&#10;cal.add(cal.DATE, -dayWeek);&#10;&#10;System.out.println(format1.format(cal.getTime()));&#10;&#10;String formatted = format1.format(cal.getTime());&#10;&#10;output_row.timestamp = input_row.timestamp;&#13;&#10;output_row.year = yearCheck;&#13;&#10;output_row.timestamp_1 = input_row.timestamp_1;&#13;&#10;output_row.summerTime = formatted;&#13;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//Code generated according to input schema and output schema&#10;//int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 4));&#10;int yearCheck = 2018;&#10;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Calendar cal = Calendar.getInstance();&#10;cal.set(yearCheck,3,1);&#10;cal.setFirstDayOfWeek(Calendar.MONDAY);&#10;&#10;System.out.println(format1.format(cal.getTime()));&#10;&#10;int dayWeek = cal.get(cal.DAY_OF_WEEK);&#10;&#10;System.out.println(dayWeek);&#10;&#10;cal.add(cal.DATE, -dayWeek);&#10;&#10;System.out.println(format1.format(cal.getTime()));&#10;&#10;String formatted = format1.format(cal.getTime());&#10;&#10;output_row.timestamp = input_row.timestamp;&#13;&#10;output_row.year = yearCheck;&#13;&#10;output_row.timestamp_1 = input_row.timestamp_1;&#13;&#10;output_row.summerTime = formatted;&#13;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.text.SimpleDateFormat;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="PFC_VPP_unique" name="tJavaRow_1">
@@ -602,13 +602,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_070d57e6-0aa9-41ac-a1b4-c2f6aea68078"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Znp1cq+giQsb9YF7Is/j5u5XZFNfBqVZ2kkRtKEX5TwCYG68l0G96jkq01tyYWbtPlG+nkaDWYrM
-6QGbAJCBTw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_dfd7ae00-1bb0-4dfe-ba6e-738ac5a19c03"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>h3Oj7tW8l1Jpobln1JcHu823nqT+z/g4LmFhtQlQ0BEmnEfUliHVZUIsd8d0SNT46cKj2OFXFbun
-CN0Dw3yn5Q==</DigestValue></Reference></SignedInfo><SignatureValue>fi1v4aEwKcqdu5qSWK85wTP7n2C9KHih0do74CaUAFnZgE+wry3Xoz0jQEwwJYeF7fta09mi3kiR
-NuUsK6WMYx2W5RQ+acbmhlThxGCTleLrHzU4x1QVHAnqxt9EIUv5J3qaLlQSakssFhJTG7bSfpkI
-ekmYIqdmeWtQBrtYt/R49HcVl3WPBW7qlnqram47oThKAPNgMPpalMJ5RipVxAYuuuszRUshKKK8
-ojwrEmwoES7XvXkN1YLZxMZnhgXFRp2OBMRBIHyqucevibRjdZ8qvJs6voX9+0sOKinqWf5k2bBM
-IHrvOwnSG+K/PrHxyU3h5vP9CwGYI1GME/hIgg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_318d21cb-3f80-4d46-815e-bc13c6795e56"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>n5ltbjoXu/5uJze809pOtodwyW1UnZxhAgsBl8fbJNg1lblpEfj6RYucN2wiOpgv8sdZhxYJCpv/
+qHrHm1UD1Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_4550e0a9-ef98-4797-a3cc-bee223740890"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Ucx0N5TYdoFiMkL6zXyVaV3tKFGSvmeyyUXGzKgLLXFpg95s0LxHQH6XFmE/h9sJumeGBWUgrC1e
+R42c8/WC1g==</DigestValue></Reference></SignedInfo><SignatureValue>kK4c6nR6aTUlujXy5ReADp9jAN8sUV5xLPJb0CCs95pAztQn/2ZfXdbLm6pY+8D6AqiaN9OkF0HF
+KeB/kXKZuOxIwhOSF4sYqAN/VAL3Ob/iqCfMs5JETvmfMxlMDp9kWpctMLDDoTLX8yx/HzCHVDMl
++21w+n0sEimXmtnzyDDvLTdpyQJHPNgF61QWXKJVHemHwinbCSLRNLD3Y99S86EFP2p8LBsB8h4Q
+XphCyZ+O18fE/7ay3Ow7NAAFPENk1kBfg4ZTw2XYiib6T/4XJXJQVb0ruOXQBBQ7c1utczyxeruG
+Ewy+4a14p1RarZjkY9UnAqNm5qLHcQwIS5Nttw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -632,4 +632,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_dfd7ae00-1bb0-4dfe-ba6e-738ac5a19c03" Target="#_070d57e6-0aa9-41ac-a1b4-c2f6aea68078"><Timestamp>2018-11-22 15:26:14</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_4550e0a9-ef98-4797-a3cc-bee223740890" Target="#_318d21cb-3f80-4d46-815e-bc13c6795e56"><Timestamp>2018-11-22 15:32:00</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
