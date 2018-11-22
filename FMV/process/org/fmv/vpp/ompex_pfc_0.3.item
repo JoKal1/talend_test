@@ -368,6 +368,41 @@
       <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="928" posY="-96">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="// code sample:&#10;//&#10;// multiply by 2 the row identifier&#10;// output_row.id = input_row.id * 2;&#10;//&#10;// lowercase the name&#10;// output_row.name = input_row.name.toLowerCase();&#10;&#10;output_row.year = input_row.timestamp_1.substring(10, 15);"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="PFC_VPP_unique" name="tJavaRow_1">
+      <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="year" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="96">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="year"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="PFC_VPP_unique" name="tLogRow_1">
+      <column comment="" key="false" length="-1" name="year" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
   <node componentName="tFileOutputMSDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="896" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputMSDelimited_1"/>
     <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
@@ -376,13 +411,7 @@
     <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;;&quot;"/>
     <elementParameter field="CHECK" name="USEMULTISEPARATOR" value="false"/>
     <elementParameter field="TEXT" name="BASED_ON_INPUT_SCHEMAS" show="false" value="true"/>
-    <elementParameter field="TABLE" name="SCHEMAS">
-      <elementValue elementRef="SCHEMA" value="row1"/>
-      <elementValue elementRef="PARENT_ROW" value=""/>
-      <elementValue elementRef="PARENT_KEY_COLUMN" value=""/>
-      <elementValue elementRef="KEY_COLUMN" value=""/>
-      <elementValue elementRef="FIELD_SEPARATOR" value=""/>
-    </elementParameter>
+    <elementParameter field="TABLE" name="SCHEMAS"/>
     <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
     <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
     <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
@@ -398,52 +427,6 @@
       <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-    </metadata>
-    <metadata connector="UNIQUE" label="row1" name="row1">
-      <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="928" posY="-96">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="// code sample:&#10;//&#10;// multiply by 2 the row identifier&#10;// output_row.id = input_row.id * 2;&#10;//&#10;// lowercase the name&#10;// output_row.name = input_row.name.toLowerCase();&#10;&#10;output_row.year = input_row.timestamp_1.substring(11, 15);"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="PFC_VPP_unique" name="tJavaRow_1">
-      <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="year" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="96">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
-    <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
-    <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
-    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
-    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
-    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
-    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
-    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;"/>
-    <elementParameter field="CHECK" name="PRINT_HEADER" value="false"/>
-    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
-    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
-    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
-    <elementParameter field="TABLE" name="LENGTHS" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="timestamp"/>
-      <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="value"/>
-      <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="year"/>
-      <elementValue elementRef="LENGTH" value="10"/>
-    </elementParameter>
-    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
-    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="PFC_VPP_unique" name="tLogRow_1">
-      <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="year" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="-32">
@@ -593,13 +576,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_4c8d3030-6ed7-48f5-b98f-efab5b36609d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>NM1CeLNAmvLLYEJkWBfnwzIBuRMe0qAkYkjxYX6XdDS2T+VVhq1/x4DlNc3Anv3B8tEDDILLZtsr
-IuQaIzZS3Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_da9abf26-f266-4b2d-85f6-848898e798da"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>vm3EGTY480RWxle13c+XrKWqBIY/SM+JglxeJf/UIugK0L2c9H/e7VWw1XsJiVmci9j93lKpJO1g
-rPF3PidgVw==</DigestValue></Reference></SignedInfo><SignatureValue>Bu7CUHUwZIrtnM5kFtK/GxoAwroHiV/O1mViweH6H5AJS5uJ6zRAKK1Xo21lFtrczv9GgkkELN6q
-I7xp8FKHKB17cImP+OkPH0Hp5EcVqtbQsAn881JUUuCm4h4u9ohpj1PatFDjf5lKrRnZD3lrT0rW
-eqMCJUPWr3ePw7KQo2WLkndYpr1ASlU6rk4olpmdT+Ge6yO4Sn41QSGnDNDS9TFzlbKI9B9bALzv
-QW9uB8Z7OX68K9/ciBtzn/pz0VIIpMa3cKDM6lR1+9BE1t7yO00oHOdscDJa0o2P6zuTZ0X/Cpmr
-gkszEcS4du+TGIEWDdlOQNIbq83JtR+mgGKClA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f878574a-3ff4-4a1c-a6e7-2e82fbe2253b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>F4iABQU03UkF+th2bsY6QQfkLbXKlo8yX1/dzzr8MqQSBF7wqOU80VSkZLYKYer5DovF2SFVKcLU
+oT9OTYTRzQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_81e3d369-7c3e-4a07-a344-f71dd11252fe"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>v6Pj7ICiJIGLYPUb3lSyoZnwoQ3Rc7LkWwfWr/crtbNxHc/1csT7U4KVmlbkisbBcTXtAAMjQDRa
+pZ0EgjN2yg==</DigestValue></Reference></SignedInfo><SignatureValue>Kie6kfYTarWN81kx3taJm2pq2I4WcHio8nIeQublIiFBYLpkz52Euh5MQic+1jKLBDMp7vwgVYBc
+8wZDDBu06V54gurbrRpryrnYNZXHap6voxvYh+GOL2Dg4rjR0Q3NStSecmwvuygYXGPlOodBLrtc
+nW+/7pEop3r+k0co9O+T8qyXCYegSOjMqvwCXHhfUu2RtBX5EIOAX3atWc0nia5PxcqAJJe6Ohjs
+CG45x+KvhpA4fWeGiYGrghf4mRGKpDo9maZ+9i8NIa9E6W6wdj80JByPjQdtsamd4+lzNn6VDK7Z
+NWQw/6+ghuNm9I05+oMloUDDYcuM/hQRuRsTYw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -623,4 +606,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_da9abf26-f266-4b2d-85f6-848898e798da" Target="#_4c8d3030-6ed7-48f5-b98f-efab5b36609d"><Timestamp>2018-11-22 08:03:25</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_81e3d369-7c3e-4a07-a344-f71dd11252fe" Target="#_f878574a-3ff4-4a1c-a6e7-2e82fbe2253b"><Timestamp>2018-11-22 08:16:36</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
