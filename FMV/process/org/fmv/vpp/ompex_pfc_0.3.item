@@ -373,7 +373,7 @@
     <elementParameter field="CHECK" name="DATA_AUTO_PROPAGATE" value="true"/>
     <elementParameter field="MEMO_JAVA" name="CODE_START" value="// start part of your Java code&#10;String[] summerTimes = new String[5];&#10;int summerIndex = 0;"/>
     <elementParameter field="MEMO_JAVA" name="CODE_MAIN" value="// here is the main part of the component,&#10;// a piece of code executed in the row&#10;// loop&#10;//int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 4));&#10;int yearCheck = Integer.parseInt(row1.timestamp_1.substring(6, 10));&#10;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Calendar cal = Calendar.getInstance();&#10;cal.set(yearCheck,3,1);&#10;&#10;int dayWeek = cal.get(Calendar.DAY_OF_WEEK);&#10;&#10;if(dayWeek == 1) {&#10;&#9;dayWeek = 7;&#10;}&#10;else {&#10;&#9;dayWeek--;&#10;}&#10;&#10;cal.add(cal.DATE, -dayWeek);&#10;&#10;String formatted = format1.format(cal.getTime());&#10;&#10;row4.timestamp_1 = row1.timestamp_1.substring(0, 16);&#10;row4.value = row1.value;&#10;&#10;if(row1.timestamp_1.equals(formatted + &quot; 01:00:00&quot;))&#10;{&#10;&#9;summerTimes[summerIndex] = formatted + &quot; 02:00&quot;;&#10;&#9;summerIndex++;&#10;}"/>
-    <elementParameter field="MEMO_JAVA" name="CODE_END" value="// end of the component, outside/closing the loop&#10;System.out.println(Arrays.toString(summerTimes));"/>
+    <elementParameter field="MEMO_JAVA" name="CODE_END" value="// end of the component, outside/closing the loop&#10;System.out.println(Arrays.toString(summerTimes));&#10;&#10;row4.timestamp_1 = &quot;test&quot;;&#10;row4.value = 12;"/>
     <elementParameter field="CHECK" name="Version_V2_0" show="false" value="false"/>
     <elementParameter field="CHECK" name="Version_V3_2" show="false" value="false"/>
     <elementParameter field="CHECK" name="Version_V4.0" show="false" value="true"/>
@@ -664,13 +664,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_93d4e156-e5b0-4bcb-af35-6dc510cf0a7c"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>qFzOIDoKWYxy3saAGAnBXMPqkJX5eA9Ykx6LvKc6Shpg2b5ybNtkqZ/aMoqEfc6Axd2C1gV0jESB
-/p0l8mAQew==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_c9106bec-4254-4cf9-8653-f497fe45d11b"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>pAT/qgttf4mVuu31Vs1WLUPg6LGZ1k9nJU7H98AeaYTGNOF67K8Zc719alkG2Dy//+QmU9YA93OY
-8W5yiypF8w==</DigestValue></Reference></SignedInfo><SignatureValue>2JB2lpCNg9NoUJKtRDhx9ZPHC1wHsXe04GiPtKAFmjtli7XZKFFBzwbTkficy6wyAW34mBgiF1Io
-k0qYGXDf7hqz+oLp/yN2ez9xtOI7YrtdnUnKQwoE4bbBTP1lAtldX5bIaT79Xgy1cfcjupKxO6EC
-qY8AKSFmivTuytc0NVdS2W0qk5gn0Qn1B9KAA6lZ7qATo7lKpIJhzFxDxCy/f/4ToqFmLgEHdj+k
-I1cXvUAq5CTyhoGt/nTHKDnJGey1ve6s3ormVlrpqMiQvRRNGIXKOtYZ97vcT0LkJDFiDvb6MVtN
-KkjOHiZiH8eg8UfjduYX1ZZXLk7XfRYQpY+guw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_605f2818-7ab7-4125-b262-91dceb69c920"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>aRmpI34q2Gm2+gLdXXcxxXSHTD9QunWnCB18g0+4/4kgUo0M0NrZqedQZdi/MHjcYVPO1MCYp+fX
+PDe3wwphfw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1d0fc4c4-002e-4faf-9971-1fc6a1ed91c8"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+DVqfiZ4jEnSwxPwEeNqCrGYqRs3jMdDvWAMpvGvaymGWVrD6B2UQmvymBcFHaJrZrAozASEsZ2I
+cLzebkCt0Q==</DigestValue></Reference></SignedInfo><SignatureValue>xHi/th3zuz73CbdkgmvxhJ/KqVopZ7Qyov8Z0m3h9HxKiu2xyi7IomMnKEFFoG+GcTGLfAiQ963O
+G9CZnOyRqvV5pLYkrsiz6Ll5y1D42e1p+kiINy357pnhMr2Jztf6F4ZVe5QX+sT+r0hX9aC8C8hh
+8lRMdp85TRIi60e2VV0nFWparniEF7n44xC5QmBo+kMS4TQKhYY5GHXUWwm+DYhsUdmaERHwJoC3
+9YDWcep8fHJBwrYu5mOqrF8XyzdbnN3fdK21AYEUnLjL1iBdjoS84Ex+f5EqrRZ7/w5c0t2qHNxp
+ixZcyYHq/2lrq3JJNAYjjObcp7GU6tzBQT0IKg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -694,4 +694,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_c9106bec-4254-4cf9-8653-f497fe45d11b" Target="#_93d4e156-e5b0-4bcb-af35-6dc510cf0a7c"><Timestamp>2018-11-23 13:10:18</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1d0fc4c4-002e-4faf-9971-1fc6a1ed91c8" Target="#_605f2818-7ab7-4125-b262-91dceb69c920"><Timestamp>2018-11-23 13:11:26</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
