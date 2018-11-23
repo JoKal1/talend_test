@@ -370,7 +370,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="928" posY="-32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 4));&#10;int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 10));&#10;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Calendar cal = Calendar.getInstance();&#10;cal.set(yearCheck,3,1);&#10;&#10;int dayWeek = cal.get(Calendar.DAY_OF_WEEK);&#10;&#10;if(dayWeek == 1) {&#10;&#9;dayWeek = 7;&#10;}&#10;else {&#10;&#9;dayWeek--;&#10;}&#10;&#10;cal.add(cal.DATE, -dayWeek);&#10;&#10;String formatted = format1.format(cal.getTime());&#10;&#10;output_row.timestamp = input_row.timestamp;&#13;&#10;output_row.year = yearCheck;&#13;&#10;output_row.timestamp_1 = input_row.timestamp_1;&#13;&#10;output_row.summerTime = formatted;&#10;&#10;if(input_row.timestamp_1.equals(formatted + &quot; 01:00:00&quot;))&#10;{&#10;&#9;System.out.println(input_row.timestamp_1);&#10;&#9;output_row.timestamp = input_row.timestamp;&#10;&#9;output_row.year = 1;&#10;&#9;output_row.timestamp_1 = formatted + &quot; 02:00:00&quot;;&#10;&#9;output_row.summerTime = formatted;&#10;}"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 4));&#10;int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 10));&#10;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Calendar cal = Calendar.getInstance();&#10;cal.set(yearCheck,3,1);&#10;&#10;int dayWeek = cal.get(Calendar.DAY_OF_WEEK);&#10;&#10;if(dayWeek == 1) {&#10;&#9;dayWeek = 7;&#10;}&#10;else {&#10;&#9;dayWeek--;&#10;}&#10;&#10;cal.add(cal.DATE, -dayWeek);&#10;&#10;String formatted = format1.format(cal.getTime());&#10;&#10;output_row.timestamp = input_row.timestamp;&#13;&#10;output_row.year = yearCheck;&#13;&#10;output_row.value = input_row.value;&#10;&#10;if(input_row.timestamp_1.equals(formatted + &quot; 01:00:00&quot;))&#10;{&#10;&#9;System.out.println(input_row.timestamp_1);&#10;&#9;&#10;&#9;calendar.setTime(input_row.timestamp);&#10;    calendar.add(Calendar.HOUR_OF_DAY, 1);&#10;&#9;&#10;&#9;System.out.println(input_row.timestamp);&#10;&#9;&#10;&#9;output_row.timestamp = input_row.timestamp;&#10;&#9;output_row.year = 1;&#10;&#9;output_row.value = 0;&#10;}"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.text.SimpleDateFormat;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="PFC_VPP_unique" name="tJavaRow_1">
@@ -378,6 +378,7 @@
       <column comment="" key="false" length="-1" name="year" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="summerTime" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1056" posY="-32">
@@ -413,8 +414,7 @@
     <metadata connector="FLOW" label="PFC_VPP_unique" name="tFileOutputDelimited_1">
       <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="year" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="summerTime" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="-32">
@@ -576,6 +576,11 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tFileOutputDelimited_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="value"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
   </connection>
@@ -625,13 +630,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6b6c33a1-4e90-4399-9c1d-af4ea8d3d3a2"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5Iy+lZy2egpvo0ojITDHOp5g6kvjk+UmA3pVKGQn6Z63qheq6L+WYI+mleX8IzHNwha+jZngQqUq
-Gln7D8HzoQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_8a52cf2b-87e8-4dcd-8acb-28d1593dc13e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>e+1jUC4HR6MEe7u4lvZug9fqx3P9pkkzjRf7PxKMeT0BiwA4asgx7qQk6BdoXqIZ6gT8F2QsmgcQ
-rgN2oJt8jw==</DigestValue></Reference></SignedInfo><SignatureValue>S3CZayWO5aadexlwe1lz2cLvs/2hqChdCFYGUrWiy8uxCOg8jxt0oRZCLFaa5/IPdsWNKN5UWTns
-+ksPVmJ0nzihPEqM+YCDENzjkclYAYg30RGpoSmGNl5dYsMT692Kchrk1kV2uD44lfaxRguaqtY2
-CQjqkjwN7n6tWIL+ZZQ36M0yOWjONh3uRbXVsQDJXKKYRtCnR+0fUhBQ7Zo+lr3t480Rxhp++Jg4
-jWDI5/4TgUiSR1zFTZGABNeVNW6S6SCnRr5AIpdFprx3CeKhlrYdYyxzbYdWzThMd6rESavJM0Tw
-CY5ef9Q8Tdogs8142zT0t1u+6M+FhKgBjNkrSw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b88b2ce4-3cf9-4982-8a35-1d73237340ca"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PG2HsHvoWYONDbbq/Wgmv2MffBCzF2m5W7lPtU87BIXe5AJPoq/ImXgzmWRcoXTMktf55KX5sMp3
+Tu3Wm7rshg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_dfc204ca-2a5c-4641-8966-662c15b42d13"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>4X2qixJb3JK+4wQhymkHNezUS6z7OhkMehE0sWjEp+2ZL/liiforqGzF/ilgPzM+NVfm+crB7Irm
+ZuCOp7pT7g==</DigestValue></Reference></SignedInfo><SignatureValue>OKGZ3mxl2jNu0gvYr1VNdBGD91ce1qLvZ2ZfZMrLEQ2VOd4wdyTT2Conwbd0NqcQJ5HyelJfHMAu
+KbMwGul+JthMop/I/XsG3rcswCKRHw+DwsWGezW40wlyPmVWFK1chsqIidwu2APa7QkxTqfNM3J2
+dcEpCTsGWH/IyJCGrVFxS3A56XBORz453MhhB3yL7LN1SpqDDFD8CGZ52lvWskZ82W/ShFPWDOHD
+RZ3x1epaqnP44fOOtsBNp6l0Ix7mSeiSZGl9HHYikHz5YUj8AQ5G2mwWRQtFbljkkWdW20tkhCwn
+PyNE2CMqepnynTlxptQGJb5qF22AAJffwUAwSA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -655,4 +660,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_8a52cf2b-87e8-4dcd-8acb-28d1593dc13e" Target="#_6b6c33a1-4e90-4399-9c1d-af4ea8d3d3a2"><Timestamp>2018-11-23 10:35:06</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_dfc204ca-2a5c-4641-8966-662c15b42d13" Target="#_b88b2ce4-3cf9-4982-8a35-1d73237340ca"><Timestamp>2018-11-23 10:43:44</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
