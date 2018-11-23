@@ -161,7 +161,7 @@
     <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_1_CURRENT_FILEPATH&quot;))"/>
     <elementParameter field="CLOSED_LIST" name="MAIL_TYPE" value="MIME"/>
-    <elementParameter field="DIRECTORY" name="ATTACHMENT_PATH" value="&quot;//FMVPOSTGRESQL/Import_TS$/PFC&quot;"/>
+    <elementParameter field="DIRECTORY" name="ATTACHMENT_PATH" value="&quot;C:/Temp/Import/PFC&quot;"/>
     <elementParameter field="TABLE" name="MAIL_PARTS">
       <elementValue elementRef="SCHEMA_COLUMN" value="TO"/>
       <elementValue elementRef="MAIL_PART" value=""/>
@@ -206,7 +206,7 @@
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
     <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;//FMVPOSTGRESQL/Import_TS$/PFC&quot;"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/Import/PFC&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
     <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="YES"/>
@@ -370,7 +370,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="928" posY="-96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//Code generated according to input schema and output schema&#10;//int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 4));&#10;int yearCheck = 2018;&#10;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Calendar cal = Calendar.getInstance();&#10;cal.set(yearCheck,3,1);&#10;cal.setFirstDayOfWeek(Calendar.MONDAY);&#10;&#10;int day = cal.getFirstDayOfWeek();&#10;System.out.println(&quot;Current first day of the week:&quot; + day);&#10;System.out.println(&quot;Calendar.MONDAY: &quot; + Calendar.MONDAY);&#10;System.out.println(&quot;Calendar.SUNDAY: &quot; + Calendar.SUNDAY);&#10;// set first day of the week as something else&#10;cal.setFirstDayOfWeek(Calendar.MONDAY);&#10;// print altered first day of the week&#10;day = cal.getFirstDayOfWeek();;&#10;System.out.println(&quot;Altered first day of the week:&quot; + day);&#10;&#10;System.out.println(format1.format(cal.getTime()));&#10;&#10;int dayWeek = cal.get(cal.DAY_OF_WEEK);&#10;&#10;System.out.println(dayWeek);&#10;&#10;cal.add(cal.DATE, -dayWeek);&#10;&#10;System.out.println(format1.format(cal.getTime()));&#10;&#10;String formatted = format1.format(cal.getTime());&#10;&#10;output_row.timestamp = input_row.timestamp;&#13;&#10;output_row.year = yearCheck;&#13;&#10;output_row.timestamp_1 = input_row.timestamp_1;&#13;&#10;output_row.summerTime = formatted;&#13;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//Code generated according to input schema and output schema&#10;//int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 4));&#10;int yearCheck = 2018;&#10;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Calendar cal = Calendar.getInstance();&#10;cal.set(yearCheck,3,1);&#10;int day = cal.getFirstDayOfWeek();&#10;System.out.println(&quot;Current first day of the week:&quot; + day);&#10;System.out.println(&quot;Current day of week: &quot; + cal.get(cal.DAY_OF_WEEK));&#10;cal.setFirstDayOfWeek(Calendar.MONDAY);&#10;&#10;day = cal.getFirstDayOfWeek();&#10;System.out.println(&quot;Altered first day of the week:&quot; + day);&#10;System.out.println(&quot;Calendar.MONDAY: &quot; + Calendar.MONDAY);&#10;System.out.println(&quot;Calendar.SUNDAY: &quot; + Calendar.SUNDAY);&#10;&#10;System.out.println(format1.format(cal.getTime()));&#10;&#10;int dayWeek = cal.get(cal.DAY_OF_WEEK);&#10;&#10;System.out.println(dayWeek);&#10;&#10;cal.add(cal.DATE, -dayWeek);&#10;&#10;System.out.println(format1.format(cal.getTime()));&#10;&#10;String formatted = format1.format(cal.getTime());&#10;&#10;output_row.timestamp = input_row.timestamp;&#13;&#10;output_row.year = yearCheck;&#13;&#10;output_row.timestamp_1 = input_row.timestamp_1;&#13;&#10;output_row.summerTime = formatted;&#13;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.text.SimpleDateFormat;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="PFC_VPP_unique" name="tJavaRow_1">
@@ -602,13 +602,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_85e2ffbd-aced-4048-8005-3a6aa7e2a2d1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0ckIG5Smjxrsw5CDgKM+edliai2oMOtf6HfgPrgNCj1S0QTXwXIOeKx5MkyMRFCjuPClt7QTOF3R
-S9jnpoRhtg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_78f441e6-4237-4230-b7b5-39836de8095f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>gn8FObMiwhshSrJCppfres1L8LESksVmdgOjHSYPKsk0Lsn/OQEOL+cQy5IxJP14SnZNEX0WUm6q
-6NhvVF7gSQ==</DigestValue></Reference></SignedInfo><SignatureValue>nKcOZxADhRlvk3dpbqmCKoMnnBDZ7BzUNXuEXP9XnWjpmj+LTmRCtX2Iu6ZK8FWHm4s93R5hB/z9
-wK0xoffxJJs9mFOWXeybV0RFSacwkaMXyDGo7yX0j0nRYpW4V2miceGuVj3wF9YjWSkUmP82Assw
-QKGQlgRMBiH1hbEXvEU3poNawJ6Pl3PJ3vMWS8xSsUFCSD9wbCubc/EENgWMEW+1fhP9lq4Z/sDN
-2bxKrkHzUkRGazBiZ4J3bGBHvnJQ4OgaOEcJOJxYM+xJZ9SJnTqFuAZlyLfHHew0q9A79zE+nCwo
-Jq8gamf58jzi0Fx8HzwKaHvkku0Q2v9Ez7LkIg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_9fa8f301-d533-4f9c-9f50-47e7176540eb"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>QIjTA0UKNspzFGGn6gr9VSMKT8xie6Z1tStPfl+XYQf74LoQfL2zqT6XynaE2gp4Wf3whzazniQJ
++Pfms0ZKew==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f3e11420-b421-4eaa-bb14-5a107cdf5c19"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PMMP42yp1qkYMFeFYjqpI4JVug3nqsgzV+AE70ITGZhxkrmv8okRdiaglvFON4W2M9ema8DtzxkR
+9ajoLuUITQ==</DigestValue></Reference></SignedInfo><SignatureValue>NZn72orX346im5RjrsZLy9yqK2K1ejflbvf6tPIKApr42v6Lwj2UuVrFVRhRYKWVa016LLP5lWku
+uXr82of5XMPKh59CDM/N0vpx6bjFYJvS4ZhC9z1e7eyM8AXcWF6n0ijW7QlYO+abn/S0bcl57hGl
+drJ4jaUmWp8HWGOHFJUWVSWtvr4iN8VeNDIBinn9g5HSYwcgTaFQZoDhcMJ18keg0qzZ2hoRMh5G
+me7RWVH9jdUu7UYBF3XHvRfU5bAgsGaAsWdE5j0zhrHzbMsffwBsIdqRDU1NZnSNfIordvi9D1YA
+u9GwHbR+w5xSeLEduMyaGkrVPBHMY75kzXjvPg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -632,4 +632,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_78f441e6-4237-4230-b7b5-39836de8095f" Target="#_85e2ffbd-aced-4048-8005-3a6aa7e2a2d1"><Timestamp>2018-11-23 09:35:53</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f3e11420-b421-4eaa-bb14-5a107cdf5c19" Target="#_9fa8f301-d533-4f9c-9f50-47e7176540eb"><Timestamp>2018-11-23 09:39:21</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
