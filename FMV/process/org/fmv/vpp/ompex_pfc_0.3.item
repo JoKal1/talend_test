@@ -368,16 +368,19 @@
       <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="928" posY="-32">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 4));&#10;int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 10));&#10;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Calendar cal = Calendar.getInstance();&#10;cal.set(yearCheck,3,1);&#10;&#10;int dayWeek = cal.get(Calendar.DAY_OF_WEEK);&#10;&#10;if(dayWeek == 1) {&#10;&#9;dayWeek = 7;&#10;}&#10;else {&#10;&#9;dayWeek--;&#10;}&#10;&#10;cal.add(cal.DATE, -dayWeek);&#10;&#10;String formatted = format1.format(cal.getTime());&#10;&#10;output_row.timestamp_1 = input_row.timestamp_1.substring(0, 16);&#13;&#10;output_row.value = input_row.value;&#10;&#10;if(input_row.timestamp_1.equals(formatted + &quot; 01:00:00&quot;))&#10;{&#10;&#9;row4.timestamp_1 = formatted + &quot; 02:00&quot;;&#10;&#9;row4.value = 0;&#10;&#9;row4.timestamp_1 = &quot;&quot;;&#10;}"/>
+  <node componentName="tJavaFlex" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="896" posY="-32">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaFlex_1"/>
+    <elementParameter field="CHECK" name="DATA_AUTO_PROPAGATE" value="true"/>
+    <elementParameter field="MEMO_JAVA" name="CODE_START" value="// start part of your Java code&#10;      "/>
+    <elementParameter field="MEMO_JAVA" name="CODE_MAIN" value="// here is the main part of the component,&#10;// a piece of code executed in the row&#10;// loop&#10;//int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 4));&#10;int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 10));&#10;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Calendar cal = Calendar.getInstance();&#10;cal.set(yearCheck,3,1);&#10;&#10;int dayWeek = cal.get(Calendar.DAY_OF_WEEK);&#10;&#10;if(dayWeek == 1) {&#10;&#9;dayWeek = 7;&#10;}&#10;else {&#10;&#9;dayWeek--;&#10;}&#10;&#10;cal.add(cal.DATE, -dayWeek);&#10;&#10;String formatted = format1.format(cal.getTime());&#10;&#10;output_row.timestamp_1 = input_row.timestamp_1.substring(0, 16);&#10;output_row.value = input_row.value;&#10;&#10;if(input_row.timestamp_1.equals(formatted + &quot; 01:00:00&quot;))&#10;{&#10;&#9;row4.timestamp_1 = formatted + &quot; 02:00&quot;;&#10;&#9;row4.value = 0;&#10;&#9;row4.timestamp_1 = &quot;&quot;;&#10;}"/>
+    <elementParameter field="MEMO_JAVA" name="CODE_END" value="// end of the component, outside/closing the loop&#10;      "/>
+    <elementParameter field="CHECK" name="Version_V2_0" show="false" value="false"/>
+    <elementParameter field="CHECK" name="Version_V3_2" show="false" value="false"/>
+    <elementParameter field="CHECK" name="Version_V4.0" show="false" value="true"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.util.TimeZone;&#10;import java.text.SimpleDateFormat;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="PFC_VPP_unique" name="tJavaRow_1">
-      <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="year" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+    <metadata connector="FLOW" label="row1" name="tJavaFlex_1">
       <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="summerTime" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
   </node>
@@ -523,6 +526,32 @@
       <column comment="" key="false" length="-1" name="summerTime" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="tFilterRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="864" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFilterRow_10"/>
+    <elementParameter field="CLOSED_LIST" name="LOGICAL_OP" value="&amp;&amp;"/>
+    <elementParameter field="TABLE" name="CONDITIONS"/>
+    <elementParameter field="CHECK" name="USE_ADVANCED" value="false"/>
+    <elementParameter field="MEMO_JAVA" name="ADVANCED_COND" show="false" value="// code sample : use input_row to define the condition.&#10;// input_row.columnName1.equals(&quot;foo&quot;) ||!(input_row.columnName2.equals(&quot;bar&quot;))&#10;// replace the following expression by your own filter condition &#10;input_row.columnName1.equals(input_row.columnName2)&#10;&#9;&#9;&#9;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tFilterRow_10"/>
+    <metadata connector="FILTER" name="FILTER"/>
+    <metadata connector="REJECT" name="REJECT">
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="960" posY="288">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 4));&#10;int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 10));&#10;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Calendar cal = Calendar.getInstance();&#10;cal.set(yearCheck,3,1);&#10;&#10;int dayWeek = cal.get(Calendar.DAY_OF_WEEK);&#10;&#10;if(dayWeek == 1) {&#10;&#9;dayWeek = 7;&#10;}&#10;else {&#10;&#9;dayWeek--;&#10;}&#10;&#10;cal.add(cal.DATE, -dayWeek);&#10;&#10;String formatted = format1.format(cal.getTime());&#10;&#10;output_row.timestamp_1 = input_row.timestamp_1.substring(0, 16);&#13;&#10;output_row.value = input_row.value;&#10;&#10;if(input_row.timestamp_1.equals(formatted + &quot; 01:00:00&quot;))&#10;{&#10;&#9;row4.timestamp_1 = formatted + &quot; 02:00&quot;;&#10;&#9;row4.value = 0;&#10;&#9;row4.timestamp_1 = &quot;&quot;;&#10;}"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.util.TimeZone;&#10;import java.text.SimpleDateFormat;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="PFC_VPP_unique" name="tJavaRow_1">
+      <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="year" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="summerTime" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+    </metadata>
+  </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPOP_1" offsetLabelX="0" offsetLabelY="0" source="tPOP_1" target="tFileList_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
   </connection>
@@ -570,12 +599,15 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="PFC_VPP_unique"/>
   </connection>
-  <connection connectorName="UNIQUE" label="row1" lineStyle="0" metaname="row1" offsetLabelX="0" offsetLabelY="0" source="tUniqRow_1" target="tJavaRow_1">
+  <connection connectorName="UNIQUE" label="row1" lineStyle="0" metaname="row1" offsetLabelX="0" offsetLabelY="0" source="tUniqRow_1" target="tJavaFlex_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
-  <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tFileOutputDelimited_1">
+  <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tJavaFlex_1" offsetLabelX="0" offsetLabelY="0" source="tJavaFlex_1" target="tFileOutputDelimited_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="timestamp_1"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
       <elementValue elementRef="TRACE_COLUMN" value="value"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
@@ -629,13 +661,23 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_945c30ad-0ccf-4698-a960-862f1e41f07a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>uSZR2Oi42vWQyVfv2S9iA2Nw1vwfAKFNFxI6sgUNxbnfN4NlX8G2A+LIY93mAuRDgET2nvLmnqoW
-QtKZmOu10w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e08d96fd-e38b-43fc-8e17-bd4a19f4bcfc"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>HHPDGD91EiN2icn0A6cBmo6Wc4XzJdNgJVOAVEP0fIf1aoR+Ta5d60Vy/H74GNHHOYP5g8SxA4M8
-1cQi/UTakQ==</DigestValue></Reference></SignedInfo><SignatureValue>as5btD+BMl7ogWRXUAKA0bBTD/TMwIc4E23Ru3BBeVVckctodddmyD99//v0OlUoABrjlM2hAJWO
-h4npfdt7TiR4y9egrjCNxfx+p/36h/h1tNonTbSk/txUW+zqEwge45rOssEOpk6L+/n871Bk5pgM
-3d3XMwQGRwTRJXtRuYy3g07exdpn6gdZhsOZvwm4DzCkl7znnR32dVsjSUaXMa8y+fQQgxQAUWcY
-9bGw2DBYjhW1i+08ROYd+uVRyYjGCHQKGX8+yPq3NxPVRvBRXdLxxBffj+Udp0LCC00hGoqSr0Du
-Kk+svV60gDEXOxoK0slfeiLsahRxceAYMKCvqA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFilterRow_10"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_1268cb28-577e-4349-966b-198ccaa0ae09"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>LLYYMhzEfKlyokZ6pd8Z/b5cddMRJYhD7SBvrNmow+jcplEeObekzS3J9WKHfmrdK7+xhA1gZt5q
+NRJ723UADg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_945f9ca2-f8d8-4dd3-ac7b-545e814dc704"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>tlpbciH6rocLExkBxSaIV+c86GGnqPjC4wwak7kYUrx1L67UN1clyp2p43lwvdz/BvdxQyZj37Am
+F0+VlVWPnA==</DigestValue></Reference></SignedInfo><SignatureValue>3pFnUj/GEdivl4bkTszpFkig7BSD1Nj+QqrgIxL4fvYCACKGv/bcnSZ9s8Ykfsm0XdPTOQ49g3/q
+pDpZ3xGQIl5LSNPKTdLqmI3cJKKyyx0hCcWFHLWU00N8TySl9DrATpNE4F3nu6iJ3YJnT4ZY3+yk
+5Lw6ueWSceCxkKvZi+O5zdq9Qa4W93eX1Q+y5CnAg3mY7/Asg0dq/FQG3AVPfOE6umQVVF7dscZp
+Nw1K6i7g8xRVObiTffSNgJZnpurORf0teGp3OpVM8qOOD9Wq6m1cMgQqeV/iUBa5+fVjZV7iqDjY
+TIVJ4Ij/oO0StxXBD+J26zb6+U+5ohtPAL2vrw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -659,4 +701,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e08d96fd-e38b-43fc-8e17-bd4a19f4bcfc" Target="#_945c30ad-0ccf-4698-a960-862f1e41f07a"><Timestamp>2018-11-23 11:18:10</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_945f9ca2-f8d8-4dd3-ac7b-545e814dc704" Target="#_1268cb28-577e-4349-966b-198ccaa0ae09"><Timestamp>2018-11-23 12:34:25</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
