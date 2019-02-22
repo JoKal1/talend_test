@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:xmi="http://www.omg.org/XMI" defaultContext="Default" jobType="Standard" xmi:version="2.0">
   <context confirmationNeeded="false" name="Default">
     <contextParameter comment="" name="partFMV" prompt="partFMV?" promptNeeded="false" type="id_Float" value=""/>
+    <contextParameter comment="" name="monthName" prompt="monthName?" promptNeeded="false" type="id_String" value=""/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
@@ -115,7 +116,7 @@
   </parameters>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="96" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="String[] months = {&quot;Januar&quot;, &quot;Februar&quot;, &quot;März&quot;, &quot;April&quot;, &quot;Mai&quot;, &quot;Juni&quot;, &quot;Juli&quot;, &quot;August&quot;, &quot;September&quot;, &quot;Oktober&quot;, &quot;November&quot;, &quot;Dezember&quot;};&#10;String monthName;&#10;&#10;Date date = new Date();&#10;Calendar cal = Calendar.getInstance();&#10;cal.setTime(date);&#10;cal.add(Calendar.DATE, -2);&#10;int month = cal.get(Calendar.MONTH);&#10;&#10;System.out.println(cal);&#10;&#10;monthName = months[month];&#10;globalMap.put(&quot;monthName&quot;,monthName);&#10;System.out.println(monthName);"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="String[] months = {&quot;Januar&quot;, &quot;Februar&quot;, &quot;März&quot;, &quot;April&quot;, &quot;Mai&quot;, &quot;Juni&quot;, &quot;Juli&quot;, &quot;August&quot;, &quot;September&quot;, &quot;Oktober&quot;, &quot;November&quot;, &quot;Dezember&quot;};&#10;String monthName;&#10;&#10;Date date = new Date();&#10;Calendar cal = Calendar.getInstance();&#10;&#10;cal.setTime(date);&#10;cal.add(Calendar.DATE, -2);&#10;&#10;context.monthName months[cal.get(Calendar.MONTH)];&#10;&#10;System.out.println(context.monthName);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.util.Date;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_1"/>
@@ -129,7 +130,7 @@
     <elementParameter field="CHECK" name="ERROR" value="false"/>
     <elementParameter field="CHECK" name="GLOBEXPRESSIONS" value="true"/>
     <elementParameter field="TABLE" name="FILES">
-      <elementValue elementRef="FILEMASK" value="&quot;AEGINA-&quot; + (String)globalMap.get(&quot;monthName&quot;) + &quot;*&quot;"/>
+      <elementValue elementRef="FILEMASK" value="&quot;AEGINA-&quot; + context.monthName + &quot;*&quot;"/>
     </elementParameter>
     <elementParameter field="RADIO" name="ORDER_BY_NOTHING" value="true"/>
     <elementParameter field="RADIO" name="ORDER_BY_FILENAME" value="false"/>
@@ -277,13 +278,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_12c6648c-d8e6-4741-b80d-412af520b130"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>EcyBGVq0QMc+Y/Ac/bX2GuHOVJRcjGso1q4w9OaL/pa+aH8wymTML5jbrVtrq1VSatKHTWKlHMbp
-+70CQvPiYA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a269bd4a-d33b-4a45-8a9c-c96436cd7281"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5ZKFjWzFgR23AK3YerqKqfWiIOvQjQvfZossaGxPHd/TkoNpeUSKrCdOkQ3xvzvz8B5popyjdOjB
-JttKw1xKhA==</DigestValue></Reference></SignedInfo><SignatureValue>o/dZq+RjzciEHBjf7KRLschgHqnfbLsCuoeQbwAuMSdDU3LjeBov/YC4iMF3mc6BqpB3GWjmzpnw
-M9WZgUDJ3mPxgoo7LaDWqZv9pvwDqEYgou4bXtMD8tp/15VuM+kehMgj5SJBKMdXqDsa3ZU849rB
-GKmgYpTYeyBRPAtxx5SD+p40OX3VPxwMkISnVVmsSTaRPNzGk5QoCyTpOIwOmQwbhetBSFj4zbaL
-83ZRnIVyaDOxlfOJbx15ptGHCQiX7a7bDDHYdQ/TyhtpWzfyngPN3vbZ/35KPugqHdgQ4+EVp892
-0OWtUaJ+04uVh3iDVu4xUS8EysetN/B9VlQIHg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_e8986f52-4d03-4b93-990a-38a5375687aa"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>aWzAY/vgmEBh/aRxN+Xm65MCWNBLh343qxe72aEQ5e50jIgFJ6cJ41SobgFCDVXFvQzX0nYvXV1L
+aADl0ButaA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_974c9422-4ec6-4f31-b55f-56c6c71e5c51"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>CxwibF+iE0jm2wB1wJS1x0QBDTe4eiGhM7/F/1X9+4MhxU0HoW/IRvCBbsl8NqeI5HyUubNiS3q1
+zM1/qgohIQ==</DigestValue></Reference></SignedInfo><SignatureValue>alhnZq8zZ/7G70vl9kp3dODtG86eupoGk3tvWuAzFWTQQe8iHuCMasmPt3+uDQVtKTBlMxl0WmOY
+2y1W1yUB5w7JFeoizVMK7XZWrLZ3gf/yxSSvGlQbRwfEl3sKR4UVkmRKwKpxWswOHtKdOqA2FHOD
+CQkEUXlExONK2SHq4wSFDhgwm/c2klk5D+/M7Zq9a/4uHKAYr9ypi96r7T6fBDLlXXou/ur42fxn
+wscfAvqbChEduuUPXZI6y/AHDGq5OYjCq1OKGYO2CYOhMtaCmGnn0aqgKdWhJX+3EBEAw2AG8JWO
+WTbXIlEDEfpM4Gt0GzZxNhvLHlUPZ7uwBiyTVg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -307,4 +308,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a269bd4a-d33b-4a45-8a9c-c96436cd7281" Target="#_12c6648c-d8e6-4741-b80d-412af520b130"><Timestamp>2019-02-22 14:10:20</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_974c9422-4ec6-4f31-b55f-56c6c71e5c51" Target="#_e8986f52-4d03-4b93-990a-38a5375687aa"><Timestamp>2019-02-22 14:13:26</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
