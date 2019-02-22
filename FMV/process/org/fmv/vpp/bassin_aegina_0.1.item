@@ -2,6 +2,7 @@
   <context confirmationNeeded="false" name="Default">
     <contextParameter comment="" name="partFMV" prompt="partFMV?" promptNeeded="false" type="id_Float" value=""/>
     <contextParameter comment="" name="monthName" prompt="monthName?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="timestamp" prompt="timestamp?" promptNeeded="false" type="id_String" value=""/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
@@ -189,8 +190,8 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="Date date = new Date();&#10;Calendar cal = Calendar.getInstance();&#10;&#10;cal.setTime(date);&#10;cal.add(Calendar.DATE, -2);&#10;&#10;int dayNumber = cal.get(Calendar.DAY_OF_MONTH);&#10;&#10;System.out.println(dayNumber);&#10;&#10;int seq = Numeric.sequence(&quot;s1&quot;, 1, 1);&#10;if (seq == dayNumber) {&#10;&#9;context.partFMV = input_row.partFMV;&#10;&#9;}&#10;"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.util.Date;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="Date date = new Date();&#10;Calendar cal = Calendar.getInstance();&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;&#10;cal.setTime(date);&#10;cal.add(Calendar.DATE, -2);&#10;&#10;int dayNumber = cal.get(Calendar.DAY_OF_MONTH);&#10;context.timestamp = format1.format(cal.getTime());&#10;&#10;System.out.println(dayNumber);&#10;System.out.println(context.timestamp);&#10;&#10;int seq = Numeric.sequence(&quot;s1&quot;, 1, 1);&#10;if (seq == dayNumber) {&#10;&#9;context.partFMV = input_row.partFMV;&#10;&#9;}&#10;"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.util.Date;&#10;import java.text.SimpleDateFormat;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1">
       <column comment="" key="false" length="-1" name="partFMV" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
@@ -278,13 +279,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_44151521-cac9-4779-a2ed-2d983a3dc21a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5K/JRlrRsmfcBtihQSmcgi6RPi4XHddD8KonJcUO5FXb7ta0xspZdxqFrsjaansHERj7xIAOiUjn
-4BAqBB8qTg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_5a6507bc-f1a1-4d47-ac84-2a250416c0de"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>oW3peXK4RtHd4Yxa/St6npvDYFsZYSRKGcjRVAKjLPkkfpW4Z+QsgQr1HAER3b5+cItNtsE3hfkE
-s+25NGXD6w==</DigestValue></Reference></SignedInfo><SignatureValue>jK+3FbqSv9r7mIsUhmFu9ShJ+nvRsnI7A2wT2KcPFjho3oPOF5WkXXZ8VdMVwD/RsgPTwXk+2M5s
-PCMe5AF8jmi0CYmT2o5KCPcg2E0rleAousdTjALCSGpp61yEZsrqyDCv3D52Q2IEMvAZj4gEDzNF
-HPQDTLgDuyVBsNCgaeBVgDqZDkZV/lPuCqZndncwWXTFZ96bqJ5Y918jVXHM3+wrFKDxpB4WCxfm
-PlupzNLqYsEonktHlrUd8cabJMmaT/LjjYjYabLzUrgTV3gjiHMABhoJVagSbTLMbioXznR9DQjG
-/pfmBD87e+3UnYRIHl6bIEQXTGyNTWztaBzfqA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_1ed52f9c-223d-4f83-8177-aa494bf9406a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>7FOtvLYdAwxSYerV7lzRPAIQSPzpXeUaSIMuyZbiA/1SKApSB7GZ0WRNH3jvm5fUhTBU2BaqMcdQ
+mEjBU8MkWQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_8e5c4bac-fa28-4c2b-9b7b-64940e241d55"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ptQRq26fIvClPRtfck9Fz3r7VaP7Brsa7VrAAD1dsAH3n5t3k9ixNEMmVXit1OLyvtAAXdAKBQGq
+N1GcOUrB8A==</DigestValue></Reference></SignedInfo><SignatureValue>Irmohc0tOvRnM/Evc5w3nZu5CCWX5EBopx/Fzr2qGJJwU8D72wluwo5wMZIB+9wyr/WmltqkAY00
+dkQkDJM+dOIE8oT/sGHFzXj0lqJQ5xXjeAZF+m59DKfi7qbXaNyDaM2wyhIhAQ5u6G32nwU7k6Xn
+f/g6Yy2axe1t3GP0dKp8Cr/45/l+CViK68RVBa9EFcTH0UHy1nDzD7FtseSu6H3YMwpGLYVfGLJO
+XXOe3A3YK6gD4L0A1rNOfP7U7Di6I6N2wai+kIH+X/NwwdluR4mdwIjwvHBusniXcUySR1UIqprH
+tBD/N+abIw24uJwJUoFZKhtYK+1nnBVT0fKTQA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -308,4 +309,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_5a6507bc-f1a1-4d47-ac84-2a250416c0de" Target="#_44151521-cac9-4779-a2ed-2d983a3dc21a"><Timestamp>2019-02-22 14:49:37</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_8e5c4bac-fa28-4c2b-9b7b-64940e241d55" Target="#_1ed52f9c-223d-4f83-8177-aa494bf9406a"><Timestamp>2019-02-22 14:59:41</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
