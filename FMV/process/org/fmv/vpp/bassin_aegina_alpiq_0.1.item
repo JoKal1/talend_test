@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:xmi="http://www.omg.org/XMI" defaultContext="Default" jobType="Standard" xmi:version="2.0">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:TalendXMLMap="http://www.talend.org/xmlmap" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" defaultContext="Default" jobType="Standard" xmi:version="2.0">
   <context confirmationNeeded="false" name="Default">
     <contextParameter comment="" name="partALPIQ" prompt="partALPIQ?" promptNeeded="false" type="id_Float" value=""/>
     <contextParameter comment="" name="timestamp" prompt="timestamp?" promptNeeded="false" type="id_String" value=""/>
@@ -296,16 +296,16 @@
     <elementParameter field="TEXT" name="LOOP_QUERY" value="&quot;/parametres&quot;"/>
     <elementParameter field="TABLE" name="MAPPING">
       <elementValue elementRef="SCHEMA_COLUMN" value="hauteur"/>
-      <elementValue elementRef="QUERY" value="/hauteur"/>
+      <elementValue elementRef="QUERY" value="&quot;/hauteur&quot;"/>
       <elementValue elementRef="NODECHECK" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="facteur_cascade"/>
-      <elementValue elementRef="QUERY" value="/facteur_cascade"/>
+      <elementValue elementRef="QUERY" value="&quot;/facteur_cascade&quot;"/>
       <elementValue elementRef="NODECHECK" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="part_rhowag"/>
-      <elementValue elementRef="QUERY" value="/part_rhowag"/>
+      <elementValue elementRef="QUERY" value="&quot;/part_rhowag&quot;"/>
       <elementValue elementRef="NODECHECK" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="facteur_ruban"/>
-      <elementValue elementRef="QUERY" value="/facteur_ruban"/>
+      <elementValue elementRef="QUERY" value="&quot;/facteur_ruban&quot;"/>
       <elementValue elementRef="NODECHECK" value="false"/>
     </elementParameter>
     <elementParameter field="TEXT" name="LIMIT" value=""/>
@@ -339,8 +339,40 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="928" posY="64">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_2"/>
+  <node componentName="tXMLMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="960" posY="64">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tXMLMap_1"/>
+    <elementParameter field="EXTERNAL" name="MAP" value=""/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" show="false" value="false"/>
+    <elementParameter field="CHECK" name="KEEP_ORDER_FOR_DOCUMENT" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="test" name="test">
+      <column comment="" defaultValue="" key="false" length="-1" name="hauteur" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="facteur_cascade" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="part_rhowag" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="facteur_ruban" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+    </metadata>
+    <nodeData xsi:type="TalendXMLMap:XmlMapData">
+      <inputTrees lookupMode="LOAD_ONCE" matchingMode="ALL_ROWS" name="row3">
+        <nodes name="hauteur" outgoingConnections="//@node.8/@nodeData/@connections.0" type="id_Integer" xpath="row3/hauteur"/>
+        <nodes name="facteur_cascade" outgoingConnections="//@node.8/@nodeData/@connections.1" type="id_Float" xpath="row3/facteur_cascade"/>
+        <nodes name="part_rhowag" outgoingConnections="//@node.8/@nodeData/@connections.2" type="id_Float" xpath="row3/part_rhowag"/>
+        <nodes name="facteur_ruban" outgoingConnections="//@node.8/@nodeData/@connections.3" type="id_Float" xpath="row3/facteur_ruban"/>
+      </inputTrees>
+      <outputTrees name="test">
+        <nodes expression="row3.hauteur" incomingConnections="//@node.8/@nodeData/@connections.0" name="hauteur" type="id_Integer" xpath="test/hauteur"/>
+        <nodes expression="row3.facteur_cascade" incomingConnections="//@node.8/@nodeData/@connections.1" name="facteur_cascade" type="id_Float" xpath="test/facteur_cascade"/>
+        <nodes expression="row3.part_rhowag" incomingConnections="//@node.8/@nodeData/@connections.2" name="part_rhowag" type="id_Float" xpath="test/part_rhowag"/>
+        <nodes expression="row3.facteur_ruban" incomingConnections="//@node.8/@nodeData/@connections.3" name="facteur_ruban" type="id_Float" xpath="test/facteur_ruban"/>
+      </outputTrees>
+      <varTables minimized="true" name="Var"/>
+      <connections source="//@node.8/@nodeData/@inputTrees.0/@nodes.0" target="//@node.8/@nodeData/@outputTrees.0/@nodes.0" xsi:type="TalendXMLMap:Connection"/>
+      <connections source="//@node.8/@nodeData/@inputTrees.0/@nodes.1" target="//@node.8/@nodeData/@outputTrees.0/@nodes.1" xsi:type="TalendXMLMap:Connection"/>
+      <connections source="//@node.8/@nodeData/@inputTrees.0/@nodes.2" target="//@node.8/@nodeData/@outputTrees.0/@nodes.2" xsi:type="TalendXMLMap:Connection"/>
+      <connections source="//@node.8/@nodeData/@inputTrees.0/@nodes.3" target="//@node.8/@nodeData/@outputTrees.0/@nodes.3" xsi:type="TalendXMLMap:Connection"/>
+    </nodeData>
+  </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1120" posY="64">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
     <elementParameter field="RADIO" name="VERTICAL" value="false"/>
@@ -365,7 +397,7 @@
     <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tLogRow_2">
+    <metadata connector="FLOW" label="test" name="tLogRow_1">
       <column comment="" defaultValue="" key="false" length="-1" name="hauteur" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="facteur_cascade" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="part_rhowag" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
@@ -402,23 +434,13 @@
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
   </connection>
-  <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tFileInputXML_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputXML_2" target="tLogRow_2">
-    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
-      <elementValue elementRef="TRACE_COLUMN" value="hauteur"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="part_rhowag"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="facteur_ruban"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="facteur_cascade"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-    </elementParameter>
+  <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tFileInputXML_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputXML_2" target="tXMLMap_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
+  </connection>
+  <connection connectorName="FLOW" label="test" lineStyle="0" metaname="test" offsetLabelX="0" offsetLabelY="0" source="tXMLMap_1" target="tLogRow_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="test"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
@@ -440,13 +462,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_61619dfa-f571-4201-ac1b-797fa7a3b6db"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>95HD9obJ1tI7hp3Tw2S+PuqCoRfnb2YQ/Imu+frqmAw7X3zfd1MoUkhL6uFKrb43d2h/PVcwjUn6
-pCgIqR5HDA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_13888efa-2287-4de7-9a69-f824d5158c59"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>kIVzuJKQpWo6lE/7KN5ML9UUruFQtuzXXocBLr1WkTSs5aCwWFvi9JogfTuv2pMpQb9yFF1baAbr
-/t1aYpGADQ==</DigestValue></Reference></SignedInfo><SignatureValue>qNA1iDecDkFf6N2xE/GedBgiGcbfLugcUOyyj6jkpylMQEHaQ1OBPDO+ZkYWH0dyLkq2LQE8RhwA
-9FKtXoLG9MZ3Y6PoXRjBQ7uKUXlU09geJfBw0wtTJAQR1TtxAMfZD1KEuldRlPar6bb11vspti8a
-Sip0KhU9t0/CJabRsKVeZN5YCHxdUNtGHVlEiRak+armYpx0PNvEByW7FumZPWNAQQLcV9IgTRKD
-DVk7u79Jq1S5+ByuGkBJO6xSnQw5QTsq5JlrcL8+ld+fGm2JmXMlN14mgVuAapfF3MXcr9ttxTSE
-D9rgeFk7tJDMVAV1zBGnzYfxEQ83mDuc8xTolw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_312d45b3-2882-4deb-aebb-00491856f4e6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>hCYj0CPCsP90ePJKYCNaLY9MfQI4MDtBSAq2yg1E0COqS2mdUsZuVcGSjk0TUEvmXSxd9sKWYPQ0
+lOxMiUpAYw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_651f49ad-794e-44e8-9f75-b5d37303be90"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>G35m09QIxKv+KJp9Rn3oy9qunwp/nD8lA7zPhIxUFkM1kaP9XZvyd5zvb2uFF4i9SfYh1Q3P4aTr
+IkmkZbeMGA==</DigestValue></Reference></SignedInfo><SignatureValue>J8pcCmRljJExK/tLNODw3XiFaJMxZeydH9b25aSrOeCwoTtw39wTUMWd+hqNBDHCpJ8bsTZIkB6F
+h5PkBbSiaFRjAFU6XXieBON6m74MdZpoTyOJA2Ikwuym3r/R3PjlAJKsebHM70pd7598tEY9BORc
+BJuqXbsh7K3WM3bAZjvJBoWgMDTN5/POg2Gg9GegFdSRlcezFvCaVCTbKL65fgFWOK17DaFbJflV
+2H5gHOYGUBIMyOH/NT03bGLOKuDQtY8u9uataxd+gIJiV/2j/uylbWRexyWANTOxTnRaBHyUQf8e
+dzop3M+ec400bmkLgDTQ0fxJ2Sw6p/8PNzOxEw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -470,4 +492,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_13888efa-2287-4de7-9a69-f824d5158c59" Target="#_61619dfa-f571-4201-ac1b-797fa7a3b6db"><Timestamp>2019-02-25 08:19:36</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_651f49ad-794e-44e8-9f75-b5d37303be90" Target="#_312d45b3-2882-4deb-aebb-00491856f4e6"><Timestamp>2019-02-25 14:33:02</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
