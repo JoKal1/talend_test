@@ -307,6 +307,9 @@
       <elementValue elementRef="SCHEMA_COLUMN" value="facteur_ruban"/>
       <elementValue elementRef="QUERY" value="&quot;/facteur_ruban&quot;"/>
       <elementValue elementRef="NODECHECK" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="test"/>
+      <elementValue elementRef="QUERY" value="&quot;/test&quot;"/>
+      <elementValue elementRef="NODECHECK" value="false"/>
     </elementParameter>
     <elementParameter field="TEXT" name="LIMIT" value=""/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
@@ -329,12 +332,14 @@
       <column comment="" defaultValue="" key="false" length="-1" name="facteur_cascade" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="part_rhowag" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="facteur_ruban" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="test" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
       <column comment="" defaultValue="" key="false" length="-1" name="hauteur" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="facteur_cascade" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="part_rhowag" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="facteur_ruban" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="test" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -435,6 +440,11 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
   </connection>
   <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tFileInputXML_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputXML_2" target="tXMLMap_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="test"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
   </connection>
@@ -462,13 +472,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_312d45b3-2882-4deb-aebb-00491856f4e6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>hCYj0CPCsP90ePJKYCNaLY9MfQI4MDtBSAq2yg1E0COqS2mdUsZuVcGSjk0TUEvmXSxd9sKWYPQ0
-lOxMiUpAYw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_651f49ad-794e-44e8-9f75-b5d37303be90"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>G35m09QIxKv+KJp9Rn3oy9qunwp/nD8lA7zPhIxUFkM1kaP9XZvyd5zvb2uFF4i9SfYh1Q3P4aTr
-IkmkZbeMGA==</DigestValue></Reference></SignedInfo><SignatureValue>J8pcCmRljJExK/tLNODw3XiFaJMxZeydH9b25aSrOeCwoTtw39wTUMWd+hqNBDHCpJ8bsTZIkB6F
-h5PkBbSiaFRjAFU6XXieBON6m74MdZpoTyOJA2Ikwuym3r/R3PjlAJKsebHM70pd7598tEY9BORc
-BJuqXbsh7K3WM3bAZjvJBoWgMDTN5/POg2Gg9GegFdSRlcezFvCaVCTbKL65fgFWOK17DaFbJflV
-2H5gHOYGUBIMyOH/NT03bGLOKuDQtY8u9uataxd+gIJiV/2j/uylbWRexyWANTOxTnRaBHyUQf8e
-dzop3M+ec400bmkLgDTQ0fxJ2Sw6p/8PNzOxEw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f3053646-9eec-4a2a-9e8b-b34b381fa12a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>C+7/CZ4V8/nXcA2MVbkXRhaFTj6vfbM1tBYfzziCyMstB4tfMiQUXw12xD2e+riw0sP4GN7002Ss
+E5pSr8DBgA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_5ff0ba8a-e102-4fce-9c70-1e5cdeb4d1d1"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ljYKJY4jbUwVWUVY2m1E/RQT3LJlOnXxYnt10ZkTyOppL4maecTtY43zc5fRF0dtof4gib/Huzoz
+G79W5/iXCA==</DigestValue></Reference></SignedInfo><SignatureValue>vKojvlhKQ0Hlui8Ro7EvPnKk5QCrRLZeTugVQNfGxwlEzmLD3vnexkCzfE2jF+Oj4r+MUeFf1fle
+MPWMeD5jwb3NpqpDaLQVFasE1EwEfgcGOFTCb4nytWFPPLz2FbOEwJJwYtlAIuUz6U+jpOb2wKvp
+f4KR+Q6MAFoe9MVPp66PTa5rTz91lGQtHGquE+msH1FrppFu3dmTnYq5Q3GAYa//wNoygwiu6tYu
+MYXCp9EreFDfeeBOLycZrnsegXwxj+EFZYp0cJPqirbM/Y1L2emN/k9+OkbBCIUcsvNv3RM2cauE
+lQGtsbhoFF8IUlv6b3KBqcrIBI7JwgJoKxQGHw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -492,4 +502,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_651f49ad-794e-44e8-9f75-b5d37303be90" Target="#_312d45b3-2882-4deb-aebb-00491856f4e6"><Timestamp>2019-02-25 14:33:02</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_5ff0ba8a-e102-4fce-9c70-1e5cdeb4d1d1" Target="#_f3053646-9eec-4a2a-9e8b-b34b381fa12a"><Timestamp>2019-02-25 14:33:49</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
