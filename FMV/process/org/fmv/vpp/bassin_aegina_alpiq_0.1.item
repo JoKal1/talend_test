@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:xmi="http://www.omg.org/XMI" defaultContext="Default" jobType="Standard" xmi:version="2.0">
   <context confirmationNeeded="false" name="Default">
-    <contextParameter comment="" name="partFMV" prompt="partFMV?" promptNeeded="false" type="id_Float" value=""/>
-    <contextParameter comment="" name="monthName" prompt="monthName?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="partALPIQ" prompt="partALPIQ?" promptNeeded="false" type="id_Float" value=""/>
     <contextParameter comment="" name="timestamp" prompt="timestamp?" promptNeeded="false" type="id_String" value=""/>
   </context>
   <parameters>
@@ -115,23 +114,17 @@
     <routinesParameter id="_W9zaFtX-Eeil3oUGBkSqXg" name="TalendStringUtil"/>
     <routinesParameter id="_W9qQJtX-Eeil3oUGBkSqXg" name="TalendString"/>
   </parameters>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="96" posY="64">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="String[] months = {&quot;Januar&quot;, &quot;Februar&quot;, &quot;März&quot;, &quot;April&quot;, &quot;Mai&quot;, &quot;Juni&quot;, &quot;Juli&quot;, &quot;August&quot;, &quot;September&quot;, &quot;Oktober&quot;, &quot;November&quot;, &quot;Dezember&quot;};&#10;String monthName;&#10;&#10;Date date = new Date();&#10;Calendar cal = Calendar.getInstance();&#10;&#10;cal.setTime(date);&#10;cal.add(Calendar.DATE, -2);&#10;&#10;context.monthName = months[cal.get(Calendar.MONTH)];&#10;&#10;System.out.println(context.monthName);"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.util.Date;"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJava_1"/>
-  </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;//FMVFS1/Data/Energy/GeCom/PRODUCTION/Aménagements/Rhowag/Aegina/Décomptes journaliers 2019&quot;"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;//FMVCHA1/Data/5_Netzbetrieb/DEnergy/Decomptes/Aegina&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
     <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="YES"/>
     <elementParameter field="CHECK" name="ERROR" value="false"/>
     <elementParameter field="CHECK" name="GLOBEXPRESSIONS" value="true"/>
     <elementParameter field="TABLE" name="FILES">
-      <elementValue elementRef="FILEMASK" value="&quot;AEGINA-&quot; + context.monthName + &quot;*&quot;"/>
+      <elementValue elementRef="FILEMASK" value="&quot;Vue.10j_Aegina.Statistique.xlsx&quot;"/>
     </elementParameter>
     <elementParameter field="RADIO" name="ORDER_BY_NOTHING" value="true"/>
     <elementParameter field="RADIO" name="ORDER_BY_FILENAME" value="false"/>
@@ -146,28 +139,29 @@
   </node>
   <node componentName="tFileInputExcel" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="480" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputExcel_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="VERSION_2007" value="true"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_2_CURRENT_FILEPATH&quot;))"/>
     <elementParameter field="CHECK" name="ALL_SHEETS" value="true"/>
     <elementParameter field="TABLE" name="SHEETLIST" show="false"/>
-    <elementParameter field="TEXT" name="HEADER" value="3"/>
+    <elementParameter field="TEXT" name="HEADER" value="0"/>
     <elementParameter field="TEXT" name="FOOTER" value="0"/>
     <elementParameter field="TEXT" name="LIMIT" value=""/>
     <elementParameter field="CHECK" name="AFFECT_EACH_SHEET" value="false"/>
-    <elementParameter field="TEXT" name="FIRST_COLUMN" value="13"/>
-    <elementParameter field="TEXT" name="LAST_COLUMN" value="13"/>
+    <elementParameter field="TEXT" name="FIRST_COLUMN" value="3"/>
+    <elementParameter field="TEXT" name="LAST_COLUMN" value="3"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
     <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
     <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
     <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
     <elementParameter field="CHECK" name="TRIMALL" value="false"/>
     <elementParameter field="TABLE" name="TRIMSELECT">
-      <elementValue elementRef="SCHEMA_COLUMN" value="partFMV"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="partALPIQ"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="CONVERTDATETOSTRING" value="false"/>
     <elementParameter field="TABLE" name="DATESELECT" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="partFMV"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="partALPIQ"/>
       <elementValue elementRef="CONVERTDATE" value="false"/>
       <elementValue elementRef="PATTERN" value="&quot;MM-dd-yyyy&quot;"/>
     </elementParameter>
@@ -180,17 +174,18 @@
     <elementParameter field="CLOSED_LIST" name="GENERATION_MODE" value="USER_MODE"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileInputExcel_1">
-      <column comment="" key="false" length="-1" name="partFMV" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="partALPIQ" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
-      <column comment="" key="false" length="-1" name="partFMV" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="partALPIQ" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="Date date = new Date();&#10;Calendar cal = Calendar.getInstance();&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;&#10;cal.setTime(date);&#10;cal.add(Calendar.DATE, -2);&#10;&#10;int dayNumber = cal.get(Calendar.DAY_OF_MONTH);&#10;int seq = Numeric.sequence(&quot;s1&quot;, 1, 1);&#10;&#10;if (seq == dayNumber) {&#10;&#9;context.partFMV = input_row.partFMV;&#10;&#9;context.timestamp = format1.format(cal.getTime()) + &quot; 00:00&quot;;&#10;&#9;}&#10;"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="Date date = new Date();&#10;Calendar cal = Calendar.getInstance();&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;&#10;cal.setTime(date);&#10;cal.add(Calendar.DATE, -1);&#10;&#10;int seq = Numeric.sequence(&quot;s1&quot;, 1, 1);&#10;&#10;if (seq == 25) {&#10;&#9;context.partALPIQ = input_row.partALPIQ;&#10;&#9;context.timestamp = format1.format(cal.getTime()) + &quot; 00:00&quot;;&#10;&#9;}&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.util.Date;&#10;import java.text.SimpleDateFormat;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1">
@@ -199,13 +194,14 @@
   </node>
   <node componentName="tFixedFlowInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFixedFlowInput_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="TEXT" name="NB_ROWS" value="1"/>
     <elementParameter field="RADIO" name="USE_SINGLEMODE" value="true"/>
     <elementParameter field="TABLE" name="VALUES">
       <elementValue elementRef="SCHEMA_COLUMN" value="timestamp"/>
       <elementValue elementRef="VALUE" value="context.timestamp"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="partFMV"/>
-      <elementValue elementRef="VALUE" value="context.partFMV"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="partALPIQ"/>
+      <elementValue elementRef="VALUE" value="context.partALPIQ"/>
     </elementParameter>
     <elementParameter field="RADIO" name="USE_INTABLE" value="false"/>
     <elementParameter field="TABLE" name="INTABLE" show="false"/>
@@ -216,14 +212,15 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFixedFlowInput_1">
       <column comment="" key="false" length="-1" name="timestamp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="partFMV" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="partALPIQ" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="448" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputDelimited_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="USESTREAM" value="false"/>
     <elementParameter field="TEXT" name="STREAMNAME" show="false" value="outputStream"/>
-    <elementParameter field="FILE" name="FILENAME" value="&quot;//FMVTSENERGY/Data_flow$/import/Bassins/vol_aegina.csv&quot;"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;//FMVTSENERGY/Data_flow$/import/Bassins/vol_aegina_alpiq.csv&quot;"/>
     <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;"/>
     <elementParameter field="CHECK" name="OS_LINE_SEPARATOR_AS_ROW_SEPARATOR" show="false" value="true"/>
     <elementParameter field="OPENED_LIST" name="CSVROWSEPARATOR" show="false" value="&quot;\n&quot;"/>
@@ -251,11 +248,12 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileOutputDelimited_1">
       <column comment="" key="false" length="-1" name="timestamp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="partFMV" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="partALPIQ" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;//FMVTSENERGY/Data_flow$/import/Bassins/&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
@@ -263,7 +261,7 @@
     <elementParameter field="CHECK" name="ERROR" value="false"/>
     <elementParameter field="CHECK" name="GLOBEXPRESSIONS" value="true"/>
     <elementParameter field="TABLE" name="FILES">
-      <elementValue elementRef="FILEMASK" value="&quot;vol_aegina.csv&quot;"/>
+      <elementValue elementRef="FILEMASK" value="&quot;vol_aegina_alpiq.csv&quot;"/>
     </elementParameter>
     <elementParameter field="RADIO" name="ORDER_BY_NOTHING" value="true"/>
     <elementParameter field="RADIO" name="ORDER_BY_FILENAME" value="false"/>
@@ -278,12 +276,13 @@
   </node>
   <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="448" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileCopy_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_1_CURRENT_FILEPATH&quot;))"/>
     <elementParameter field="CHECK" name="ENABLE_COPY_DIRECTORY" value="false"/>
     <elementParameter field="DIRECTORY" name="SOURCE_DERECTORY" show="false" value="&quot;C:/Users/admintalend/workspace-remote-prod&quot;"/>
     <elementParameter field="DIRECTORY" name="DESTINATION" value="&quot;//FMVTSENERGY/Data_flow$/import/Bassins/Archive&quot;"/>
     <elementParameter field="CHECK" name="RENAME" value="true"/>
-    <elementParameter field="TEXT" name="DESTINATION_RENAME" value="&quot;vol_aegina_&quot; + TalendDate.formatDate(&quot;ddMMyyyy&quot;, TalendDate.addDate(TalendDate.getCurrentDate(), -1, &quot;dd&quot;))   + &quot;.csv&quot;"/>
+    <elementParameter field="TEXT" name="DESTINATION_RENAME" value="&quot;vol_aegina_alpiq_&quot; + TalendDate.formatDate(&quot;ddMMyyyy&quot;, TalendDate.addDate(TalendDate.getCurrentDate(), -1, &quot;dd&quot;))   + &quot;.csv&quot;"/>
     <elementParameter field="CHECK" name="REMOVE_FILE" value="true"/>
     <elementParameter field="CHECK" name="REPLACE_FILE" value="true"/>
     <elementParameter field="CHECK" name="CREATE_DIRECTORY" value="true"/>
@@ -291,38 +290,122 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileCopy_1"/>
   </node>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tFileList_2">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
-  </connection>
+  <node componentName="tFileInputXML" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="672" posY="224">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputXML_1"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;//FMVTSENERGY/Data_flow$/config/aegina_alpiq.xml&quot;"/>
+    <elementParameter field="TEXT" name="LOOP_QUERY" value="&quot;/parametres&quot;"/>
+    <elementParameter field="TABLE" name="MAPPING">
+      <elementValue elementRef="SCHEMA_COLUMN" value="hauteur"/>
+      <elementValue elementRef="QUERY" value="/hauteur"/>
+      <elementValue elementRef="NODECHECK" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="facteur_cascade"/>
+      <elementValue elementRef="QUERY" value="/facteur_cascade"/>
+      <elementValue elementRef="NODECHECK" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="part_rhowag"/>
+      <elementValue elementRef="QUERY" value="/part_rhowag"/>
+      <elementValue elementRef="NODECHECK" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="facteur_ruban"/>
+      <elementValue elementRef="QUERY" value="/facteur_ruban"/>
+      <elementValue elementRef="NODECHECK" value="false"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="LIMIT" value=""/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
+    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
+    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
+    <elementParameter field="CHECK" name="IGNORE_NS" value="false"/>
+    <elementParameter field="CHECK" name="IGNORE_DTD" value="false"/>
+    <elementParameter field="FILE" name="TMP_FILENAME" show="false" value="&quot;C:/Users/admintalend/workspace-remote-prod/temp.xml&quot;"/>
+    <elementParameter field="CHECK" name="USE_SEPARATOR" value="false"/>
+    <elementParameter field="TEXT" name="FIELD_SEPARATOR" show="false" value="&quot;,&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="GENERATION_MODE" value="Dom4j"/>
+    <elementParameter field="CHECK" name="CHECK_DATE" value="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tFileInputXML_1">
+      <column comment="" key="false" length="-1" name="hauteur" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="facteur_cascade" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="part_rhowag" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="facteur_ruban" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="REJECT" name="REJECT">
+      <column comment="" key="false" length="-1" name="hauteur" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="facteur_cascade" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="part_rhowag" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="facteur_ruban" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="800" posY="224">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="hauteur"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="facteur_cascade"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="part_rhowag"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="facteur_ruban"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogRow_1">
+      <column comment="" key="false" length="-1" name="hauteur" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="facteur_cascade" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="part_rhowag" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="facteur_ruban" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+    </metadata>
+  </node>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tFileInputExcel_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_2" offsetLabelX="40" offsetLabelY="-8" source="tFileList_2" target="tFileList_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk2"/>
   </connection>
   <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tFileInputExcel_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_1" target="tJavaRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tFixedFlowInput_1" offsetLabelX="0" offsetLabelY="0" source="tFixedFlowInput_1" target="tFileOutputDelimited_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFileCopy_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFixedFlowInput_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
   </connection>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
+  <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tFileInputXML_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputXML_1" target="tLogRow_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
+  </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
@@ -338,13 +421,18 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_de1d241e-f964-4f42-8197-e6325a549d85"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>EEe8fncix16SXCUWUKNVPNJgWpaxAwc4U5Y53j7nZ2JjWETX6yoPSnQzC6hYjfufdPCmDayAQ+JM
-5WzdOQVw1A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_85731868-2173-4dd6-8151-acf100817d35"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>BQmSCo2rM55/RSloyn7r/BaORL24Z42Bhgb4AbVcHgBhpU+heL4cTYU7EQ38ZIaXCSwcnRLIq0kv
-oYGHWVVAKA==</DigestValue></Reference></SignedInfo><SignatureValue>uvDJHkvRgpVYwuhJgrh/WbLX+fjqL5XPF3PeHRX0CfEicKOeT/7mxzhtDnmF19zQ96pSGA1IRNXm
-MJ36Px+++09tQRmkuxLPyXrFiJRAeMDBYRH4H+/HCw8MTsEcO/8FYB7NGwjNJQA5OxPfNWU2rWyr
-YvSLdQAXM5YljsEqcAQrvxSuTIB1PPZDoJsTO8Sj/CLTlmE297udShhl3mGNYYzyb3PHC5ckUA+z
-1XG+zD0j9wdBhr1US2C/u1cQWdpFJtoVeQObpyjYF1NSwqzURhXrVoZ9M5tLxXvuwIJiJgOWIoK/
-0N+8Dc/MmAMqGo0adm43AxNCTxnO/JsNj6AyuQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputXML_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f1a26d53-eebb-4ea5-837b-2361f2148dca"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+/11qPMOj/OulmvrEKQUFxWS6XoZgBpo4SMFHvZbRAZ9szfCmZB1AbM/FyhM0+6xDNhjQBjgviSn
+ICNHvdgMbg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ec09a2eb-aadf-4330-90bb-837b3aa22edd"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>LFY+03K8ycYSIXJlzZglieEsv1t55njIy5l0T+LE44fVjAcbu56CGTWY2UxqOLETMCzp9ATtaxQK
+EeNiL/+6QQ==</DigestValue></Reference></SignedInfo><SignatureValue>h8hQsMleUNJVcfNnA7cmQ6c6FpVzfNikJF2OE80oYLiwzKdFndO0JpPOSm3l6fLON2vjpUPkJrxe
+VILFfF73tLlF3diEYY+C9hbDWIPTV+6YmiYwriKa3Fz09A1KqjYJJwR9O/T4LGggBqAFU8CDxpWR
+YNVTbk2ydC5nTEWMiHRqeWrk9O8+P1aNT3qEAwDhptkfA+7kmXEG8NjCpQ8mcp05meRvu/e4rKPZ
+xvrtoiHSTdI2eVaRWbQxZ6ECDPITYNjhILs3YRXIDG3u6o9i4dnVuQ6R0IRIm+PXwUjttx9rhihl
+Vx9Iw/hX+WHjgKoQw492SFmJlwfvzveA9LGlow==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -368,4 +456,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_85731868-2173-4dd6-8151-acf100817d35" Target="#_de1d241e-f964-4f42-8197-e6325a549d85"><Timestamp>2019-02-25 07:08:48</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ec09a2eb-aadf-4330-90bb-837b3aa22edd" Target="#_f1a26d53-eebb-4ea5-837b-2361f2148dca"><Timestamp>2019-02-25 07:37:40</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
