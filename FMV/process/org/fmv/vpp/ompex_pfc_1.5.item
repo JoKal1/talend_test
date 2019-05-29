@@ -1,5 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:TalendMapper="http://www.talend.org/mapper" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" defaultContext="Default" jobType="Standard" xmi:version="2.0">
-  <context confirmationNeeded="false" name="Default"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:TalendMapper="http://www.talend.org/mapper" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" defaultContext="Prod" jobType="Standard" xmi:version="2.0">
+  <context confirmationNeeded="false" name="Prod">
+    <contextParameter comment="" name="mail_account_talend" prompt="mail_account_talend?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value="eai.import"/>
+    <contextParameter comment="" name="mail_alert_it" prompt="mail_alert_it?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value="jacob.kolinski@fmv.ch"/>
+    <contextParameter comment="" name="mail_password_talend" prompt="mail_password_talend?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_Password" value="mLEtxlMJ+uccq5iLhQNRFA=="/>
+    <contextParameter comment="" name="mail_server_fmv" prompt="mail_server_fmv?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value="fmvexch3.net.fmv.ch"/>
+    <contextParameter comment="" name="mail_server_pop_port" prompt="mail_server_pop_port?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_Integer" value="110"/>
+  </context>
+  <context confirmationNeeded="false" name="Dev">
+    <contextParameter comment="" name="mail_account_talend" prompt="mail_account_talend?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value=""/>
+    <contextParameter comment="" name="mail_alert_it" prompt="mail_alert_it?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value=""/>
+    <contextParameter comment="" name="mail_password_talend" prompt="mail_password_talend?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_Password" value=""/>
+    <contextParameter comment="" name="mail_server_fmv" prompt="mail_server_fmv?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value=""/>
+    <contextParameter comment="" name="mail_server_pop_port" prompt="mail_server_pop_port?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_Integer" value=""/>
+  </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="96"/>
@@ -241,11 +254,11 @@
   </node>
   <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSendMail_2"/>
-    <elementParameter field="TEXT" name="TO" value="&quot;gr.energie@fmv.ch&quot;"/>
+    <elementParameter field="TEXT" name="TO" value="context.mail_alert_it"/>
     <elementParameter field="TEXT" name="FROM" value="&quot;talend_js@fmv.ch&quot;"/>
     <elementParameter field="CHECK" name="NEED_PERSONAL_NAME" value="false"/>
     <elementParameter field="TEXT" name="PERSONAL_NAME" show="false" value="&quot;sender&quot;"/>
-    <elementParameter field="TEXT" name="CC" value="&quot;jacob.kolinski@fmv.ch&quot;"/>
+    <elementParameter field="TEXT" name="CC" value=""/>
     <elementParameter field="TEXT" name="BCC" value=""/>
     <elementParameter field="TEXT" name="SUBJECT" value="&quot;Talend error notification&quot;"/>
     <elementParameter field="MEMO_MESSAGE" name="MESSAGE" value="&quot;Fichier PFC introuvable&quot;"/>
@@ -271,11 +284,11 @@
   </node>
   <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="64" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSendMail_1"/>
-    <elementParameter field="TEXT" name="TO" value="&quot;gr.energie@fmv.ch&quot;"/>
+    <elementParameter field="TEXT" name="TO" value="context.mail_alert_it"/>
     <elementParameter field="TEXT" name="FROM" value="&quot;talend_js@fmv.ch&quot;"/>
     <elementParameter field="CHECK" name="NEED_PERSONAL_NAME" value="false"/>
     <elementParameter field="TEXT" name="PERSONAL_NAME" show="false" value="&quot;sender&quot;"/>
-    <elementParameter field="TEXT" name="CC" value="&quot;jacob.kolinski@fmv.ch&quot;"/>
+    <elementParameter field="TEXT" name="CC" value=""/>
     <elementParameter field="TEXT" name="BCC" value=""/>
     <elementParameter field="TEXT" name="SUBJECT" value="&quot;Talend error notification&quot;"/>
     <elementParameter field="MEMO_MESSAGE" name="MESSAGE" value="&quot;Erreur lors de la connection à la boîte de messagerie eai.import (PFC)&quot;"/>
@@ -335,11 +348,11 @@
   </node>
   <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSendMail_3"/>
-    <elementParameter field="TEXT" name="TO" value="&quot;gr.energie@fmv.ch&quot;"/>
+    <elementParameter field="TEXT" name="TO" value="context.mail_alert_it"/>
     <elementParameter field="TEXT" name="FROM" value="&quot;talend_js@fmv.ch&quot;"/>
     <elementParameter field="CHECK" name="NEED_PERSONAL_NAME" value="false"/>
     <elementParameter field="TEXT" name="PERSONAL_NAME" show="false" value="&quot;sender&quot;"/>
-    <elementParameter field="TEXT" name="CC" value="&quot;jacob.kolinski@fmv.ch&quot;"/>
+    <elementParameter field="TEXT" name="CC" value=""/>
     <elementParameter field="TEXT" name="BCC" value=""/>
     <elementParameter field="TEXT" name="SUBJECT" value="&quot;Talend error notification&quot;"/>
     <elementParameter field="MEMO_MESSAGE" name="MESSAGE" value="&quot;Erreur lors du traitement du fichier PFC&quot;"/>
@@ -656,13 +669,13 @@
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Integer)globalMap.get(&quot;tFileList_1_NB_FILE&quot;)) == 0 &amp;&amp; !((String)globalMap.get(&quot;tFileDelete_2_CURRENT_STATUS&quot;)).contains(&quot;deleted&quot;)"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If3"/>
   </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tFileInputMail_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputMail_1" target="tFileCopy_2">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk9"/>
-  </connection>
   <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tFileInputMail_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputMail_1" target="tLogRow_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tFileInputMail_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputMail_1" target="tFileCopy_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk9"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileCopy_2" offsetLabelX="0" offsetLabelY="0" source="tFileCopy_2" target="tFileCopy_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk7"/>
@@ -807,13 +820,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_0b71a2f3-6d16-4f3c-b545-27dd29b1c1ab"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5/mB7WLrXBEs7iRDr6rc1yycZyELiJw0UD8rfILyY5a2iJVgpo/XIAnnaG4WbIGuGGpjL06irSwQ
-9lylRIsRfA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_0b66f7c5-6847-41e9-b14d-c0af3c096774"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>8ZmEkNT1iWvINVpIad2Y7jp/KmcPcYFyq8MlxNumIYUJC8OeiqUxlgGErhZ5LYksW8Ff36/m0f2n
-flpQmvSbHw==</DigestValue></Reference></SignedInfo><SignatureValue>r/77TgpbSjYs9KeeWVZwFVYrT+QD4qCf1gnL0p03MMKEWILsbEhIa03DyOJBgtAoBGu2mISU1Mbx
-ZSY4mphGX7CVKbtaq9JJ/2xWud72dK3ULE2l4rDYLHeECY2H2YTgRcTj37MoarQ6hDxG/7KuO5dp
-DMn9NQY7wJ1MXFWx2WmzcOqP6yUmblhcQjkEOqGbtETi659dxAgcDS5vDMVcEe+VOpU0L/2CQVtm
-o+aqlILX0XK1o7NvgMn7VhRLY9etwSgOkdxZbmVbzC5K1HCf87VTY/E/89Fd6fSjN0lIYzWEa1D1
-V0LR7noyM4qA4K6rqP7N0H1W9AOVAGLrurz+3Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_83ed6f2d-83c7-4588-bc8c-314153bd2419"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>XFloolZu1x/bRfGnsdV0ZPDshF2bGh9acVECZ4brIiwmJDRcRXyEoQ1VSkeCJTmZDwsRtzv0/RYW
+4Cu3BHHeIg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_180fb540-5db7-41cf-b431-7827b65738b0"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>jVkrxn9o+ft9zQ4IR6Quk+aNME+c6bc5KPWXIAe9cQ7ARCHrXAk15U02qWsjEFklMoBedPkA8Y7N
+T7yI4ntWVQ==</DigestValue></Reference></SignedInfo><SignatureValue>MguCaBZOO1ZPWZzwB20R3ISe2MPnquRkVYXL0tqYa1iH+wQBV31qiI0ij2rHQqMQodvFpQmAtMIY
+7OWhx9btAjdV9BvT7ZOGn/qqZGgyNEyGyEz1AvAwF4/xOTtEaBU634wtFvQRlbFE1H7JVEQSxTqc
+J22w1Llfm9GCnjoFri3ojT2UfxaLCQ3mOO3m5DTKT7ME4xP9spyNPGnupM60JSB3Yet+kV8gLRAn
+ZOUCirU/WuS8FXQKEiuGHnLzu6HDZpkYX3MPuDQmCbwOSJtiV7vVOxE74GVvSQ4VPu+BkBy0Vpy3
+lx3fPr+F0irZst4ok1PuclrFbzLU+yUb6towCg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -837,4 +850,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_0b66f7c5-6847-41e9-b14d-c0af3c096774" Target="#_0b71a2f3-6d16-4f3c-b545-27dd29b1c1ab"><Timestamp>2019-03-01 08:38:48</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_180fb540-5db7-41cf-b431-7827b65738b0" Target="#_83ed6f2d-83c7-4588-bc8c-314153bd2419"><Timestamp>2019-05-29 06:25:11</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
