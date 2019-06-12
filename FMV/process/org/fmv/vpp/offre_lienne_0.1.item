@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:xmi="http://www.omg.org/XMI" defaultContext="Default" jobType="Standard" xmi:version="2.0">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:TalendMapper="http://www.talend.org/mapper" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" defaultContext="Default" jobType="Standard" xmi:version="2.0">
   <context confirmationNeeded="false" name="Default">
     <contextParameter comment="" name="tse_offre_lienne_full_path" prompt="tse_offre_lienne_full_path?" promptNeeded="false" type="id_String" value=""/>
     <contextParameter comment="" name="date_offre" prompt="date_offre?" promptNeeded="false" type="id_Date" value=""/>
@@ -385,8 +385,6 @@
     <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
     <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
     <elementParameter field="TABLE" name="LENGTHS" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="rule"/>
-      <elementValue elementRef="LENGTH" value="10"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="date"/>
       <elementValue elementRef="LENGTH" value="10"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="_0"/>
@@ -442,7 +440,6 @@
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tLogRow_1">
-      <column comment="" key="false" length="-1" name="rule" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="_0" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="_1" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
@@ -470,7 +467,107 @@
       <column comment="" key="false" length="-1" name="_23" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="96">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="672" posY="96">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tMap_1"/>
+    <elementParameter field="EXTERNAL" name="MAP" value=""/>
+    <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
+    <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_hqtXwI0QEemlJo04KbTZaQ-tMap_1-PREVIEW.bmp"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" show="false" value="true"/>
+    <elementParameter field="CHECK" name="LKUP_PARALLELIZE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="LEVENSHTEIN" show="false" value="0"/>
+    <elementParameter field="TEXT" name="JACCARD" show="false" value="0"/>
+    <elementParameter field="CHECK" name="ENABLE_AUTO_CONVERT_TYPE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="CSV">
+      <column comment="" key="false" length="-1" name="date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_0" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_1" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_2" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_3" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_4" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_5" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_6" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_7" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_8" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_9" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_10" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_11" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_12" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_13" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_14" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_15" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_16" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_17" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_18" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_19" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_20" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_21" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_22" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_23" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+    </metadata>
+    <nodeData xsi:type="TalendMapper:MapperData">
+      <uiProperties shellMaximized="true"/>
+      <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
+      <outputTables name="CSV" sizeState="INTERMEDIATE">
+        <mapperTableEntries expression="row3.date " name="date" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3._0 " name="_0" nullable="true" type="id_Float"/>
+        <mapperTableEntries expression="row3._1 " name="_1" nullable="true" type="id_Float"/>
+        <mapperTableEntries expression="row3._2 " name="_2" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_3" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_4" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_5" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_6" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_7" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_8" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_9" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_10" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_11" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_12" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_13" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_14" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_15" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_16" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_17" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_18" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_19" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_20" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_21" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_22" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_23" nullable="true" type="id_Float"/>
+      </outputTables>
+      <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row3" sizeState="INTERMEDIATE">
+        <mapperTableEntries name="date" nullable="true" type="id_String"/>
+        <mapperTableEntries name="_0" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_1" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_2" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_3" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_4" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_5" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_6" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_7" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_8" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_9" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_10" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_11" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_12" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_13" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_14" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_15" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_16" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_17" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_18" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_19" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_20" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_21" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_22" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="_23" nullable="true" type="id_Float"/>
+      </inputTables>
+    </nodeData>
+  </node>
+  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputDelimited_1"/>
     <elementParameter field="CHECK" name="USESTREAM" value="false"/>
     <elementParameter field="TEXT" name="STREAMNAME" show="false" value="outputStream"/>
@@ -501,7 +598,7 @@
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="90"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileOutputDelimited_1">
-      <column comment="" key="false" length="-1" name="rule" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="&quot;prod_fil_eau&quot;" key="false" length="-1" name="rule" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="_0" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="_1" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
@@ -700,14 +797,13 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
-  <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tLogRow_1" offsetLabelX="0" offsetLabelY="0" source="tLogRow_1" target="tFileOutputDelimited_1">
-    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
-      <elementValue elementRef="TRACE_COLUMN" value="rule"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-    </elementParameter>
+  <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tLogRow_1" offsetLabelX="0" offsetLabelY="0" source="tLogRow_1" target="tMap_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
+  </connection>
+  <connection connectorName="FLOW" label="CSV" lineStyle="0" metaname="CSV" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tFileOutputDelimited_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="CSV"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRouteInput_1"/>
@@ -719,13 +815,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_d3f43408-1a68-42f3-bfde-e31d0901b3fe"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>RBNdELuZyw/hg9AWS/AcewQkBDQHqjhK8KaB1392Ckamc7b84vX+jes3NQMWyU+m6YjB8SHbeIWY
-Fmo+NBqwfQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e36ec6b0-92c6-4d93-9490-ff841d2a2ee9"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>P+LbXy1Hwb6w213RR7/79rin3pYbxtSwkXhpJM2OKd0huViP7INIWFO/i7/PHoo57zCBSFSwaKWK
-SF0LnVNDUw==</DigestValue></Reference></SignedInfo><SignatureValue>ys+CDKXwm0GQS5pyn2387qRVFaB7q+rYNPyq83XFeEm3hm6sKIsOh/o9tXBag+h+61xHAUYYn5P+
-0e2nMiNy1fZFRgarSZyHOIVYpwpu/CyJYepascu3RVaGijvPhtkKZlLf0ANzogA81s5HMQmAIB6O
-7cWxzPVp2YhNH2M9xcloL9QoJwV/AtXqORas3nMVMcxiugmoAYluMNUNuNg9MZ4zVFcSRswhn5Rr
-wDupgagvmW6k1nwJMaF5zIfOLzFr9sGJaKvqE+ivveCVy+ND7ctxEPMXt13xMz4KyT6Y0YAB4iw7
-/QTcdIAKGTTMnbxmWbnuMhwVfhS/C2XEzGvbDA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_817c83d8-e76e-4c47-b050-ef7829dd77f6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>7JK4ag7VZkvtL7ztseVEUNOfMZctZDoQ2TVhRl0zNonjtG6rEZbXGccBvB54oIdit2rqNnFKqWlJ
+SZiDapGnqg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e013a411-1b92-4e81-91e1-01ba8de18956"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>RublT+Wo9A9qDGCMLRf6X6N4blwkERd8x6I9RcWEr3e4JL9KmFbHAbMK2So+9Zu5NRAKyDOQ4UCq
+OYVyeDyGdw==</DigestValue></Reference></SignedInfo><SignatureValue>CYq+AXBq/matlePRUyfVrkbj3ttOZImQHNTsySFzaXA1BBzCvZtr0sKUg31oitEAH7Wnnen4I34J
+GCY22cUy6++CFRIZYchIixGLTDgB3mdJUe9cHtVuqWTheEotc8eJZkOdHvSYt2Aa+tsb5yrwMCSN
+v4xVWTS1YArOeSXGHU6twHJFPw4jmTmI3/aGMG4PT4qOS7uiVeq6ww6Mxb9b3Eq39XRRkp0CKhx1
+9UcU/QwP0YJoK9CSiNxBe/0s8Bhn812+RqStsHanKOZA6tNajLGVcU+fE5Col450I7nimruJlnNH
+AHFqr1Biu7RP4nkwx9PoI1Dm4/ijaGQqxHqqJQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -749,4 +845,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e36ec6b0-92c6-4d93-9490-ff841d2a2ee9" Target="#_d3f43408-1a68-42f3-bfde-e31d0901b3fe"><Timestamp>2019-06-12 14:09:10</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e013a411-1b92-4e81-91e1-01ba8de18956" Target="#_817c83d8-e76e-4c47-b050-ef7829dd77f6"><Timestamp>2019-06-12 14:12:19</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
