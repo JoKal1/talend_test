@@ -143,16 +143,9 @@
     <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
     <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
     <elementParameter field="CHECK" name="TRIMALL" value="true"/>
-    <elementParameter field="TABLE" name="TRIMSELECT" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="dyna"/>
-      <elementValue elementRef="TRIM" value="false"/>
-    </elementParameter>
+    <elementParameter field="TABLE" name="TRIMSELECT" show="false"/>
     <elementParameter field="CHECK" name="CONVERTDATETOSTRING" show="false" value="false"/>
-    <elementParameter field="TABLE" name="DATESELECT" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="dyna"/>
-      <elementValue elementRef="CONVERTDATE" value="false"/>
-      <elementValue elementRef="PATTERN" value="&quot;MM-dd-yyyy&quot;"/>
-    </elementParameter>
+    <elementParameter field="TABLE" name="DATESELECT" show="false"/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="READ_REAL_VALUE" value="false"/>
@@ -161,18 +154,15 @@
     <elementParameter field="CHECK" name="SUPPRESS_WARN" value="false"/>
     <elementParameter field="CLOSED_LIST" name="GENERATION_MODE" show="false" value="USER_MODE"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tFileInputExcel_1">
-      <column comment="" key="false" length="-1" name="dyna" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Dynamic" usefulColumn="true"/>
-    </metadata>
+    <metadata connector="FLOW" name="tFileInputExcel_1"/>
     <metadata connector="REJECT" name="REJECT">
-      <column comment="" key="false" length="-1" name="dyna" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_Dynamic" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="384" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="int seq = Numeric.sequence(&quot;s1&quot;, 1, 1);&#10;String date2 = &quot;&quot;;&#10;&#10;if (seq == 1) {&#10;&#9;//String sDate = input_row.date;&#10;&#9;//Date date1 = new SimpleDateFormat(&quot;M/dd/yy&quot;).parse(sDate);&#10;&#9;//date2 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;).format(date1);&#10;&#9;}&#10;&#9;&#10;System.out.println(input_row.dyna);&#10;&#10;//if (seq == dayNumber) {&#10;//&#9;context.volume_kwm_sion = input_row.volume_kwm_sion;&#10;//&#9;context.timestamp = format1.format(cal.getTime()) + &quot; 00:00&quot;;&#10;//&#9;}&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="int seq = Numeric.sequence(&quot;s1&quot;, 1, 1);&#10;String date2 = &quot;&quot;;&#10;&#10;if (seq == 1) {&#10;&#9;//String sDate = input_row.date;&#10;&#9;//Date date1 = new SimpleDateFormat(&quot;M/dd/yy&quot;).parse(sDate);&#10;&#9;//date2 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;).format(date1);&#10;&#9;}&#10;&#9;&#10;System.out.println(input_row);&#10;&#10;//if (seq == dayNumber) {&#10;//&#9;context.volume_kwm_sion = input_row.volume_kwm_sion;&#10;//&#9;context.timestamp = format1.format(cal.getTime()) + &quot; 00:00&quot;;&#10;//&#9;}&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Date;&#10;import java.text.SimpleDateFormat;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1">
@@ -453,13 +443,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_cad6ab6a-51c7-4565-85cf-110fa39a40b8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>HXsNgbcOtjWYWxNyuoIbt1siheBer6jg82XOydHa9Ad2B21qu0jH8t+3XMw4c3PNy0Noh7bnCARb
-6c9jL+k8tg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_33593857-8b7d-4d03-a6e8-ee7276a64013"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>gFlGGJkVy7NttgDiHFn8dG/YMdbPw0mG1abgaA75FgjHMUIlPby8bru/WJeCSWj66q9KVJOIC8jv
-+LEmyd7GOA==</DigestValue></Reference></SignedInfo><SignatureValue>zekloily5dpKXqVEMqw3WM4Dn7hKcVQxAG1rLXTJmygXjjLa9n8ys37ou7t8PjnWDk7v4f/G7wbI
-Ed+n77bKMIlpm4TvLo3GVY466C7Oa8Sfo0p4ZjwQKMAUpTpUVTEwxlQYBOpk3sQW5HIYGKtOMTeZ
-X0VksRmw8qdYbLydgEVyjx4fq60bxKVe0101m2lRE3UdePHTB/lZ7ya/r/J4aijMHqU65Eq1L6so
-M2QlSS7vMsR+Z3biH8gLr0GcFAcOoqgKZx58rfusi3HfjfkEAYCHXVn3DCuN4OdMVcwGKHtRQAnm
-HLJc2eIFEzpnufrjIdUJSd9CrcMIa5YSXA3alg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_5be50cae-7170-41e9-aac0-8ad57fc279e7"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ka0OrbRLkKKL+0O11NlzFiKC2Qmlds7B/1TZh5PoFTQPv32ANpJ6+jOn5rd81MyJMioudVrGEWvf
+x5jOsfR5ww==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1eefcf19-2097-476e-9383-8c2bedcccc59"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>FK1GSnA505/fx1fQxWSyBoL77jB3CddosSB+/PA0pXzITlwvKsLw1nSQpabTUBtiy1WKGNeBYYV0
+GCOiT9fk5A==</DigestValue></Reference></SignedInfo><SignatureValue>lpyIGTed5ES0f36+LdEraNgCAJaRx8WXZqfZo0KdMh+d4EdtLVJg3r3A+FkWdikwbtUoh7VxFp+n
+0LWsc1CvgJ88qb6okCBU6njksBbHkIoMOFL6b/fPMKp4LkPFMnmckxcXVWnJHx7m7ycGwJ8IE35e
+xjc1tnbCdlgSJI0d5Ic/jFkoTMX4ak49SQBdTBYNiUGNGi9uDrkD12b2yeslCdZKcS2ics6WXjyn
+NxXFr2CbpmhAsGoE/ov3VymwyLFi0b9Uh9ihS+18rmvDGTBwWiZ2NG0o0At0jgbUi1/Oe0CKM/nW
+ntnK5hDqAqS1WTuz66PwrFiteQ+i265v4VRpIA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -483,4 +473,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_33593857-8b7d-4d03-a6e8-ee7276a64013" Target="#_cad6ab6a-51c7-4565-85cf-110fa39a40b8"><Timestamp>2019-06-12 14:19:26</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1eefcf19-2097-476e-9383-8c2bedcccc59" Target="#_5be50cae-7170-41e9-aac0-8ad57fc279e7"><Timestamp>2019-06-13 12:25:27</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
