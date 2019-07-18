@@ -111,14 +111,48 @@
     <routinesParameter id="_W9zaFtX-Eeil3oUGBkSqXg" name="TalendStringUtil"/>
     <routinesParameter id="_W9qQJtX-Eeil3oUGBkSqXg" name="TalendString"/>
   </parameters>
-  <node componentName="tSAPConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="128">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPConnection_2"/>
-    <elementParameter field="LABEL" name="NOTE1" value="(To use this component, you need first to add the SAP Java Connector (sapjco.jar or sapjco3.jar) in the Modules view)"/>
-    <elementParameter field="LABEL" name="NOTE2_1" value="The selected SAP JCO version allow you to share this SAP connection only with tSAPBAPI and tSAPTableInput"/>
-    <elementParameter field="LABEL" name="NOTE2_2" show="false" value="The selected SAP JCO version does not allow you to share this SAP connection with tSAPBAPI and tSAPTableInput"/>
+  <node componentName="tFixedFlowInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="64">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFixedFlowInput_1"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA - RFC_READ_TABLE/INPUT/FIELDS"/>
+    <elementParameter field="TEXT" name="NB_ROWS" value="1"/>
+    <elementParameter field="RADIO" name="USE_SINGLEMODE" value="false"/>
+    <elementParameter field="TABLE" name="VALUES" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="FIELDNAME"/>
+      <elementValue elementRef="VALUE" value=""/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="OFFSET"/>
+      <elementValue elementRef="VALUE" value=""/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="LENGTH"/>
+      <elementValue elementRef="VALUE" value=""/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="TYPE"/>
+      <elementValue elementRef="VALUE" value=""/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="FIELDTEXT"/>
+      <elementValue elementRef="VALUE" value=""/>
+    </elementParameter>
+    <elementParameter field="RADIO" name="USE_INTABLE" value="false"/>
+    <elementParameter field="TABLE" name="INTABLE" show="false"/>
+    <elementParameter field="RADIO" name="USE_INLINECONTENT" value="true"/>
+    <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;;&quot;"/>
+    <elementParameter field="MEMO" name="INLINECONTENT" value="MANDT;000000;000003;C;Client"/>
+    <elementParameter field="TEXT" name="LABEL" value="FIELDS_IN"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="FIELDS" name="tFixedFlowInput_1">
+      <column comment="" key="false" length="30" name="FIELDNAME" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="OFFSET" nullable="true" pattern="" precision="0" sourceType="long" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="LENGTH" nullable="true" pattern="" precision="0" sourceType="long" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="1" name="TYPE" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="60" name="FIELDTEXT" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <additionalProperties key="isinput" value="true"/>
+    </metadata>
+  </node>
+  <node componentName="tSAPBapi" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="384" posY="160">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPBapi_1"/>
+    <elementParameter field="LABEL" name="NOTE" value="(To use this component, you need first to add the SAP Java Connector sapjco3.jar in the Modules view)"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA"/>
-    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="TALENDSAP"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
     <elementParameter field="CLOSED_LIST" name="SERVERTYPE" value="ApplicationServer"/>
     <elementParameter field="TEXT" name="CLIENT" value="&quot;100&quot;"/>
     <elementParameter field="TEXT" name="USERID" value="&quot;com_talend&quot;"/>
@@ -128,26 +162,272 @@
     <elementParameter field="TEXT" name="SYSTEMNUMBER" value="&quot;00&quot;"/>
     <elementParameter field="TEXT" name="SYSTEMID" show="false" value="&quot;PRD&quot;"/>
     <elementParameter field="TEXT" name="GROUPNAME" show="false" value="&quot;tGroup&quot;"/>
+    <elementParameter field="TEXT" name="SAP_FUNCTION" value="&quot;RFC_READ_TABLE&quot;"/>
+    <elementParameter field="CHECK" name="IS_VIRTUAL_COMPONENT" value="true"/>
+    <elementParameter field="TABLE" name="MAPPING_INPUT">
+      <elementValue elementRef="NAME" value="&quot;DELIMITER&quot;"/>
+      <elementValue elementRef="TYPE" value="SINGLE"/>
+      <elementValue elementRef="SCHEMA" value="row_DELIMITER_1"/>
+      <elementValue elementRef="PARENT_ROW" value=""/>
+      <elementValue elementRef="CHANGING" value="false"/>
+      <elementValue elementRef="NAME" value="&quot;NO_DATA&quot;"/>
+      <elementValue elementRef="TYPE" value="SINGLE"/>
+      <elementValue elementRef="SCHEMA" value="row_NO_DATA_1"/>
+      <elementValue elementRef="PARENT_ROW" value=""/>
+      <elementValue elementRef="CHANGING" value="false"/>
+      <elementValue elementRef="NAME" value="&quot;QUERY_TABLE&quot;"/>
+      <elementValue elementRef="TYPE" value="SINGLE"/>
+      <elementValue elementRef="SCHEMA" value="row_QUERY_TABLE_1"/>
+      <elementValue elementRef="PARENT_ROW" value=""/>
+      <elementValue elementRef="CHANGING" value="false"/>
+      <elementValue elementRef="NAME" value="&quot;ROWCOUNT&quot;"/>
+      <elementValue elementRef="TYPE" value="SINGLE"/>
+      <elementValue elementRef="SCHEMA" value="row_ROWCOUNT_1"/>
+      <elementValue elementRef="PARENT_ROW" value=""/>
+      <elementValue elementRef="CHANGING" value="false"/>
+      <elementValue elementRef="NAME" value="&quot;ROWSKIPS&quot;"/>
+      <elementValue elementRef="TYPE" value="SINGLE"/>
+      <elementValue elementRef="SCHEMA" value="row_ROWSKIPS_1"/>
+      <elementValue elementRef="PARENT_ROW" value=""/>
+      <elementValue elementRef="CHANGING" value="false"/>
+      <elementValue elementRef="NAME" value="&quot;DATA&quot;"/>
+      <elementValue elementRef="TYPE" value="TABLE"/>
+      <elementValue elementRef="SCHEMA" value="row_DATA_2"/>
+      <elementValue elementRef="PARENT_ROW" value=""/>
+      <elementValue elementRef="CHANGING" value="false"/>
+      <elementValue elementRef="NAME" value="&quot;FIELDS&quot;"/>
+      <elementValue elementRef="TYPE" value="TABLE"/>
+      <elementValue elementRef="SCHEMA" value="row_FIELDS_2"/>
+      <elementValue elementRef="PARENT_ROW" value="row1"/>
+      <elementValue elementRef="CHANGING" value="false"/>
+      <elementValue elementRef="NAME" value="&quot;OPTIONS&quot;"/>
+      <elementValue elementRef="TYPE" value="TABLE"/>
+      <elementValue elementRef="SCHEMA" value="row_OPTIONS_2"/>
+      <elementValue elementRef="PARENT_ROW" value="row2"/>
+      <elementValue elementRef="CHANGING" value="false"/>
+    </elementParameter>
+    <elementParameter field="TABLE" name="SCHEMAS">
+      <elementValue elementRef="NAME" value="&quot;DATA&quot;"/>
+      <elementValue elementRef="TYPE" value="TABLE"/>
+      <elementValue elementRef="SCHEMA" value="row_DATA_1"/>
+      <elementValue elementRef="NAME" value="&quot;FIELDS&quot;"/>
+      <elementValue elementRef="TYPE" value="TABLE"/>
+      <elementValue elementRef="SCHEMA" value="row_FIELDS_1"/>
+      <elementValue elementRef="NAME" value="&quot;OPTIONS&quot;"/>
+      <elementValue elementRef="TYPE" value="TABLE"/>
+      <elementValue elementRef="SCHEMA" value="row_OPTIONS_1"/>
+    </elementParameter>
     <elementParameter field="LABEL" name="NOTE_DATASOURCE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="SAP_DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
-    <elementParameter field="TABLE" name="SAP_PROPERTIES"/>
-    <elementParameter field="CHECK" name="FTP_HTTP_FUNCTION" value="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="S4_HANA_TEST"/>
+    <elementParameter field="TABLE" name="SAP_PROPERTIES">
+      <elementValue elementRef="PROPERTY" value="&quot;api.use_z_talend_read_table&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;true&quot;"/>
+      <elementValue elementRef="PROPERTY" value="&quot;jco.sever.gwserv&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;sapgw00&quot;"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="LABEL" value="RFC_READ_TABLE"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="FIELDS" name="tSAPBapi_1">
+      <column comment="" key="false" length="30" name="FIELDNAME" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="OFFSET" nullable="true" pattern="" precision="0" sourceType="long" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="LENGTH" nullable="true" pattern="" precision="0" sourceType="long" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="1" name="TYPE" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="60" name="FIELDTEXT" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <additionalProperties key="isinput" value="true"/>
+    </metadata>
+    <metadata comment="" connector="FLOW" label="row_DATA_1" name="row_DATA_1" type="OUTPUT">
+      <column comment="" key="false" length="512" name="WA" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <metadata comment="" connector="FLOW" label="row_FIELDS_1" name="row_FIELDS_1" type="OUTPUT">
+      <column comment="" key="false" length="30" name="FIELDNAME" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="OFFSET" nullable="true" pattern="" precision="0" sourceType="long" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="LENGTH" nullable="true" pattern="" precision="0" sourceType="long" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="1" name="TYPE" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="60" name="FIELDTEXT" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <metadata comment="" connector="FLOW" label="row_OPTIONS_1" name="row_OPTIONS_1" type="OUTPUT">
+      <column comment="" key="false" length="72" name="TEXT" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <metadata comment="" label="row_DELIMITER_1" name="row_DELIMITER_1" type="INPUT">
+      <column comment="" key="false" length="1" name="DELIMITER" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <additionalProperties key="isinput" value="true"/>
+    </metadata>
+    <metadata comment="" label="row_NO_DATA_1" name="row_NO_DATA_1" type="INPUT">
+      <column comment="" key="false" length="1" name="NO_DATA" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <additionalProperties key="isinput" value="true"/>
+    </metadata>
+    <metadata comment="" label="row_QUERY_TABLE_1" name="row_QUERY_TABLE_1" type="INPUT">
+      <column comment="" defaultValue="LFA1" key="false" length="30" name="QUERY_TABLE" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <additionalProperties key="isinput" value="true"/>
+    </metadata>
+    <metadata comment="" label="row_ROWCOUNT_1" name="row_ROWCOUNT_1" type="INPUT">
+      <column comment="" defaultValue="10" key="false" length="0" name="ROWCOUNT" nullable="true" pattern="" precision="0" sourceType="integer" type="id_Integer" usefulColumn="true"/>
+      <additionalProperties key="isinput" value="true"/>
+    </metadata>
+    <metadata comment="" label="row_ROWSKIPS_1" name="row_ROWSKIPS_1" type="INPUT">
+      <column comment="" defaultValue="0" key="false" length="0" name="ROWSKIPS" nullable="true" pattern="" precision="0" sourceType="integer" type="id_Integer" usefulColumn="true"/>
+      <additionalProperties key="isinput" value="true"/>
+    </metadata>
+    <metadata comment="" label="row_DATA_2" name="row_DATA_2" type="INPUT">
+      <column comment="" key="false" length="512" name="WA" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <additionalProperties key="isinput" value="true"/>
+    </metadata>
+    <metadata comment="" label="row_FIELDS_2" name="row_FIELDS_2" type="INPUT">
+      <column comment="" key="false" length="30" name="FIELDNAME" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="OFFSET" nullable="true" pattern="" precision="0" sourceType="long" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="LENGTH" nullable="true" pattern="" precision="0" sourceType="long" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="1" name="TYPE" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="60" name="FIELDTEXT" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <additionalProperties key="isinput" value="true"/>
+    </metadata>
+    <metadata comment="" label="row_OPTIONS_2" name="row_OPTIONS_2" type="INPUT">
+      <column comment="" key="false" length="72" name="TEXT" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <additionalProperties key="isinput" value="true"/>
+    </metadata>
   </node>
+  <node componentName="tFixedFlowInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFixedFlowInput_2"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA - RFC_READ_TABLE/INPUT/OPTIONS"/>
+    <elementParameter field="TEXT" name="NB_ROWS" value="1"/>
+    <elementParameter field="RADIO" name="USE_SINGLEMODE" value="true"/>
+    <elementParameter field="TABLE" name="VALUES">
+      <elementValue elementRef="SCHEMA_COLUMN" value="TEXT"/>
+      <elementValue elementRef="VALUE" value="&quot;MANDT = '100'&quot;"/>
+    </elementParameter>
+    <elementParameter field="RADIO" name="USE_INTABLE" value="false"/>
+    <elementParameter field="TABLE" name="INTABLE" show="false"/>
+    <elementParameter field="RADIO" name="USE_INLINECONTENT" value="false"/>
+    <elementParameter field="TEXT" name="ROWSEPARATOR" show="false" value="&quot;\n&quot;"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;;&quot;"/>
+    <elementParameter field="MEMO" name="INLINECONTENT" show="false" value=""/>
+    <elementParameter field="TEXT" name="LABEL" value="OPTIONS_IN"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="OPTIONS" name="tFixedFlowInput_2">
+      <column comment="" key="false" length="72" name="TEXT" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <additionalProperties key="isinput" value="true"/>
+    </metadata>
+  </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="64">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_3"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="WA"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="LABEL" value="DATA_OUT"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="row_DATA_1" name="tLogRow_3">
+      <column comment="" key="false" length="512" name="WA" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="224">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_4"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="FIELDNAME"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="OFFSET"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="LENGTH"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="TYPE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="FIELDTEXT"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="LABEL" value="FIELDS_OUT"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="row_FIELDS_1" name="tLogRow_4">
+      <column comment="" key="false" length="30" name="FIELDNAME" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="OFFSET" nullable="true" pattern="" precision="0" sourceType="long" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="LENGTH" nullable="true" pattern="" precision="0" sourceType="long" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="1" name="TYPE" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="60" name="FIELDTEXT" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="352">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_2"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="TEXT"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="LABEL" value="OPTIONS_OUT"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="row_OPTIONS_1" name="tLogRow_2">
+      <column comment="" key="false" length="72" name="TEXT" nullable="true" pattern="" precision="0" sourceType="string" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <connection connectorName="FLOW" label="row1" lineStyle="10" mergeOrder="1" metaname="tFixedFlowInput_1" offsetLabelX="0" offsetLabelY="0" source="tFixedFlowInput_1" target="tSAPBapi_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
+  </connection>
+  <connection connectorName="FLOW" label="row_DATA_1" lineStyle="0" metaname="row_DATA_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tSAPBapi_1" target="tLogRow_3">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row_DATA_1"/>
+  </connection>
+  <connection connectorName="FLOW" label="row_FIELDS_1" lineStyle="0" metaname="row_FIELDS_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tSAPBapi_1" target="tLogRow_4">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row_FIELDS_1"/>
+  </connection>
+  <connection connectorName="FLOW" label="row_OPTIONS_1" lineStyle="0" metaname="row_OPTIONS_1" offsetLabelX="0" offsetLabelY="0" outputId="3" source="tSAPBapi_1" target="tLogRow_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row_OPTIONS_1"/>
+  </connection>
+  <connection connectorName="FLOW" label="row2" lineStyle="10" mergeOrder="2" metaname="tFixedFlowInput_2" offsetLabelX="0" offsetLabelY="0" source="tFixedFlowInput_2" target="tSAPBapi_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
+  </connection>
   <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPConnection_2"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFixedFlowInput_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_d2c7df37-875d-4970-b001-f07b3d0793c0"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>jVpjIZ3jBX4i/6MVR5QvnG6yrG1V/60XV3eQNqIbiAHJ752RPTHJZgNFGayOPuT86JbC6Ki50pYK
-X6OaSbAPHQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_bbbfe550-416c-4cb3-8d99-4e245f0939eb"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>J9fgFsW3TE2PMt8dfpggqJQ/0PGd1SYgHflooqEv8yjvAYU1GRzxKm+1j4ckbTwEM2RUGmBhZA0O
-RHZMdabgWA==</DigestValue></Reference></SignedInfo><SignatureValue>ADl8jEAoy5y+HwymxK4kx1ugF71A1hDQfNfYOKVeUa5NTar+yeTGL/ZnYBckZ7kYmSLmhjk7Sfcw
-Ws2JCck5sz1O1kH3nwIOWEIV8hXLaRBllCk/Oxet2A5Wf2w8yseZ4RGkM/kiWmwT3bzAhv2nQNH9
-dNy5YKEjZ+i891U7YPqvBrxSX0ClJpDNDxvaO85TGJAbV02g99xxRQVuekqurNdSZanj5y0ymakz
-6uqIB+nKWXRVILNcY/c+o+XtGEWOzCSSktUn9PcVmQYT8AUnXBNnYFC0E92f0MwNjisCEno1Gt9q
-51zOlJfiPAlGazjV1X6C8taruOpH4xXih0A5Bg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_408e2e8b-9476-4b8c-a329-e7dee38358f6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>LN6/MeSUDkBpVwDlAiAfZAovdUDFjpwlBB4ONTOYv78hPTwQopXK6KQLzj1lpoLY9vhjlevvtVfQ
+JoKPbjls6w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_aebeb076-6b9e-4d5f-9822-34e92d5a929f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>7JFfq3dr7cRreX1OkPYqQQViQQCr3R7QEiErq0hlaDghaIFFdfWLKsQc+h/P7UrAu6IUqwfn49e+
+yMKb4qMVtQ==</DigestValue></Reference></SignedInfo><SignatureValue>DZRTdD5AlDJtLD3ofQQIxhPQzk45WFwNTMQRkuouTc0EW1kNG1N+dJdwJZPfQ72f7F4/hKFYVDSz
+LaMCFV9xPCfpyJHqG5MMUY+KL6MWyUULfp7SUQ1uGeIbov/qcAZJChO7e4llA8R+8QJkKR2UQgOY
+7Kt87jpMB+aceHhlSrvH5J+sH08jeoe3H0SlvoFRYxF5gAd3c54bSWha0ytyvPtvmTryjC+F4imC
+UboeRoLriCIcJNii7/yyt1cULfL/SEsArYatTziR16Nd6ouosiDBf+i2qOV8wa0TTLqLz/wHuvSC
+c3ztLKa/jN76FOcvtDKEcjJPe2jGaUYKXDpeaQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -171,4 +451,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_bbbfe550-416c-4cb3-8d99-4e245f0939eb" Target="#_d2c7df37-875d-4970-b001-f07b3d0793c0"><Timestamp>2019-07-17 10:02:58</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_aebeb076-6b9e-4d5f-9822-34e92d5a929f" Target="#_408e2e8b-9476-4b8c-a329-e7dee38358f6"><Timestamp>2019-07-18 07:39:41</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
