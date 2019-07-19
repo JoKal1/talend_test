@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:xmi="http://www.omg.org/XMI" defaultContext="Default" jobType="Standard" xmi:version="2.0">
   <context confirmationNeeded="false" name="Default"/>
   <parameters>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="0"/>
     <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" show="false" value=""/>
     <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" show="false" value=""/>
     <elementParameter field="TEXT" name="OOZIE_HADOOP_DISTRIBUTION" show="false" value=""/>
@@ -109,13 +111,70 @@
     <routinesParameter id="_W9zaFtX-Eeil3oUGBkSqXg" name="TalendStringUtil"/>
     <routinesParameter id="_W9qQJtX-Eeil3oUGBkSqXg" name="TalendString"/>
   </parameters>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_8e115020-2ae5-4ca4-a5b1-58d59f82c91a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>cYNw3ePJoV4TxuGTvkCHbuW2dwOtOaDbe4xkWOr8CkeI8lpdr9FzT4GDzaXC/BfpAI3nXEYLOw9v
-waZ3TxLiSA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_dc6fa683-ee8c-451a-a469-3d16f598ae5e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>g8EXe2eE++4wMaIYjhCwjK5rY48+Sfhv0OMNlKMK46Mmgztl7wrPXTvjqGjYzpaDQYLPHB4WQFF8
-SjvXqgyqig==</DigestValue></Reference></SignedInfo><SignatureValue>W+KNCkeYrzvosagJxeAO8VkZyESlUfdsbOeBDhU7SPtgLR5AWGzfLxhsj4EvCCrbaM3Q210cl6G7
-Sqy3uNp3aR3/p2HvAmbZLWfws7q5RaAVWl4s2DuyAnzz8elX53xP02Vhvlt6ZHKnz/Hhzmi3zPGY
-c5bKWzLlb8Lj0aKyjAlXvTzCx8TIm6nXYahIUj2/CumRz4PN0mISpokqJ2B4/VrEAv0ZYHytYgE1
-kqzciVtTQIA7BPG0hsC2HvFZy5T1yVOeYNpOJLPwOXnqsXgpRgKgJIt9GGbAVdqJIw5T+SqGz6HG
-QtlGu3EiPgcMmZQrjd6H6uIIaJQT+rTYki3ZGw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <node componentName="tPOP" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="128" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPOP_1"/>
+    <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
+    <elementParameter field="TEXT" name="HOST" value="context.mail_server_fmv"/>
+    <elementParameter field="TEXT" name="PORT" value="context.mail_server_pop_port"/>
+    <elementParameter field="TEXT" name="USERNAME" value="context.mail_account_talend"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" value="8pW6Nmy2kuf0bfedabKCJevreF0tcVAYKxwgx6CPUhs="/>
+    <elementParameter field="DIRECTORY" name="OUTPUT_DIRECTORY" value="&quot;C:/Temp/Import/PC&quot;"/>
+    <elementParameter field="TEXT" name="FILENAME_PATTERN" value="&quot;PC_1Dix_&quot; + TalendDate.getDate(&quot;yyyyMMdd-hhmmss&quot;) + &quot;_&quot; + (counter_tPOP_1 + 1) + &quot;.mail&quot;"/>
+    <elementParameter field="CHECK" name="ALL_EMAILS" value="false"/>
+    <elementParameter field="CHECK" name="NEWER_EMAILS" value="false"/>
+    <elementParameter field="TEXT" name="MAX_EMAILS" value="10"/>
+    <elementParameter field="CHECK" name="DELETE_FROM_SERVER" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="PROTOCOL" value="pop3"/>
+    <elementParameter field="CHECK" name="SPECIFY_MAIL_FOLDER" show="false" value="false"/>
+    <elementParameter field="TEXT" name="MAIL_FOLDER" show="false" value="&quot;INBOX&quot;"/>
+    <elementParameter field="CHECK" name="USE_SSL" value="false"/>
+    <elementParameter field="TABLE" name="ADVANCED_FILTER">
+      <elementValue elementRef="FILTER_TIEM" value="Subject"/>
+      <elementValue elementRef="PATTERN" value="&quot;[1DIX] Rapport Long Term&quot;"/>
+    </elementParameter>
+    <elementParameter field="CLOSED_LIST" name="FILTER_RELATION" value="&amp;&amp;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_1"/>
+    <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" value="((String)globalMap.get(&quot;tPOP_1_CURRENT_FILEPATH&quot;))"/>
+    <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
+    <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="YES"/>
+    <elementParameter field="CHECK" name="ERROR" value="false"/>
+    <elementParameter field="CHECK" name="GLOBEXPRESSIONS" value="true"/>
+    <elementParameter field="TABLE" name="FILES">
+      <elementValue elementRef="FILEMASK" value="&quot;PC_1Dix_*.mail&quot;"/>
+    </elementParameter>
+    <elementParameter field="RADIO" name="ORDER_BY_NOTHING" value="false"/>
+    <elementParameter field="RADIO" name="ORDER_BY_FILENAME" value="false"/>
+    <elementParameter field="RADIO" name="ORDER_BY_FILESIZE" value="false"/>
+    <elementParameter field="RADIO" name="ORDER_BY_MODIFIEDDATE" value="true"/>
+    <elementParameter field="RADIO" name="ORDER_ACTION_ASC" value="true"/>
+    <elementParameter field="RADIO" name="ORDER_ACTION_DESC" value="false"/>
+    <elementParameter field="CHECK" name="IFEXCLUDE" value="false"/>
+    <elementParameter field="TEXT" name="EXCLUDEFILEMASK" show="false" value="&quot;*.txt&quot;"/>
+    <elementParameter field="CHECK" name="FORMAT_FILEPATH_TO_SLASH" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tPOP_1" offsetLabelX="0" offsetLabelY="0" source="tPOP_1" target="tFileList_1">
+    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
+    <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
+  </connection>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPOP_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_12b10763-38d1-4d1d-942e-282c18f50bb6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>9OGFM8seP+3i8s34ye6+NChw6XVYosavjGYcQMsSegq1UNsDtagAx1w9+P9dVkYRy66PtlH7APVt
+dXpl9zMtCg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_6397b3e0-fa8d-4f07-ab17-b3b3c9035844"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>M6Ep7G7qjviTxUqOXTTzEBP24fahBoVm5NfMlK+Zkk5kqlG8LtfmnditO2CJKeFXY6duf32avhMs
+2oRnbLg+eQ==</DigestValue></Reference></SignedInfo><SignatureValue>qrL5oU0AuTdznYlEpci677VFtPe0FaSH8341yQDFZoqzwVDh7Jfz365wIQ1ssvtaKHvMyCXn5ZKi
+AGkqv3jPMbj/Osdt2UTDWS9mxM5ANggBasmhEpBG4PV6p31RP+4+71uXFOrTbqwLc5CNuhBmVD7E
+5R+n08R8VTR+uzHLcnIdbOz8dj3kE1kJpYYTNx3Im6QhFuNnSvGMh4y9hyRm+7tip6wpVb20pkz7
+JSoeKbwp/5jdSXtsly3dVPGcByqoktavyxxVHONH+DE/NhMne4nYq+2qJEUUtVyJIqPJLxBAubI3
+qMq//YJKIWspuDzCLrUPyVyfVfML9nOETvrRNw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -139,4 +198,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_dc6fa683-ee8c-451a-a469-3d16f598ae5e" Target="#_8e115020-2ae5-4ca4-a5b1-58d59f82c91a"><Timestamp>2019-07-19 05:28:06</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_6397b3e0-fa8d-4f07-ab17-b3b3c9035844" Target="#_12b10763-38d1-4d1d-942e-282c18f50bb6"><Timestamp>2019-07-19 05:35:53</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
