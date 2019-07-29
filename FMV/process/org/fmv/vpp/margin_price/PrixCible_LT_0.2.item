@@ -366,13 +366,11 @@
     </metadata>
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="192">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_3"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(input_row.name);&#10;&#10;context.amenagement = input_row.shortName;&#10;context.timeStamp = TalendDate.getDate(&quot;yyyyMMdd&quot;) + &quot;-&quot; + input_row.time;&#10;&#10;System.out.println(input_row.name + &quot; &quot; + input_row.shortName);"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value=""/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJava_3">
-      <column comment="" key="false" length="-1" name="Object" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-    </metadata>
+    <metadata connector="FLOW" name="tJava_2"/>
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_1"/>
@@ -557,18 +555,18 @@
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate7"/>
   </connection>
-  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileInputXML_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputXML_1" target="tJava_3">
-    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
-    <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate3"/>
-  </connection>
   <connection connectorName="SUBJOB_ERROR" label="OnSubjobError" lineStyle="4" metaname="tFileInputXML_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputXML_1" target="tREST_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobError1"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileInputXML_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputXML_1" target="tFileList_3">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk3"/>
   </connection>
-  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tJava_3" offsetLabelX="0" offsetLabelY="0" source="tJava_3" target="tFileList_1">
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileInputXML_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputXML_1" target="tJava_2">
+    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
+    <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate3"/>
+  </connection>
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tFileList_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate8"/>
@@ -655,13 +653,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_3154cb25-6e9f-4fb2-9186-ebcd352051c3"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>8praTTTw64Ovv5ZXlAN/OTnZCaQE3r9plwroDsoUsE6DW+Z8KRw/5z2iiiiNg6bj7TxAFO3arZzI
-Fuv6cMgpkw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_7b149ea9-6c63-4935-b006-4f70b17ed1e5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>4VBYCmqjPPolYPRgH4lCLi2CMLD0sKBFGCR3q/S4lddClD/LyQDOW2h7sr7wemxzz7W8sJSoBiRE
-RSYYf5PHPA==</DigestValue></Reference></SignedInfo><SignatureValue>gbcD1U0+jDqeKehz6azrjkiwrMLyXSu9Go34OOxEuFR2XXi4cFFWvVMfJzalNGqMzoIyFtFqXveX
-NAnACMFeLZ+pZoKqSsrrIXTVAdZ0IXP5p7rJ1vxdKq4QCmXZEfcBehdXygXngp6moRAc+ox+lkI6
-dDLLmUityXehq30GwuCJwKWVDEGX18dS7XVRpRfyPPnzX3VAP2HOEKlUirvzAVBqFA6C1fRBlPnn
-L6wjoPBIpJv/Iz9/7Yic3t8bPVx5lrby8EaKFuMzslnOpCsC7zlWzx8AQqRUFf1LZkL7h51W93N0
-/KUuA65tBpwErmtEPEn6SwgAuHcED5zTEGf2Rw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_5b8508c0-11d0-4451-9c32-2b99faecc1f5"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Bn3w1HlXSRL8+VwH1zTGXVI6gTRWATbapQvcOYpk1z599I6KKrDUuOu7H/5Jh8N9aC2upSjxODR1
+LV73ivRh5g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_133bea50-a599-476d-b6f5-3dabbc7d25f9"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>lTNbjdBr0TDBIPyrV8WK8zjvryAgp9sBBT/whR8TcbAT53e6A9MhcoSGlFS6Otj2y4cPq2s9wpE3
+fLp/GxvblQ==</DigestValue></Reference></SignedInfo><SignatureValue>IJiQgXR+hdoT+PNb3mkLV3DL0jOoZ1tWDQbPVzJ/Rq7klK9oLlg5QB42cnF+oB+yZ0uHscvT4Pe8
+qSSx6CCaOIELM4eeeZbhbrnz0KTXCl/tY8Q/V401I3lsvKo15Dkp3tsph1BSaypZ9cQfkwGZvNoA
+TUtSkBdrt+d4sNT2sAo1NVEhZL8GpTainxPgAC05V3pXibNsPD/dhL9Hed00W5rRXYWoja5MEe2c
+zU0+0zwxwcOnc2t4rqWj2HfXl6a/ptTW13X+c10IGA+3Mo4V6IHVyyqfzQ/mWXdZWTtpVSX4I9g4
+eq9mESSHqpBuIS3Y8fjvTXsAoAjE3A2njT+6ng==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -685,4 +683,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_7b149ea9-6c63-4935-b006-4f70b17ed1e5" Target="#_3154cb25-6e9f-4fb2-9186-ebcd352051c3"><Timestamp>2019-07-29 08:22:01</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_133bea50-a599-476d-b6f5-3dabbc7d25f9" Target="#_5b8508c0-11d0-4451-9c32-2b99faecc1f5"><Timestamp>2019-07-29 08:23:54</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
