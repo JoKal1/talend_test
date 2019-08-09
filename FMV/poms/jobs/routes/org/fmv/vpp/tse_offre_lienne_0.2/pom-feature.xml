@@ -2,8 +2,14 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.example.fmv</groupId>
+    <artifactId>code.Master</artifactId>
+    <version>7.0.1</version>
+    <relativePath>../../../../../../</relativePath>
+  </parent>
   <groupId>org.example.fmv.route</groupId>
-  <artifactId>tse_offre_lienne-Feature</artifactId>
+  <artifactId>tse_offre_lienne-feature</artifactId>
   <version>0.2.0</version>
   <packaging>pom</packaging>
   <name>FMV tse_offre_lienne-0.2.0 (0.2,Routes) Feature</name>
@@ -28,11 +34,34 @@
         </executions>
       </plugin>
       <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.8.2</version>
+        <executions>
+          <execution>
+            <id>deploy-file</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy-file</goal>
+            </goals>
+            <configuration>
+              <file>${basedir}/src/main/bundle-resources/feature.xml</file>
+              <groupId>org.example.fmv.route</groupId>
+              <artifactId>tse_offre_lienne-feature</artifactId>
+              <version>0.2.0</version>
+              <classifier>features</classifier>
+              <packaging>xml</packaging>
+              <repositoryId>${project.distributionManagement.repository.id}</repositoryId>
+              <url>${project.distributionManagement.repository.url}</url>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <artifactId>maven-install-plugin</artifactId>
         <version>2.5.1</version>
         <executions>
           <execution>
-            <id>install-jar-lib</id>
+            <id>f109aa23-21bc-48a4-a915-c78764690dc0</id>
             <phase>validate</phase>
             <goals>
               <goal>install-file</goal>
@@ -42,7 +71,7 @@
               <artifactId>tse_offre_lienne_offre_lienne</artifactId>
               <version>0.1.0</version>
               <packaging>jar</packaging>
-              <file>../../../../../process/org/fmv/vpp/offre_lienne_0.1/target/offre_lienne_0_1.jar</file>
+              <file>../../../../../process/org/fmv/vpp/offre_lienne_0.1/target/offre_lienne-bundle-0.1.0.jar</file>
               <generatePom>true</generatePom>
             </configuration>
           </execution>
