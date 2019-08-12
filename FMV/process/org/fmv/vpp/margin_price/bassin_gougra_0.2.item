@@ -3,6 +3,34 @@
     <contextParameter comment="" name="timestamp" prompt="timestamp?" promptNeeded="false" type="id_String" value=""/>
     <contextParameter comment="" name="volume_gougra" prompt="volume_gougra?" promptNeeded="false" type="id_Float" value=""/>
     <contextParameter comment="" name="volume_bassin" prompt="volume_bassin?" promptNeeded="false" type="id_Integer" value=""/>
+    <contextParameter comment="" name="new1" prompt="new1?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="mail_account_talend" prompt="mail_account_talend?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value="eai.import"/>
+    <contextParameter comment="" name="mail_alert_it" prompt="mail_alert_it?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value="jacob.kolinski@fmv.ch"/>
+    <contextParameter comment="" name="mail_password_talend" prompt="mail_password_talend?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_Password" value="mLEtxlMJ+uccq5iLhQNRFA=="/>
+    <contextParameter comment="" name="mail_server_fmv" prompt="mail_server_fmv?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value="fmvexch3.net.fmv.ch"/>
+    <contextParameter comment="" name="mail_server_pop_port" prompt="mail_server_pop_port?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_Integer" value="110"/>
+  </context>
+  <context confirmationNeeded="false" name="Prod">
+    <contextParameter comment="" name="timestamp" prompt="timestamp?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="volume_gougra" prompt="volume_gougra?" promptNeeded="false" type="id_Float" value=""/>
+    <contextParameter comment="" name="volume_bassin" prompt="volume_bassin?" promptNeeded="false" type="id_Integer" value=""/>
+    <contextParameter comment="" name="new1" prompt="new1?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="mail_account_talend" prompt="mail_account_talend?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value="eai.import"/>
+    <contextParameter comment="" name="mail_alert_it" prompt="mail_alert_it?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value="jacob.kolinski@fmv.ch"/>
+    <contextParameter comment="" name="mail_password_talend" prompt="mail_password_talend?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_Password" value="mLEtxlMJ+uccq5iLhQNRFA=="/>
+    <contextParameter comment="" name="mail_server_fmv" prompt="mail_server_fmv?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value="fmvexch3.net.fmv.ch"/>
+    <contextParameter comment="" name="mail_server_pop_port" prompt="mail_server_pop_port?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_Integer" value="110"/>
+  </context>
+  <context confirmationNeeded="false" name="Dev">
+    <contextParameter comment="" name="timestamp" prompt="timestamp?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="volume_gougra" prompt="volume_gougra?" promptNeeded="false" type="id_Float" value=""/>
+    <contextParameter comment="" name="volume_bassin" prompt="volume_bassin?" promptNeeded="false" type="id_Integer" value=""/>
+    <contextParameter comment="" name="new1" prompt="new1?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="mail_account_talend" prompt="mail_account_talend?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value=""/>
+    <contextParameter comment="" name="mail_alert_it" prompt="mail_alert_it?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value=""/>
+    <contextParameter comment="" name="mail_password_talend" prompt="mail_password_talend?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_Password" value=""/>
+    <contextParameter comment="" name="mail_server_fmv" prompt="mail_server_fmv?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_String" value=""/>
+    <contextParameter comment="" name="mail_server_pop_port" prompt="mail_server_pop_port?" promptNeeded="false" repositoryContextId="_FdL8EDmgEemZQZdkspZBxQ" type="id_Integer" value=""/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="64"/>
@@ -118,10 +146,10 @@
   <node componentName="tPOP" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="0" posY="0">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPOP_1"/>
     <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
-    <elementParameter field="TEXT" name="HOST" value="&quot;fmvexch3.net.fmv.ch&quot;"/>
-    <elementParameter field="TEXT" name="PORT" value="110"/>
-    <elementParameter field="TEXT" name="USERNAME" value="&quot;eai.import&quot;"/>
-    <elementParameter field="PASSWORD" name="PASSWORD" value="vzxJ1qSuI7QVoeDO8W930A=="/>
+    <elementParameter field="TEXT" name="HOST" value="context.mail_server_fmv"/>
+    <elementParameter field="TEXT" name="PORT" value="context.mail_server_pop_port"/>
+    <elementParameter field="TEXT" name="USERNAME" value="context.mail_account_talend"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" value="8pW6Nmy2kuf0bfedabKCJevreF0tcVAYKxwgx6CPUhs="/>
     <elementParameter field="DIRECTORY" name="OUTPUT_DIRECTORY" value="&quot;C:/Temp/Import/Bassins&quot;"/>
     <elementParameter field="TEXT" name="FILENAME_PATTERN" value="&quot;Gougra_&quot; + TalendDate.getDate(&quot;yyyyMMdd-hhmmss&quot;) + &quot;_&quot; + (counter_tPOP_1 + 1) + &quot;.mail&quot;"/>
     <elementParameter field="CHECK" name="ALL_EMAILS" value="false"/>
@@ -188,11 +216,11 @@
   </node>
   <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="0" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSendMail_1"/>
-    <elementParameter field="TEXT" name="TO" value="&quot;gr.energie@fmv.ch&quot;"/>
+    <elementParameter field="TEXT" name="TO" value="context.mail_alert_it"/>
     <elementParameter field="TEXT" name="FROM" value="&quot;talend_js@fmv.ch&quot;"/>
     <elementParameter field="CHECK" name="NEED_PERSONAL_NAME" value="false"/>
     <elementParameter field="TEXT" name="PERSONAL_NAME" show="false" value="&quot;sender&quot;"/>
-    <elementParameter field="TEXT" name="CC" value="&quot;jacob.kolinski@fmv.ch&quot;"/>
+    <elementParameter field="TEXT" name="CC" value=""/>
     <elementParameter field="TEXT" name="BCC" value=""/>
     <elementParameter field="TEXT" name="SUBJECT" value="&quot;Talend error notification&quot;"/>
     <elementParameter field="MEMO_MESSAGE" name="MESSAGE" value="&quot;Erreur lors de la connection à la boîte de messagerie eai.import (Gougra)&quot;"/>
@@ -218,7 +246,7 @@
   </node>
   <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="128" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSendMail_2"/>
-    <elementParameter field="TEXT" name="TO" value="&quot;gr.energie@fmv.ch&quot;"/>
+    <elementParameter field="TEXT" name="TO" value="context.mail_alert_it"/>
     <elementParameter field="TEXT" name="FROM" value="&quot;talend_js@fmv.ch&quot;"/>
     <elementParameter field="CHECK" name="NEED_PERSONAL_NAME" value="false"/>
     <elementParameter field="TEXT" name="PERSONAL_NAME" show="false" value="&quot;sender&quot;"/>
@@ -302,7 +330,7 @@
     <elementParameter field="TEXT" name="MESSAGE" value="&quot;Erreur lors de la connection à la boîte de messagerie eai.import (Gougra)&quot;"/>
     <elementParameter field="TEXT" name="CODE" value="4"/>
     <elementParameter field="CLOSED_LIST" name="PRIORITY" value="5"/>
-    <elementParameter field="CHECK" name="EXIT_JVM" value="false"/>
+    <elementParameter field="CHECK" name="EXIT_JVM" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDie_1"/>
   </node>
@@ -311,7 +339,7 @@
     <elementParameter field="TEXT" name="MESSAGE" value="&quot;Fichier Gougra introuvable&quot;"/>
     <elementParameter field="TEXT" name="CODE" value="4"/>
     <elementParameter field="CLOSED_LIST" name="PRIORITY" value="5"/>
-    <elementParameter field="CHECK" name="EXIT_JVM" value="false"/>
+    <elementParameter field="CHECK" name="EXIT_JVM" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDie_2"/>
   </node>
@@ -395,11 +423,11 @@
   </node>
   <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="384" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSendMail_3"/>
-    <elementParameter field="TEXT" name="TO" value="&quot;gr.energie@fmv.ch&quot;"/>
+    <elementParameter field="TEXT" name="TO" value="context.mail_alert_it"/>
     <elementParameter field="TEXT" name="FROM" value="&quot;talend_js@fmv.ch&quot;"/>
     <elementParameter field="CHECK" name="NEED_PERSONAL_NAME" value="false"/>
     <elementParameter field="TEXT" name="PERSONAL_NAME" show="false" value="&quot;sender&quot;"/>
-    <elementParameter field="TEXT" name="CC" value="&quot;jacob.kolinski@fmv.ch&quot;"/>
+    <elementParameter field="TEXT" name="CC" value=""/>
     <elementParameter field="TEXT" name="BCC" value=""/>
     <elementParameter field="TEXT" name="SUBJECT" value="&quot;Talend error notification&quot;"/>
     <elementParameter field="MEMO_MESSAGE" name="MESSAGE" value="&quot;Erreur lors du traitement du fichier Gougra&quot;"/>
@@ -428,7 +456,7 @@
     <elementParameter field="TEXT" name="MESSAGE" value="&quot;Erreur lors du traitement du fichier Gougra&quot;"/>
     <elementParameter field="TEXT" name="CODE" value="4"/>
     <elementParameter field="CLOSED_LIST" name="PRIORITY" value="5"/>
-    <elementParameter field="CHECK" name="EXIT_JVM" value="false"/>
+    <elementParameter field="CHECK" name="EXIT_JVM" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDie_3"/>
   </node>
@@ -695,13 +723,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_24b3b2a8-6598-416c-b570-3a5ef804a449"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>vLT4FhdJUSQEgzOTCoLxeNDHIqvZcpucKj7r0MSapYqs8WFyu0+SMH1d/zx1Yg4/6RdaDkx8LGpR
-OTsN3ayeVQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_dd132202-2f42-4a02-99e8-a279e4a3e348"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>3TVH78/b/n9XywG62YRi2Jto4ayU/qxAp6oEueaojmtn3Qp+bvWWH6CgtNvhZM9zS3GmZY6fJJOF
-u6JX7g/dLQ==</DigestValue></Reference></SignedInfo><SignatureValue>2//NLkSY4aVz81zjk/fDx0wMVMBy2bMr4nJxArK91n/9eLrrTmiocvI4WkJahgSbTPRi9lGspZ1E
-7fFbwyhk3JW0cxNfNZECovsyhIjs7Pp1reZ4fG49AcOuk16GcXsNHTrZIXbt8jhv/Wb+8Jq+VgJq
-fJaZr6mJl9bmKTmm6V9CbId7Cz1VUC7+Yf1pSF/Sr93NDws4iffaWqO2ajFKU72KulQ5JakRfFRe
-tltt5gbZPikUjQZKNzyblvCp0+OTQblc/giYQ2ilx7270tbZhzTpG8hjSCsXZXot55IV7opXW37f
-+bBh0b076QJMtDdZnxqZSRbzQF8AETTzVFomqA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b5136f12-8252-457d-98d7-5b6a147a7dab"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>qEdMRTsdstIQJNoZNeD+NukpQw4i5FpiFcMLGlY0duhWQ87e9HW8gbtQqlzQdeN4E7AX54Ey2rGV
++Rg6vYQW1Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e28b7693-55d0-4499-8968-b2a2ed4ef0df"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>F19f6uUFj0Kd3DV3IVoWE4iEqcLBw0FOwCrFK0QCoz7h7SR4NivJxp3XIiGBBE0ilpMddqZbFXmF
+ql1DuvTQJw==</DigestValue></Reference></SignedInfo><SignatureValue>Kuie+JaVb5h9NOejLxcmIIqhWX5BRWi80gZmTuqf3rMIa2FBCuen93dD55b78rFjQz0ZDwSzq01P
+4PzVrIMfO+wuw+NtUbFeub5/IPaBlBBbi928GZaWNf0xkqilGW2ts8I4uMU1ciRRlA6Xnv1tVHgc
+z3xgr0M1/LBCkZYW6iYg0B++lrWWuBGLra+68QdvgOAtUP+0HrfhqMw6gLIiSdSpcFvA9OGFpWDM
+FaHOXfOJofmBKQnI0u7pBIHfoA04yVLDJm8EYkrtWcffepUVLHDRsfirhIzpwjaJLvQDhDsQLWII
+tJ1Atjcu6XFf+o1unb9QZtg2i2g2GmsYlXbiCQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -725,4 +753,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_dd132202-2f42-4a02-99e8-a279e4a3e348" Target="#_24b3b2a8-6598-416c-b570-3a5ef804a449"><Timestamp>2019-05-28 05:41:19</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e28b7693-55d0-4499-8968-b2a2ed4ef0df" Target="#_b5136f12-8252-457d-98d7-5b6a147a7dab"><Timestamp>2019-08-12 08:17:13</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
