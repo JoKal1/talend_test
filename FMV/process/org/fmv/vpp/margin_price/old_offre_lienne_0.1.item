@@ -5,7 +5,7 @@
     <contextParameter comment="" name="tse_offre_lienne_constraints_ct_fn" prompt="tse_offre_lienne_constraints_ct_fn?" promptNeeded="false" repositoryContextId="_jj4TsJJREemt4Pcx6Q6tVQ" type="id_String" value="&quot;contraintes_t_lienne_fil_eau.csv&quot;"/>
     <contextParameter comment="" name="tse_offre_lienne_path" prompt="tse_offre_lienne_path?" promptNeeded="false" repositoryContextId="_710lUI0GEemlJo04KbTZaQ" type="id_String" value="&quot;//fmvtsenergy/Data_flow$/import/Contraintes/OpUnit_Constraints/&quot;"/>
     <contextParameter comment="" name="tse_offre_lienne_temp_path" prompt="tse_offre_lienne_temp_path?" promptNeeded="false" repositoryContextId="_710lUI0GEemlJo04KbTZaQ" type="id_String" value="&quot;C:/Temp/Import/Constraints/&quot;"/>
-    <contextParameter comment="" name="timeStampREST" prompt="timeStampREST?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="timeStamp" prompt="timeStamp?" promptNeeded="false" type="id_String" value=""/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
@@ -127,7 +127,49 @@
       <column defaultValue="" key="false" length="0" name="body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Document" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="256" posY="224">
+  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="224">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_1"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;http://FMVTALENDR1.net.fmv.ch:8040/services/system_log&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
+    <elementParameter field="TABLE" name="HEADERS">
+      <elementValue elementRef="NAME" value="&quot;Content-type&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;application/json&quot;"/>
+    </elementParameter>
+    <elementParameter field="MEMO" name="BODY" value="&quot;{&#13;&#10;message: \&quot;ERR: \&quot;&quot; + globalMap.get(&quot;errorCode&quot;) + &quot;,&#13;&#10;process: \&quot;job_offre_lienne\&quot;,&#13;&#10;result: \&quot;0\&quot;,&#13;&#10;system_id: \&quot;talend\&quot;,&#13;&#10;timestamp: &quot; + context.timeStamp + &quot;}&quot;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tREST_1">
+      <column defaultValue="" key="false" length="0" name="Body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="224">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="Body"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ERROR_CODE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogRow_1">
+      <column defaultValue="" key="false" length="0" name="Body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_2"/>
     <elementParameter field="TEXT" name="URL" value="&quot;http://FMVTALENDR1.net.fmv.ch:8040/services/system_log&quot;"/>
     <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
@@ -135,10 +177,36 @@
       <elementValue elementRef="NAME" value="&quot;Content-type&quot;"/>
       <elementValue elementRef="VALUE" value="&quot;application/json&quot;"/>
     </elementParameter>
-    <elementParameter field="MEMO" name="BODY" value="&quot;{&#13;&#10;message: \&quot;Offre Lienne terminé\&quot;,&#13;&#10;process: \&quot;job_offre_lienne\&quot;,&#13;&#10;result: \&quot;1\&quot;,&#13;&#10;system_id: \&quot;talend\&quot;,&#13;&#10;timestamp: &quot; + context.timeStampREST + &quot;}&quot;"/>
-    <elementParameter field="TEXT" name="LABEL" value="RESTEnd"/>
+    <elementParameter field="MEMO" name="BODY" value="&quot;{&#13;&#10;message: \&quot;ERR: \&quot;&quot; + globalMap.get(&quot;errorCode&quot;) + &quot;,&#13;&#10;process: \&quot;job_offre_lienne\&quot;,&#13;&#10;result: \&quot;0\&quot;,&#13;&#10;system_id: \&quot;talend\&quot;,&#13;&#10;timestamp: &quot; + context.timeStamp + &quot;}&quot;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tREST_2">
+      <column defaultValue="" key="false" length="0" name="Body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="224">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_2"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="Body"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ERROR_CODE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogRow_2">
       <column defaultValue="" key="false" length="0" name="Body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
@@ -410,74 +478,68 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileDelete_1"/>
   </node>
-  <node componentName="tLogCatcher" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="-192">
+  <node componentName="tLogCatcher" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="96" posY="-192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogCatcher_1"/>
     <elementParameter field="CHECK" name="CATCH_JAVA_EXCEPTION" value="true"/>
     <elementParameter field="CHECK" name="CATCH_TDIE" value="true"/>
     <elementParameter field="CHECK" name="CATCH_TWARN" value="true"/>
     <elementParameter field="CHECK" name="CATCH_TACTIONFAILURE" value="true"/>
-    <elementParameter field="TEXT" name="LABEL" value="catchAllErrors"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tLogCatcher_1">
-      <column key="false" length="0" name="moment" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="0" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column key="false" length="20" name="pid" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column key="false" length="20" name="root_pid" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column key="false" length="20" name="father_pid" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column key="false" length="50" name="project" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column key="false" length="255" name="job" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column key="false" length="50" name="context" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="0" name="moment" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="0" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="20" name="pid" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="20" name="root_pid" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="20" name="father_pid" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="50" name="project" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="job" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="50" name="context" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="3" name="priority" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column key="false" length="255" name="type" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column key="false" length="255" name="origin" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column key="false" length="255" name="message" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="type" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="origin" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="message" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="3" name="code" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="352" posY="-192">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="-192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="String s = input_row.message;&#10;s = s.replaceAll(&quot;\\n&quot;, &quot; &quot;);&#10;s = s.replaceAll(&quot;\\r&quot;, &quot;&quot;);&#10;globalMap.put(&quot;errorCode&quot;, &quot;ERR: &quot; + s);"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="globalMap.put(&quot;errorCode&quot;, input_row.message);&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_2"/>
   </node>
-  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="480" posY="-192">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_4"/>
-    <elementParameter field="TEXT" name="URL" value="&quot;http://FMVTALENDR1.net.fmv.ch:8040/services/system_log&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
-    <elementParameter field="TABLE" name="HEADERS">
-      <elementValue elementRef="NAME" value="&quot;Content-type&quot;"/>
-      <elementValue elementRef="VALUE" value="&quot;application/json&quot;"/>
-    </elementParameter>
-    <elementParameter field="MEMO" name="BODY" value="&quot;{&#13;&#10;message: \&quot;&quot; + globalMap.get(&quot;errorCode&quot;) + &quot;\&quot;,&#13;&#10;process: \&quot;job_offre_lienne\&quot;,&#13;&#10;result: \&quot;0\&quot;,&#13;&#10;system_id: \&quot;talend\&quot;,&#13;&#10;timestamp: &quot; + context.timeStampREST + &quot;}&quot;"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tREST_4">
-      <column defaultValue="" key="false" length="0" name="Body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="-32">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_5"/>
-    <elementParameter field="TEXT" name="URL" value="&quot;http://FMVTALENDR1.net.fmv.ch:8040/services/system_log&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
-    <elementParameter field="TABLE" name="HEADERS">
-      <elementValue elementRef="NAME" value="&quot;Content-type&quot;"/>
-      <elementValue elementRef="VALUE" value="&quot;application/json&quot;"/>
-    </elementParameter>
-    <elementParameter field="MEMO" name="BODY" value="&quot;{&#13;&#10;message: \&quot;Offre Lienne démarré\&quot;,&#13;&#10;process: \&quot;job_offre_lienne\&quot;,&#13;&#10;result: \&quot;1\&quot;,&#13;&#10;system_id: \&quot;talend\&quot;,&#13;&#10;timestamp: &quot; + context.timeStampREST + &quot;}&quot;"/>
-    <elementParameter field="TEXT" name="LABEL" value="RESTStart"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tREST_5">
-      <column defaultValue="" key="false" length="0" name="Body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="96" posY="-192">
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="352" posY="-192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.timeStampREST = TalendDate.getDate(&quot;dd-MM-yyyy HH:mm&quot;);"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.timeStamp = TalendDate.getDate(&quot;dd-MM-yyyy HH:mm&quot;);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_1"/>
   </node>
+  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="-32">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_3"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;http://FMVTALENDR1.net.fmv.ch:8040/services/system_log&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
+    <elementParameter field="TABLE" name="HEADERS">
+      <elementValue elementRef="NAME" value="&quot;Content-type&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;application/json&quot;"/>
+    </elementParameter>
+    <elementParameter field="MEMO" name="BODY" value="&quot;{&#13;&#10;message: \&quot;Offre Lienne démarré\&quot;,&#13;&#10;process: \&quot;job_offre_lienne\&quot;,&#13;&#10;result: \&quot;1\&quot;,&#13;&#10;system_id: \&quot;talend\&quot;,&#13;&#10;timestamp: &quot; + context.timeStamp + &quot;}&quot;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tREST_3">
+      <column defaultValue="" key="false" length="0" name="Body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRouteInput_1" offsetLabelX="0" offsetLabelY="0" source="tRouteInput_1" target="tREST_3">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
+  </connection>
+  <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tREST_1" offsetLabelX="0" offsetLabelY="0" source="tREST_1" target="tLogRow_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
+  </connection>
+  <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tREST_2" offsetLabelX="0" offsetLabelY="0" source="tREST_2" target="tLogRow_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
+  </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFileInputExcel_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
@@ -485,6 +547,9 @@
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileList_1" target="tREST_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk2"/>
+  </connection>
+  <connection connectorName="SUBJOB_ERROR" label="OnSubjobError" lineStyle="4" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tREST_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobError1"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileList_1" target="tFileDelete_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk3"/>
@@ -502,21 +567,20 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
-  <connection connectorName="FLOW" label="row6" lineStyle="0" metaname="tLogCatcher_1" offsetLabelX="0" offsetLabelY="0" source="tLogCatcher_1" target="tJavaRow_2">
+  <connection connectorName="FLOW" label="row5" lineStyle="0" metaname="tLogCatcher_1" offsetLabelX="0" offsetLabelY="0" source="tLogCatcher_1" target="tJavaRow_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row6"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row5"/>
   </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJavaRow_2" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_2" target="tREST_4">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
-  </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tREST_5" offsetLabelX="0" offsetLabelY="14" outputId="1" source="tREST_5" target="tRouteInput_1">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk5"/>
-  </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tREST_5" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tREST_5" target="tFileList_1">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tREST_3" offsetLabelX="0" offsetLabelY="0" source="tREST_3" target="tFileList_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk4"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRouteInput_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
@@ -541,27 +605,22 @@
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
   <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_4"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_5"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_664c44ad-ee6d-4819-aefc-1416b91ff241"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>6aODyzspy632yO+SrVIvPMdDFarI8P2C0VuEQE5M/PgwGuFY8KO3U8ETMnDObdyqN1puZ8p3PTnM
-9RTlM/m6jg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_01853904-d0b5-48c3-83f5-69bcf2e30bc5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>VNMYATNU8zGvSVRN2faYpKoyeVgOUAfAvTmSdYm0TLZ4wP5XfOaPrzkXMrehD07/8IQalzdhjZm/
-njQc4rqEqw==</DigestValue></Reference></SignedInfo><SignatureValue>P6GK7PohnCKDRIPbHAJBddGhhOm5lERXZvF+gZJLAA838IaYRNuFkxoxTaidq0YZ7GrYZwsisOMg
-ezDf6em3T+dwyDsB4rF8n2R4RezLyt55YWkpNgiCNAMjhGbrggVxkaJ8xpTHQs/5/KK2F6G2O2BQ
-zA8xLADBAEhYOacU/48DzfJKiaGURkvciVtFaR7m24rH5tVkRpX+otIDYyIEZAile4/W5q/reYtc
-wx4i4ie3xW7eYR9LIBYK6Hz4xW2HQHEiatSqfmIIwJH1fmPd8IpItXJq/gNNtd6Iz/qHO0dB1FMa
-rU7NlEKk7JP+K/uhlBHtQunl4ZTeZMaJ0/kPgQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_3"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_090fb577-bb26-45c2-bf20-443a38e7fda1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>dCdvM8a1vEFYuwiEdmDttd+c0zLWMbnSfKP1Z3zSitiesxhZvB3RJsI/O3Ou4img3fSMS5koY1fp
+V/3a68VXJQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_8f5bfdd7-15f5-4557-9558-11fc49c32a20"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ygMxYcz+UBVWRhFqFEYBunaSFwLa+rPJU7NQhliDIBjuuUARrxb1w41vMJRVeN6/cE+NIM8ZSqP/
+PihlXlYaXg==</DigestValue></Reference></SignedInfo><SignatureValue>4KaAmktXd/yA0fsvu/902fBlQXV6acil6hpm4cqtDH1ZbQv5KWErVlJuAPaeKIEk/mo8OuV5cFia
+54+mwIbjZSiTTUUfYxT7BeCnTHjlYlBw0mROfm31XOqYgp2xkkfeii/t02Wm/TYWiPi8bvExN+GA
+60u+OJOCGjLrefQrt7rcfo38MCkBNckERCxfGyZPZWv4F5CqV44uVvBrRtU4wd3t2kqe/gSb6L14
+QIiB0/3Q0x2FpRoELOYipYQaGCHHYqImyWik5bsruQ9OAxtm3lA+pm472GjObxtT8qKwXkL4E260
+lOXsgxHM1iagxVlpUpco5+/vQCAuF21jZtdSRw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -585,4 +644,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_01853904-d0b5-48c3-83f5-69bcf2e30bc5" Target="#_664c44ad-ee6d-4819-aefc-1416b91ff241"><Timestamp>2019-08-13 07:30:03</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_8f5bfdd7-15f5-4557-9558-11fc49c32a20" Target="#_090fb577-bb26-45c2-bf20-443a38e7fda1"><Timestamp>2019-08-13 07:32:23</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
