@@ -204,7 +204,7 @@
       <column comment="" key="false" length="-1" name="TO" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="160">
+  <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="160" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileCopy_1"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;//FMVTSENERGY/Data_flow$/import/Bassins/vol_loetschen.csv&quot;"/>
     <elementParameter field="CHECK" name="ENABLE_COPY_DIRECTORY" value="false"/>
@@ -258,7 +258,7 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileDelete_1"/>
   </node>
-  <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="416" posY="160">
+  <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_3"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/Import/Bassins&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
@@ -281,7 +281,7 @@
     <elementParameter field="TEXT" name="LABEL" value="listFileToProcess"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tFileInputExcel" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="544" posY="160">
+  <node componentName="tFileInputExcel" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="416" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputExcel_1"/>
     <elementParameter field="CHECK" name="VERSION_2007" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_3_CURRENT_FILEPATH&quot;))"/>
@@ -329,7 +329,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="672" posY="160">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="Date date = new Date();&#10;Calendar cal = Calendar.getInstance();&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;&#10;cal.setTime(date);&#10;cal.add(Calendar.DATE, -1);&#10;&#10;int dayWeek = cal.get(Calendar.DAY_OF_WEEK);&#10;&#10;if(dayWeek == 1) {&#10;&#9;dayWeek = 7;&#10;}&#10;else {&#10;&#9;dayWeek--;&#10;}&#10;&#10;int seq = Numeric.sequence(&quot;s1&quot;, 1, 1);&#10;&#10;if (seq == dayWeek) {&#10;&#9;context.volume_loetschen = input_row.volume_loetschen;&#10;&#9;context.timestamp = format1.format(cal.getTime()) + &quot; 00:00&quot;;&#10;&#9;}&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.util.Date;&#10;import java.text.SimpleDateFormat;"/>
@@ -339,7 +339,7 @@
       <column comment="" key="false" length="-1" name="partFMV" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFixedFlowInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="416" posY="288">
+  <node componentName="tFixedFlowInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFixedFlowInput_1"/>
     <elementParameter field="TEXT" name="NB_ROWS" value="1"/>
     <elementParameter field="RADIO" name="USE_SINGLEMODE" value="true"/>
@@ -362,7 +362,7 @@
       <column comment="" key="false" length="-1" name="volume_loetschen" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="288">
+  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputDelimited_1"/>
     <elementParameter field="CHECK" name="USESTREAM" value="false"/>
     <elementParameter field="TEXT" name="STREAMNAME" show="false" value="outputStream"/>
@@ -503,8 +503,8 @@
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
   </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tFileInputMail_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputMail_1" target="tFileCopy_1">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk2"/>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFileCopy_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk5"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileCopy_1" offsetLabelX="0" offsetLabelY="0" source="tFileCopy_1" target="tFileList_3">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk3"/>
@@ -616,13 +616,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="230;100;0"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="255;220;180"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_3b27b730-7184-4959-89ad-9ced4801b713"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>1bvKj5tAT6cBYaUgmYP7O3NAx4TIWuQ2alPapB7EKxJJUgFfC+aNfsKaz/SZ0E7SijI7fyQIu/DB
-urt8S8IEOg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_cda49826-55a3-4423-800f-be5227a24a6f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0K++H300sHOinSmhHhTeG1eYUAXQqNBU7g92scR9d6gcoaetM/T3OIZ1R+cShYc18VhikGuKUdOa
-MLuhi3572w==</DigestValue></Reference></SignedInfo><SignatureValue>J59C6UozT1lZSgD0J+WJ4/qMFfz3jPiUlzRSslfeR1r6vdl6xBAruvLNLM6VloTyP3PL0t6oIPWv
-kdM4+RtPuHuVv3l7sfTLNWg4aw5de7w5SEkWpJwuPlwl044m2iLoLTtmt1vCtHp2dneH4uIan9go
-f/LD0ogmGAmIniHHWDAMfJTMg1H16f/8G6XAJIFEriS3W2KIxHN2nkAGNqKvXpgPc8hDMPWJNpiq
-Wvma4dU6bzQSNSRPgf3zBolHDjpb6jlSi0m6z2Y9dnmnFwnmwWyQxfl4YuDyQ7I4qeNvgfW7mC8c
-FecIdYMwde4/7iTncTi7H9MjOWVUIjeFHH4VdA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_00ccfde3-c86e-4a31-9855-011911317efb"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>C9HlCA5xi9oTJ8taYYFfqKS+T7/Bw31XfS4Rh/0Q7PmpyIIBVZnNUClezf9o+uHZF8225AB5ylrD
+83KV0dfpig==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_03e4df48-7006-4cb3-9ced-4970e970ae3f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>nETKa4mxRw/yaqYHetg0qAL9FqLXFb+Qfw3J2iDwLCuYlxDYOMCo5i18g6QkixAnpXw4vwZFx+Y9
+Aj/UM2XWKA==</DigestValue></Reference></SignedInfo><SignatureValue>xi84UW677gyR/zU2hQws31h+caSzJ9Re+80Le6BYCO7WbhsTQnsN+RwOyWLHfd4uxdyvvTQMWp8b
+hU0UXlmpeuJaeTEEWum/HtssbRMiR8AX5/xv4dwak5EkP5xXqlBdYnXFFLCfv8ED6YXEJz+grIoa
+EzTPtEYmK2QA4YCRL7r6p+cfH0mjN6bARJ1cA5vdngFYjXK6np303KdDeubhlqngOobCH2NjAKuA
+q3B3SsfvM3+swsJWt5z/JdR9SnXLycQ6rGA7pGrLfKytZVR06qJ1IsJGrWBo6KXvT+UoScQonct3
+1U6cGk0u4xIYhQNff9S+IeXkOqZujGq6+jO3AA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -646,4 +646,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_cda49826-55a3-4423-800f-be5227a24a6f" Target="#_3b27b730-7184-4959-89ad-9ced4801b713"><Timestamp>2019-08-20 11:51:05</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_03e4df48-7006-4cb3-9ced-4970e970ae3f" Target="#_00ccfde3-c86e-4a31-9855-011911317efb"><Timestamp>2019-08-20 12:46:14</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
