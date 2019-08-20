@@ -148,7 +148,7 @@
       <elementValue elementRef="PATTERN" value="&quot;Automatischer Ompex-PFC-Versand für PFC&quot;"/>
     </elementParameter>
     <elementParameter field="CLOSED_LIST" name="FILTER_RELATION" value="&amp;&amp;"/>
-    <elementParameter field="TEXT" name="LABEL" value="POP_fetch"/>
+    <elementParameter field="TEXT" name="LABEL" value="fetchMail"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="32" posY="-32">
@@ -172,7 +172,7 @@
     <elementParameter field="CHECK" name="IFEXCLUDE" value="false"/>
     <elementParameter field="TEXT" name="EXCLUDEFILEMASK" show="false" value="&quot;*.txt&quot;"/>
     <elementParameter field="CHECK" name="FORMAT_FILEPATH_TO_SLASH" value="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="FileList_Mail"/>
+    <elementParameter field="TEXT" name="LABEL" value="listFile"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
   <node componentName="tFileInputMail" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="160" posY="-32">
@@ -192,13 +192,13 @@
       <elementValue elementRef="MAIL_PART" value="From"/>
     </elementParameter>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
-    <elementParameter field="TEXT" name="LABEL" value="Attachment_Extract"/>
+    <elementParameter field="TEXT" name="LABEL" value="extractAttachment"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileInputMail_1">
       <column comment="" key="false" length="-1" name="TO" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="-50" offsetLabelY="32" posX="-96" posY="96">
+  <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="8" offsetLabelY="8" posX="32" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileCopy_2"/>
     <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;//FMVTSENERGY/Data_flow$/import/PFC/pfc_ch_ct.csv&quot;"/>
@@ -214,7 +214,7 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileCopy_2"/>
   </node>
-  <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="-32">
+  <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="-96" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_4"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/Import/PFC&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
@@ -234,10 +234,10 @@
     <elementParameter field="CHECK" name="IFEXCLUDE" value="false"/>
     <elementParameter field="TEXT" name="EXCLUDEFILEMASK" show="false" value="&quot;*.txt&quot;"/>
     <elementParameter field="CHECK" name="FORMAT_FILEPATH_TO_SLASH" value="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="FileList_source4remove"/>
+    <elementParameter field="TEXT" name="LABEL" value="listSource"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tFileDelete" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="512" posY="-32">
+  <node componentName="tFileDelete" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="0" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileDelete_2"/>
     <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_4_CURRENT_FILEPATH&quot;))"/>
@@ -247,11 +247,11 @@
     <elementParameter field="CHECK" name="FOLDER" value="false"/>
     <elementParameter field="CHECK" name="FOLDER_FILE" value="false"/>
     <elementParameter field="LABEL" name="NOTE" value="*Note &quot;CURRENT_STATUS&quot; including:&#10;&quot;File (or path) deleted.&quot;&#10;&quot;No file (or path) deleted.&quot;&#10;&quot;File (or path) does not exist or is invalid.&quot;"/>
-    <elementParameter field="TEXT" name="LABEL" value="FileDelete_source"/>
+    <elementParameter field="TEXT" name="LABEL" value="deleteSource"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileDelete_2"/>
   </node>
-  <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="256" posY="96">
+  <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/Import/PFC&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
@@ -271,10 +271,10 @@
     <elementParameter field="CHECK" name="IFEXCLUDE" value="false"/>
     <elementParameter field="TEXT" name="EXCLUDEFILEMASK" show="false" value="&quot;*.txt&quot;"/>
     <elementParameter field="CHECK" name="FORMAT_FILEPATH_TO_SLASH" value="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="FileList_PFC_source"/>
+    <elementParameter field="TEXT" name="LABEL" value="listFileSource"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="96">
+  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="416" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputDelimited_1"/>
     <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_2_CURRENT_FILEPATH&quot;))"/>
@@ -325,7 +325,7 @@
     </elementParameter>
     <elementParameter field="TEXT" name="DESTINATION" show="false" value=""/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
-    <elementParameter field="TEXT" name="LABEL" value="FileInput_CSV"/>
+    <elementParameter field="TEXT" name="LABEL" value="setCSVDoc"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileInputDelimited_1">
       <column comment="" key="false" length="-1" name="date" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
@@ -342,7 +342,7 @@
       <column key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="480" posY="192">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="320" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tMap_1"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
@@ -355,9 +355,9 @@
     <elementParameter field="CHECK" name="ENABLE_AUTO_CONVERT_TYPE" show="false" value="false"/>
     <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
     <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
-    <elementParameter field="TEXT" name="LABEL" value="Map_row"/>
+    <elementParameter field="TEXT" name="LABEL" value="mapCSV"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="PFC_VPP_unique" name="PFC_VPP_unique">
+    <metadata connector="FLOW" label="PFC_VPP_unique" name="outCSV">
       <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
@@ -365,15 +365,15 @@
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties/>
       <varTables name="Var" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="row2.date + &quot; &quot; + row2.time" name="timestamp" type="id_String"/>
-        <mapperTableEntries expression="row2.date + &quot; &quot; + row2.time" name="timestampUTC" type="id_String"/>
+        <mapperTableEntries expression="csvData.date + &quot; &quot; + csvData.time" name="timestamp" type="id_String"/>
+        <mapperTableEntries expression="csvData.date + &quot; &quot; + csvData.time" name="timestampUTC" type="id_String"/>
       </varTables>
-      <outputTables name="PFC_VPP_unique" sizeState="INTERMEDIATE">
+      <outputTables name="outCSV" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="TalendDate.parseDate(&quot;dd.MM.yyyy HH:mm&quot;, Var.timestamp) " name="timestamp" type="id_Date"/>
-        <mapperTableEntries expression="row2.value " name="value" type="id_Float"/>
+        <mapperTableEntries expression="csvData.value " name="value" type="id_Float"/>
         <mapperTableEntries expression="Var.timestamp " name="timestamp_1" type="id_String"/>
       </outputTables>
-      <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row2" sizeState="INTERMEDIATE">
+      <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="csvData" sizeState="INTERMEDIATE">
         <mapperTableEntries name="date" type="id_String"/>
         <mapperTableEntries name="time" type="id_String"/>
         <mapperTableEntries name="value" type="id_Float"/>
@@ -381,7 +381,7 @@
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tUniqRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="576" posY="96">
+  <node componentName="tUniqRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tUniqRow_1"/>
     <elementParameter field="TABLE" name="UNIQUE_KEY">
       <elementValue elementRef="SCHEMA_COLUMN" value="timestamp"/>
@@ -399,7 +399,7 @@
     <elementParameter field="OPENED_LIST" name="BUFFER_SIZE" show="false" value="M"/>
     <elementParameter field="DIRECTORY" name="TEMP_DIRECTORY" show="false" value=""/>
     <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="Unique_row"/>
+    <elementParameter field="TEXT" name="LABEL" value="uniqueRow"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="PFC_VPP_unique" name="tUniqRow_1">
       <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
@@ -417,11 +417,11 @@
       <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="672" posY="192">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="//Get year from file&#10;int yearCheck = Integer.parseInt(input_row.timestamp_1.substring(6, 10));&#10;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Calendar cal = Calendar.getInstance();&#10;//Set cal to 1st of April&#10;cal.set(yearCheck,3,1);&#10;&#10;int dayWeek = cal.get(Calendar.DAY_OF_WEEK);&#10;&#10;//Find offset for last sunday of March&#10;if(dayWeek == 1) {&#10;&#9;dayWeek = 7;&#10;}&#10;else {&#10;&#9;dayWeek--;&#10;}&#10;&#10;//Get last sunday of March&#10;cal.add(cal.DATE, -dayWeek);&#10;&#10;String formatted = format1.format(cal.getTime());&#10;&#10;output_row.timestamp_1 = input_row.timestamp_1.substring(0, 16);&#13;&#10;output_row.value = input_row.value;&#10;&#10;//Add missing hour 02:00&#10;if(input_row.timestamp_1.equals(formatted + &quot; 01:00:00&quot;))&#10;{&#10;&#9;row4.timestamp_1 += &quot;;&quot; + formatted + &quot; 02:00&quot;;&#10;}"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.util.TimeZone;&#10;import java.text.SimpleDateFormat;"/>
-    <elementParameter field="TEXT" name="LABEL" value="JavaRow_AddHour"/>
+    <elementParameter field="TEXT" name="LABEL" value="processUnique"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="PFC_VPP_unique" name="tJavaRow_1">
       <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
@@ -429,7 +429,7 @@
       <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tNormalize" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="96">
+  <node componentName="tNormalize" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tNormalize_1"/>
     <elementParameter field="PREV_COLUMN_LIST" name="NORMALIZE_COLUMN" value="timestamp_1"/>
     <elementParameter field="TEXT" name="ITEMSEPARATOR" value="&quot;;&quot;"/>
@@ -439,7 +439,7 @@
     <elementParameter field="TEXT" name="TEXT_ENCLOSURE" show="false" value="&quot;&quot;&quot;"/>
     <elementParameter field="CHECK" name="DISCARD_TRAILING_EMPTY_STR" value="false"/>
     <elementParameter field="CHECK" name="TRIM" value="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="Normalize"/>
+    <elementParameter field="TEXT" name="LABEL" value="normalizeRow"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="PFC_VPP_unique" name="tNormalize_1">
       <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="&quot;dd.MM.yyyy HH:mm&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
@@ -447,19 +447,19 @@
       <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="864" posY="192">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="672" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
     <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="//Get year from file&#10;int yearCheck2 = Integer.parseInt(input_row.timestamp_1.substring(6, 10));&#10;&#10;SimpleDateFormat format2 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Calendar cal2 = Calendar.getInstance();&#10;//Set cal to 1st of April&#10;cal2.set(yearCheck2,3,1);&#10;&#10;int dayWeek2 = cal2.get(Calendar.DAY_OF_WEEK);&#10;&#10;//Find offset for last sunday of March&#10;if(dayWeek2 == 1) {&#10;&#9;dayWeek2 = 7;&#10;}&#10;else {&#10;&#9;dayWeek2--;&#10;}&#10;&#10;//Get last sunday of March&#10;cal2.add(cal2.DATE, -dayWeek2);&#10;&#10;String formatted2 = format2.format(cal2.getTime());&#10;&#10;output_row.timestamp_1 = input_row.timestamp_1.substring(0, 16);&#10;output_row.value = input_row.value;&#10;&#10;//Set value to 0 for hour 02:00&#10;if(input_row.timestamp_1.equals(formatted2 + &quot; 02:00&quot;))&#10;{&#10;&#9;output_row.value = 0;&#10;}"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Calendar;&#10;import java.util.TimeZone;&#10;import java.text.SimpleDateFormat;"/>
-    <elementParameter field="TEXT" name="LABEL" value="JavaRow_RemoveValue"/>
+    <elementParameter field="TEXT" name="LABEL" value="processNormalize"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="PFC_VPP_unique" name="tJavaRow_2">
       <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="960" posY="96">
+  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputDelimited_1"/>
     <elementParameter field="CHECK" name="USESTREAM" value="false"/>
     <elementParameter field="TEXT" name="STREAMNAME" show="false" value="outputStream"/>
@@ -488,14 +488,14 @@
     <elementParameter field="CHECK" name="DELETE_EMPTYFILE" value="false"/>
     <elementParameter field="CHECK" name="FILE_EXIST_EXCEPTION" value="false"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="90"/>
-    <elementParameter field="TEXT" name="LABEL" value="FileOutput_CSV"/>
+    <elementParameter field="TEXT" name="LABEL" value="writeToCSV"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="PFC_VPP_unique" name="tFileOutputDelimited_1">
       <column comment="" key="false" length="-1" name="timestamp_1" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="32" posY="96">
+  <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="160" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileCopy_1"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;//FMVTSENERGY/Data_flow$/import/PFC/pfc_ch_lt.csv&quot;"/>
     <elementParameter field="CHECK" name="ENABLE_COPY_DIRECTORY" value="false"/>
@@ -507,11 +507,11 @@
     <elementParameter field="CHECK" name="REPLACE_FILE" value="true"/>
     <elementParameter field="CHECK" name="CREATE_DIRECTORY" value="true"/>
     <elementParameter field="CHECK" name="FAILON" value="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="Archive_PFC_LT"/>
+    <elementParameter field="TEXT" name="LABEL" value="archiveFile"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileCopy_1"/>
   </node>
-  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="-192">
+  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="-96" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_5"/>
     <elementParameter field="TEXT" name="URL" value="&quot;http://FMVTALENDR1.net.fmv.ch:8040/services/system_log&quot;"/>
     <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
@@ -527,7 +527,7 @@
       <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="960" posY="-32">
+  <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="864" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileCopy_3"/>
     <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;//FMVTSENERGY/Data_flow$/import/PFC/pfc_ch_lt.csv&quot;"/>
@@ -574,6 +574,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_3"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="String s = input_row.message;&#10;s = s.replaceAll(&quot;\\n&quot;, &quot; &quot;);&#10;s = s.replaceAll(&quot;\\r&quot;, &quot;&quot;);&#10;globalMap.put(&quot;errorCode&quot;, &quot;ERR: &quot; + s);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="processLog"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_3"/>
   </node>
@@ -586,13 +587,14 @@
       <elementValue elementRef="VALUE" value="&quot;application/json&quot;"/>
     </elementParameter>
     <elementParameter field="MEMO" name="BODY" value="&quot;{&#13;&#10;message: \&quot;&quot; + globalMap.get(&quot;errorCode&quot;) + &quot;\&quot;,&#13;&#10;process: \&quot;job_ompex_pfc\&quot;,&#13;&#10;result: \&quot;0\&quot;,&#13;&#10;system_id: \&quot;talend\&quot;,&#13;&#10;timestamp: &quot; + context.timeStampREST + &quot;}&quot;"/>
+    <elementParameter field="TEXT" name="LABEL" value="RESTError"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tREST_6">
       <column defaultValue="" key="false" length="0" name="Body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="-224" posY="-32">
+  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="-224" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_7"/>
     <elementParameter field="TEXT" name="URL" value="&quot;http://FMVTALENDR1.net.fmv.ch:8040/services/system_log&quot;"/>
     <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
@@ -608,12 +610,23 @@
       <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="-224" posY="-192">
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="-224" posY="-32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.timeStampREST = TalendDate.getDate(&quot;dd-MM-yyyy HH:mm&quot;);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="setTimeStamp"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_1"/>
+  </node>
+  <node componentName="tPostjob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="-224" posY="224">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPostjob_1"/>
+    <elementParameter field="TEXT" name="LABEL" value="postJob"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tPrejob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="-224" posY="-192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPrejob_1"/>
+    <elementParameter field="TEXT" name="LABEL" value="preJob"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPOP_1" offsetLabelX="0" offsetLabelY="0" source="tPOP_1" target="tFileList_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk8"/>
@@ -643,10 +656,7 @@
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate8"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tFileList_4">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk6"/>
-  </connection>
-  <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tMap_1">
+  <connection connectorName="FLOW" label="csvData" lineStyle="0" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tMap_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
       <elementValue elementRef="TRACE_COLUMN" value="date"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
@@ -662,32 +672,32 @@
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="csvData"/>
   </connection>
-  <connection connectorName="FLOW" label="PFC_VPP_unique" lineStyle="0" metaname="PFC_VPP_unique" offsetLabelX="-7" offsetLabelY="-15" source="tMap_1" target="tUniqRow_1">
+  <connection connectorName="FLOW" label="outCSV" lineStyle="0" metaname="outCSV" offsetLabelX="-7" offsetLabelY="-15" source="tMap_1" target="tUniqRow_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
       <elementValue elementRef="TRACE_COLUMN" value="timestamp_1"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="PFC_VPP_unique"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="outCSV"/>
   </connection>
-  <connection connectorName="UNIQUE" label="row1" lineStyle="0" metaname="row1" offsetLabelX="0" offsetLabelY="10" source="tUniqRow_1" target="tJavaRow_1">
+  <connection connectorName="UNIQUE" label="uniqueRow" lineStyle="0" metaname="row1" offsetLabelX="0" offsetLabelY="10" source="tUniqRow_1" target="tJavaRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="uniqueRow"/>
   </connection>
-  <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="-14" source="tJavaRow_1" target="tNormalize_1">
+  <connection connectorName="FLOW" label="outUnique" lineStyle="0" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="-14" source="tJavaRow_1" target="tNormalize_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="outUnique"/>
   </connection>
-  <connection connectorName="FLOW" label="row5" lineStyle="0" metaname="tNormalize_1" offsetLabelX="0" offsetLabelY="0" source="tNormalize_1" target="tJavaRow_2">
+  <connection connectorName="FLOW" label="outNormalize" lineStyle="0" metaname="tNormalize_1" offsetLabelX="0" offsetLabelY="0" source="tNormalize_1" target="tJavaRow_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row5"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="outNormalize"/>
   </connection>
-  <connection connectorName="FLOW" label="row6" lineStyle="0" metaname="tJavaRow_2" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_2" target="tFileOutputDelimited_1">
+  <connection connectorName="FLOW" label="outData" lineStyle="0" metaname="tJavaRow_2" offsetLabelX="0" offsetLabelY="-14" source="tJavaRow_2" target="tFileOutputDelimited_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row6"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="outData"/>
   </connection>
   <connection connectorName="FLOW" label="row7" lineStyle="0" metaname="tFileOutputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileOutputDelimited_1" target="tFileCopy_3">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
@@ -697,15 +707,21 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileCopy_1" offsetLabelX="0" offsetLabelY="0" source="tFileCopy_1" target="tFileList_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk8"/>
   </connection>
-  <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tLogCatcher_1" offsetLabelX="0" offsetLabelY="0" source="tLogCatcher_1" target="tJavaRow_3">
+  <connection connectorName="FLOW" label="logData" lineStyle="0" metaname="tLogCatcher_1" offsetLabelX="0" offsetLabelY="0" source="tLogCatcher_1" target="tJavaRow_3">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="logData"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJavaRow_3" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_3" target="tREST_6">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk4"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tREST_7" offsetLabelX="0" offsetLabelY="0" source="tREST_7" target="tPOP_1">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk9"/>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tREST_7">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk6"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostjob_1" offsetLabelX="0" offsetLabelY="0" source="tPostjob_1" target="tFileList_4">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk7"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tJava_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk5"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPOP_1"/>
@@ -767,13 +783,25 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f2d23043-cc1a-463c-a9d8-0e7d3daa81e0"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>BUYMKdElunyfnBnRjODwoi6DBT1ffzZvmS+mabuGUugXAvsFMCOjW8TOgKXYS4tYwmfPskFIX8E6
-imkyXVKEdA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_07eb3fe7-cbda-4596-b7ab-9300f003e866"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>35477dCRs3/7+iWmZ6p9BD2c4qHTGImf/Z13yqekTbCqkylhcOESosAhYSnA0N02BXfP5wVi6jkr
-KG9Bi8JzoA==</DigestValue></Reference></SignedInfo><SignatureValue>PqoDcJip0H2DH9AVTmDKq6QHAGKsbGep0bj7q2iWUNioj1QNMxUU15TO2bYKCPKiq7193Q0EthN8
-tPy7XdMtLqmoetQwNeiy4VZmRBYMsqCUzBKCJ4OL7YAXkRPFQ8kCWTDZXTWXeuvcR6xo/MHV/I3T
-zO4geKgWKBgO+EhpwP9qb2/u/fxRPkPAc1i1DI/nq+jcCUZBW8kZsqWuy6NzoN762kYyVTjQjYsw
-OSj79/avMEzwworH38hWdK5u9WfF6VQGSjWkFo2xFq5XA3HMLKDUr8Dn7foMeRXWZuDJVxxsKpP4
-gaKBUUZ+1vlngB0isBZ2dfNrcyDXrfZGyaNJ3Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <subjob>
+    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" show="false" value="true"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPostjob_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="230;100;0"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="255;220;180"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" show="false" value="true"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPrejob_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="230;100;0"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="255;220;180"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_7b807e27-56f4-401e-ba52-6a314f08ac82"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>k3MbrjCYfv0WQ8HTr60kg5juf7WdldZSRoAQA+kIgyenkGhMQd7GZHnZa7Btyx4omm/iJs3qjWuE
+dQ+OhEVGnw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_57b4cc8a-49f9-470b-aa28-b47dea10e10c"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>OF+nD9KG/V+71K/gC9+noy7uZmOKyr/G6HGkC65dZMQp+86XblaPZ40C+C0BdKA9LYkWf+7m6w11
+br9D0eNvGA==</DigestValue></Reference></SignedInfo><SignatureValue>cN5bqFdRs5QJbxeE4qmX8M8U05kt+C6PlzEBpdoIzK2JQvyEjXhPSD1kipuYx7wtlMJuS54pTu8Y
+yn+TY7uWKYt6+qYD22qqG95b/jQQLKIjTaMFJ2KnlGYMnD3FGktwv49xLj5eNFxqUQYQ8QgwctI2
+FUB1DQSMGyGoQPx2/jJHaymCVCECb6PTl6IPhA7ttXdjOXZAUKVo75Ob4EXyZe7f6C0iQ56PBFOt
+Gfg526YGTd2RkZpgVCK+z5kF6O3LW/RKqcmmDaxp3xo02v6Fr1tVIRCC1ooNBPK170bKhhZBrXI5
+Pnave8w6J0MwLT0j32ASmhZYsLOSiBRITvoiww==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -797,4 +825,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_07eb3fe7-cbda-4596-b7ab-9300f003e866" Target="#_f2d23043-cc1a-463c-a9d8-0e7d3daa81e0"><Timestamp>2019-08-13 07:08:12</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_57b4cc8a-49f9-470b-aa28-b47dea10e10c" Target="#_7b807e27-56f4-401e-ba52-6a314f08ac82"><Timestamp>2019-08-20 13:34:18</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
