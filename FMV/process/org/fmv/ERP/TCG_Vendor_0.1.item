@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:xmi="http://www.omg.org/XMI" defaultContext="Default" jobType="Standard" xmi:version="2.0">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:TalendMapper="http://www.talend.org/mapper" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" defaultContext="Default" jobType="Standard" xmi:version="2.0">
   <context confirmationNeeded="false" name="Default"/>
   <parameters>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="0"/>
     <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" show="false" value=""/>
     <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" show="false" value=""/>
     <elementParameter field="TEXT" name="OOZIE_HADOOP_DISTRIBUTION" show="false" value=""/>
@@ -109,13 +111,853 @@
     <routinesParameter id="_W9zaFtX-Eeil3oUGBkSqXg" name="TalendStringUtil"/>
     <routinesParameter id="_W9qQJtX-Eeil3oUGBkSqXg" name="TalendString"/>
   </parameters>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c21ac0ff-23d2-463a-ba20-7513767eb543"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>cYNw3ePJoV4TxuGTvkCHbuW2dwOtOaDbe4xkWOr8CkeI8lpdr9FzT4GDzaXC/BfpAI3nXEYLOw9v
-waZ3TxLiSA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1f4553dd-04cf-4e31-9bd4-0b127ee611b4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>2azWMjzurz3LZQvUAphT2Muy+fGxtDPSGOxhycVzZGEx0hgAjQ6X94E2KpHk3PrkINeURGCixkCh
-aohu4EdfOA==</DigestValue></Reference></SignedInfo><SignatureValue>Wi1NhE+8FhEAlX+1Ply9meID1P/VG96r56YUw7f0WIUSQASPZouapWAk8pQyH/QgCprynW0HWVOI
-crs/2j7THU8ekrKuMjeKH+DvVtr36KORC+9O5GRyV28YW8lxb++7V5JOdv4KLR17dbELoOQ4jLbd
-Ob4dQ/LIhmCwZgxOP7MSdFEUEiJE/Jf2oithrGhlTllil1kNfm3oa2yfPOwcUnlzcmucoNMuFXms
-Cft09SknI/Mdn0s9LrUWhVDr3CmDDL2ToUDa6RlfdMSWVPKjFvVYSc67SaudhOvjPqWvJGazKZPG
-bL6Jx3vfMvsWOeCT43K9YDp+Rngvy/XZ/72feg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <node componentName="tSAPTableInput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="96" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPTableInput_3"/>
+    <elementParameter field="LABEL" name="NOTE" value="(To use this component, you need first to add the SAP Java Connector sapjco3.jar in the Modules view)"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="CLOSED_LIST" name="SERVERTYPE" value="ApplicationServer"/>
+    <elementParameter field="TEXT" name="CLIENT" value="&quot;100&quot;"/>
+    <elementParameter field="TEXT" name="USERID" value="&quot;com_talend&quot;"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" value="JR2QA/2jh49xBg0icybNVg=="/>
+    <elementParameter field="TEXT" name="LANGUAGE" value="&quot;EN&quot;"/>
+    <elementParameter field="TEXT" name="HOSTNAME" value="&quot;192.168.160.2&quot;"/>
+    <elementParameter field="TEXT" name="SYSTEMNUMBER" value="&quot;00&quot;"/>
+    <elementParameter field="TEXT" name="SYSTEMID" show="false" value="&quot;PRD&quot;"/>
+    <elementParameter field="TEXT" name="GROUPNAME" show="false" value="&quot;tGroup&quot;"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA - LFA1"/>
+    <elementParameter field="TEXT" name="TABLE" value="&quot;LFA1&quot;"/>
+    <elementParameter field="TEXT" name="FILTER" value="&quot;MANDT = '100'&quot;"/>
+    <elementParameter field="TEXT" name="START_ROW" value="-1"/>
+    <elementParameter field="TEXT" name="MAX_ROW_COUNT" value="-1"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="sap_id"/>
+    <elementParameter field="LABEL" name="NOTE_DATASOURCE" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
+    <elementParameter field="TEXT" name="SAP_DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TABLE" name="SAP_PROPERTIES">
+      <elementValue elementRef="PROPERTY" value="&quot;api.use_z_talend_read_table&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;true&quot;"/>
+      <elementValue elementRef="PROPERTY" value="&quot;jco.sever.gwserv&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;sapgw00&quot;"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="USE_CUSTOM_MAXLENGTH_FOR_VARIABLE_LENGTH" value="false"/>
+    <elementParameter field="TEXT" name="CUSTOM_MAXLENGTH_FOR_VARIABLE_LENGTH" show="false" value="100"/>
+    <elementParameter field="TEXT" name="LABEL" value="LFA1"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="LFA1" name="tSAPTableInput_3">
+      <column comment="Client" key="true" length="3" name="MANDT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Account Number of Vendor or Creditor" key="true" length="10" name="LIFNR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Country Key" key="false" length="3" name="LAND1" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Name 1" key="false" length="35" name="NAME1" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Name 2" key="false" length="35" name="NAME2" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Name 3" key="false" length="35" name="NAME3" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Name 4" key="false" length="35" name="NAME4" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="City" key="false" length="35" name="ORT01" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="District" key="false" length="35" name="ORT02" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="PO Box" key="false" length="10" name="PFACH" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="P.O. Box Postal Code" key="false" length="10" name="PSTL2" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Postal Code" key="false" length="10" name="PSTLZ" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Region (State, Province, County)" key="false" length="3" name="REGIO" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Sort field" key="false" length="10" name="SORTL" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Street and House Number" key="false" length="35" name="STRAS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Address" key="false" length="10" name="ADRNR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Search term for matchcode search" key="false" length="25" name="MCOD1" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Search term for matchcode search" key="false" length="25" name="MCOD2" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Search term for matchcode search" key="false" length="25" name="MCOD3" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Title" key="false" length="15" name="ANRED" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Train station" key="false" length="25" name="BAHNS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="International location number  (part 1)" key="false" length="7" name="BBBNR" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="International location number (Part 2)" key="false" length="5" name="BBSNR" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="Authorization Group" key="false" length="4" name="BEGRU" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Industry key" key="false" length="4" name="BRSCH" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Check digit for the international location number" key="false" length="1" name="BUBKZ" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="Data communication line no." key="false" length="14" name="DATLT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Report key for data medium exchange" key="false" length="1" name="DTAMS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Instruction key for data medium exchange" key="false" length="2" name="DTAWS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Date on which the Record Was Created" key="false" length="8" name="ERDAT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Name of Person who Created the Object" key="false" length="12" name="ERNAM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="ISR subscriber number" key="false" length="11" name="ESRNR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Group key" key="false" length="10" name="KONZS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Supplier Account Group" key="false" length="4" name="KTOKK" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Customer Number" key="false" length="10" name="KUNNR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Account Number of the Alternative Payee" key="false" length="10" name="LNRZA" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Central Deletion Flag for Master Record" key="false" length="1" name="LOEVM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Central posting block" key="false" length="1" name="SPERR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Centrally imposed purchasing block" key="false" length="1" name="SPERM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Language Key" key="false" length="1" name="SPRAS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax Number 1" key="false" length="16" name="STCD1" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax Number 2" key="false" length="11" name="STCD2" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Indicator: Business Partner Subject to Equalization Tax?" key="false" length="1" name="STKZA" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Liable for VAT" key="false" length="1" name="STKZU" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Telebox number" key="false" length="15" name="TELBX" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="First telephone number" key="false" length="16" name="TELF1" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Second telephone number" key="false" length="16" name="TELF2" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Fax Number" key="false" length="31" name="TELFX" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Teletex number" key="false" length="30" name="TELTX" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Telex number" key="false" length="30" name="TELX1" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Indicator: Is the account a one-time account?" key="false" length="1" name="XCPDK" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Indicator: Alternative Payee in Document Allowed?" key="false" length="1" name="XZEMP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Company ID of trading partner" key="false" length="6" name="VBUND" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Account number of the master record with fiscal address" key="false" length="10" name="FISKN" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="VAT Registration Number" key="false" length="20" name="STCEG" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Natural Person" key="false" length="1" name="STKZN" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Function That Will Be Blocked" key="false" length="2" name="SPERQ" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Place of birth of the person subject to withholding tax" key="false" length="25" name="GBORT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Date of Birth of the Person Subject to Withholding Tax" key="false" length="8" name="GBDAT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Key for the Sex of the Person Subject to Withholding Tax" key="false" length="1" name="SEXKZ" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Credit Information Number" key="false" length="11" name="KRAUS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Last External Review" key="false" length="8" name="REVDB" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Supplier's QM system" key="false" length="4" name="QSSYS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Reference Account Group for One-Time Account (Vendor)" key="false" length="4" name="KTOCK" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="PO Box city" key="false" length="35" name="PFORT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Plant (Own or External)" key="false" length="4" name="WERKS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Indicator: vendor sub-range relevant" key="false" length="1" name="LTSNA" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Indicator: plant level relevant" key="false" length="1" name="WERKR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Factory calendar key" key="false" length="2" name="PLKAL" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Status of Data Transfer into Subsequent Release" key="false" length="1" name="DUEFL" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax Jurisdiction" key="false" length="15" name="TXJCD" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Payment Block" key="false" length="1" name="SPERZ" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Standard carrier access code" key="false" length="4" name="SCACD" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Forwarding agent freight group" key="false" length="4" name="SFRGR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Transportation zone to or from which the goods are delivered" key="false" length="10" name="LZONE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Indicator: Alternative Payee Using Account Number" key="false" length="1" name="XLFZA" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Service agent procedure group" key="false" length="4" name="DLGRP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax type" key="false" length="2" name="FITYP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax Number Type" key="false" length="2" name="STCDT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Registered for Social Insurance" key="false" length="1" name="REGSS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Activity Code for Social Insurance" key="false" length="3" name="ACTSS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax Number 3" key="false" length="18" name="STCD3" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax Number 4" key="false" length="18" name="STCD4" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax Number 5" key="false" length="60" name="STCD5" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax Split" key="false" length="1" name="IPISP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax Base in Percentage" key="false" length="1" name="TAXBS" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="Profession" key="false" length="30" name="PROFS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Shipment: statistics group, transportation service agent" key="false" length="2" name="STGDL" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="External manufacturer code name or number" key="false" length="10" name="EMNFR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Uniform resource locator" key="false" length="132" name="LFURL" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Name of Representative" key="false" length="10" name="J_1KFREPRE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Type of Business" key="false" length="30" name="J_1KFTBUS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Type of Industry" key="false" length="30" name="J_1KFTIND" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Status of Change Authorization (Central)" key="false" length="1" name="CONFS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Date on Which the Changes Were Confirmed" key="false" length="8" name="UPDAT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Time of Last Change Confirmation" key="false" length="6" name="UPTIM" nullable="true" pattern="&quot;HH:mm:ss&quot;" precision="0" sourceType="TIME" type="id_Date" usefulColumn="true"/>
+      <column comment="Central deletion block for master record" key="false" length="1" name="NODEL" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Validity date of certification" key="false" length="8" name="QSSYSDAT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Supplier indicator relevant for proof of delivery" key="false" length="1" name="PODKZB" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Account Number of Master Record of Tax Office Responsible" key="false" length="10" name="FISKU" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax Number at Responsible Tax Authority" key="false" length="18" name="STENR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Carrier confirmation is expected" key="false" length="1" name="CARRIER_CONF" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Micro company indicator" key="false" length="1" name="MIN_COMP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Terms of Liability" key="false" length="1" name="TERM_LI" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="CRC number" key="false" length="25" name="CRC_NUM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Business Purpose Completed Flag" key="false" length="1" name="CVP_XBLCK" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="RG Number" key="false" length="11" name="RG" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Issued by" key="false" length="3" name="EXP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="State" key="false" length="2" name="UF" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="RG Issuing Date" key="false" length="8" name="RGDATE" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="RIC Number" key="false" length="11" name="RIC" nullable="true" pattern="" precision="0" sourceType="BIG_INTEGER" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="Foreign National Registration" key="false" length="10" name="RNE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="RNE Issuing Date" key="false" length="8" name="RNEDATE" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="CNAE" key="false" length="7" name="CNAE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Legal Nature" key="false" length="4" name="LEGALNAT" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="CRT Number" key="false" length="1" name="CRTN" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="ICMS Taxpayer" key="false" length="2" name="ICMSTAXPAY" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Industry Main Type" key="false" length="2" name="INDTYP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax Declaration Type" key="false" length="2" name="TDT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Company Size" key="false" length="2" name="COMSIZE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Declaration Regimen for PIS/COFINS" key="false" length="2" name="DECREGPC" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Dataelement Exstensibility for Supplier" key="false" length="1" name="LFA1_EEW_SUPP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Capital Amount" key="false" length="15" name="J_SC_CAPITAL" nullable="true" pattern="" precision="2" sourceType="BIG_DECIMAL" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="Currency" key="false" length="5" name="J_SC_CURRENCY" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Agency Location Code" key="false" length="8" name="ALC" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Payment Office" key="false" length="5" name="PMT_OFFICE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Vendor is PPA relevant" key="false" length="1" name="PPA_RELEVANT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Processor group" key="false" length="10" name="PSOFG" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Subledger acct preprocessing procedure" key="false" length="20" name="PSOIS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Name 1" key="false" length="35" name="PSON1" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Name 2" key="false" length="35" name="PSON2" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Name 3" key="false" length="35" name="PSON3" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="First Name" key="false" length="35" name="PSOVN" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Title" key="false" length="20" name="PSOTL" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="House number: is no longer used from Release 4.6B" key="false" length="6" name="PSOHS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Street: No longer used from Release 4.6B" key="false" length="28" name="PSOST" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Date Limit for External Document Identification" key="false" length="8" name="BORGR_DATUN" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Annual Repetition of Date Limit" key="false" length="1" name="BORGR_YEAUN" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Street" key="false" length="60" name="ADDR2_STREET" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="House Number" key="false" length="10" name="ADDR2_HOUSE_NUM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="City postal code" key="false" length="10" name="ADDR2_POST" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="City" key="false" length="40" name="ADDR2_CITY" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Country Key" key="false" length="3" name="ADDR2_COUNTRY" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Subcontractor's Business Type" key="false" length="12" name="CATEG" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Partner's Trading Name" key="false" length="30" name="PARTNER_NAME" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Partner's Unique Tax Reference (UTR)" key="false" length="20" name="PARTNER_UTR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Verification Status" key="false" length="3" name="STATUS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Verification Number" key="false" length="20" name="VFNUM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tax Status of the Verified Subcontractor" key="false" length="1" name="VFNID" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Companies House Registration Number" key="false" length="8" name="CRN" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="ECC Number" key="false" length="40" name="J_1IEXCD" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Excise Registration Number" key="false" length="40" name="J_1IEXRN" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Excise Range" key="false" length="60" name="J_1IEXRG" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Excise Division" key="false" length="60" name="J_1IEXDI" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Excise Commissionerate" key="false" length="60" name="J_1IEXCO" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Central Sales Tax Number" key="false" length="40" name="J_1ICSTNO" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Local Sales Tax Number" key="false" length="40" name="J_1ILSTNO" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Permanent Account Number" key="false" length="40" name="J_1IPANNO" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Excise tax indicator for vendor" key="false" length="1" name="J_1IEXCIVE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="SSI Status" key="false" length="1" name="J_1ISSIST" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Type of Vendor" key="false" length="2" name="J_1IVTYP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="CENVAT Scheme Participant" key="false" length="1" name="J_1IVENCRE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Date of Last Change" key="false" length="8" name="AEDAT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Changed by the user" key="false" length="12" name="USNAM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Service Tax Registration Number" key="false" length="40" name="J_1ISERN" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="PAN Reference Number" key="false" length="40" name="J_1IPANREF" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="PAN Valid From Date" key="false" length="8" name="J_1IPANVALDT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Customs Vendor" key="false" length="1" name="J_1I_CUSTOMS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Deductee Reference Number" key="false" length="10" name="J_1IDEDREF" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Vendor Classification for GST" key="false" length="1" name="VEN_CLASS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Vendor is public entity?" key="false" length="1" name="ENTPUB" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Deed of public use" key="false" length="80" name="ESCRIT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Social Security certificate validity date" key="false" length="8" name="DVALSS" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Social Security certificate submission form" key="false" length="50" name="FRMCSS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="CAE code" key="false" length="5" name="CODCAE" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="Absence of debt" key="false" length="1" name="AUSDIV" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Transportation Chain" key="false" length="10" name="TRANSPORT_CHAIN" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Staging Time in Days" key="false" length="3" name="STAGING_TIME" nullable="true" pattern="" precision="0" sourceType="BIG_DECIMAL" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="Scheduling Procedure" key="false" length="1" name="SCHEDULING_TYPE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Cross Docking: Relevant for Collective Numbering" key="false" length="1" name="SUBMI_RELEVANT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="288" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tMap_1"/>
+    <elementParameter field="EXTERNAL" name="MAP" value=""/>
+    <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
+    <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_uN5LYNCDEem6EbpxcLTzHw-tMap_1-PREVIEW.bmp"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" show="false" value="true"/>
+    <elementParameter field="CHECK" name="LKUP_PARALLELIZE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="LEVENSHTEIN" show="false" value="0"/>
+    <elementParameter field="TEXT" name="JACCARD" show="false" value="0"/>
+    <elementParameter field="CHECK" name="ENABLE_AUTO_CONVERT_TYPE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
+    <elementParameter field="TEXT" name="LABEL" value="mapData"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="vendor">
+      <column comment="Account Number of Vendor or Creditor" key="true" length="10" name="PK" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Account Number of Vendor or Creditor" key="false" length="10" name="NO" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Company Code" key="false" length="4" name="COMP_CODE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SYSTEM" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="MAND_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="NAME_DISPLAY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="NAME1" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="NAME2" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="STREET" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="ZIP_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="POB" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="ZIP_CODE_POB" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CITY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="COUNTRY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="TEL1" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="TEL2" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="FAX1" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="FAX2" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="HOMEPAGE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="MAIL" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="TAX_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="VAT_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="TOP_DEFAULT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="VAT_COUNTRY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <nodeData xsi:type="TalendMapper:MapperData">
+      <uiProperties shellMaximized="true"/>
+      <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
+      <outputTables name="vendor" sizeState="INTERMEDIATE">
+        <mapperTableEntries expression="lfa1_data.LIFNR " name="PK" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.LIFNR " name="NO" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfb1_data.BUKRS " name="COMP_CODE" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="&quot;DF1&quot;" name="SYSTEM" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfb1_data.BUKRS + &quot;_DF1&quot;" name="MAND_ID" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.NAME1 + &quot; &quot; +  lfa1_data.NAME2 " name="NAME_DISPLAY" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.NAME1 " name="NAME1" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.NAME2 " name="NAME2" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.STRAS " name="STREET" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.PSTLZ " name="ZIP_CODE" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.PFACH " name="POB" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.PSTL2 " name="ZIP_CODE_POB" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.ORT01 " name="CITY" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.LAND1 " name="COUNTRY" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.TELF1 " name="TEL1" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.TELF2 " name="TEL2" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.TELFX " name="FAX1" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.TELX1 " name="FAX2" nullable="true" type="id_String"/>
+        <mapperTableEntries name="HOMEPAGE" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="adr6_data.SMTP_ADDR " name="MAIL" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TAX_ID" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.STCD1 " name="VAT_ID" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfb1_data.ZTERM " name="TOP_DEFAULT" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.LAND1 " name="VAT_COUNTRY" nullable="true" type="id_String"/>
+      </outputTables>
+      <inputTables activateColumnNameFilter="true" columnNameFilter="land" lookupMode="LOAD_ONCE" matchingMode="ALL_ROWS" name="lfa1_data" sizeState="INTERMEDIATE">
+        <mapperTableEntries name="MANDT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="LIFNR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="LAND1" nullable="true" type="id_String"/>
+        <mapperTableEntries name="NAME1" nullable="true" type="id_String"/>
+        <mapperTableEntries name="NAME2" nullable="true" type="id_String"/>
+        <mapperTableEntries name="NAME3" nullable="true" type="id_String"/>
+        <mapperTableEntries name="NAME4" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ORT01" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ORT02" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PFACH" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PSTL2" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PSTLZ" nullable="true" type="id_String"/>
+        <mapperTableEntries name="REGIO" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SORTL" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STRAS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ADRNR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="MCOD1" nullable="true" type="id_String"/>
+        <mapperTableEntries name="MCOD2" nullable="true" type="id_String"/>
+        <mapperTableEntries name="MCOD3" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ANRED" nullable="true" type="id_String"/>
+        <mapperTableEntries name="BAHNS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="BBBNR" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="BBSNR" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="BEGRU" nullable="true" type="id_String"/>
+        <mapperTableEntries name="BRSCH" nullable="true" type="id_String"/>
+        <mapperTableEntries name="BUBKZ" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="DATLT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="DTAMS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="DTAWS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ERDAT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="ERNAM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ESRNR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="KONZS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="KTOKK" nullable="true" type="id_String"/>
+        <mapperTableEntries name="KUNNR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="LNRZA" nullable="true" type="id_String"/>
+        <mapperTableEntries name="LOEVM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SPERR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SPERM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SPRAS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STCD1" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STCD2" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STKZA" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STKZU" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TELBX" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TELF1" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TELF2" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TELFX" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TELTX" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TELX1" nullable="true" type="id_String"/>
+        <mapperTableEntries name="XCPDK" nullable="true" type="id_String"/>
+        <mapperTableEntries name="XZEMP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="VBUND" nullable="true" type="id_String"/>
+        <mapperTableEntries name="FISKN" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STCEG" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STKZN" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SPERQ" nullable="true" type="id_String"/>
+        <mapperTableEntries name="GBORT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="GBDAT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="SEXKZ" nullable="true" type="id_String"/>
+        <mapperTableEntries name="KRAUS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="REVDB" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="QSSYS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="KTOCK" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PFORT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="WERKS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="LTSNA" nullable="true" type="id_String"/>
+        <mapperTableEntries name="WERKR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PLKAL" nullable="true" type="id_String"/>
+        <mapperTableEntries name="DUEFL" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TXJCD" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SPERZ" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SCACD" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFRGR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="LZONE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="XLFZA" nullable="true" type="id_String"/>
+        <mapperTableEntries name="DLGRP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="FITYP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STCDT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="REGSS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ACTSS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STCD3" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STCD4" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STCD5" nullable="true" type="id_String"/>
+        <mapperTableEntries name="IPISP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TAXBS" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="PROFS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STGDL" nullable="true" type="id_String"/>
+        <mapperTableEntries name="EMNFR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="LFURL" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1KFREPRE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1KFTBUS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1KFTIND" nullable="true" type="id_String"/>
+        <mapperTableEntries name="CONFS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="UPDAT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="UPTIM" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="NODEL" nullable="true" type="id_String"/>
+        <mapperTableEntries name="QSSYSDAT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="PODKZB" nullable="true" type="id_String"/>
+        <mapperTableEntries name="FISKU" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STENR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="CARRIER_CONF" nullable="true" type="id_String"/>
+        <mapperTableEntries name="MIN_COMP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TERM_LI" nullable="true" type="id_String"/>
+        <mapperTableEntries name="CRC_NUM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="CVP_XBLCK" nullable="true" type="id_String"/>
+        <mapperTableEntries name="RG" nullable="true" type="id_String"/>
+        <mapperTableEntries name="EXP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="UF" nullable="true" type="id_String"/>
+        <mapperTableEntries name="RGDATE" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="RIC" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="RNE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="RNEDATE" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="CNAE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="LEGALNAT" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="CRTN" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ICMSTAXPAY" nullable="true" type="id_String"/>
+        <mapperTableEntries name="INDTYP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TDT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="COMSIZE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="DECREGPC" nullable="true" type="id_String"/>
+        <mapperTableEntries name="LFA1_EEW_SUPP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_SC_CAPITAL" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="J_SC_CURRENCY" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ALC" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PMT_OFFICE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PPA_RELEVANT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PSOFG" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PSOIS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PSON1" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PSON2" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PSON3" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PSOVN" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PSOTL" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PSOHS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PSOST" nullable="true" type="id_String"/>
+        <mapperTableEntries name="BORGR_DATUN" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="BORGR_YEAUN" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ADDR2_STREET" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ADDR2_HOUSE_NUM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ADDR2_POST" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ADDR2_CITY" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ADDR2_COUNTRY" nullable="true" type="id_String"/>
+        <mapperTableEntries name="CATEG" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PARTNER_NAME" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PARTNER_UTR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STATUS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="VFNUM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="VFNID" nullable="true" type="id_String"/>
+        <mapperTableEntries name="CRN" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1IEXCD" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1IEXRN" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1IEXRG" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1IEXDI" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1IEXCO" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1ICSTNO" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1ILSTNO" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1IPANNO" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1IEXCIVE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1ISSIST" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1IVTYP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1IVENCRE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="AEDAT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="USNAM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1ISERN" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1IPANREF" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1IPANVALDT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="J_1I_CUSTOMS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_1IDEDREF" nullable="true" type="id_String"/>
+        <mapperTableEntries name="VEN_CLASS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ENTPUB" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ESCRIT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="DVALSS" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="FRMCSS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="CODCAE" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="AUSDIV" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TRANSPORT_CHAIN" nullable="true" type="id_String"/>
+        <mapperTableEntries name="STAGING_TIME" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="SCHEDULING_TYPE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SUBMI_RELEVANT" nullable="true" type="id_String"/>
+      </inputTables>
+      <inputTables activateColumnNameFilter="true" columnNameFilter="zter" lookupMode="LOAD_ONCE" matchingMode="ALL_MATCHES" name="lfb1_data" sizeState="INTERMEDIATE">
+        <mapperTableEntries name="MANDT" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.LIFNR " name="LIFNR" nullable="true" operator="=" type="id_String"/>
+        <mapperTableEntries expression="" name="BUKRS" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="" name="PERNR" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="ERDAT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="ERNAM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SPERR" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="" name="LOEVM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ZUAWA" nullable="true" type="id_String"/>
+        <mapperTableEntries name="AKONT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="BEGRU" nullable="true" type="id_String"/>
+        <mapperTableEntries name="VZSKZ" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ZWELS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="XVERR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ZAHLS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ZTERM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="EIKTO" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ZSABE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="KVERM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="FDGRV" nullable="true" type="id_String"/>
+        <mapperTableEntries name="BUSAB" nullable="true" type="id_String"/>
+        <mapperTableEntries name="LNRZE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="LNRZB" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ZINDT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="ZINRT" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="DATLZ" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="XDEZV" nullable="true" type="id_String"/>
+        <mapperTableEntries name="WEBTR" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="KULTG" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="REPRF" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TOGRU" nullable="true" type="id_String"/>
+        <mapperTableEntries name="HBKID" nullable="true" type="id_String"/>
+        <mapperTableEntries name="XPORE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="QSZNR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="QSZDT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="QSSKZ" nullable="true" type="id_String"/>
+        <mapperTableEntries name="BLNKZ" nullable="true" type="id_String"/>
+        <mapperTableEntries name="MINDK" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ALTKN" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ZGRUP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="MGRUP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="UZAWE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="QSREC" nullable="true" type="id_String"/>
+        <mapperTableEntries name="QSBGR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="QLAND" nullable="true" type="id_String"/>
+        <mapperTableEntries name="XEDIP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="FRGRP" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TOGRR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TLFXS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="INTAD" nullable="true" type="id_String"/>
+        <mapperTableEntries name="XLFZB" nullable="true" type="id_String"/>
+        <mapperTableEntries name="GUZTE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="GRICD" nullable="true" type="id_String"/>
+        <mapperTableEntries name="GRIDT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="XAUSZ" nullable="true" type="id_String"/>
+        <mapperTableEntries name="CERDT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="CONFS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="UPDAT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="UPTIM" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="NODEL" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TLFNS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="AVSND" nullable="true" type="id_String"/>
+        <mapperTableEntries name="AD_HASH" nullable="true" type="id_String"/>
+        <mapperTableEntries name="CVP_XBLCK_B" nullable="true" type="id_String"/>
+        <mapperTableEntries name="CIIUCODE" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="LFB1_EEW_CC" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ZBOKD" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="ZQSSKZ" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ZQSZDT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="ZQSZNR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ZMINDAT" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="J_SC_SUBCONTYPE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_SC_COMPDATE" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="J_SC_OFFSM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="J_SC_OFFSR" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="BASIS_PNT" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="GMVKZK" nullable="true" type="id_String"/>
+        <mapperTableEntries name="BRSCH" nullable="true" type="id_String"/>
+        <mapperTableEntries name="WRBTR" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="WAERS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="FORGN" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SHARE_IN_FOREIGN" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="NOTES" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ACTIVE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PREPAY_RELEVANT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ASSIGN_TEST" nullable="true" type="id_String"/>
+      </inputTables>
+      <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="adr6_data" sizeState="INTERMEDIATE">
+        <mapperTableEntries name="CLIENT" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="lfa1_data.ADRNR " name="ADDRNUMBER" nullable="true" operator="=" type="id_String"/>
+        <mapperTableEntries name="PERSNUMBER" nullable="true" type="id_String"/>
+        <mapperTableEntries name="DATE_FROM" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="CONSNUMBER" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="FLGDEFAULT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="FLG_NOUSE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="HOME_FLAG" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SMTP_ADDR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SMTP_SRCH" nullable="true" type="id_String"/>
+        <mapperTableEntries name="DFT_RECEIV" nullable="true" type="id_String"/>
+        <mapperTableEntries name="R3_USER" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ENCODE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="TNEF" nullable="true" type="id_String"/>
+        <mapperTableEntries name="VALID_FROM" nullable="true" type="id_String"/>
+        <mapperTableEntries name="VALID_TO" nullable="true" type="id_String"/>
+        <mapperTableEntries name="_DATAAGING" nullable="true" type="id_Date"/>
+      </inputTables>
+    </nodeData>
+  </node>
+  <node componentName="tSAPTableInput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="96" posY="64">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPTableInput_1"/>
+    <elementParameter field="LABEL" name="NOTE" value="(To use this component, you need first to add the SAP Java Connector sapjco3.jar in the Modules view)"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="CLOSED_LIST" name="SERVERTYPE" value="ApplicationServer"/>
+    <elementParameter field="TEXT" name="CLIENT" value="&quot;100&quot;"/>
+    <elementParameter field="TEXT" name="USERID" value="&quot;com_talend&quot;"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" value="JR2QA/2jh49xBg0icybNVg=="/>
+    <elementParameter field="TEXT" name="LANGUAGE" value="&quot;EN&quot;"/>
+    <elementParameter field="TEXT" name="HOSTNAME" value="&quot;192.168.160.2&quot;"/>
+    <elementParameter field="TEXT" name="SYSTEMNUMBER" value="&quot;00&quot;"/>
+    <elementParameter field="TEXT" name="SYSTEMID" show="false" value="&quot;PRD&quot;"/>
+    <elementParameter field="TEXT" name="GROUPNAME" show="false" value="&quot;tGroup&quot;"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA - LFB1"/>
+    <elementParameter field="TEXT" name="TABLE" value="&quot;LFB1&quot;"/>
+    <elementParameter field="TEXT" name="FILTER" value="&quot;MANDT = '100'&quot;"/>
+    <elementParameter field="TEXT" name="START_ROW" value="-1"/>
+    <elementParameter field="TEXT" name="MAX_ROW_COUNT" value="-1"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="sap_id"/>
+    <elementParameter field="LABEL" name="NOTE_DATASOURCE" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
+    <elementParameter field="TEXT" name="SAP_DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TABLE" name="SAP_PROPERTIES">
+      <elementValue elementRef="PROPERTY" value="&quot;api.use_z_talend_read_table&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;true&quot;"/>
+      <elementValue elementRef="PROPERTY" value="&quot;jco.sever.gwserv&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;sapgw00&quot;"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="USE_CUSTOM_MAXLENGTH_FOR_VARIABLE_LENGTH" value="false"/>
+    <elementParameter field="TEXT" name="CUSTOM_MAXLENGTH_FOR_VARIABLE_LENGTH" show="false" value="100"/>
+    <elementParameter field="TEXT" name="LABEL" value="LFB1"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="LFB1" name="tSAPTableInput_1">
+      <column comment="Client" key="true" length="3" name="MANDT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Account Number of Vendor or Creditor" key="true" length="10" name="LIFNR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Company Code" key="true" length="4" name="BUKRS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Personnel Number" key="false" length="8" name="PERNR" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="Date on which the Record Was Created" key="false" length="8" name="ERDAT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Name of Person who Created the Object" key="false" length="12" name="ERNAM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Posting block for company code" key="false" length="1" name="SPERR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Deletion Flag for Master Record (Company Code Level)" key="false" length="1" name="LOEVM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Key for sorting according to assignment numbers" key="false" length="3" name="ZUAWA" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Reconciliation Account in General Ledger" key="false" length="10" name="AKONT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Authorization Group" key="false" length="4" name="BEGRU" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Interest calculation indicator" key="false" length="2" name="VZSKZ" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="List of Respected Payment Methods" key="false" length="10" name="ZWELS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Indicator: Clearing between customer and vendor?" key="false" length="1" name="XVERR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Block Key for Payment" key="false" length="1" name="ZAHLS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Terms of payment key" key="false" length="4" name="ZTERM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Our account number with the vendor" key="false" length="12" name="EIKTO" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Clerk at vendor" key="false" length="15" name="ZSABE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Memo" key="false" length="30" name="KVERM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Planning Group" key="false" length="10" name="FDGRV" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Accounting Clerk Abbreviation" key="false" length="2" name="BUSAB" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Head office account number" key="false" length="10" name="LNRZE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Account number of the alternative payee" key="false" length="10" name="LNRZB" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Key Date of Last Interest Calculation" key="false" length="8" name="ZINDT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Interest Calculation Frequency in Months" key="false" length="2" name="ZINRT" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="Date of Last Interest Calculation Run" key="false" length="8" name="DATLZ" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Indicator: Local Processing?" key="false" length="1" name="XDEZV" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Bill of Exchange Limit (in Local Currency)" key="false" length="13" name="WEBTR" nullable="true" pattern="" precision="2" sourceType="BIG_DECIMAL" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="Probable Time Until Check Is Paid" key="false" length="3" name="KULTG" nullable="true" pattern="" precision="0" sourceType="BIG_DECIMAL" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="Check Flag for Double Invoices or Credit Memos" key="false" length="1" name="REPRF" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tolerance Group for Business Partner/G/L Account" key="false" length="4" name="TOGRU" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Short key for a house bank" key="false" length="5" name="HBKID" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Indicator: Pay All Items Separately?" key="false" length="1" name="XPORE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Certificate Number of the Withholding Tax Exemption" key="false" length="10" name="QSZNR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Validity Date for Withholding Tax Exemption Certificate" key="false" length="8" name="QSZDT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Withholding Tax Code" key="false" length="2" name="QSSKZ" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="(Obsolete) Subsidy Ind. for Determining the Reduction Rate" key="false" length="2" name="BLNKZ" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Minority Indicator" key="false" length="3" name="MINDK" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Previous Master Record Number" key="false" length="10" name="ALTKN" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Key for Payment Grouping" key="false" length="2" name="ZGRUP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Key for Dunning Notice Grouping" key="false" length="2" name="MGRUP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Payment method supplement" key="false" length="2" name="UZAWE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Vendor Recipient Type" key="false" length="2" name="QSREC" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Authority for Exemption from Withholding Tax" key="false" length="1" name="QSBGR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Withholding Tax Country Key" key="false" length="3" name="QLAND" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Indicator: Send Payment Advices by EDI" key="false" length="1" name="XEDIP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Release Approval Group" key="false" length="4" name="FRGRP" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Tolerance Group in Invoice Verification" key="false" length="4" name="TOGRR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Accounting clerk's fax number at the customer/vendor" key="false" length="31" name="TLFXS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Internet address of partner company clerk" key="false" length="130" name="INTAD" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Indicator: Alternative Payee Using Account Number" key="false" length="1" name="XLFZB" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Payment Terms Key for Credit Memos" key="false" length="4" name="GUZTE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Activity Code for Gross Income Tax" key="false" length="2" name="GRICD" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Distribution Type for Employment Tax" key="false" length="2" name="GRIDT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Indicator for Periodic Account Statements" key="false" length="1" name="XAUSZ" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Certification Date" key="false" length="8" name="CERDT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Status of Change Authorization (Company Code Level)" key="false" length="1" name="CONFS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Date on Which the Changes Were Confirmed" key="false" length="8" name="UPDAT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Time of Last Change Confirmation" key="false" length="6" name="UPTIM" nullable="true" pattern="&quot;HH:mm:ss&quot;" precision="0" sourceType="TIME" type="id_Date" usefulColumn="true"/>
+      <column comment="Deletion bock for master record (company code level)" key="false" length="1" name="NODEL" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Accounting clerk's telephone number at business partner" key="false" length="30" name="TLFNS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Indicator: Send Payment Advice by XML" key="false" length="1" name="AVSND" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="E-Mail Address for Avis: Hash Value" key="false" length="10" name="AD_HASH" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Business Purpose Completed Flag" key="false" length="1" name="CVP_XBLCK_B" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Main economic activity" key="false" length="4" name="CIIUCODE" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="Dataelement for the Extension Company Code" key="false" length="1" name="LFB1_EEW_CC" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="LEDGER MANAGEMENT EXPIRATION DATE" key="false" length="8" name="ZBOKD" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Future Withholding tax code" key="false" length="2" name="ZQSSKZ" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Validity date for withholding tax exemption certificate" key="false" length="8" name="ZQSZDT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Certificate number of the withholding tax exemption" key="false" length="10" name="ZQSZNR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Certification date for minimum wage" key="false" length="8" name="ZMINDAT" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Subcontractor Type" key="false" length="1" name="J_SC_SUBCONTYPE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Completion Date Of Inspection" key="false" length="3" name="J_SC_COMPDATE" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="Offset Method" key="false" length="1" name="J_SC_OFFSM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Offset Percentage" key="false" length="3" name="J_SC_OFFSR" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="Average daily basis points for purchase cards" key="false" length="6" name="BASIS_PNT" nullable="true" pattern="" precision="3" sourceType="BIG_DECIMAL" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="Vendor is in execution" key="false" length="1" name="GMVKZK" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Industry key" key="false" length="4" name="BRSCH" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Amount for Payment Program" key="false" length="23" name="WRBTR" nullable="true" pattern="" precision="2" sourceType="BIG_DECIMAL" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="Currency Key" key="false" length="5" name="WAERS" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Foreign Shareholder" key="false" length="1" name="FORGN" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Share in Dividend Paying Company" key="false" length="5" name="SHARE_IN_FOREIGN" nullable="true" pattern="" precision="2" sourceType="BIG_DECIMAL" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="Notes" key="false" length="200" name="NOTES" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Boolean Variable ('X'=Shareholder is active, ''=not active)" key="false" length="1" name="ACTIVE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Prepayment Relevance (Supplier Master)" key="false" length="1" name="PREPAY_RELEVANT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Assignment Test Group" key="false" length="4" name="ASSIGN_TEST" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tSAPTableInput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="96" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPTableInput_2"/>
+    <elementParameter field="LABEL" name="NOTE" value="(To use this component, you need first to add the SAP Java Connector sapjco3.jar in the Modules view)"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="CLOSED_LIST" name="SERVERTYPE" value="ApplicationServer"/>
+    <elementParameter field="TEXT" name="CLIENT" value="&quot;100&quot;"/>
+    <elementParameter field="TEXT" name="USERID" value="&quot;com_talend&quot;"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" value="JR2QA/2jh49xBg0icybNVg=="/>
+    <elementParameter field="TEXT" name="LANGUAGE" value="&quot;EN&quot;"/>
+    <elementParameter field="TEXT" name="HOSTNAME" value="&quot;192.168.160.2&quot;"/>
+    <elementParameter field="TEXT" name="SYSTEMNUMBER" value="&quot;00&quot;"/>
+    <elementParameter field="TEXT" name="SYSTEMID" show="false" value="&quot;PRD&quot;"/>
+    <elementParameter field="TEXT" name="GROUPNAME" show="false" value="&quot;tGroup&quot;"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA - ADR6"/>
+    <elementParameter field="TEXT" name="TABLE" value="&quot;ADR6&quot;"/>
+    <elementParameter field="TEXT" name="FILTER" value="&quot;CLIENT = '100'&quot;"/>
+    <elementParameter field="TEXT" name="START_ROW" value="-1"/>
+    <elementParameter field="TEXT" name="MAX_ROW_COUNT" value="-1"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="sap_id"/>
+    <elementParameter field="LABEL" name="NOTE_DATASOURCE" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
+    <elementParameter field="TEXT" name="SAP_DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TABLE" name="SAP_PROPERTIES">
+      <elementValue elementRef="PROPERTY" value="&quot;api.use_z_talend_read_table&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;true&quot;"/>
+      <elementValue elementRef="PROPERTY" value="&quot;jco.sever.gwserv&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;sapgw00&quot;"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="USE_CUSTOM_MAXLENGTH_FOR_VARIABLE_LENGTH" value="false"/>
+    <elementParameter field="TEXT" name="CUSTOM_MAXLENGTH_FOR_VARIABLE_LENGTH" show="false" value="100"/>
+    <elementParameter field="TEXT" name="LABEL" value="ADR6"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="ADR6" name="tSAPTableInput_2">
+      <column comment="Client" key="true" length="3" name="CLIENT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Address Number" key="true" length="10" name="ADDRNUMBER" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Person number" key="true" length="10" name="PERSNUMBER" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Valid-from date - in current Release only 00010101 possible" key="true" length="8" name="DATE_FROM" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="Sequence Number" key="true" length="3" name="CONSNUMBER" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="Flag: this address is the default address" key="false" length="1" name="FLGDEFAULT" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Flag: This Communication Number is Not Used" key="false" length="1" name="FLG_NOUSE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Recipient address in this communication type (mail sys.grp)" key="false" length="1" name="HOME_FLAG" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="E-Mail Address" key="false" length="241" name="SMTP_ADDR" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="E-Mail Address Search Field" key="false" length="20" name="SMTP_SRCH" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Flag: Recipient is standard recipient for this address" key="false" length="1" name="DFT_RECEIV" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Flag: Connected to an SAP System" key="false" length="1" name="R3_USER" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Required Data Encoding (E-Mail)" key="false" length="1" name="ENCODE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Flag: Receiver can receive TNEF encoding by SMTP" key="false" length="1" name="TNEF" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Communication Data: Valid From (YYYYMMDDHHMMSS)" key="false" length="14" name="VALID_FROM" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Communication Data: Valid To (YYYYMMDDHHMMSS)" key="false" length="14" name="VALID_TO" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Data Filter Value for Data Aging" key="false" length="8" name="_DATAAGING" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputDelimited_1"/>
+    <elementParameter field="CHECK" name="USESTREAM" value="false"/>
+    <elementParameter field="TEXT" name="STREAMNAME" show="false" value="outputStream"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/admintalend/workspace-remote-prod/vendor.csv&quot;"/>
+    <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\r\n&quot;"/>
+    <elementParameter field="CHECK" name="OS_LINE_SEPARATOR_AS_ROW_SEPARATOR" show="false" value="true"/>
+    <elementParameter field="OPENED_LIST" name="CSVROWSEPARATOR" show="false" value="&quot;\n&quot;"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;;&quot;"/>
+    <elementParameter field="CHECK" name="APPEND" value="false"/>
+    <elementParameter field="CHECK" name="INCLUDEHEADER" value="false"/>
+    <elementParameter field="CHECK" name="COMPRESS" value="false"/>
+    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
+    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
+    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
+    <elementParameter field="CHECK" name="CSV_OPTION" value="false"/>
+    <elementParameter field="TEXT" name="ESCAPE_CHAR" show="false" value="&quot;&quot;&quot;"/>
+    <elementParameter field="TEXT" name="TEXT_ENCLOSURE" show="false" value="&quot;&quot;&quot;"/>
+    <elementParameter field="CHECK" name="CREATE" value="true"/>
+    <elementParameter field="CHECK" name="SPLIT" value="false"/>
+    <elementParameter field="TEXT" name="SPLIT_EVERY" show="false" value="1000"/>
+    <elementParameter field="CHECK" name="FLUSHONROW" value="false"/>
+    <elementParameter field="TEXT" name="FLUSHONROW_NUM" show="false" value="1"/>
+    <elementParameter field="CHECK" name="ROW_MODE" value="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="DELETE_EMPTYFILE" value="false"/>
+    <elementParameter field="CHECK" name="FILE_EXIST_EXCEPTION" value="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="90"/>
+    <elementParameter field="TEXT" name="LABEL" value="writeToCSV"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tFileOutputDelimited_1">
+      <column comment="Account Number of Vendor or Creditor" key="true" length="10" name="PK" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Account Number of Vendor or Creditor" key="false" length="10" name="NO" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="Company Code" key="false" length="4" name="COMP_CODE" nullable="true" pattern="" precision="0" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SYSTEM" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="MAND_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="NAME_DISPLAY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="NAME1" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="NAME2" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="STREET" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="ZIP_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="POB" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="ZIP_CODE_POB" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CITY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="COUNTRY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="TEL1" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="TEL2" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="FAX1" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="FAX2" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="HOMEPAGE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="MAIL" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="TAX_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="VAT_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="TOP_DEFAULT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="VAT_COUNTRY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <connection connectorName="FLOW" label="lfa1_data" lineStyle="0" metaname="tSAPTableInput_3" offsetLabelX="0" offsetLabelY="0" source="tSAPTableInput_3" target="tMap_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="lfa1_data"/>
+  </connection>
+  <connection connectorName="FLOW" label="vendor" lineStyle="0" metaname="vendor" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tFileOutputDelimited_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="vendor"/>
+  </connection>
+  <connection connectorName="FLOW" label="lfb1_data" lineStyle="8" metaname="tSAPTableInput_1" offsetLabelX="0" offsetLabelY="0" source="tSAPTableInput_1" target="tMap_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="lfb1_data"/>
+  </connection>
+  <connection connectorName="FLOW" label="adr6_data" lineStyle="8" metaname="tSAPTableInput_2" offsetLabelX="0" offsetLabelY="0" source="tSAPTableInput_2" target="tMap_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="adr6_data"/>
+  </connection>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPTableInput_3"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_3558f23c-05de-4583-9aad-59a12a7bc0cd"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Ct0NrpO0X70OQw8r7AWR9YAXAEOpMGqo8sK18tcmIfOzNazs6nY6R8fjlGQg7VxdBGT/Z0ebW4pV
+gnElYYM0Zg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_4288b2d6-2adc-4428-b225-98e01c03b628"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>jDLw9LKsRxipTgBkYB3qO6zbhkJbQGplsflJHZayqoTND+JV+2THMCAn9taafRwmw7ZCEdscY97G
+198z5lEWQw==</DigestValue></Reference></SignedInfo><SignatureValue>kxhhmV1AzfFm9xEbeQBCoupN7taj0KofqXQ57ZjeNxu0aBYGx0m5spOKEcD4u2tK5HVJX7gpiygt
+8YhrnZdjlKhijbrxi3ErGiW5UPQSQcBsB+9AE920Wv01Ho/R843nuUd4JbMeSGRXG8HQ86ylExAn
+DQ9R/36wWkM4+2FGP7YTyxIDewaHqJkgCqYEptLUkZP1YZiRGtYspGahQ+Eeu41Wx+A0yhTh1Bod
+1hu1O2FoJNa8qh2J0VyhKeyWFvuvQydMLk9JAHRsrocEd/N0Jscyc8yW1WYzZZjtOiBvf0qf45+N
+uLa8kQBJOI0FOWuYmldhmMyKNrnvP0oHA6qZHQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -139,4 +981,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1f4553dd-04cf-4e31-9bd4-0b127ee611b4" Target="#_c21ac0ff-23d2-463a-ba20-7513767eb543"><Timestamp>2019-09-06 08:52:57</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_4288b2d6-2adc-4428-b225-98e01c03b628" Target="#_3558f23c-05de-4583-9aad-59a12a7bc0cd"><Timestamp>2019-09-06 10:14:26</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
