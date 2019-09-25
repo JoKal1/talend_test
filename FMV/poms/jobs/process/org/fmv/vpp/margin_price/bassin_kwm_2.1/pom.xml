@@ -9,19 +9,16 @@
     <relativePath>../../../../../../../</relativePath>
   </parent>
   <groupId>org.example.fmv.job</groupId>
-  <artifactId>bassin_kwm-bundle</artifactId>
+  <artifactId>bassin_kwm</artifactId>
   <version>2.1.0</version>
+  <name>FMV bassin_kwm-2.1.0 (2.1,Job Designs)</name>
   <properties>
     <output.resources.dir>${talend.job.name}/src/main/resources</output.resources.dir>
     <talend.job.applyContextToChildren>false</talend.job.applyContextToChildren>
     <current.test.resources.dir>${basedir}/src/test/resources</current.test.resources.dir>
     <current.int-resources.dir>${basedir}/src/main/resources</current.int-resources.dir>
-    <item.project.name>@ItemProjectName@</item.project.name>
-    <provided.lib.path>${current.bundle.resources.dir}/provided-lib</provided.lib.path>
     <talend.job.version>2.1</talend.job.version>
-    <bundle.config.import.package>@BundleConfigImportPackage@</bundle.config.import.package>
     <talend.project.name.lowercase>fmv</talend.project.name.lowercase>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <talend.job.path>fmv/bassin_kwm_2_1</talend.job.path>
     <maven.build.timestamp.format>yyyy-MM-dd HHmmssSSS</maven.build.timestamp.format>
     <talend.project.name>FMV</talend.project.name>
@@ -30,18 +27,13 @@
     <talend.pigudf.groupid>org.example.fmv.pigudf</talend.pigudf.groupid>
     <talend.routine.groupid>org.example.fmv.code</talend.routine.groupid>
     <current.bundle.resources.dir>${basedir}/src/main/bundle-resources</current.bundle.resources.dir>
-    <talend.job.jvmargs>-Xms256M -Xmx1024M </talend.job.jvmargs>
-    <bundle.config.export.service>@BundleConfigExportService@</bundle.config.export.service>
-    <talend.job.stat>true</talend.job.stat>
+    <talend.job.jvmargs>-Xms256M -Xmx1024M -Dfile.encoding=UTF-8 </talend.job.jvmargs>
     <talend.job.context>Default</talend.job.context>
-    <bundle.config.bundle.classpath>@BundleConfigBundleClasspath@</bundle.config.bundle.classpath>
-    <lib.path>${resources.path}/lib</lib.path>
-    <item.name>@ItemName@</item.name>
+    <talend.job.stat>true</talend.job.stat>
+    <talend.job.date>${maven.build.timestamp}</talend.job.date>
     <current.resources.dir>${basedir}/src/main/ext-resources</current.resources.dir>
     <talend.job.name>bassin_kwm</talend.job.name>
-    <bundle.config.export.package>@BundleConfigExportPackage@</bundle.config.export.package>
     <talend.job.id>_dZ4QoDmeEemZQZdkspZBxQ</talend.job.id>
-    <resources.path>${basedir}/src/main/resources</resources.path>
     <talend.project.id>0</talend.project.id>
     <talend.job.framework></talend.job.framework>
     <talend.job.type>Standard</talend.job.type>
@@ -149,33 +141,14 @@
     </dependency>
   </dependencies>
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>2.5.3</version>
-        <extensions>true</extensions>
-        <configuration>
-          <archive>
-            <addMavenDescriptor>false</addMavenDescriptor>
-          </archive>
-          <instructions>
-            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-            <Bundle-Name>${talend.job.name}</Bundle-Name>
-            <Bundle-Version>${project.version}</Bundle-Version>
-            <Export-Package>${bundle.config.export.package}</Export-Package>
-            <Export-Service>${bundle.config.export.service}</Export-Service>
-            <Import-Package>${bundle.config.import.package}, *;resolution:=optional</Import-Package>
-            <Bundle-ClassPath>., {maven-dependencies}</Bundle-ClassPath>
-          </instructions>
-        </configuration>
-      </plugin>
-    </plugins>
+    <finalName>${talend.job.finalName}</finalName>
   </build>
   <profiles>
     <profile>
       <id>packaging-and-assembly</id>
-      <activation />
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <build>
         <plugins>
           <plugin>
@@ -192,10 +165,7 @@
                   </descriptors>
                   <tarLongFileMode>gnu</tarLongFileMode>
                   <appendAssemblyId>false</appendAssemblyId>
-                  <finalName>${talend.job.name}-bundle-${project.version}</finalName>
-                  <archive>
-                    <manifestFile>${current.bundle.resources.dir}/META-INF/MANIFEST.MF</manifestFile>
-                  </archive>
+                  <finalName>${talend.job.finalName}</finalName>
                 </configuration>
               </execution>
             </executions>
@@ -229,9 +199,15 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
-        <templates.dir>${basedir}/src/main/templates/</templates.dir>
-        <poms.dir>${basedir}</poms.dir>
         <assemblies.dir>${basedir}/src/main/assemblies/</assemblies.dir>
+        <pigudfpom.dir>${parentpom.dir}code/pigudf/</pigudfpom.dir>
+        <routinescode.dir>${parentpom.dir}code/routines/src/main/</routinescode.dir>
+        <parentpom.dir>${project.parent.relativePath}</parentpom.dir>
+        <templates.dir>${basedir}/src/main/templates/</templates.dir>
+        <routinespom.dir>${parentpom.dir}code/routines/</routinespom.dir>
+        <pigudfcode.dir>${parentpom.dir}code/pigudf/src/main/</pigudfcode.dir>
+        <joblet.dir>${parentpom.dir}jobs/</joblet.dir>
+        <poms.dir>${basedir}</poms.dir>
       </properties>
     </profile>
     <profile>
@@ -302,9 +278,6 @@
     </profile>
     <profile>
       <id>include-running-log4j</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
       <properties>
         <log4j.running.dir>${current.resources.dir}/</log4j.running.dir>
       </properties>
@@ -346,7 +319,7 @@
     <profile>
       <id>include-microservice-running-configs</id>
       <properties>
-        <microservice.running.configs.dir>${current.resources.dir}/</microservice.running.configs.dir>
+        <microservice.running.configs.dir>${current.int-resources.dir}/</microservice.running.configs.dir>
       </properties>
     </profile>
     <profile>
