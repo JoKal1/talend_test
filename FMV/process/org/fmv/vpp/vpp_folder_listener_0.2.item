@@ -327,9 +327,16 @@
     <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
     <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
     <elementParameter field="CHECK" name="TRIMALL" value="false"/>
-    <elementParameter field="TABLE" name="TRIMSELECT"/>
+    <elementParameter field="TABLE" name="TRIMSELECT">
+      <elementValue elementRef="SCHEMA_COLUMN" value="date"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
     <elementParameter field="CHECK" name="CONVERTDATETOSTRING" show="false" value="false"/>
-    <elementParameter field="TABLE" name="DATESELECT" show="false"/>
+    <elementParameter field="TABLE" name="DATESELECT" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="date"/>
+      <elementValue elementRef="CONVERTDATE" value="false"/>
+      <elementValue elementRef="PATTERN" value="&quot;MM-dd-yyyy&quot;"/>
+    </elementParameter>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="READ_REAL_VALUE" value="false"/>
@@ -339,8 +346,11 @@
     <elementParameter field="CLOSED_LIST" name="GENERATION_MODE" show="false" value="USER_MODE"/>
     <elementParameter field="TEXT" name="LABEL" value="loetschenXLS"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tFileInputExcel_1"/>
+    <metadata connector="FLOW" name="tFileInputExcel_1">
+      <column comment="" key="false" length="-1" name="date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
     <metadata connector="REJECT" name="REJECT">
+      <column comment="" key="false" length="-1" name="date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -391,6 +401,11 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If5"/>
   </connection>
   <connection connectorName="FLOW" label="loetschenDate" lineStyle="0" metaname="tFileInputExcel_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_1" target="tJavaRow_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="date"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="loetschenDate"/>
   </connection>
@@ -448,13 +463,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_024fc5e3-f2c2-44f7-bc39-f7a34894ed0d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>SetaKYkAggjhAq8dqA2GH8bpGwYgqDfQxjtw/EnypHB52inzFuRSo7zOF8mNjpc66Z2iMWA8GbUf
-/z8CR41Izg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_415461a7-7ab1-4873-9a79-2aa3b8bd9a44"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>siD3PUSZuy2NTbjU0IRbWKKVAq6p1l+qwWVISJmFzyODdNTnZ7SnIhlAygYwxbBsUfM70lSVa+Pz
-pKbofCgpzQ==</DigestValue></Reference></SignedInfo><SignatureValue>BpeUBj9NTSBBsvIUZUhEU2n/h6giBdPEFBzR7+cyWkKtQN96Zn/P5RPjcEyfy75CEWBqaABtLR9X
-qYy62aGojcIURNxue/iulQiZvgD+dLnVt9qHmrGoXZlV7EcwIqiB3fYJClGDqPIU8VkBUPYlU83a
-jUVxEqK55+ZfRCLqcb8ufYD0jgjPWo3t9iq9wGdJOIhd443qMK4oGQtOvd6QoeuIsTHHQc5bjtsF
-kLrOfu06ZPupwc7OT/Y+rTb4RAWmXp2h+AkEJhHsdB+7T/2WbeJgSQFSurx6Cx8YyyHAWz9kcsXA
-AoviL1WjaElPF4j0yT1kpnI6aXnor6HSFkohSA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_9b462bbf-78c3-4d65-96e8-0ec0666ef9e0"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>8Jfb693KAPwMo7s+H5vwdg2SgQM5ZNIjlvakaq2VkoYA3btbKoZyFIyPh2zjnDD1QkpNTAxt1Yjf
+iMBW+sPM8w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_8a446605-bc20-4601-9019-714d5d25f71e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0gioNN8SMb/IjoDGxixo5/dLH5gr1AxC3DER3kscgHcfxXkOdWgRbjoG/jmKgFewaPUUL11+GJY7
+CrUC/gjX5A==</DigestValue></Reference></SignedInfo><SignatureValue>YYqT44+M3u1Ta3n9ykjfyQpzZbxQl0hf8OfBX/KpgS43VjRj67Q1ER/siKbWFCrw6rJyT/CghqBy
+s+sKFJFiy7KQHeheqJH75tW+dKZQJoSsbXvy3IRTBJyociJrnjRE0oRdz8CLP1RfaIvCNC6fytAW
+a+2i7WPSPSTCXJx2iEWoH1bFBxaOc6X/U/8qHvoZRFD3IQn8bHzaSBA0yfO+DewmiKpQmksiq8yY
+SamDvDyBo+oVpsa5ToRtovTZ1lFbT254uvhJSrZose1zoaZlbPQES72X1oSGXGIOOVN+Yd019PZK
+YQvq2oA4sASdeSDAnxzbyddnJshkOemXPbPgEg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -478,4 +493,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_415461a7-7ab1-4873-9a79-2aa3b8bd9a44" Target="#_024fc5e3-f2c2-44f7-bc39-f7a34894ed0d"><Timestamp>2019-10-04 10:27:20</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_8a446605-bc20-4601-9019-714d5d25f71e" Target="#_9b462bbf-78c3-4d65-96e8-0ec0666ef9e0"><Timestamp>2019-10-04 10:31:26</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
