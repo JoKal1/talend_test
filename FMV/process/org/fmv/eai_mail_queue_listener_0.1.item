@@ -245,7 +245,7 @@
       <column comment="" key="false" length="-1" name="sheet_name" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileInputExcel" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="320">
+  <node componentName="tFileInputExcel" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputExcel_1"/>
     <elementParameter field="CHECK" name="VERSION_2007" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="context.filename"/>
@@ -293,7 +293,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="448" posY="320">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="Date date = new Date();&#10;Calendar cal = Calendar.getInstance();&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;&#10;cal.setTime(date);&#10;cal.set(Calendar.HOUR_OF_DAY, 0 );&#10;cal.set(Calendar.MINUTE, 0 );&#10;cal.set(Calendar.SECOND, 0 );&#10;cal.set(Calendar.MILLISECOND, 0 );&#10;cal.add(Calendar.DATE, Integer.parseInt(context.dateAdd));&#10;&#10;Date today = cal.getTime();&#10;double diff = today.getTime() - input_row.dateToCheck.getTime();&#10;&#10;/*System.out.println(format1.format(cal.getTime()));&#10;System.out.println(format1.format(input_row.dateToCheck));*/&#10;&#10;context.dayDiff = (int) Math.floor(diff);&#10;&#10;/*System.out.println (&quot;Days: &quot; + diff / (24 * 60 * 60 * 1000));&#10;System.out.println(context.dayDiff &gt; 0);&#10;System.out.println(context.dayDiff &lt; 0);*/"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="import java.util.Calendar;&#10;import java.util.Date;&#10;import java.text.SimpleDateFormat;"/>
@@ -301,7 +301,7 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_2"/>
   </node>
-  <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="608" posY="320">
+  <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="576" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileCopy_1"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tWaitForFile_1_PRESENT_FILE&quot;))"/>
     <elementParameter field="CHECK" name="ENABLE_COPY_DIRECTORY" value="false"/>
@@ -477,7 +477,7 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tRunJob_8"/>
   </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="320" posY="448">
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="448" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="String filename = ((String)globalMap.get(&quot;tWaitForFile_1_FILENAME&quot;));"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
@@ -498,9 +498,13 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="xmlOut"/>
   </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tFileInputExcel_1">
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tJavaRow_1" target="tFileInputExcel_1">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.found == true &amp;&amp; context.header_index != &quot;&quot;"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If2"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tJavaRow_1" target="tJava_1">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.header_index == &quot;&quot;"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If12"/>
   </connection>
   <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tFileInputExcel_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_1" target="tJavaRow_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
@@ -606,13 +610,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f5f28c44-2999-4202-af8f-11dc9a0efef1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>h+ItfBmafcQokKQSScl9S7NF2kbfYcPXha/mqnZ6q3OR8HSKjsO5n/5pZlMqU3fDA0aJz5ARniPI
-jzmZe6JQHg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_51ac421c-1ec1-408d-89ab-5caa406cdc0a"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>TIkISVXRLixJkKAAWfSUHasRDc4anrqsgoUM/ZMGFdHHzcKfCN0qvcR1TPtrQP/rw73j/dL9ZoVh
-K/1GwlKqhw==</DigestValue></Reference></SignedInfo><SignatureValue>nothI93tDyZ6ENA12pexpUi41BRHNKUuPofkdAAACxCXHB5qw8rJjHBMY+p965A0wzCESrZDWzka
-+mpB+tNCOwiJZHYBRHYRC5vRuFzM8g7F2EpmS70+QxnvLFfP33PiwuMSoQr1do3UTt3HjJ4Mk7To
-G21KgOKMDjhKueZjQDeEz5kH5hWiL/C0kKrXMDtgrLDUDxrpBTKSQs8MDMTVkhho4j/erh7sQrJM
-lM52zS0otRExSOIw7f+TYbwIDJ6pAg0T7etLQH6WNk5bR0B2vL9dhUk3dsK4NZrVwR17IvKjrEz0
-Gkg0IxsoKgzkBAzYHVRdxh6ru3Kk7EbrkIGleQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_9a11a31c-38b4-410f-8c26-bfbe4a33b525"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>9EbII+53nfbc7xH+4sz7Kw8b7KgUF3+J+VI8jIWSc2Wd6TmRVNYofBg0L+lOEPxYBvOdqMrJKaVN
+KxQbkjUPfg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3866963e-b143-4ad2-a4f7-b3223412e885"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0UgiNAmP2rp350k/Wn1beHxMWSA/bs68xxe5hoyxqx1yQcqthtllwuvrmj9evJ6t8gzWFmSsoY3q
+WjM/7HIw9Q==</DigestValue></Reference></SignedInfo><SignatureValue>eORxhfa/OdoO+SjnXd6QBwmjadmHOaUDTgme40/8qp69dj4OVadDFYPePiVR9yq/EIWU/8Iy22S4
+PuMZqhY0S12+yAFv+YhG9CLNebsPUDTZ3JZlPkK3rVzuw/4ZSyNnug8BeTqRWDoVHRkgP7MVUkaN
+tqGEMD9dqGvDB5ZnRWbxFuKSBHgM9VaVJb2SY/6ZehEGSebQZKJwL3+ofBquee2vJWDndwLF6bJ/
+8U8DyoYQc2rYHu180DB179Q96sD4INF2MqdKiyas0jbbX9xST2Bq4oMt4X0b+kUt7GSzxhwHvt/m
+tBH8AOMzduWwAurX3qyHVw2itXGsPgem2ws/ug==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -636,4 +640,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_51ac421c-1ec1-408d-89ab-5caa406cdc0a" Target="#_f5f28c44-2999-4202-af8f-11dc9a0efef1"><Timestamp>2019-10-08 14:28:07</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3866963e-b143-4ad2-a4f7-b3223412e885" Target="#_9a11a31c-38b4-410f-8c26-bfbe4a33b525"><Timestamp>2019-10-08 14:37:19</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
