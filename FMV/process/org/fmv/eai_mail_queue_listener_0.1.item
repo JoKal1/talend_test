@@ -4,7 +4,6 @@
     <contextParameter comment="" name="tse_config" prompt="tse_config?" promptNeeded="false" repositoryContextId="_710lUI0GEemlJo04KbTZaQ" type="id_String" value="&quot;//FMVTSENERGY/Data_flow$/config/&quot;"/>
     <contextParameter comment="" name="header_index" prompt="header_index?" promptNeeded="false" type="id_String" value=""/>
     <contextParameter comment="" name="column_index" prompt="column_index?" promptNeeded="false" type="id_String" value=""/>
-    <contextParameter comment="" name="datePattern" prompt="datePattern?" promptNeeded="false" type="id_String" value=""/>
     <contextParameter comment="" name="found" prompt="found?" promptNeeded="false" type="id_Boolean" value="false"/>
     <contextParameter comment="" name="filename" prompt="filename?" promptNeeded="false" type="id_String" value=""/>
     <contextParameter comment="" name="sheetName" prompt="sheetName?" promptNeeded="false" type="id_String" value=""/>
@@ -188,12 +187,12 @@
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" show="false" value="false"/>
     <elementParameter field="CHECK" name="KEEP_ORDER_FOR_DOCUMENT" value="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="mapXML"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="xmlOut">
       <column comment="" key="false" length="-1" name="filename" nullable="true" originalLength="-1" pattern="&quot;dd/MM/yyyy&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="header_index" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="column_index" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="date_format" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="date_add" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="sheet_name" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="id" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_String" usefulColumn="true"/>
@@ -203,39 +202,37 @@
         <nodes expression="" name="parametres" type="id_Document" xpath="row1/parametres">
           <children expression="" main="true" name="parametres" type="id_String" xpath="row1.parametres:/parametres">
             <children expression="" loop="true" main="true" name="fichier" type="id_String" xpath="row1.parametres:/parametres/fichier">
-              <children name="id" nodeType="ATTRIBUT" outgoingConnections="//@node.2/@nodeData/@connections.6" type="id_String" xpath="row1.parametres:/parametres/fichier/@id"/>
-              <children name="filename" outgoingConnections="//@node.2/@nodeData/@connections.5" type="id_String" xpath="row1.parametres:/parametres/fichier/filename"/>
+              <children name="id" nodeType="ATTRIBUT" outgoingConnections="//@node.2/@nodeData/@connections.5" type="id_String" xpath="row1.parametres:/parametres/fichier/@id"/>
+              <children name="filename" outgoingConnections="//@node.2/@nodeData/@connections.4" type="id_String" xpath="row1.parametres:/parametres/fichier/filename"/>
               <children name="header_index" outgoingConnections="//@node.2/@nodeData/@connections.0" type="id_String" xpath="row1.parametres:/parametres/fichier/header_index"/>
               <children name="column_index" outgoingConnections="//@node.2/@nodeData/@connections.1" type="id_String" xpath="row1.parametres:/parametres/fichier/column_index"/>
               <children name="sheet_name" outgoingConnections="//@node.2/@nodeData/@connections.2" type="id_String" xpath="row1.parametres:/parametres/fichier/sheet_name"/>
-              <children name="date_format" outgoingConnections="//@node.2/@nodeData/@connections.3" type="id_String" xpath="row1.parametres:/parametres/fichier/date_format"/>
-              <children name="date_add" outgoingConnections="//@node.2/@nodeData/@connections.4" type="id_String" xpath="row1.parametres:/parametres/fichier/date_add"/>
+              <children name="date_format" type="id_String" xpath="row1.parametres:/parametres/fichier/date_format"/>
+              <children name="date_add" outgoingConnections="//@node.2/@nodeData/@connections.3" type="id_String" xpath="row1.parametres:/parametres/fichier/date_add"/>
             </children>
           </children>
         </nodes>
       </inputTrees>
       <outputTrees name="xmlOut">
-        <nodes expression="[row1.parametres:/parametres/fichier/filename]" incomingConnections="//@node.2/@nodeData/@connections.5" name="filename" type="id_String" xpath="xmlOut/filename"/>
+        <nodes expression="[row1.parametres:/parametres/fichier/filename]" incomingConnections="//@node.2/@nodeData/@connections.4" name="filename" type="id_String" xpath="xmlOut/filename"/>
         <nodes expression="[row1.parametres:/parametres/fichier/header_index]" incomingConnections="//@node.2/@nodeData/@connections.0" name="header_index" type="id_String" xpath="xmlOut/header_index"/>
         <nodes expression="[row1.parametres:/parametres/fichier/column_index]" incomingConnections="//@node.2/@nodeData/@connections.1" name="column_index" type="id_String" xpath="xmlOut/column_index"/>
-        <nodes expression="[row1.parametres:/parametres/fichier/date_format]" incomingConnections="//@node.2/@nodeData/@connections.3" name="date_format" type="id_String" xpath="xmlOut/date_format"/>
-        <nodes expression="[row1.parametres:/parametres/fichier/date_add]" incomingConnections="//@node.2/@nodeData/@connections.4" name="date_add" type="id_String" xpath="xmlOut/date_add"/>
+        <nodes expression="[row1.parametres:/parametres/fichier/date_add]" incomingConnections="//@node.2/@nodeData/@connections.3" name="date_add" type="id_String" xpath="xmlOut/date_add"/>
         <nodes expression="[row1.parametres:/parametres/fichier/sheet_name]" incomingConnections="//@node.2/@nodeData/@connections.2" name="sheet_name" type="id_String" xpath="xmlOut/sheet_name"/>
-        <nodes expression="[row1.parametres:/parametres/fichier/@id]" incomingConnections="//@node.2/@nodeData/@connections.6" name="id" type="id_String" xpath="xmlOut/id"/>
+        <nodes expression="[row1.parametres:/parametres/fichier/@id]" incomingConnections="//@node.2/@nodeData/@connections.5" name="id" type="id_String" xpath="xmlOut/id"/>
       </outputTrees>
       <varTables minimized="true" name="Var"/>
       <connections source="//@node.2/@nodeData/@inputTrees.0/@nodes.0/@children.0/@children.0/@children.2" target="//@node.2/@nodeData/@outputTrees.0/@nodes.1" xsi:type="TalendXMLMap:Connection"/>
       <connections source="//@node.2/@nodeData/@inputTrees.0/@nodes.0/@children.0/@children.0/@children.3" target="//@node.2/@nodeData/@outputTrees.0/@nodes.2" xsi:type="TalendXMLMap:Connection"/>
-      <connections source="//@node.2/@nodeData/@inputTrees.0/@nodes.0/@children.0/@children.0/@children.4" target="//@node.2/@nodeData/@outputTrees.0/@nodes.5" xsi:type="TalendXMLMap:Connection"/>
-      <connections source="//@node.2/@nodeData/@inputTrees.0/@nodes.0/@children.0/@children.0/@children.5" target="//@node.2/@nodeData/@outputTrees.0/@nodes.3" xsi:type="TalendXMLMap:Connection"/>
-      <connections source="//@node.2/@nodeData/@inputTrees.0/@nodes.0/@children.0/@children.0/@children.6" target="//@node.2/@nodeData/@outputTrees.0/@nodes.4" xsi:type="TalendXMLMap:Connection"/>
+      <connections source="//@node.2/@nodeData/@inputTrees.0/@nodes.0/@children.0/@children.0/@children.4" target="//@node.2/@nodeData/@outputTrees.0/@nodes.4" xsi:type="TalendXMLMap:Connection"/>
+      <connections source="//@node.2/@nodeData/@inputTrees.0/@nodes.0/@children.0/@children.0/@children.6" target="//@node.2/@nodeData/@outputTrees.0/@nodes.3" xsi:type="TalendXMLMap:Connection"/>
       <connections source="//@node.2/@nodeData/@inputTrees.0/@nodes.0/@children.0/@children.0/@children.1" target="//@node.2/@nodeData/@outputTrees.0/@nodes.0" xsi:type="TalendXMLMap:Connection"/>
-      <connections source="//@node.2/@nodeData/@inputTrees.0/@nodes.0/@children.0/@children.0/@children.0" target="//@node.2/@nodeData/@outputTrees.0/@nodes.6" xsi:type="TalendXMLMap:Connection"/>
+      <connections source="//@node.2/@nodeData/@inputTrees.0/@nodes.0/@children.0/@children.0/@children.0" target="//@node.2/@nodeData/@outputTrees.0/@nodes.5" xsi:type="TalendXMLMap:Connection"/>
     </nodeData>
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="String waitFilename = ((String)globalMap.get(&quot;tWaitForFile_1_FILENAME&quot;));&#10;&#10;if(waitFilename.matches(input_row.filename)) {&#10;&#9;context.found = true;&#10;&#9;System.out.println(input_row.id);&#10;&#9;context.filename = ((String)globalMap.get(&quot;tWaitForFile_1_PRESENT_FILE&quot;));&#10;&#9;context.header_index = input_row.header_index;&#10;&#9;context.column_index = input_row.column_index;&#10;&#9;context.datePattern = input_row.date_format;&#10;&#9;context.sheetName = input_row.sheet_name;&#10;&#9;context.dateAdd = input_row.date_add;&#10;&#9;}"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="String waitFilename = ((String)globalMap.get(&quot;tWaitForFile_1_FILENAME&quot;));&#10;&#10;if(waitFilename.matches(input_row.filename)) {&#10;&#9;context.found = true;&#10;&#9;System.out.println(input_row.id);&#10;&#9;context.filename = ((String)globalMap.get(&quot;tWaitForFile_1_PRESENT_FILE&quot;));&#10;&#9;context.header_index = input_row.header_index;&#10;&#9;context.column_index = input_row.column_index;&#10;&#9;context.sheetName = input_row.sheet_name;&#10;&#9;context.dateAdd = input_row.date_add;&#10;&#9;}"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1">
@@ -356,13 +353,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_3f9d2c7f-bce0-45a3-9901-c1e441c8da1b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>L+E1bP5l1lMlVEE9yPrqcl2yU0AAiFFQ8OKhGGefeXXUKUWhNOuj3Zs8zJ9opbvaBuF/z1Hmcrk8
-XSg4I1903w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_188b1cf3-9a63-49c3-8099-b80f467d0f4a"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>aNi4bDUePFWnMOiEgjnXhosQupuTxIKjn1IegF57jH8/AKE6BsMzKyKrgMpOj5TQ2zFxZenmdGEr
-b+Zs3tHrSg==</DigestValue></Reference></SignedInfo><SignatureValue>JzYDsaCxARXjjYv02jcM4jp3w6YBz/ULnCxkqD2c+zkjC694dZeiihdhtoeJd358DEAV+pBtZn4n
-UWgmXpk/JDN5ZWvQy9hVN5sFVhOyXAh4tb1KtnWDAEDzJBAt8cE56CD4gELORlImIBfwUR0f/Ly2
-8W4tjwxYAFm21SSLjRwVOHF2cHR9w1p36fnxbePwo5bkI7fkC+TCiiFF4uVSfGIevHwKn1mF8Uo1
-TCxyTFb87eHwRbVLOWpXrZc1i+tu5NDqWmlV3Dl3EgdsGKbLi9iEntbCDiHnnFLS+VkwABZtxed+
-CzsomDeFEyzK3Xu8rqU+1ahEa2BJqmQLfNM5UA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_fcaf84cd-3b3e-4f15-9065-0df00c530e46"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>rmwMIE4kQ5ECQH4WhQlE30LeYUDoJGEKaWIbgl/LiQLVKaUjg9u7+kwlfWvaI2fPi5oIC7vV/QT5
+mzG0OmD2Ig==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e62f9ff6-9e07-4b94-a9ca-7de2ea78bf0a"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+NnHJXs2Y68/RIMxr0/9HH3zNJD5lxr6GZ+qSBN1041LCbajSJWZrbyQcVbdcpbVDEL2JlmnirPD
+bYxrCwyRJA==</DigestValue></Reference></SignedInfo><SignatureValue>S9GBvARN1i2NpV48DLOMjt+wzEivTq8rmNRUdrKfNJpIzcGx6k5pzkRAksz0ykLHa+x5BjQ2HKHb
+ZftQE416fjdShyXXczxiFGHgMPVmDXYSX8EnYo4cYgtt6s/PnRK7lTzg2aefIJo9miBBk8SoTuad
+APt36hO4kExmWZ8H9HuaC5YAn6biJqM4qw0QiUCyke/FYBO7cW3tCMHBJo7s0DJ3ATSzHRgisoTw
+Y4PGXdmnyRfxdsXSKotxO31A2BvTmIH5etMF7iIkTHQE7XuYPNO8XME9xnEfpl7vkVwNVf/rDImN
+gZvDtwtvhScliHiBeo67C/9fmwX0XUN4OQvnCg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -386,4 +383,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_188b1cf3-9a63-49c3-8099-b80f467d0f4a" Target="#_3f9d2c7f-bce0-45a3-9901-c1e441c8da1b"><Timestamp>2019-10-08 14:02:46</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e62f9ff6-9e07-4b94-a9ca-7de2ea78bf0a" Target="#_fcaf84cd-3b3e-4f15-9065-0df00c530e46"><Timestamp>2019-10-08 14:05:51</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
