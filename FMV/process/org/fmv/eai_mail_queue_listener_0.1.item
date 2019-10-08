@@ -190,8 +190,8 @@
     <metadata connector="FLOW" label="test" name="test">
       <column comment="" key="false" length="-1" name="id" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="filename" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="header_index" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="column_index" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="header_index" nullable="false" originalLength="-1" precision="-1" sourceType="id_String" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="column_index" nullable="false" originalLength="-1" precision="-1" sourceType="id_String" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="sheet_name" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="date_format" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="date_add" nullable="true" originalLength="-1" precision="-1" sourceType="id_String" type="id_String" usefulColumn="true"/>
@@ -215,8 +215,8 @@
       <outputTrees name="test">
         <nodes expression="[row1.parametre:/parametres/fichier/@id]" incomingConnections="//@node.2/@nodeData/@connections.0" name="id" type="id_String" xpath="test/id"/>
         <nodes expression="[row1.parametre:/parametres/fichier/filename]" incomingConnections="//@node.2/@nodeData/@connections.1" name="filename" type="id_String" xpath="test/filename"/>
-        <nodes expression="Integer.parseInt(&quot;0&quot; + [row1.parametre:/parametres/fichier/header_index]) " incomingConnections="//@node.2/@nodeData/@connections.2" name="header_index" type="id_Integer" xpath="test/header_index"/>
-        <nodes expression="Integer.parseInt(&quot;0&quot; + [row1.parametre:/parametres/fichier/column_index]) " incomingConnections="//@node.2/@nodeData/@connections.3" name="column_index" type="id_Integer" xpath="test/column_index"/>
+        <nodes expression="Integer.parseInt([row1.parametre:/parametres/fichier/header_index]) " incomingConnections="//@node.2/@nodeData/@connections.2" name="header_index" nullable="false" type="id_Integer" xpath="test/header_index"/>
+        <nodes expression="Integer.parseInt([row1.parametre:/parametres/fichier/column_index]) " incomingConnections="//@node.2/@nodeData/@connections.3" name="column_index" nullable="false" type="id_Integer" xpath="test/column_index"/>
         <nodes expression="[row1.parametre:/parametres/fichier/sheet_name]" incomingConnections="//@node.2/@nodeData/@connections.4" name="sheet_name" type="id_String" xpath="test/sheet_name"/>
         <nodes expression="[row1.parametre:/parametres/fichier/date_format]" incomingConnections="//@node.2/@nodeData/@connections.5" name="date_format" type="id_String" xpath="test/date_format"/>
         <nodes expression="[row1.parametre:/parametres/fichier/date_add]" incomingConnections="//@node.2/@nodeData/@connections.6" name="date_add" type="id_String" xpath="test/date_add"/>
@@ -282,24 +282,12 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="192">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
-    <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
-    <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
-    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
-    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
-    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
-    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
-    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;"/>
-    <elementParameter field="CHECK" name="PRINT_HEADER" value="false"/>
-    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
-    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
-    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
-    <elementParameter field="TABLE" name="LENGTHS" show="false"/>
-    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
-    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(row2);"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tLogRow_1"/>
+    <metadata connector="FLOW" name="tJava_1"/>
   </node>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tWaitForFile_1" offsetLabelX="0" offsetLabelY="0" source="tWaitForFile_1" target="tFileInputXML_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
@@ -318,7 +306,7 @@
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.found == true"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
   </connection>
-  <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tFileInputExcel_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_1" target="tLogRow_1">
+  <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tFileInputExcel_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_1" target="tJava_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
@@ -332,13 +320,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_115688d1-fc9e-456e-83bd-ffdfaf55adcc"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>yfRlgMmPzWCnH4+50Xs/3o6RWJ3W4V0aidIL/6E2KGXG9oXjUJqMPef1MbL8eGH3M7VSLiTcbolR
-bR8zPCveSQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e26c0640-aae4-49bc-b09a-7ae550bc37c0"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5ACTb2W3TqfUYlTMqE5s5OqCbr/ep65lubre18OLK8ObZJ9UkXqP/c5KMfLho01/ZjLjWGifut1O
-PMON4fb/ew==</DigestValue></Reference></SignedInfo><SignatureValue>xbtiBy3SHJRhXjipzZHHyDTaHVWQdp2JQLYLr64IV4SrEH8VqE2KCNz50QcLp3yvH3qAQwYgyZLc
-gC+mrrHZHXXokqARp+pfqxLOrAdPCOu47OYunOCUK1WizTYi6AunnBnKOvq3kENUZlm6T90rl7TR
-l3jPHKp1DiIXgk4g90KFhhJzljIqV6d5o/TpY0iEcggitW6ul2Y5tkMhm8MNBFlF+1LxW0rRiYGj
-vxR6o6oWpE2Fqz6Dhwvk1+80k1060mnwQ2/GBviKFHftgE8X5Snb+iIueIyWgWGFHttsU/1Ma28T
-y9odhFpWvXAFIjbirgV5r5Q9c4MLoW988RYD6g==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_cbc80797-fea2-45be-90ed-3f33b67fb00f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ZfowKxBqC2C6Bjap0KKt3WeN1cKLTqLvtm6Ro1nWNnLk+Rdyf5M+7RxCDQ/BYpsb0XX0kYuJ+RDi
+qklZbgU5XQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_c43192b9-53e9-417f-882a-e17b64f0981e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Rr0FYmOK/HAnrIdWO4IjTYpY8JvNbVEf7FEZfiL/9lFglFbDVMV4NxeWyhDormeo0/sAeNeaMsyb
+LWdH8CYx4g==</DigestValue></Reference></SignedInfo><SignatureValue>C1EugVlpcwGh7Bp/Kwglhrpea3+YGc9/W4yB/kav41woDQQqMqyHbSEmKTmDV604Ntm5BsGDEhOz
+8nEccBZ7k6UdJkIfUXGhAT4EsDfwc4vUeWDYxaYOmrLHdTeUWhsiftH2dIMFfNdnK+bQHJhOew2d
+pdmSKeFBHIs36o6CBCygLj26jpTvhFKb0n4+4DICELzp0o5sd80AfZPpvO+aiMPlo3GrYXQ6BRVp
+G0z556DSk0BkslXg+k/mxIphoyZN+6Gb3HRRKO3WBnFOqg9UuG1mCyuNo0VGNWuD7Uu86DHmKqMa
+2yqPt6c/iVmo6W2JHmIIT2BhIWh7noA3g4HN7g==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -362,4 +350,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e26c0640-aae4-49bc-b09a-7ae550bc37c0" Target="#_115688d1-fc9e-456e-83bd-ffdfaf55adcc"><Timestamp>2019-10-08 11:57:43</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_c43192b9-53e9-417f-882a-e17b64f0981e" Target="#_cbc80797-fea2-45be-90ed-3f33b67fb00f"><Timestamp>2019-10-08 11:59:11</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
