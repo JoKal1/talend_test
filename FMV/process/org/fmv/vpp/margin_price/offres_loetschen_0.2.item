@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:xmi="http://www.omg.org/XMI" defaultContext="Default" jobType="Standard" xmi:version="2.0">
   <context confirmationNeeded="false" name="Default">
     <contextParameter comment="" name="timeStampREST" prompt="timeStampREST?" promptNeeded="false" type="id_String" value=""/>
-    <contextParameter comment="" name="filename" prompt="filename?" promptNeeded="false" type="id_String" value="&quot;contraintes_grp_t_loetschen_1_2_cplx.csv&quot;"/>
+    <contextParameter comment="" name="filenameOut" prompt="filenameOut?" promptNeeded="false" type="id_String" value="&quot;contraintes_grp_t_loetschen_1_2_cplx.csv&quot;"/>
     <contextParameter comment="" name="dateStart" prompt="dateStart?" promptNeeded="false" type="id_String" value=""/>
     <contextParameter comment="" name="dateEnd" prompt="dateEnd?" promptNeeded="false" type="id_String" value=""/>
     <contextParameter comment="" name="mail_file_queue" prompt="mail_file_queue?" promptNeeded="false" repositoryContextId="_710lUI0GEemlJo04KbTZaQ" type="id_String" value="&quot;//fmvtalendjs/Mail$/&quot;"/>
     <contextParameter comment="" name="tse_constraintsGrp_path" prompt="tse_constraintsGrp_path?" promptNeeded="false" repositoryContextId="_710lUI0GEemlJo04KbTZaQ" type="id_String" value="&quot;//fmvtsenergy/Data_flow$/import/Contraintes/Group_Constraints/&quot;"/>
+    <contextParameter comment="" name="filename" prompt="filename?" promptNeeded="false" type="id_String" value=""/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="32"/>
@@ -178,33 +179,55 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1"/>
   </node>
-  <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="160">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_1"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/Import/Mail&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
-    <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
-    <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="NO"/>
-    <elementParameter field="CHECK" name="ERROR" value="false"/>
-    <elementParameter field="CHECK" name="GLOBEXPRESSIONS" value="true"/>
-    <elementParameter field="TABLE" name="FILES">
-      <elementValue elementRef="FILEMASK" value="&quot;Angebot_KWL_*.XLS&quot;"/>
+  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="416" posY="0">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_2"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;http://FMVTALENDR1.net.fmv.ch:8040/services/system_log&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
+    <elementParameter field="TABLE" name="HEADERS">
+      <elementValue elementRef="NAME" value="&quot;Content-type&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;application/json&quot;"/>
     </elementParameter>
-    <elementParameter field="RADIO" name="ORDER_BY_NOTHING" value="false"/>
-    <elementParameter field="RADIO" name="ORDER_BY_FILENAME" value="false"/>
-    <elementParameter field="RADIO" name="ORDER_BY_FILESIZE" value="false"/>
-    <elementParameter field="RADIO" name="ORDER_BY_MODIFIEDDATE" value="true"/>
-    <elementParameter field="RADIO" name="ORDER_ACTION_ASC" value="true"/>
-    <elementParameter field="RADIO" name="ORDER_ACTION_DESC" value="false"/>
-    <elementParameter field="CHECK" name="IFEXCLUDE" value="false"/>
-    <elementParameter field="TEXT" name="EXCLUDEFILEMASK" show="false" value="&quot;*.txt&quot;"/>
-    <elementParameter field="CHECK" name="FORMAT_FILEPATH_TO_SLASH" value="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="getSource"/>
+    <elementParameter field="MEMO" name="BODY" value="&quot;{&#13;&#10;message: \&quot;&quot; + globalMap.get(&quot;errorCode&quot;) + &quot;\&quot;,&#13;&#10;process: \&quot;job_offre_loetschen\&quot;,&#13;&#10;result: \&quot;0\&quot;,&#13;&#10;system_id: \&quot;talend\&quot;,&#13;&#10;timestamp: &quot; + context.timeStampREST + &quot;}&quot;"/>
+    <elementParameter field="TEXT" name="LABEL" value="RESTError"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tREST_2">
+      <column defaultValue="" key="false" length="0" name="Body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tPostjob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="160" posY="288">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPostjob_1"/>
+    <elementParameter field="TEXT" name="LABEL" value="postJob"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tFileInputExcel" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="160">
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="288">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.timeStampREST = TalendDate.getDate(&quot;dd-MM-yyyy HH:mm&quot;);"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="setTimeStampEnd"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_2"/>
+  </node>
+  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="544" posY="288">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_3"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;http://FMVTALENDR1.net.fmv.ch:8040/services/system_log&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
+    <elementParameter field="TABLE" name="HEADERS">
+      <elementValue elementRef="NAME" value="&quot;Content-type&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;application/json&quot;"/>
+    </elementParameter>
+    <elementParameter field="MEMO" name="BODY" value="&quot;{&#13;&#10;message: \&quot;Offre Loetschen terminé\&quot;,&#13;&#10;process: \&quot;job_offre_loetschen\&quot;,&#13;&#10;result: \&quot;1\&quot;,&#13;&#10;system_id: \&quot;talend\&quot;,&#13;&#10;timestamp: &quot; + context.timeStampREST + &quot;}&quot;"/>
+    <elementParameter field="TEXT" name="LABEL" value="RESTEnd"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tREST_3">
+      <column defaultValue="" key="false" length="0" name="Body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tFileInputExcel" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputExcel_1"/>
     <elementParameter field="CHECK" name="VERSION_2007" value="false"/>
-    <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_1_CURRENT_FILEPATH&quot;))"/>
+    <elementParameter field="FILE" name="FILENAME" value="context.filename"/>
     <elementParameter field="CHECK" name="ALL_SHEETS" value="false"/>
     <elementParameter field="TABLE" name="SHEETLIST">
       <elementValue elementRef="SHEETNAME" value="&quot;Angebot KWL&quot;"/>
@@ -471,7 +494,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tWriteDynamicFields" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="288">
+  <node componentName="tWriteDynamicFields" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tWriteDynamicFields_1"/>
     <elementParameter field="TEXT" name="LABEL" value="writeDynFields"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -480,9 +503,9 @@
       <column comment="" key="false" length="-1" name="dynamic" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Dynamic" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="288">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="int seq = Numeric.sequence(&quot;s1&quot;, 1, 1);&#10;String dateS = &quot;&quot;;&#10;String dateE = &quot;&quot;;&#10;Dynamic columns = input_row.dynamic;&#10;File csvFile = new File(context.tse_constraintsGrp_path + context.filename);&#10;double[] maxValues = new double[24]; &#10;boolean first = true;&#10;&#10;if (!csvFile.exists()) {&#10;&#9;csvFile.createNewFile();&#10;&#9;}&#10;else if (seq == 1)&#10;&#9;{&#10;&#9;csvFile.delete();&#10;&#9;csvFile.createNewFile();&#10;&#9;}&#10;&#9;&#10;FileWriter csvWriter = new FileWriter(csvFile.getAbsoluteFile(), true);&#10;&#10;switch (seq) {&#10;&#9;case 1:&#10;&#9;&#9;&#9;Calendar c = Calendar.getInstance();&#10;&#9;&#9;&#9;String sDate = input_row.date;&#10;&#9;&#9;&#9;Date date1 = new SimpleDateFormat(&quot;dd/MM/yyyy&quot;).parse(sDate);&#10;&#9;&#9;&#9;dateS = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;).format(date1);&#10;&#9;&#9;&#9;c.setTime(date1);&#10;&#9;&#9;&#9;c.add(Calendar.DATE, 1);&#10;&#9;&#9;&#9;dateE = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;).format(c.getTime()); &#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;context.dateStart = dateS;&#10;&#9;&#9;&#9;context.dateEnd = dateE;&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;break;&#10;&#9;case 7:&#9;&#9;&#9;&#10;&#9;&#9;&#9;for (int i = 9; i &lt; columns.getColumnCount(); i++) {&#10;&#9;&#9;&#9;&#9;DynamicMetadata columnMetadata = columns.getColumnMetadata(i);&#10;&#9;&#9;&#9;&#9;maxValues[i-9] = Double.parseDouble(columns.getColumnValue(i).toString());&#10;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;globalMap.put(&quot;maxValues&quot;, maxValues);&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;break;&#10;&#9;case 8:&#10;&#9;&#9;&#9;maxValues = (double[]) globalMap.get(&quot;maxValues&quot;);&#10;&#9;&#9;&#9;double minValueCheck = 0;&#10;&#9;&#9;&#9;double maxValueCheck = 0;&#10;&#9;&#9;&#9;int hourStart = 0;&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;for (int i = 9; i &lt; columns.getColumnCount(); i++) {&#10;&#9;&#9;&#9;&#9;DynamicMetadata columnMetadata = columns.getColumnMetadata(i);&#10;&#9;&#9;&#9;&#9;double minValue = Double.parseDouble(columns.getColumnValue(i).toString());&#10;&#9;&#9;&#9;&#9;double maxValue = maxValues[i-9];&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;if(first) {&#10;&#9;&#9;&#9;&#9;&#9;minValueCheck = minValue;&#10;&#9;&#9;&#9;&#9;&#9;maxValueCheck = maxValue;&#10;&#9;&#9;&#9;&#9;&#9;hourStart = 0;&#10;&#9;&#9;&#9;&#9;&#9;first = !first;&#10;&#9;&#9;&#9;&#9;&#9;//System.out.println(&quot;FIRST&quot;);&#10;&#9;&#9;&#9;&#9;&#9;continue;&#10;&#9;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;//System.out.println(&quot;NEXT! &quot; + minValue + &quot;!=&quot; + minValueCheck + &quot; | &quot; + maxValue + &quot;!=&quot; + maxValueCheck);&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;if(minValue != minValueCheck || maxValue != maxValueCheck) {&#10;&#9;&#9;&#9;&#9;&#9;csvWriter.write(&quot;OFFR_CGRP-&quot; + context.dateStart + &quot;;&quot;);&#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;//System.out.println(&quot;WRITE!&quot;);&#10;&#9;&#9;&#9;&#9;&#9;String hourS = (hourStart &lt; 10) ? &quot;0&quot; + hourStart : &quot;&quot; + hourStart;&#10;&#9;&#9;&#9;&#9;&#9;String hourE = (i-9 &lt; 10) ? &quot;0&quot; + (i-9) : &quot;&quot; + (i-9);&#10;&#9;&#9;&#9;&#9;&#9;csvWriter.write(context.dateStart + &quot; &quot; + hourS + &quot;:00;&quot; + context.dateStart + &quot; &quot; + hourE + &quot;:00;Throughput;Absolute;&quot; + minValueCheck + &quot;;&quot; + maxValueCheck + &quot;\r\n&quot;);&#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;hourStart = i-9;&#10;&#9;&#9;&#9;&#9;&#9;minValueCheck = minValue;&#10;&#9;&#9;&#9;&#9;&#9;maxValueCheck = maxValue;&#10;&#9;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;csvWriter.write(&quot;OFFR_CGRP-&quot; + context.dateStart + &quot;;&quot;);&#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;//System.out.println(&quot;LAST!&quot;);&#10;&#9;&#9;&#9;String hourS = (hourStart &lt; 10) ? &quot;0&quot; + hourStart : &quot;&quot; + hourStart;&#10;&#9;&#9;&#9;csvWriter.write(context.dateStart + &quot; &quot; + hourS + &quot;:00;&quot; + context.dateEnd + &quot; 00:00;Throughput;Absolute;&quot; + minValueCheck + &quot;;&quot; + maxValueCheck + &quot;\r\n&quot;);&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;break;&#10;&#9;}&#10;&#10;csvWriter.flush();&#10;csvWriter.close();"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="int seq = Numeric.sequence(&quot;s1&quot;, 1, 1);&#10;String dateS = &quot;&quot;;&#10;String dateE = &quot;&quot;;&#10;Dynamic columns = input_row.dynamic;&#10;File csvFile = new File(context.tse_constraintsGrp_path + context.filenameOut);&#10;double[] maxValues = new double[24]; &#10;boolean first = true;&#10;&#10;if (!csvFile.exists()) {&#10;&#9;csvFile.createNewFile();&#10;&#9;}&#10;else if (seq == 1)&#10;&#9;{&#10;&#9;csvFile.delete();&#10;&#9;csvFile.createNewFile();&#10;&#9;}&#10;&#9;&#10;FileWriter csvWriter = new FileWriter(csvFile.getAbsoluteFile(), true);&#10;&#10;switch (seq) {&#10;&#9;case 1:&#10;&#9;&#9;&#9;Calendar c = Calendar.getInstance();&#10;&#9;&#9;&#9;String sDate = input_row.date;&#10;&#9;&#9;&#9;Date date1 = new SimpleDateFormat(&quot;dd/MM/yyyy&quot;).parse(sDate);&#10;&#9;&#9;&#9;dateS = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;).format(date1);&#10;&#9;&#9;&#9;c.setTime(date1);&#10;&#9;&#9;&#9;c.add(Calendar.DATE, 1);&#10;&#9;&#9;&#9;dateE = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;).format(c.getTime()); &#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;context.dateStart = dateS;&#10;&#9;&#9;&#9;context.dateEnd = dateE;&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;break;&#10;&#9;case 7:&#9;&#9;&#9;&#10;&#9;&#9;&#9;for (int i = 9; i &lt; columns.getColumnCount(); i++) {&#10;&#9;&#9;&#9;&#9;DynamicMetadata columnMetadata = columns.getColumnMetadata(i);&#10;&#9;&#9;&#9;&#9;maxValues[i-9] = Double.parseDouble(columns.getColumnValue(i).toString());&#10;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;globalMap.put(&quot;maxValues&quot;, maxValues);&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;break;&#10;&#9;case 8:&#10;&#9;&#9;&#9;maxValues = (double[]) globalMap.get(&quot;maxValues&quot;);&#10;&#9;&#9;&#9;double minValueCheck = 0;&#10;&#9;&#9;&#9;double maxValueCheck = 0;&#10;&#9;&#9;&#9;int hourStart = 0;&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;for (int i = 9; i &lt; columns.getColumnCount(); i++) {&#10;&#9;&#9;&#9;&#9;DynamicMetadata columnMetadata = columns.getColumnMetadata(i);&#10;&#9;&#9;&#9;&#9;double minValue = Double.parseDouble(columns.getColumnValue(i).toString());&#10;&#9;&#9;&#9;&#9;double maxValue = maxValues[i-9];&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;if(first) {&#10;&#9;&#9;&#9;&#9;&#9;minValueCheck = minValue;&#10;&#9;&#9;&#9;&#9;&#9;maxValueCheck = maxValue;&#10;&#9;&#9;&#9;&#9;&#9;hourStart = 0;&#10;&#9;&#9;&#9;&#9;&#9;first = !first;&#10;&#9;&#9;&#9;&#9;&#9;//System.out.println(&quot;FIRST&quot;);&#10;&#9;&#9;&#9;&#9;&#9;continue;&#10;&#9;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;//System.out.println(&quot;NEXT! &quot; + minValue + &quot;!=&quot; + minValueCheck + &quot; | &quot; + maxValue + &quot;!=&quot; + maxValueCheck);&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;if(minValue != minValueCheck || maxValue != maxValueCheck) {&#10;&#9;&#9;&#9;&#9;&#9;csvWriter.write(&quot;OFFR_CGRP-&quot; + context.dateStart + &quot;;&quot;);&#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;//System.out.println(&quot;WRITE!&quot;);&#10;&#9;&#9;&#9;&#9;&#9;String hourS = (hourStart &lt; 10) ? &quot;0&quot; + hourStart : &quot;&quot; + hourStart;&#10;&#9;&#9;&#9;&#9;&#9;String hourE = (i-9 &lt; 10) ? &quot;0&quot; + (i-9) : &quot;&quot; + (i-9);&#10;&#9;&#9;&#9;&#9;&#9;csvWriter.write(context.dateStart + &quot; &quot; + hourS + &quot;:00;&quot; + context.dateStart + &quot; &quot; + hourE + &quot;:00;Throughput;Absolute;&quot; + minValueCheck + &quot;;&quot; + maxValueCheck + &quot;\r\n&quot;);&#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;hourStart = i-9;&#10;&#9;&#9;&#9;&#9;&#9;minValueCheck = minValue;&#10;&#9;&#9;&#9;&#9;&#9;maxValueCheck = maxValue;&#10;&#9;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;csvWriter.write(&quot;OFFR_CGRP-&quot; + context.dateStart + &quot;;&quot;);&#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;//System.out.println(&quot;LAST!&quot;);&#10;&#9;&#9;&#9;String hourS = (hourStart &lt; 10) ? &quot;0&quot; + hourStart : &quot;&quot; + hourStart;&#10;&#9;&#9;&#9;csvWriter.write(context.dateStart + &quot; &quot; + hourS + &quot;:00;&quot; + context.dateEnd + &quot; 00:00;Throughput;Absolute;&quot; + minValueCheck + &quot;;&quot; + maxValueCheck + &quot;\r\n&quot;);&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;break;&#10;&#9;}&#10;&#10;csvWriter.flush();&#10;csvWriter.close();"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#10;import java.util.Date;&#10;import java.util.Calendar;&#10;import java.text.SimpleDateFormat;&#10;import java.io.FileWriter;&#10;import java.io.File;"/>
     <elementParameter field="TEXT" name="LABEL" value="processDynamic"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -491,56 +514,12 @@
       <column comment="" key="false" length="-1" name="dynamic" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Dynamic" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="416" posY="0">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_2"/>
-    <elementParameter field="TEXT" name="URL" value="&quot;http://FMVTALENDR1.net.fmv.ch:8040/services/system_log&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
-    <elementParameter field="TABLE" name="HEADERS">
-      <elementValue elementRef="NAME" value="&quot;Content-type&quot;"/>
-      <elementValue elementRef="VALUE" value="&quot;application/json&quot;"/>
-    </elementParameter>
-    <elementParameter field="MEMO" name="BODY" value="&quot;{&#13;&#10;message: \&quot;&quot; + globalMap.get(&quot;errorCode&quot;) + &quot;\&quot;,&#13;&#10;process: \&quot;job_offre_loetschen\&quot;,&#13;&#10;result: \&quot;0\&quot;,&#13;&#10;system_id: \&quot;talend\&quot;,&#13;&#10;timestamp: &quot; + context.timeStampREST + &quot;}&quot;"/>
-    <elementParameter field="TEXT" name="LABEL" value="RESTError"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tREST_2">
-      <column defaultValue="" key="false" length="0" name="Body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tPostjob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="32" posY="416">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPostjob_1"/>
-    <elementParameter field="TEXT" name="LABEL" value="postJob"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-  </node>
-  <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="576" posY="288">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/Import/Mail&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
-    <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
-    <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="NO"/>
-    <elementParameter field="CHECK" name="ERROR" value="false"/>
-    <elementParameter field="CHECK" name="GLOBEXPRESSIONS" value="true"/>
-    <elementParameter field="TABLE" name="FILES">
-      <elementValue elementRef="FILEMASK" value="&quot;Angebot_KWL_*.xls&quot;"/>
-    </elementParameter>
-    <elementParameter field="RADIO" name="ORDER_BY_NOTHING" value="false"/>
-    <elementParameter field="RADIO" name="ORDER_BY_FILENAME" value="false"/>
-    <elementParameter field="RADIO" name="ORDER_BY_FILESIZE" value="false"/>
-    <elementParameter field="RADIO" name="ORDER_BY_MODIFIEDDATE" value="true"/>
-    <elementParameter field="RADIO" name="ORDER_ACTION_ASC" value="true"/>
-    <elementParameter field="RADIO" name="ORDER_ACTION_DESC" value="false"/>
-    <elementParameter field="CHECK" name="IFEXCLUDE" value="false"/>
-    <elementParameter field="TEXT" name="EXCLUDEFILEMASK" show="false" value="&quot;*.txt&quot;"/>
-    <elementParameter field="CHECK" name="FORMAT_FILEPATH_TO_SLASH" value="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="getSourceToArchive"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-  </node>
-  <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="576" posY="192">
+  <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileCopy_1"/>
-    <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_2_CURRENT_FILEPATH&quot;))"/>
+    <elementParameter field="FILE" name="FILENAME" value="context.filename"/>
     <elementParameter field="CHECK" name="ENABLE_COPY_DIRECTORY" value="false"/>
     <elementParameter field="DIRECTORY" name="SOURCE_DERECTORY" show="false" value="&quot;C:/Users/admintalend/workspace-remote-prod&quot;"/>
-    <elementParameter field="DIRECTORY" name="DESTINATION" value="((String)globalMap.get(&quot;tFileList_2_CURRENT_FILEDIRECTORY&quot;)) + &quot;/Archive&quot;"/>
+    <elementParameter field="DIRECTORY" name="DESTINATION" value="context.mail_file_queue + &quot;/Archive&quot;"/>
     <elementParameter field="CHECK" name="RENAME" value="false"/>
     <elementParameter field="TEXT" name="DESTINATION_RENAME" show="false" value="((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)) + TalendDate.formatDate(&quot;ddMMyyyy&quot;, TalendDate.addDate(TalendDate.getCurrentDate(), -1, &quot;dd&quot;))   + &quot;.xlsm&quot;"/>
     <elementParameter field="CHECK" name="REMOVE_FILE" value="true"/>
@@ -550,30 +529,6 @@
     <elementParameter field="TEXT" name="LABEL" value="archiveSource"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileCopy_1"/>
-  </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="416">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.timeStampREST = TalendDate.getDate(&quot;dd-MM-yyyy HH:mm&quot;);"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
-    <elementParameter field="TEXT" name="LABEL" value="setTimeStampEnd"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJava_2"/>
-  </node>
-  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="416">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_3"/>
-    <elementParameter field="TEXT" name="URL" value="&quot;http://FMVTALENDR1.net.fmv.ch:8040/services/system_log&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
-    <elementParameter field="TABLE" name="HEADERS">
-      <elementValue elementRef="NAME" value="&quot;Content-type&quot;"/>
-      <elementValue elementRef="VALUE" value="&quot;application/json&quot;"/>
-    </elementParameter>
-    <elementParameter field="MEMO" name="BODY" value="&quot;{&#13;&#10;message: \&quot;Offre Loetschen terminé\&quot;,&#13;&#10;process: \&quot;job_offre_loetschen\&quot;,&#13;&#10;result: \&quot;1\&quot;,&#13;&#10;system_id: \&quot;talend\&quot;,&#13;&#10;timestamp: &quot; + context.timeStampREST + &quot;}&quot;"/>
-    <elementParameter field="TEXT" name="LABEL" value="RESTEnd"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tREST_3">
-      <column defaultValue="" key="false" length="0" name="Body" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
-    </metadata>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tJava_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
@@ -588,10 +543,11 @@
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tREST_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk3"/>
   </connection>
-  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFileInputExcel_1">
-    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
-    <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostjob_1" offsetLabelX="0" offsetLabelY="0" source="tPostjob_1" target="tFileCopy_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk4"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tREST_3">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk6"/>
   </connection>
   <connection connectorName="FLOW" label="xlsData" lineStyle="0" metaname="tFileInputExcel_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_1" target="tWriteDynamicFields_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
@@ -638,19 +594,8 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="dynData"/>
   </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJavaRow_2" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_2" target="tFileList_2">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk4"/>
-  </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostjob_1" offsetLabelX="0" offsetLabelY="0" source="tPostjob_1" target="tJava_2">
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tFileCopy_1" offsetLabelX="0" offsetLabelY="0" source="tFileCopy_1" target="tJava_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk5"/>
-  </connection>
-  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tFileCopy_1">
-    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
-    <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
-  </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tREST_3">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk6"/>
   </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" show="false" value="true"/>
@@ -674,11 +619,6 @@
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
   <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_1"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tREST_2"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
@@ -690,11 +630,6 @@
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="255;220;180"/>
   </subjob>
   <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
@@ -704,13 +639,23 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_2a877778-1b9e-4585-b50d-d76994c949c7"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5FwfeMPsboBtObLCFEleTf1CUlJgpCutXAS6qw7XSWbgOIUt8THaQ6E6OhS/4m0YPEF2D0iDk/jK
-HlqRvJxi9w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1f62153a-7f59-444a-8943-eeb267820917"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>izyT8e+GnnnIvgC8w4aopyzzSx2Es30GLSgFRs/6YG+xFLyX94g7XsIPZU8FIr/qvfG8p5hKM8z7
-GUpOeGt2zQ==</DigestValue></Reference></SignedInfo><SignatureValue>AwR/DI7AcN5L2Aty7eV9pgiQP6l0IqG/aXYFq77ajkMK1OnxLhsiCYxEupHLKiECtlCPUWbCZI1v
-Z9sIkI4UiN06h0jmhqLYAlt8FnaNlnB9KPBSwtXE3eigBf0nI0QtlWMLmc7fUOFvTsJPpSUFXazR
-eoEmVVdzJ1nIkJmCb4+79pFuuc6JemMNCv9kD9JJdmTgxGJidT5v1E/MZabIr1Kf/PxQMFlpOt7+
-kmvQn7CtPTPsN6bEAUrYPBPCQccSaP2ok0rwzq7ncJec1Kdk12U9SeCmytMRvO0gjn6Y3iujJFuR
-WNdDwnR74gjgotNZIE/l/1taWeSU/7m8Vi2ipQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputExcel_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileCopy_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_5b6cf80f-18bf-4e40-8538-fb1d75256b25"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>8g3OWIVnFhmRuBm7LFlNgAXqoA3LE6ElK06t8WBHiMI1tXHedSI+GtX39XVvaoePoswppr4BVO++
+H1jtCD2tWA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_c105fbb9-068e-43e4-bd1f-f149ebcde6d6"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>p0Mq342GW91UVOBrg6RZZBzjEWcr8cpDuXu/qMPP+IY1SXvxMk0GiRrXnnSjrsDX1MgtiwMNhAO9
+ilj8FvzStQ==</DigestValue></Reference></SignedInfo><SignatureValue>HlOFgK6AYhndpuQ7XQkkdfgY/TlXwvNyBFhSPsaJ07lyaWLoSSx1jLXH8+We2kEJ01C9t2uGyejB
+FoZVRwSl7vldt8YSyQ53qUqWhm80bFwJ5JfAaIiLeMB14S2uEj98BRg2BmjyelzD+VzVhqIUl53L
+2KhqzY4aZMcT/3J9hCXqImUM5kFPU2tMLIH2JykmyVW54Y5Tpqki+JjK2Jpu8PWjYxwALcJYdKGZ
+jaPC84gMf0rn0EZKw60zVi4rlMrhIz0sMpDCFlZeRpvJx4HekSk3guDCOLMRukT+e9pcotqYc7X0
+AmBUh6G9ugOTZrQzvOALzq5XaZd26cLEz2WRmA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -734,4 +679,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1f62153a-7f59-444a-8943-eeb267820917" Target="#_2a877778-1b9e-4585-b50d-d76994c949c7"><Timestamp>2019-10-02 07:29:01</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_c105fbb9-068e-43e4-bd1f-f149ebcde6d6" Target="#_5b6cf80f-18bf-4e40-8538-fb1d75256b25"><Timestamp>2019-10-09 08:57:01</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
