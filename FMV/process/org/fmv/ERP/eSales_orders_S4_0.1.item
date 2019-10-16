@@ -202,7 +202,7 @@
       <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="partner_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="book_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
@@ -215,7 +215,7 @@
       <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="partner_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="book_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
@@ -337,7 +337,7 @@
         <mapperTableEntries name="month" nullable="true" type="id_Integer"/>
         <mapperTableEntries name="partner_id" nullable="true" type="id_Integer"/>
         <mapperTableEntries name="book_id" nullable="true" type="id_Integer"/>
-        <mapperTableEntries name="product_id" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="product_id" nullable="true" type="id_String"/>
         <mapperTableEntries name="direction" nullable="true" type="id_String"/>
         <mapperTableEntries name="quantity" nullable="true" type="id_Integer"/>
         <mapperTableEntries name="price" nullable="true" type="id_Double"/>
@@ -351,7 +351,7 @@
         <mapperTableEntries name="SAP_ID" nullable="true" type="id_Integer"/>
       </inputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="product_data" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="order_data.product_id " name="ID" nullable="true" operator="=" type="id_Integer"/>
+        <mapperTableEntries expression="order_data.product_id " name="ID" nullable="true" operator="=" type="id_String"/>
         <mapperTableEntries name="Name" nullable="true" type="id_String"/>
         <mapperTableEntries name="SAP_ID" nullable="true" type="id_Integer"/>
       </inputTables>
@@ -404,12 +404,12 @@
     <elementParameter field="TEXT" name="LABEL" value="productXLS"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileInputExcel_4">
-      <column comment="" defaultValue="" key="false" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="SAP_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
-      <column comment="" defaultValue="" key="false" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="SAP_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
@@ -554,13 +554,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_47f7c2b7-9876-4e88-a389-481fdd1caf8a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PV0/cILdCeK26QYHSvpNkch5gz0JZuiEZYaVlswrKrNjn2MDjjh8M6J3EbvdwfvwEbz0V0+mAqdk
-MgpEgMhQTw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_dc8ad3f3-443d-4575-8886-f5e51fe0aff6"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>9bKnjeTIBwsHVERlSx3O2Il0tMSFUTSLbg1bK/cV/fY+wMy+/gIg9L/nBDB0cmaRC419tmTSCOAf
-nckZ9yKIQg==</DigestValue></Reference></SignedInfo><SignatureValue>g5H9EREwJd2rgIV9Q2TjLiFvTaTs0P4zz6tNCEw18t7ds/mOwMkKSoqn1G0m3g7pIlONwIlqXoiF
-c6e+XvcozoQwhF1JpdPsyYcR2VqaXH+FVLCnmXUmbpeMpDx4tAW9UxUcJhJKBVThbpaE6YmnYx9+
-0o3X9oBpIxyZSlrTTleMYljsDo480u6nQkDLCwt+bgofoSjHUWWHhT66Rh0FKEHFbVnLdFpOcFgg
-1CrqJ78dqkvqLiwa4H24wSlTbcNjz+kfPbnauqdZ4n80AF9pyK8HHcxleyImH9wkync2SufPUoXZ
-kNnLMFKtCFPn7A5b0fRUElpcJvt32Jk8CvCUPQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_bd40d58c-5256-4f58-8217-dfb59c4b8b62"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>huOvx8tIb30yvcUy1jZx1b2OReFQmgpsORjU3SqIu8lEXEDtPgz1eCksQTJr2xG6obYhKlUx9/hV
+e4Ju9zVpZg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_79475eb3-edae-41ec-a048-5a92c594ae53"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>J5hnMpg0IGVGwFd7hz4MK/PKlt66PNtaPVv3rMJ+bF4VmXKFofcT3oSw/GG4646pQ7VKmfIGP82N
+D+nw1kn4TA==</DigestValue></Reference></SignedInfo><SignatureValue>JnuF8gbUiJ+/Sm48k4L3iYyp6zkNsdSeViPwkq7xEawmbL87+iLXmdzvrgCGZZzkEp3tOkHume30
+L55w5dOU0rPkbE5BMNIkQMfjSbAc+Bzbu8oX0b+PGo8qCd5zyVvOF/Hoc7f6FaMHQmPQ66i6VcoY
+WeadNbkRe2rIEQBEvdzpl2Owtr+LaaECd8mQbz8Gp4iEI9mTj4gAJYX3ZqYEriCdKqUvJOUxDIe/
+MjWiLYuV3YSSo3G+0yB+A6psXDAJnlU1MShbDpzUGNJgydqZDpgm6X0Dwc2iNWTOfblZmLZF2zf7
+g8JamUdckW9YFvYt1rQ9cx2zczl4P5eFAHJnqA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -584,4 +584,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_dc8ad3f3-443d-4575-8886-f5e51fe0aff6" Target="#_47f7c2b7-9876-4e88-a389-481fdd1caf8a"><Timestamp>2019-10-16 13:37:39</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_79475eb3-edae-41ec-a048-5a92c594ae53" Target="#_bd40d58c-5256-4f58-8217-dfb59c4b8b62"><Timestamp>2019-10-16 13:39:47</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
