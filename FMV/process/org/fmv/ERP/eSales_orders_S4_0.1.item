@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:TalendMapper="http://www.talend.org/mapper" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" defaultContext="Default" jobType="Standard" xmi:version="2.0">
-  <context confirmationNeeded="false" name="Default"/>
+  <context confirmationNeeded="false" name="Default">
+    <contextParameter comment="" name="counter" prompt="counter?" promptNeeded="false" type="id_Integer" value=""/>
+  </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="0"/>
@@ -312,8 +314,20 @@
       <column comment="" key="false" length="-1" name="value_unit" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
+    <metadata connector="FLOW" label="matched2" name="matched2">
+      <column comment="" defaultValue="" key="false" length="-1" name="year" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="partnerSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value_unit" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="matched" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="order_data.year " name="year" nullable="true" type="id_Integer"/>
@@ -326,6 +340,18 @@
         <mapperTableEntries expression="order_data.value " name="value" nullable="true" type="id_Double"/>
         <mapperTableEntries expression="order_data.value_unit " name="value_unit" nullable="true" type="id_String"/>
         <mapperTableEntries expression="eOTP_data.eOTP " name="eOTP" nullable="true" type="id_String"/>
+      </outputTables>
+      <outputTables name="matched2" sizeState="INTERMEDIATE">
+        <mapperTableEntries expression="order_data.year  " name="year" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="order_data.month  " name="month" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="partner_data.SAP_ID  " name="partnerSAPID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="product_data.SAP_ID  " name="productSAPID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="order_data.direction " name="direction" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="order_data.quantity  " name="quantity" nullable="true" type="id_Double"/>
+        <mapperTableEntries expression="order_data.price  " name="price" nullable="true" type="id_Double"/>
+        <mapperTableEntries expression="order_data.value  " name="value" nullable="true" type="id_Double"/>
+        <mapperTableEntries expression="order_data.value_unit  " name="value_unit" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="eOTP_data.eOTP  " name="eOTP" nullable="true" type="id_String"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="ALL_ROWS" name="order_data" sizeState="INTERMEDIATE">
         <mapperTableEntries name="year" nullable="true" type="id_Integer"/>
@@ -586,6 +612,45 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="tSortRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="576" posY="352">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSortRow_2"/>
+    <elementParameter field="TABLE" name="CRITERIA">
+      <elementValue elementRef="COLNAME" value="partnerSAPID"/>
+      <elementValue elementRef="SORT" value="num"/>
+      <elementValue elementRef="ORDER" value="asc"/>
+      <elementValue elementRef="COLNAME" value="direction"/>
+      <elementValue elementRef="SORT" value="alpha"/>
+      <elementValue elementRef="ORDER" value="asc"/>
+      <elementValue elementRef="COLNAME" value="value_unit"/>
+      <elementValue elementRef="SORT" value="alpha"/>
+      <elementValue elementRef="ORDER" value="asc"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="EXTERNAL" value="false"/>
+    <elementParameter field="DIRECTORY" name="TEMPFILE" show="false" value="&quot;C:/Users/admintalend/workspace-remote-prod/temp&quot;"/>
+    <elementParameter field="CHECK" name="CREATEDIR" show="false" value="true"/>
+    <elementParameter field="TEXT" name="EXTERNAL_SORT_BUFFERSIZE" show="false" value="1000000"/>
+    <elementParameter field="TEXT" name="LABEL" value="sortRows"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="matched" name="tSortRow_2">
+      <column comment="" defaultValue="" key="false" length="-1" name="year" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="partnerSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value_unit" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="352">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="// code sample:&#10;//&#10;// multiply by 2 the row identifier&#10;// output_row.id = input_row.id * 2;&#10;//&#10;// lowercase the name&#10;// output_row.name = input_row.name.toLowerCase();&#10;counter++;&#10;System.out.println(context.context.counter);&#10;&#10;"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJavaRow_1"/>
+  </node>
   <connection connectorName="FLOW" label="order_data" lineStyle="0" metaname="tFileInputExcel_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_1" target="tMap_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
       <elementValue elementRef="TRACE_COLUMN" value="price_unit"/>
@@ -640,7 +705,7 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="partner_data"/>
   </connection>
-  <connection connectorName="FLOW" label="matched" lineStyle="0" metaname="matched" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tSortRow_1">
+  <connection connectorName="FLOW" label="matched" lineStyle="0" metaname="matched" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tMap_1" target="tSortRow_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
       <elementValue elementRef="TRACE_COLUMN" value="partnerName"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
@@ -657,6 +722,10 @@
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="matched"/>
+  </connection>
+  <connection connectorName="FLOW" label="matched2" lineStyle="0" metaname="matched2" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tSortRow_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="matched2"/>
   </connection>
   <connection connectorName="FLOW" label="product_data" lineStyle="8" metaname="tFileInputExcel_4" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_4" target="tMap_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
@@ -689,18 +758,22 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="eOTP_data"/>
   </connection>
+  <connection connectorName="FLOW" label="sorted2" lineStyle="0" metaname="tSortRow_2" offsetLabelX="0" offsetLabelY="0" source="tSortRow_2" target="tJavaRow_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="sorted2"/>
+  </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputExcel_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_40f802b7-0c84-4e83-9ab4-5502b7251790"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>aO+mBfAQ3E4mqAXn1aGmO5V/umSny3w4LJFCYgfQSiAqGXPV6Hp8DRv5q1dIBEkzyMZbPY9Pn5m8
-T+7vc11kMA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_8574253c-0d46-4be9-bb22-8c57ee0bee7e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>novUpFFnf958LBtwQ7wmn349iLFgpHIix2eYUGRehj/MvQg5ca6QltM4R8jOfJxITp3JfKfpJGJd
-aQ/RKsd/xQ==</DigestValue></Reference></SignedInfo><SignatureValue>TatU+FtpJkhrUisMdzyH0I2yple38K8PHuupJBHj1w/tnGpUAfKIiKXnhww/BxsoIH+63idoEaM6
-8MfRkDzdrd4Zt/jvBC316vGKlcqw6qiuqsKebdQtrJLiupSeE/Ucn+AS/WbN0Yb7HM3ojjQivjmj
-53pGKPUArfZWuXu0VqR3kK1d2LwDlXSZo8Al4KnWASfXRMs7twhbewP+LiS0puaHZjfwd9SDl9qy
-HSIX8ms+IzN8zL8MLFKRaAgyGyEt+L5tHxc/tBb1giLOM+SFVf3HUxSAb9yeCZpbfQsQKEW1v4N0
-DZMWndKkzFk1grtwLLneVeMD/YSeQeRb6WmXdQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b94d9027-3ad3-4035-818e-3e1191213247"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>8Ly6qQ4Nwyd3830STDFbiHuSehNniFOGfq0nwiGu4SngkU9V3H5QwocoUjqye+oz2JJLRVAaf6Ne
+2PNYAwsGWQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_5f374d06-a7e1-4734-906b-e351f51ca159"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Rp2I+apKvwTfoWk7XkWnwcsg9Ve1/IieD98wiuWAyE/MHUmEgAImvifxBcHDmLAR4qV4m6KrXhNS
+AwPBpIC7Ug==</DigestValue></Reference></SignedInfo><SignatureValue>SmpEAv1Ahlvtdqd9S7ZyxRQ6RyHNJfKUYIJhRMI2FltttFfg6dvh4EuhPX3mBOmDjn2Sj0lb3Y6G
+SuboELFJMjwDIDTU+rCRPOLVAFdqkVDLanjDh5EEqLW5oOSlKleLmA/WbURqWZ/2vU5/k+pvYMcH
+jmBnElbToW/VfuwWLxaQ5Vnb5g/aV0VcmzfWR8ditJVA/tY4Li5+7IqtF/4sldi2eciRFybSKfsy
+FFUF+rYb5cWElzbWHsA0Lfeypxb9IxgN977QO445Ngp9UeSqyZzcavbFWT7byLA3//tCY8+qPOmr
+wInvKewQ+u89E6IRtcztYfPsEjo9RrM1WxFGQQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -724,4 +797,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_8574253c-0d46-4be9-bb22-8c57ee0bee7e" Target="#_40f802b7-0c84-4e83-9ab4-5502b7251790"><Timestamp>2019-10-22 09:28:28</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_5f374d06-a7e1-4734-906b-e351f51ca159" Target="#_b94d9027-3ad3-4035-818e-3e1191213247"><Timestamp>2019-10-22 11:42:59</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
