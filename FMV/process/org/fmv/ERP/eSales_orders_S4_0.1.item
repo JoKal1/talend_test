@@ -703,7 +703,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="if (context.partner_id == null) {&#10;&#9;context.partner_id = input_row.partnerSAPID;&#10;&#9;context.currency = input_row.value_unit;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;if (input_row.partnerSAPID == context.partner_id &amp;&amp; &#10;&#9;&#9;input_row.value_unit == context.currency) {&#10;&#9;context.po_item += 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;}&#10;else {&#10;&#9;context.po_item = 10;&#10;&#9;ouput_row.po_item = context.po_item;&#10;&#9;context.partner_id = input_row.partnerSAPID;&#10;&#9;context.currency = input_row.value_unit;&#10;&#9;}&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="if (context.partner_id == null) {&#10;&#9;context.partner_id = input_row.partnerSAPID;&#10;&#9;context.currency = input_row.value_unit;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;if (input_row.partnerSAPID == context.partner_id &amp;&amp; &#10;&#9;&#9;input_row.value_unit == context.currency) {&#10;&#9;context.po_item += 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;}&#10;else {&#10;&#9;context.po_item = 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;context.partner_id = input_row.partnerSAPID;&#10;&#9;context.currency = input_row.value_unit;&#10;&#9;}&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="matched" name="tJavaRow_1">
@@ -974,11 +974,7 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="partner_data"/>
   </connection>
-  <connection connectorName="FLOW" label="matched2" lineStyle="0" metaname="matched2" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tMap_1" target="tSortRow_2">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="matched2"/>
-  </connection>
-  <connection connectorName="FLOW" label="matched" lineStyle="0" metaname="matched" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tSortRow_1">
+  <connection connectorName="FLOW" label="matched" lineStyle="0" metaname="matched" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tMap_1" target="tSortRow_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
       <elementValue elementRef="TRACE_COLUMN" value="partnerName"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
@@ -995,6 +991,10 @@
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="matched"/>
+  </connection>
+  <connection connectorName="FLOW" label="matched2" lineStyle="0" metaname="matched2" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tSortRow_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="matched2"/>
   </connection>
   <connection connectorName="FLOW" label="product_data" lineStyle="8" metaname="tFileInputExcel_4" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_4" target="tMap_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
@@ -1062,13 +1062,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f25bc6e4-ec90-453b-b271-2ba9fa15c9d0"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>upA6PyCEw5tbUlUsN+ouy9gutiTR2Ftg/0EYVNdzRGHiZgu/TkydlmbwyCNFf9bNahOQYwMXQnWZ
-N5YeYCPjPg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_56e2a2fa-d286-4389-bfe8-0a6086d2a14e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Uhq8EuNqoIduHGBhi2j6Ny/S7xPgXpbOPQvyJyVqPHiD4uBJ58UQ+oO5yUQaJ1wrQyACSF2kv+9W
-488Yr3Z4Ew==</DigestValue></Reference></SignedInfo><SignatureValue>oLLburjkloim42mo/PxFkl4oxbBdM/fcaj6SAqt39NjD2Bmvp3dKfLmor7ykBPCKiMVPJ7bs8upx
-HUFttoTPZUIQxjiuFIB9LSBTR2VEd5Hn97Cw2PbaCslh9a8NtUqyUP6QwzRiqXs85rR6bxU3DJJQ
-KO1QMqUyVW+1563aHY2gIOnI1uRS8M/x19VmkT31SDteD3d23DmOrAeOKGpdgyCeXOE5cuKZNdhX
-rk32US0tw1qUdG6h68EAXVjmmAUx5mrb/Ruk/nVvrjFNdp3RMZ8CK4LndDEYwTexVjfpxxRlQeEo
-r03VRemAfqPTUSrTCrYodFj5EH073bfDpxCQLA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_712334d4-6a0e-403c-9d5e-2b8c7a306b7d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PVNeLfReXtWPQhVe5rPd+scj/sIWyfsXt77z5VVzuUJTDmH8Tnl1Qvmn7LGWNTOD/GRzZ3IdnEk0
+UmfDtonTYA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_69486076-fae8-47f2-97b3-646ba4ae16d8"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>87cOtzaENDod8Xbtm7wKMciqSc5XdQoMcufa/vce81kynHBXslL6isLQm8eBYNhUuygL2NOvLbXA
+hVqnrT+oJQ==</DigestValue></Reference></SignedInfo><SignatureValue>hao6d3nxko/rjTpZF2G4KhlXrhbIgXEBgmo4q8Iuzm6QWDfBiJg1nY0Pc7kPR0M1r/3cUXHXTKfG
+eXQL7FgLCsIYrC5AUWl8zfk5xoEb8M7cIj8wTR/YB0rMw4pKofLRO8FenR7wHgEQfx2EzwS/uk+B
+ujcnZrIqs0Bk0OYNgSoXOgNlhoMIyA8qgDWfeagkgM2Sn9yXxAvHLEYbgSlsZ38N7+tsVbwu+EpG
++RIb6QuNZHfgUxL+K2xkb/UhOQ+/OM60TDvPyYaNvv5j3TmLu3mhOH5XNZojnsthQGOpkL3B5Gdc
+CspvwdWIQ0AlO7NPZvafjLFSC8qFVFdcyCKN1w==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -1092,4 +1092,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_56e2a2fa-d286-4389-bfe8-0a6086d2a14e" Target="#_f25bc6e4-ec90-453b-b271-2ba9fa15c9d0"><Timestamp>2019-10-22 14:08:19</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_69486076-fae8-47f2-97b3-646ba4ae16d8" Target="#_712334d4-6a0e-403c-9d5e-2b8c7a306b7d"><Timestamp>2019-10-22 14:12:23</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
