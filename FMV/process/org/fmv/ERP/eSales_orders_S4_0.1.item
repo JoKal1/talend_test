@@ -703,7 +703,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="if (context.partner_id == null) {&#10;&#9;context.partner_id = input_row.partnerSAPID;&#10;&#9;context.currency = input_row.value_unit;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;if (input_row.partnerSAPID == context.partner_id &amp;&amp; &#10;&#9;&#9;input_row.value_unit == context.currency) {&#10;&#9;context.po_item += 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;}&#10;else {&#10;&#9;context.po_item = 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;context.partner_id = input_row.partnerSAPID;&#10;&#9;context.currency = input_row.value_unit;&#10;&#9;}&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="output_row = input_row;&#10;&#10;if (context.partner_id == null) {&#10;&#9;context.partner_id = input_row.partnerSAPID;&#10;&#9;context.currency = input_row.value_unit;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;if (input_row.partnerSAPID == context.partner_id &amp;&amp; &#10;&#9;&#9;input_row.value_unit == context.currency) {&#10;&#9;context.po_item += 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;}&#10;else {&#10;&#9;context.po_item = 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;context.partner_id = input_row.partnerSAPID;&#10;&#9;context.currency = input_row.value_unit;&#10;&#9;}&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="matched" name="tJavaRow_1">
@@ -811,7 +811,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="480">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="if (context.partner_id == null) {&#10;&#9;context.partner_id = input_row.partnerSAPID;&#10;&#9;context.currency = input_row.value_unit;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;if (input_row.partnerSAPID == context.partner_id &amp;&amp; &#10;&#9;&#9;input_row.value_unit == context.currency) {&#10;&#9;context.po_item += 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;}&#10;else {&#10;&#9;context.po_item = 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;context.partner_id = input_row.partnerSAPID;&#10;&#9;context.currency = input_row.value_unit;&#10;&#9;}&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="output_row = input_row;&#10;&#10;if (context.partner_id == null) {&#10;&#9;context.partner_id = input_row.partnerSAPID;&#10;&#9;context.currency = input_row.value_unit;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;if (input_row.partnerSAPID == context.partner_id &amp;&amp; &#10;&#9;&#9;input_row.value_unit == context.currency) {&#10;&#9;context.po_item += 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;}&#10;else {&#10;&#9;context.po_item = 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;context.partner_id = input_row.partnerSAPID;&#10;&#9;context.currency = input_row.value_unit;&#10;&#9;}&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="matched" name="tJavaRow_2">
@@ -1062,13 +1062,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_e0441f77-9c28-4d54-8955-16cf4613a2c2"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>7VAObivAdyvfXQfxUn+/7V1hS+J4fmUUfnyephfo9l5n86zZ4GasGaYT7JUD/Gf8Gr3zNk9+XFQ0
-KOHDKkCFYA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_7e81d227-a4c0-430f-950b-ce4c252c2c54"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>TsF75B8SszRGGdxp6unejSBG3C+vQtEk4Hwz9icY46AL5NX1Ud1bN7eZBN74pnGR7crE61dPF67H
-ELsy/H1vDQ==</DigestValue></Reference></SignedInfo><SignatureValue>VLYuL9ZUB7c7EVCVrSIFckXMDcT8Sn5l42TU7GQxIrahZ3PpGGR1azVR/iKtHSXAx1y7XefYZeVx
-YCJw9LAB+WSEx6HcMHZiUBLYu8P4ek8qYh7sTLWi53Twqe7dDoUm2EFW8QN1nof5m6MTK4/xCGqE
-Xirjpr/6pj3V43rekX1z7Zxw6gzLAoWwo4SrwqgozsMD4kAX+++rPcaTwJKKiqNC2hCPSzA4pQxD
-n4ffLr6blKpFB0YdDfF1L66VGo6CkUzoK51cjiYNG4zHYg5znbNBynu4QSoftMVAjOJI/tPwJYNj
-oSTJMjk0hRT/JxYwhbr3yFdfKJkxTWh+rSoI1Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_05261898-e9a9-4e54-bde8-6d725b2ba43b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>LDNV1r4UXcIf8IchuKGZRIcUt1cf6gafeHG42Q3Ydqaqh7iwcv/zB9t0D1kpc+K8qiBBxYhxK+I7
+sB9kKOwUhw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_784c9d9d-76a1-431f-8427-530377f99d39"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>GwDnc2tCxJLL0sREX+I6QEiN2ePNkqbXMEBAO21TOBQrPnTaYwA5CxvA7ToeCIKzY9CK0ywiIXjT
+dyrqH09TWw==</DigestValue></Reference></SignedInfo><SignatureValue>EQqWOvRuBiXrTes9ISWaiCmu4TI4/hZPaDdLpLmssALCfTMivCX4vCqGqFntHM1cFJPsixR7eVKw
+bz3LCc4mH2hNqZvcnFvjcWVUYuQrDM9rn43JD/uB63xp/9oK4f1SZSf8B2XPZ3QRQ5P29xNIju33
+ByZAEqogEcdcozzuXJ1ZDzSaro2D2LhsiwsDY5H/jdA6LXrKUVNGXtP5uhxqI7inzop6G1GP4OhK
+xcbknX9N0dOGRdUHDOHSKcqqT/PxWk4Fx75Miu15hLTN7DTIqZPVI79hqTAwy0weUc8kSRc+t2mi
+VZLO8C0MvqSiLiNwd9qPngpqhruE1t58e4QmiQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -1092,4 +1092,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_7e81d227-a4c0-430f-950b-ce4c252c2c54" Target="#_e0441f77-9c28-4d54-8955-16cf4613a2c2"><Timestamp>2019-10-22 14:13:35</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_784c9d9d-76a1-431f-8427-530377f99d39" Target="#_05261898-e9a9-4e54-bde8-6d725b2ba43b"><Timestamp>2019-10-22 14:15:55</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
