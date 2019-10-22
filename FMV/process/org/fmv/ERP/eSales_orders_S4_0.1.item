@@ -349,7 +349,7 @@
       <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="matched" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="order_data.year " name="year" nullable="true" type="id_Integer"/>
@@ -605,7 +605,7 @@
       <column comment="" key="false" length="-1" name="value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="value_unit" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tFileOutputXML" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="384">
@@ -692,7 +692,97 @@
       <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileOutputXML" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="480">
+  <node componentName="tSortRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="576" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSortRow_1"/>
+    <elementParameter field="TABLE" name="CRITERIA">
+      <elementValue elementRef="COLNAME" value="partnerSAPID"/>
+      <elementValue elementRef="SORT" value="num"/>
+      <elementValue elementRef="ORDER" value="asc"/>
+      <elementValue elementRef="COLNAME" value="direction"/>
+      <elementValue elementRef="SORT" value="alpha"/>
+      <elementValue elementRef="ORDER" value="asc"/>
+      <elementValue elementRef="COLNAME" value="value_unit"/>
+      <elementValue elementRef="SORT" value="alpha"/>
+      <elementValue elementRef="ORDER" value="asc"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="EXTERNAL" value="false"/>
+    <elementParameter field="DIRECTORY" name="TEMPFILE" show="false" value="&quot;C:/Users/admintalend/workspace-remote-prod/temp&quot;"/>
+    <elementParameter field="CHECK" name="CREATEDIR" show="false" value="true"/>
+    <elementParameter field="TEXT" name="EXTERNAL_SORT_BUFFERSIZE" show="false" value="1000000"/>
+    <elementParameter field="TEXT" name="LABEL" value="sortRows"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="matched" name="tSortRow_1">
+      <column comment="" defaultValue="" key="false" length="-1" name="year" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="partnerSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value_unit" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tFilterRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFilterRow_12"/>
+    <elementParameter field="CLOSED_LIST" name="LOGICAL_OP" value="&amp;&amp;"/>
+    <elementParameter field="TABLE" name="CONDITIONS">
+      <elementValue elementRef="INPUT_COLUMN" value="year"/>
+      <elementValue elementRef="FUNCTION" value=""/>
+      <elementValue elementRef="OPERATOR" value="=="/>
+      <elementValue elementRef="RVALUE" value="context.direction"/>
+      <elementValue elementRef="INPUT_COLUMN" value="year"/>
+      <elementValue elementRef="FUNCTION" value=""/>
+      <elementValue elementRef="OPERATOR" value="&gt;="/>
+      <elementValue elementRef="RVALUE" value="context.year"/>
+      <elementValue elementRef="INPUT_COLUMN" value="year"/>
+      <elementValue elementRef="FUNCTION" value=""/>
+      <elementValue elementRef="OPERATOR" value="&gt;"/>
+      <elementValue elementRef="RVALUE" value="context.month"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="USE_ADVANCED" value="false"/>
+    <elementParameter field="MEMO_JAVA" name="ADVANCED_COND" show="false" value="// code sample : use input_row to define the condition.&#10;// input_row.columnName1.equals(&quot;foo&quot;) ||!(input_row.columnName2.equals(&quot;bar&quot;))&#10;// replace the following expression by your own filter condition &#10;input_row.columnName1.equals(input_row.columnName2)&#10;&#9;&#9;&#9;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="matched" name="tFilterRow_12">
+      <column comment="" defaultValue="" key="false" length="-1" name="year" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="partnerSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value_unit" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="FILTER" label="matched" name="FILTER">
+      <column comment="" defaultValue="" key="false" length="-1" name="year" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="partnerSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value_unit" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="REJECT" label="matched" name="REJECT">
+      <column comment="" defaultValue="" key="false" length="-1" name="year" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="partnerSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value_unit" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tFileOutputXML" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputXML_3"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/admintalend/workspace-remote-prod/out_&quot; + context.direction + &quot;_prev.xml&quot;"/>
     <elementParameter field="CHECK" name="INPUT_IS_DOCUMENT" value="false"/>
@@ -764,124 +854,6 @@
     <elementParameter field="CHECK" name="TRIM" show="false" value="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="matched" name="tFileOutputXML_3">
-      <column comment="" defaultValue="" key="false" length="-1" name="year" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="partnerSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="value_unit" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tSortRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="576" posY="256">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSortRow_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
-    <elementParameter field="TABLE" name="CRITERIA">
-      <elementValue elementRef="COLNAME" value="partnerSAPID"/>
-      <elementValue elementRef="SORT" value="num"/>
-      <elementValue elementRef="ORDER" value="asc"/>
-      <elementValue elementRef="COLNAME" value="direction"/>
-      <elementValue elementRef="SORT" value="alpha"/>
-      <elementValue elementRef="ORDER" value="asc"/>
-      <elementValue elementRef="COLNAME" value="value_unit"/>
-      <elementValue elementRef="SORT" value="alpha"/>
-      <elementValue elementRef="ORDER" value="asc"/>
-    </elementParameter>
-    <elementParameter field="CHECK" name="EXTERNAL" value="false"/>
-    <elementParameter field="DIRECTORY" name="TEMPFILE" show="false" value="&quot;C:/Users/admintalend/workspace-remote-prod/temp&quot;"/>
-    <elementParameter field="CHECK" name="CREATEDIR" show="false" value="true"/>
-    <elementParameter field="TEXT" name="EXTERNAL_SORT_BUFFERSIZE" show="false" value="1000000"/>
-    <elementParameter field="TEXT" name="LABEL" value="sortRows"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="matched" name="tSortRow_1">
-      <column comment="" defaultValue="" key="false" length="-1" name="year" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="partnerSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="value_unit" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tFileOutputXML" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="256">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputXML_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
-    <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/admintalend/workspace-remote-prod/out.xml&quot;"/>
-    <elementParameter field="CHECK" name="INPUT_IS_DOCUMENT" value="false"/>
-    <elementParameter field="COLUMN_LIST" name="DOCUMENT_COL" show="false" value="year"/>
-    <elementParameter field="TEXT" name="ROW_TAG" value="&quot;orders&quot;"/>
-    <elementParameter field="CHECK" name="SPLIT" value="false"/>
-    <elementParameter field="TEXT" name="SPLIT_EVERY" show="false" value="1000"/>
-    <elementParameter field="CHECK" name="CREATE" value="true"/>
-    <elementParameter field="TABLE" name="ROOT_TAGS"/>
-    <elementParameter field="TABLE" name="MAPPING">
-      <elementValue elementRef="SCHEMA_COLUMN" value="year"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="month"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="partnerSAPID"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="productSAPID"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="direction"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="quantity"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="price"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="value"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="value_unit"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="eOTP"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-    </elementParameter>
-    <elementParameter field="CHECK" name="USE_DYNAMIC_GROUPING" value="true"/>
-    <elementParameter field="TABLE" name="GROUP_BY">
-      <elementValue elementRef="COLUMN" value="partnerSAPID"/>
-      <elementValue elementRef="LABEL" value="&quot;partner_id&quot;"/>
-      <elementValue elementRef="COLUMN" value="direction"/>
-      <elementValue elementRef="LABEL" value="&quot;direction&quot;"/>
-      <elementValue elementRef="COLUMN" value="value_unit"/>
-      <elementValue elementRef="LABEL" value="&quot;currency&quot;"/>
-    </elementParameter>
-    <elementParameter field="CHECK" name="FLUSHONROW" value="false"/>
-    <elementParameter field="TEXT" name="FLUSHONROW_NUM" show="false" value="1"/>
-    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
-    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
-    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
-    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
-    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
-    <elementParameter field="CHECK" name="DELETE_EMPTYFILE" value="false"/>
-    <elementParameter field="CHECK" name="TRIM" show="false" value="false"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="matched" name="tFileOutputXML_1">
       <column comment="" defaultValue="" key="false" length="-1" name="year" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="partnerSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
@@ -976,7 +948,6 @@
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="matched"/>
   </connection>
   <connection connectorName="FLOW" label="product_data" lineStyle="8" metaname="tFileInputExcel_4" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_4" target="tMap_1">
@@ -1006,22 +977,21 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="eOTP_data"/>
   </connection>
-  <connection connectorName="FLOW" label="sorted2" lineStyle="0" metaname="tSortRow_2" offsetLabelX="0" offsetLabelY="0" source="tSortRow_2" target="tFilterRow_9">
+  <connection connectorName="FLOW" label="sorted" lineStyle="0" metaname="tSortRow_2" offsetLabelX="0" offsetLabelY="0" source="tSortRow_2" target="tFilterRow_9">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="sorted2"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="sorted"/>
   </connection>
-  <connection connectorName="FILTER" label="row1" lineStyle="0" metaname="FILTER" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFilterRow_9" target="tFileOutputXML_2">
+  <connection connectorName="FILTER" label="row1" lineStyle="0" metaname="FILTER" offsetLabelX="0" offsetLabelY="0" source="tFilterRow_9" target="tFileOutputXML_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
-  <connection connectorName="REJECT" label="row2" lineStyle="0" metaname="REJECT" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFilterRow_9" target="tFileOutputXML_3">
+  <connection connectorName="FLOW" label="sortedPrev" lineStyle="0" metaname="tSortRow_1" offsetLabelX="0" offsetLabelY="0" source="tSortRow_1" target="tFilterRow_12">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="sortedPrev"/>
+  </connection>
+  <connection connectorName="FILTER" label="row2" lineStyle="0" metaname="FILTER" offsetLabelX="0" offsetLabelY="0" source="tFilterRow_12" target="tFileOutputXML_3">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
-  </connection>
-  <connection connectorName="FLOW" label="sorted" lineStyle="0" metaname="tSortRow_1" offsetLabelX="0" offsetLabelY="0" source="tSortRow_1" target="tFileOutputXML_1">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="sorted"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLoop_1"/>
@@ -1033,18 +1003,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSortRow_1"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_7cb0781b-6468-48b9-b6f0-1d77f68f2a0d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>I+Wwnj3WUbTm4bdUWK+NXGWK32RQ3k95UXDrB96ZukXmSVoysyne/5xnMNR8i8y70kfw1GCCoX2z
-9E9rrutCfA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_26b2edc0-5e98-4bc3-8fdc-7952243e7544"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>YvH6Ko+HUxiVCRBqgBl8WHc2XAyz6tw+Rn/hqSLCCrEs4i0OflVKIEaIApBYb9LAd5ASbwzWbLdk
-X4Q0j3QCIg==</DigestValue></Reference></SignedInfo><SignatureValue>Z08NQadtEQXQyH/d1Mh/YYLTYk0g3Co3kOcBS9tZrt+c6MIRLxinxk5ZSr4PbGUvm81oVDb7xkPL
-O7eXAT79bUTZ6sV9DhuMnDLsuZ21MBF4YRt4o/Ch9RdCh/pWEi+wB208iWlQ/wTDN6Fr+pf6bhib
-+YAedB/gjrB6o3cOpXjqfjjNYEoPrgZxG8CoO+qFGDgbwq6CnbQ+RxF2a1cC9KFzlCf8ZI48YBNp
-UFnD3hMI9x9V5FHIPq7++1KG1gWQ57QH3wixqtNlNr1c3GJvP5jMQ05BQ4vb0r/5jNE300UW/Gea
-mwR7yL8MXgRMkn7w8ffp/alRfVMa4IqTwb8RsA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b37b2ea1-2914-40b9-a5a5-a0a2e0ccdcc6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>o4eZRWjCNRx0WhVLP9QzPS8WeR0KLoIj8ZVguh6Vg7IMGOyDz7OsEple3bLqS+iBwxM3FJczlXvS
+xzzMvST0cA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3c3de5df-fddd-4dfe-a34f-ecdaeb22ba68"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>P2prmO/CQ8Bb2IKn9Y6ovaVfGbukLMy6SI/fsQeT3UU76XOkMV4p35ZCF2lHcpacYa/zGwj8NP9F
+gBSFxUteeg==</DigestValue></Reference></SignedInfo><SignatureValue>bLBEQs1V89QBGgv/s1Wuvdt5EzgwpgQhdiXCSAYA3uHCgfwa1q20FESisDqJnRnQkhh/+kY1amY/
+a0JenVQmaP2DvMop0UgskbeYgvdKpwEKUp22u/10yTvcnlVB6CvH/r35eqvWXqDuXlsdQ8mgCQJo
+30PZW2uYMbWAlwy8SZCre0Jr+vvnNT5FjfAk6aU9LT1m9p+fA2W7E/o/TqRxei/EPYlQAvxJY9T/
+oU24F3bkyCfctue8tEiqV4BVQIFKSLPWrRlSr26Yq/ZcVtI1OkHonoTizeCppd30xmiDsYNgQYhE
+wAFmsl9mga7Yj8JQazpfJpMf+kXjBxyzLUzIqg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -1068,4 +1033,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_26b2edc0-5e98-4bc3-8fdc-7952243e7544" Target="#_7cb0781b-6468-48b9-b6f0-1d77f68f2a0d"><Timestamp>2019-10-22 12:43:09</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3c3de5df-fddd-4dfe-a34f-ecdaeb22ba68" Target="#_b37b2ea1-2914-40b9-a5a5-a0a2e0ccdcc6"><Timestamp>2019-10-22 12:48:53</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
