@@ -512,7 +512,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="output_row.partnerSAPID = input_row.partner_id;&#10;output_row.productSAPID = input_row.product_id;&#10;output_row.quantity = input_row.quantity;&#10;output_row.price = input_row.price;&#10;output_row.currency = input_row.currency;&#10;output_row.eOTP = input_row.eOTP;&#10;&#10;if (context.partner_id == null) {&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.currency = input_row.currency;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;if (input_row.partner_id == context.partner_id &amp;&amp; &#10;&#9;&#9;input_row.currency == context.currency) {&#10;&#9;context.po_item += 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;}&#10;else {&#10;&#9;context.po_item = 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.currency = input_row.currency;&#10;&#9;}&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="output_row.partnerSAPID = input_row.partner_id;&#10;output_row.productSAPID = input_row.product_id;&#10;output_row.quantity = input_row.quantity;&#10;output_row.price = input_row.price;&#10;output_row.currency = input_row.currency;&#10;output_row.eotp = input_row.eotp;&#10;&#10;if (context.partner_id == null) {&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.currency = input_row.currency;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;if (input_row.partner_id == context.partner_id &amp;&amp; &#10;&#9;&#9;input_row.currency == context.currency) {&#10;&#9;context.po_item += 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;}&#10;else {&#10;&#9;context.po_item = 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.currency = input_row.currency;&#10;&#9;}&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="setOutput"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -522,7 +522,7 @@
       <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="currency" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="po_item" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
@@ -557,7 +557,7 @@
       <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
       <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="eOTP"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="eotp"/>
       <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
       <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
@@ -590,7 +590,7 @@
       <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="currency" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="po_item" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
@@ -726,13 +726,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_2791558e-2d28-4639-b361-69d0be962ebe"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>TJU3ForZdeQ3O7VmwVw59vk+90vXMfoJPSFdG2w0Hd8q0itoZKdcpMmjPUJw3JfxCEyxgdX3rQNi
-qn+AfnK17w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_8c0fbdf3-6cc0-4224-88fd-a13ea2d0f1c9"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>LXSG6ByIE/lt5gcYcZPCg/VfcyWtzm9jm4f42or8zp1r2e7dcLDTHvZfmV4t2DR3JqjDOZKxTcrl
-yqc6YI5/9A==</DigestValue></Reference></SignedInfo><SignatureValue>sjPSvNlXgA6sgHMhi+pL1YOs4ZvkStPoWccKR/oOHcJUT//urSU/053C08DZlCN4O/mhXupikhEu
-51vYsQRB/ssz9X2SeNwiezkaPmRJRyQGeeeQRdZs2iAw9/GPrsUyxYFnCyuuhXOT9cfhfwbIrj0r
-R5p/vIkWb5LKK/Q4YHDQMU/VUawMhdXof0teQ58B+n/qtsPxLyx24PJOKVUhyLBF7NtagJY2jCBW
-pfYUFGhgGMmu1MxnnZBY7ieit86zE765WtwSlQ39x7ZfBnTa7AiXRw2Wa6+jjB+sso5Fjv5/Zsvr
-OOkMWNWm5DmXyXAKCqz4ofDeLZplnP/wtVo++Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6a744bd1-520f-42b2-a27e-4dcf1a89a6a1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>TflshPiFVBzcPcHW8Q3EPMc2YA9EVCXevRnbKFDF54yGIs+I1qK8VntAYGsSO/y1H07YoXdl9Vxk
+28Vs58J4ng==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_c6b78940-6c9e-41e0-bbef-2bdbce99baef"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>YWmrHtYip6cg6NoNuCLzZ2uvh3GgBqhgKEVhvKMh/wPVKgm4Pe95nMEPbSC3LwfvbV/fSpdVTGQQ
+laO/liHP/Q==</DigestValue></Reference></SignedInfo><SignatureValue>rkfcWeB4E6U0C/pRpswM9mkPpbdqUNNBxOjlWgxs0KPJZJyJ1BHW25LsR77687Nk82YH6oN5Df/X
+XnklDKtKIvv6PFz0/3fA6PR5vL1LEF3uVREcwoo9QvgNyEdZ1eJuUWgpVjzg3Uwe9neV6xVBYEpI
+UA5vXsRMtzEoZHT/h2eg3+dGlBQD/W5TYhPVoBRydhxbfqqiOZ/DDxO4BcAfL1tMvRMeFiDk3wqh
+r8IknMk5SK/+J+Ht7nYTQGaAYXY25sqkaBPchYE/HVvsS+lMMAMmWhYpv4PgQIJimwYS5OrNTVfc
+TRQAx03v7rGmQfr6WtPIyddAv7nI96xgiUsEoQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -756,4 +756,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_8c0fbdf3-6cc0-4224-88fd-a13ea2d0f1c9" Target="#_2791558e-2d28-4639-b361-69d0be962ebe"><Timestamp>2019-11-06 08:41:13</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_c6b78940-6c9e-41e0-bbef-2bdbce99baef" Target="#_6a744bd1-520f-42b2-a27e-4dcf1a89a6a1"><Timestamp>2019-11-06 08:42:25</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
