@@ -145,9 +145,9 @@
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="price"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="price_unit"/>
-      <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="value"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="currency"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="deal_id"/>
       <elementValue elementRef="TRIM" value="false"/>
@@ -178,10 +178,10 @@
       <elementValue elementRef="SCHEMA_COLUMN" value="price"/>
       <elementValue elementRef="CONVERTDATE" value="false"/>
       <elementValue elementRef="PATTERN" value="&quot;MM-dd-yyyy&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="price_unit"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="value"/>
       <elementValue elementRef="CONVERTDATE" value="false"/>
       <elementValue elementRef="PATTERN" value="&quot;MM-dd-yyyy&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="value"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="currency"/>
       <elementValue elementRef="CONVERTDATE" value="false"/>
       <elementValue elementRef="PATTERN" value="&quot;MM-dd-yyyy&quot;"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="deal_id"/>
@@ -206,8 +206,8 @@
       <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price_unit" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="currency" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="deal_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
@@ -427,19 +427,6 @@
       <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="deal_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
-    <metadata connector="FLOW" label="matched2" name="matched2">
-      <column comment="" defaultValue="" key="false" length="-1" name="year" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="partnerSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="value_unit" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="deal_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-    </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
@@ -452,21 +439,8 @@
         <mapperTableEntries expression="order_data.direction" name="direction" nullable="true" type="id_String"/>
         <mapperTableEntries expression="order_data.quantity " name="quantity" nullable="true" type="id_Double"/>
         <mapperTableEntries expression="order_data.price " name="price" nullable="true" type="id_Double"/>
-        <mapperTableEntries expression="order_data.value_unit " name="currency" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="order_data.currency " name="currency" nullable="true" type="id_String"/>
         <mapperTableEntries expression="eOTP_data.eOTP " name="eOTP" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="order_data.deal_id " name="deal_id" nullable="true" type="id_Integer"/>
-      </outputTables>
-      <outputTables name="matched2" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="order_data.year  " name="year" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="order_data.month  " name="month" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="partner_data.SAP_ID  " name="partnerSAPID" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="product_data.SAP_ID  " name="productSAPID" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="order_data.direction " name="direction" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="order_data.quantity  " name="quantity" nullable="true" type="id_Double"/>
-        <mapperTableEntries expression="order_data.price  " name="price" nullable="true" type="id_Double"/>
-        <mapperTableEntries expression="order_data.value  " name="value" nullable="true" type="id_Double"/>
-        <mapperTableEntries expression="order_data.value_unit  " name="value_unit" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="eOTP_data.eOTP  " name="eOTP" nullable="true" type="id_String"/>
         <mapperTableEntries expression="order_data.deal_id " name="deal_id" nullable="true" type="id_Integer"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="ALL_ROWS" name="order_data" sizeState="INTERMEDIATE">
@@ -478,8 +452,8 @@
         <mapperTableEntries name="direction" nullable="true" type="id_String"/>
         <mapperTableEntries name="quantity" nullable="true" type="id_Double"/>
         <mapperTableEntries name="price" nullable="true" type="id_Double"/>
-        <mapperTableEntries name="price_unit" nullable="true" type="id_String"/>
         <mapperTableEntries name="value" nullable="true" type="id_Double"/>
+        <mapperTableEntries name="currency" nullable="true" type="id_String"/>
         <mapperTableEntries name="deal_id" nullable="true" type="id_Integer"/>
       </inputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" minimized="true" name="partner_data" sizeState="INTERMEDIATE">
@@ -825,6 +799,9 @@
       <elementValue elementRef="TRACE_COLUMN" value="deal_id"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="currency"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="order_data"/>
@@ -949,13 +926,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_2be03e2c-3e25-4a91-b432-f3dda640d09c"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>B6SPmBTF37yVO2EOx741kS5LWldWmT5Cmx7ubVePryfA5O4efTwJ7bvaCuhlgBjwMopniMwznj0G
-9WQ9wnNO9A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_6765175a-dc8a-491c-be40-f38ae0d64d22"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>fwFWvi/AgS1WBQYYfrHmgo5F3gXg5oB6RVA91VYF17IZeTos7eWaPARPEllPZD3UX3uFofmLmQWv
-kZ+8pOgTvA==</DigestValue></Reference></SignedInfo><SignatureValue>B1KjfeWBVsHHeHerZFmxzup62P3+GEDP+Sgb+yZsGf7AEr076u1+s6FdpbodcDJ0JRPibj2XR25J
-0rgLXijsV+djhh++91T9ftRw/zXIKNV2tnbQtbB7h6I0GFaDTHZyR1k2s4pO8+Q4wugFdRH8Gigw
-vr7SVzr4KTxoAMpZsrlhwm6YmHY8mN8Izk1ku0vW66VGcDxhH+0KOtBP1U5t7+PvwGrwnVE8MMo8
-H/zkmsJQKWXroiHPlzDzYa0SL6an1t9tZQw6ccuyLAgwSgSt8TsgQIL4N6IuvuhpQm+QjHA0Z+0L
-aYN5mFHnGWEPBE8ohJpcwiBOh3yUqYNjpz6evg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_7be5068e-923a-4e4b-b98b-92990c41eb18"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>lE1l0JL2Iz50QMJ1atuuXaJBSRjr3vaJVXNUHxBbQ9AGIpE9LBRf485LH4BuARizQFk5v7Krl7Un
+cej4/VEdZw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_29123fe3-c405-4db3-b8e3-3b831629c29a"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>rPs3igjYKsy1cOfSiYaE/xWdFnvLF8U+ndNwkt76JG2ztfEYTHCWHU0WHVMAgh0dsA465MX9WSYz
+plyxjDCeCw==</DigestValue></Reference></SignedInfo><SignatureValue>Osztfx2ZUO44l30wGY5HC8ICPcdDwrqueWr8ZSfonHcktBafk1IVN4Ru2/IeGNNtm36ZyMMeMhYo
+Ml/yxR18B+MA3fnSFcnpLG59rbH+RklySIdgdY5AEDgURlOOAasSb410HD1BERuaL4ykMteOD1ex
+3iDBRxlFvytVXC5P1L6mPBcmYs/P9i2un9tymvXgMk31657NGT+uKsqwE8zYhfARqfbmmkPmpGYR
+JD0Xv4YYjKpeQu0ArdeKdeomtDwuGuJieOzxvsNg2ANY0XH81p82i8PHUaByxOM2LEsUBFuybI3s
+SGDY/UmwmUG3UZObdu3tOQhFIc197q8zbJ1ObA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -979,4 +956,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_6765175a-dc8a-491c-be40-f38ae0d64d22" Target="#_2be03e2c-3e25-4a91-b432-f3dda640d09c"><Timestamp>2019-11-06 07:07:43</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_29123fe3-c405-4db3-b8e3-3b831629c29a" Target="#_7be5068e-923a-4e4b-b98b-92990c41eb18"><Timestamp>2019-11-06 07:12:20</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
