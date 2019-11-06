@@ -555,7 +555,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;CHF &quot; + context.counter);&#10;&#10;output_row.productSAPID = input_row.product_id;&#10;output_row.quantity = input_row.quantity;&#10;output_row.price = input_row.price;&#10;output_row.eotp = input_row.eotp;&#10;&#10;if (context.partner_id == null || !context.partner_id.equals(input_row.partner_id)) {&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;context.po_item += 10;&#10;output_row.po_item = context.po_item;&#10;&#10;System.out.println(input_row.partner_id + &quot; -&gt; &quot; + context.po_item + &quot; -&gt; &quot; + input_row.quantity);&#10;&#10;context.counter++;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="/*System.out.println(&quot;CHF &quot; + context.counter);*/&#10;&#10;output_row.productSAPID = input_row.product_id;&#10;output_row.quantity = input_row.quantity;&#10;output_row.price = input_row.price;&#10;output_row.eotp = input_row.eotp;&#10;&#10;if (context.partner_id == null || !context.partner_id.equals(input_row.partner_id)) {&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;context.po_item += 10;&#10;output_row.po_item = context.po_item;&#10;&#10;/*System.out.println(input_row.partner_id + &quot; -&gt; &quot; + context.po_item + &quot; -&gt; &quot; + input_row.quantity);*/&#10;&#10;context.counter++;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="setOutput"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -567,8 +567,22 @@
       <column comment="" key="false" length="-1" name="po_item" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileOutputXML" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="352">
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="448">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(context.partner_id + &quot; -&gt; &quot; + context.po_item);"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="matched" name="tJava_1">
+      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="po_item" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tFileOutputXML" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputXML_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Temp/eSales_S4Hana/destination/achat_&quot; + context.partner_id + &quot;_CHF.xml&quot;"/>
     <elementParameter field="CHECK" name="INPUT_IS_DOCUMENT" value="false"/>
     <elementParameter field="COLUMN_LIST" name="DOCUMENT_COL" show="false" value="productSAPID"/>
@@ -729,7 +743,7 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
   </connection>
-  <connection connectorName="FLOW" label="out" lineStyle="0" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tFileOutputXML_1">
+  <connection connectorName="FLOW" label="out" lineStyle="0" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tJava_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out"/>
   </connection>
@@ -748,13 +762,18 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_fa071858-05c6-4d3a-8185-63196feb4161"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>xyvqcFvTfxbtG213dqha93bvtXUCjUN8jKh7WmoTMorXWt2SA6YWavxEm0PkapckW4T8iN1x9y5h
-Vi9kX1Eu4Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_8c60fe34-1661-452c-888d-79e42ea3f09e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>eKcXaxb93VcjouCDjadv+pH2DsB5pfgbqc9w7SW/PlcLDHXuKqrXUgbNXVRn593ySyFDeby2uEwF
-QEKWpwG2yQ==</DigestValue></Reference></SignedInfo><SignatureValue>lZRFFcFTM1be3wJFmKKt9Oh4OetI7zumcHmjxDtMs+9OJk/UyAkybtzDAK1WjJ7JZlU7hliaRk1M
-ZQOwXEuWxAitUrK0B9BCHJgmJZZIZPpWaT51yn1G420wmzjAhKTqR8zdtmx8L1P2LMH9V/645IDS
-6yuweaapC7x51xNgkd/FIPkwKr++yh0/99LygzN5J/+gPuSQHfncPHOvi6CDhdYrpxVZTahMwhTC
-RrdDi/4ElYFtwJRf/P1cvDn0XouI5C/dNrn1fRegeb/VN3ByAFXeRFbVQtEcRcn+pRmTk+bxJGwh
-eUdpodeZQ2LmTL4+XImF74C3Q4q/d4aBTpSLjQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputXML_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_5e475ed1-90f3-4eb0-a302-db43f8a6e1e4"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>9mDr4hFGZXslbktpNthWkIIjvma0xPViyfJC6FlzppMMdmQHo69cHHHs1rc8jJy8oQGqguYRZNSp
+Es/2fXPRQg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ccdbd876-f0e1-4d23-b075-2d0c427ca508"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>9TwKaE5tqZyvKt5xhssEZ9JJXulb5HdkI+lSjgjSY+fOwOCHKtgEtolrvkMGnwQ/0p3Jr6rwasno
+ZCAn3g699w==</DigestValue></Reference></SignedInfo><SignatureValue>ID2kRNqk0EtfSeqSDu5KBFELzYYYs37L9JxOtWzc88NiYZaOqtb1WRs0FupFCjwmhtZJ0Fod3RdV
+CVZ8LbmKS60phSeOnbhV3oGbmpRIoTG5w3SJSCa+nav+PKq68tyHGvZ/XZqOTuLxJTYU4bmw7KOB
+YLQQYMd1axIeity4oWNAQtlpOwo3vAviJJ14hgutj82zZYCVAxIuBCwoa5igdtk39ctVeCQGhta0
+xuJ4CyJmMumZD4olnnNbSIlDQgcxIyiQoajAt0ZLvJlsfbiTGfaFN3XjMYM0sHZZxnoJTOmLjPTu
+b+4J0C3NLfVdlb1AqeiG9aXiZRzOkNGpfil4xQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -778,4 +797,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_8c60fe34-1661-452c-888d-79e42ea3f09e" Target="#_fa071858-05c6-4d3a-8185-63196feb4161"><Timestamp>2019-11-06 11:19:02</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ccdbd876-f0e1-4d23-b075-2d0c427ca508" Target="#_5e475ed1-90f3-4eb0-a302-db43f8a6e1e4"><Timestamp>2019-11-06 11:32:33</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
