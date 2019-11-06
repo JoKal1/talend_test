@@ -522,7 +522,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select partner_id, product_id, quantity, price, currency, eotp from esales_orders&#13;&#10;where direction = 'Achat'&#13;&#10;and partner_id = '&quot; + ((Integer)globalMap.get(&quot;row5.partner_id&quot;)) + &quot;'&#13;&#10;and year = YEAR(SYSDATETIME())&#13;&#10;and month = MONTH(SYSDATETIME())-1&#13;&#10;order by partner_id, currency&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select partner_id, product_id, quantity, price, currency, eotp from esales_orders&#13;&#10;where direction = 'Achat'&#13;&#10;and partner_id = '&quot; + ((Integer)globalMap.get(&quot;row5.partner_id&quot;)) + &quot;'&#13;&#10;and year = YEAR(SYSDATETIME())&#13;&#10;and month = MONTH(SYSDATETIME())-1&#13;&#10;and currency = 'CHF'&#13;&#10;order by partner_id, currency&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -532,69 +532,28 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
     <elementParameter field="TABLE" name="TRIM_COLUMN">
-      <elementValue elementRef="SCHEMA_COLUMN" value="partner_id"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="product_id"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="productSAPID"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="quantity"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="price"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="currency"/>
-      <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="eotp"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="po_item"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="TEXT" name="LABEL" value="sql_server_sql16"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tDBInput_1">
-      <column comment="" key="false" length="-1" name="partner_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="REAL" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="REAL" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="currency" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+    <metadata connector="FLOW" label="matched" name="tDBInput_1">
+      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="po_item" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFilterRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="480" posY="352">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFilterRow_12"/>
-    <elementParameter field="CLOSED_LIST" name="LOGICAL_OP" value="&amp;&amp;"/>
-    <elementParameter field="TABLE" name="CONDITIONS">
-      <elementValue elementRef="INPUT_COLUMN" value="currency"/>
-      <elementValue elementRef="FUNCTION" value=""/>
-      <elementValue elementRef="OPERATOR" value="=="/>
-      <elementValue elementRef="RVALUE" value="&quot;CHF&quot;"/>
-    </elementParameter>
-    <elementParameter field="CHECK" name="USE_ADVANCED" value="false"/>
-    <elementParameter field="MEMO_JAVA" name="ADVANCED_COND" show="false" value="// code sample : use input_row to define the condition.&#10;// input_row.columnName1.equals(&quot;foo&quot;) ||!(input_row.columnName2.equals(&quot;bar&quot;))&#10;// replace the following expression by your own filter condition &#10;input_row.columnName1.equals(input_row.columnName2)&#10;&#9;&#9;&#9;"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tFilterRow_12">
-      <column comment="" key="false" length="-1" name="partner_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="REAL" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="REAL" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="currency" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-    </metadata>
-    <metadata connector="FILTER" name="FILTER">
-      <column comment="" key="false" length="-1" name="partner_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="REAL" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="REAL" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="currency" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-    </metadata>
-    <metadata connector="REJECT" name="REJECT">
-      <column comment="" key="false" length="-1" name="partner_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="REAL" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="REAL" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="currency" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="352">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;CHF &quot; + context.counter);&#10;&#10;output_row.productSAPID = input_row.product_id;&#10;output_row.quantity = input_row.quantity;&#10;output_row.price = input_row.price;&#10;output_row.eotp = input_row.eotp;&#10;&#10;if (context.partner_id == null || !context.partner_id.equals(input_row.partner_id)) {&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;context.po_item += 10;&#10;output_row.po_item = context.po_item;&#10;&#10;System.out.println(input_row.partner_id + &quot; -&gt; &quot; + context.po_item + &quot; -&gt; &quot; + input_row.quantity);&#10;&#10;context.counter++;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
@@ -608,7 +567,7 @@
       <column comment="" key="false" length="-1" name="po_item" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileOutputXML" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="352">
+  <node componentName="tFileOutputXML" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputXML_1"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Temp/eSales_S4Hana/destination/achat_&quot; + context.partner_id + &quot;_CHF.xml&quot;"/>
     <elementParameter field="CHECK" name="INPUT_IS_DOCUMENT" value="false"/>
@@ -659,78 +618,6 @@
     <elementParameter field="TEXT" name="LABEL" value="setXML"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="matched" name="tFileOutputXML_1">
-      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="po_item" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="448">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;EUR &quot; + context.counter);&#10;&#10;output_row.productSAPID = input_row.product_id;&#10;output_row.quantity = input_row.quantity;&#10;output_row.price = input_row.price;&#10;output_row.eotp = input_row.eotp;&#10;&#10;if (context.partner_id == null || context.partner_id != input_row.partner_id) {&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;context.po_item += 10;&#10;output_row.po_item = context.po_item;&#10;&#10;System.out.println(input_row.partner_id + &quot; -&gt; &quot; + context.po_item + &quot; -&gt; &quot; + input_row.quantity);&#10;&#10;context.counter++;&#10;&#10;/*output_row.productSAPID = input_row.product_id;&#10;output_row.quantity = input_row.quantity;&#10;output_row.price = input_row.price;&#10;output_row.eotp = input_row.eotp;&#10;&#10;if (context.partner_id == null) {&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.currency = input_row.currency;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;if (input_row.partner_id == context.partner_id &amp;&amp; &#10;&#9;&#9;input_row.currency == context.currency) {&#10;&#9;context.po_item += 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;}&#10;else {&#10;&#9;context.po_item = 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.currency = input_row.currency;&#10;&#9;}*/"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
-    <elementParameter field="TEXT" name="LABEL" value="setOutput"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="matched" name="tJavaRow_2">
-      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="po_item" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tFileOutputXML" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="448">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputXML_2"/>
-    <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Temp/eSales_S4Hana/destination/achat_&quot; + context.partner_id + &quot;_EUR.xml&quot;"/>
-    <elementParameter field="CHECK" name="INPUT_IS_DOCUMENT" value="false"/>
-    <elementParameter field="COLUMN_LIST" name="DOCUMENT_COL" show="false" value="productSAPID"/>
-    <elementParameter field="TEXT" name="ROW_TAG" value="&quot;orders&quot;"/>
-    <elementParameter field="CHECK" name="SPLIT" value="false"/>
-    <elementParameter field="TEXT" name="SPLIT_EVERY" show="false" value="1000"/>
-    <elementParameter field="CHECK" name="CREATE" value="true"/>
-    <elementParameter field="TABLE" name="ROOT_TAGS"/>
-    <elementParameter field="TABLE" name="MAPPING">
-      <elementValue elementRef="SCHEMA_COLUMN" value="productSAPID"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="quantity"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="price"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="eotp"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="po_item"/>
-      <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
-      <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
-    </elementParameter>
-    <elementParameter field="CHECK" name="USE_DYNAMIC_GROUPING" value="false"/>
-    <elementParameter field="TABLE" name="GROUP_BY" show="false">
-      <elementValue elementRef="COLUMN" value="productSAPID"/>
-      <elementValue elementRef="LABEL" value="&quot;partner_id&quot;"/>
-      <elementValue elementRef="COLUMN" value="productSAPID"/>
-      <elementValue elementRef="LABEL" value="&quot;currency&quot;"/>
-    </elementParameter>
-    <elementParameter field="CHECK" name="FLUSHONROW" value="false"/>
-    <elementParameter field="TEXT" name="FLUSHONROW_NUM" show="false" value="1"/>
-    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
-    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
-    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
-    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
-    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
-    <elementParameter field="CHECK" name="DELETE_EMPTYFILE" value="false"/>
-    <elementParameter field="CHECK" name="TRIM" show="false" value="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="setXML"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="matched" name="tFileOutputXML_2">
       <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
@@ -821,60 +708,13 @@
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
   </connection>
-  <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tDBInput_1" offsetLabelX="0" offsetLabelY="0" source="tDBInput_1" target="tFilterRow_12">
-    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
-      <elementValue elementRef="TRACE_COLUMN" value="partner_id"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="quantity"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="month"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="year"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="price"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="product_id"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="eotp"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="currency"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="book_id"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="deal_id"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="direction"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-    </elementParameter>
+  <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tDBInput_1" offsetLabelX="0" offsetLabelY="0" source="tDBInput_1" target="tJavaRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
-  </connection>
-  <connection connectorName="FILTER" label="row6" lineStyle="0" metaname="FILTER" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFilterRow_12" target="tJavaRow_1">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row6"/>
-  </connection>
-  <connection connectorName="REJECT" label="row7" lineStyle="0" metaname="REJECT" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFilterRow_12" target="tJavaRow_2">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row7"/>
   </connection>
   <connection connectorName="FLOW" label="out" lineStyle="0" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tFileOutputXML_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out"/>
-  </connection>
-  <connection connectorName="FLOW" label="row8" lineStyle="0" metaname="tJavaRow_2" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_2" target="tFileOutputXML_2">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row8"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputXML_2"/>
@@ -891,13 +731,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_d1ef5a73-6bbe-4f1f-b684-697967d2534a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>N/gEQ4wRBrvd0OGihYlhNYtYZ4MZjcov2/cpwie6OutjnzyjuN/ohdmA3chI2UeqOd0ZYrIwSak5
-2prxBszsBQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f38fe255-7224-4741-8559-e64c49bde1b3"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>VQ2sObaY+M//nyrfbTRiVtKGCq3PaeznhdRzCeO5Y2UF72lnzxj/U/ECeR2IrzdrgunqEh7p+Z9D
-H09adA5MBw==</DigestValue></Reference></SignedInfo><SignatureValue>HxGB410A3kyuuaaLaRsbtRYSO4ebRk5SWrns5werMOb0EBrT0HkJ65AGz4EubCAXDnJhJClK4YKD
-1eM23Qux1fP5xu5UPZgP4+HSY012jMe3JPwnUQX51xj5k8g/LXIm5MPgYCuD2AEpJCIX8OO4FtKD
-6XWHkODVoxVh8mGPkB2DelcZVzap4FvpXZbhHDA7fgajU18kdnJrN0oPm+yr0+TeX2inhZxYKFm7
-YCCtPB6/WufLphXe8WC6VW3t3/QlGBARjunsqMw5xpZKILdhgyiNXvivzHAuAVq9qqYk14ebcUgs
-RWusa3ZbCGp92C2wOOvLvqAdT2ZcmZF4Nmf1tg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c8a9c614-c19a-4073-8174-fc571678665e"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>3l7+hztKFeiQJyJkHEGjCH6xPq/WBxWscaeOBbSMzvsTD3oZKt1FMp2BtfO2ZKiAv82wbhUsm72m
+2Jb+8YUWSg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_5810784c-5e7a-4413-ba5a-82ebcdea4364"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>QISUDK7EexbX6u97d081iu57Vr/imgMzyJM/bwx8QMv9/n1VP5274EUQZhLTMktmepmsLfPIaCYd
+Kmdde0d7UA==</DigestValue></Reference></SignedInfo><SignatureValue>BrkoMnVKmSy2BlSV5NVpvVfYHwdWc8C412/iLHtzvNRTrm9AgzNetN7/hIgNWrffYSCPP6dsxoSO
+CAHw0kne1jIwSIMCY9lnh6jvJnVuS2/Z5N2cvlU5xk5l5I/TTv5zttmUfRV/Iavd7NEyqPHYUK+v
++kZi8/Glu+4tmrLdC1MGfjmG6fd367VqwigtMOFEwBk+loa5fI0Wx6dJ26QTPrdcRhlIVQTqgJni
+V87il8YyoqekxnwAx2EqEvwRXGn4wpEmZ8pGM5grZSdH5GnIpt44QCukWb7M/FzMLVXVlE3x57UL
+c8+QNJh98mzNv0e3cD2WVBsLJXvdznJVRqoEDw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -921,4 +761,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f38fe255-7224-4741-8559-e64c49bde1b3" Target="#_d1ef5a73-6bbe-4f1f-b684-697967d2534a"><Timestamp>2019-11-06 11:11:07</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_5810784c-5e7a-4413-ba5a-82ebcdea4364" Target="#_c8a9c614-c19a-4073-8174-fc571678665e"><Timestamp>2019-11-06 11:12:50</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
