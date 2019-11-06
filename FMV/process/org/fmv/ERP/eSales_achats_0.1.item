@@ -3,7 +3,7 @@
     <contextParameter comment="" name="partner_id" prompt="partner_id?" promptNeeded="false" type="id_Integer" value=""/>
     <contextParameter comment="" name="currency" prompt="currency?" promptNeeded="false" type="id_String" value=""/>
     <contextParameter comment="" name="po_item" prompt="po_item?" promptNeeded="false" type="id_Integer" value=""/>
-    <contextParameter comment="" name="counter" prompt="counter?" promptNeeded="false" type="id_Integer" value=""/>
+    <contextParameter comment="" name="counter" prompt="counter?" promptNeeded="false" type="id_Integer" value="1"/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
@@ -671,7 +671,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="output_row.partnerSAPID = input_row.partner_id;&#10;output_row.productSAPID = input_row.product_id;&#10;output_row.quantity = input_row.quantity;&#10;output_row.price = input_row.price;&#10;output_row.currency = input_row.currency;&#10;output_row.eotp = input_row.eotp;&#10;&#10;if (context.partner_id == null) {&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.currency = input_row.currency;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;if (input_row.partner_id == context.partner_id &amp;&amp; &#10;&#9;&#9;input_row.currency == context.currency) {&#10;&#9;context.po_item += 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;}&#10;else {&#10;&#9;context.po_item = 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.currency = input_row.currency;&#10;&#9;}&#10;&#9;&#10;System.out.println(&quot;in&quot;);&#10;context.counter++;&#10;System.out.println(context.counter);&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="output_row.partnerSAPID = input_row.partner_id;&#10;output_row.productSAPID = input_row.product_id;&#10;output_row.quantity = input_row.quantity;&#10;output_row.price = input_row.price;&#10;output_row.currency = input_row.currency;&#10;output_row.eotp = input_row.eotp;&#10;&#10;if (context.partner_id == null) {&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.currency = input_row.currency;&#10;&#9;context.po_item = 0;&#10;&#9;}&#10;&#9;&#10;if (input_row.partner_id == context.partner_id &amp;&amp; &#10;&#9;&#9;input_row.currency == context.currency) {&#10;&#9;context.po_item += 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;}&#10;else {&#10;&#9;context.po_item = 10;&#10;&#9;output_row.po_item = context.po_item;&#10;&#9;context.partner_id = input_row.partner_id;&#10;&#9;context.currency = input_row.currency;&#10;&#9;}&#10;&#9;&#10;context.counter++;&#10;System.out.println(context.counter);&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="setOutput"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -927,13 +927,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_52b83d38-89be-4db4-b498-f92fc21ffdcf"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5r49DJhnJ8OyAn/x5nzS5xZ4h4yuYEJrcNYpWxcmxLkm7XHBQC1aAmDSNbKyLJwpgxK9LUd9sK/w
-XVeq2Ulrwg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_2b5583dd-fa73-4ec6-81f2-4c160fc4a339"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>fB6mNLRARGyr28KNpKHusKRy+bzBw4f6yjn528sPOFUPgr5ANudjLllrcuLpqvbxxCHv2eR7qlIb
-nyW/2cCEkQ==</DigestValue></Reference></SignedInfo><SignatureValue>WiyQk1JgZbeHovb50O59D5Gw0Jvlj3OqIdpFgubXXE+jxG6obBPTEmjT++GTf+5kw07POSkbQZSw
-MhptPOXHGsfw8PQBv6hOFfmu8P0W6iifGXTFxeAMSrr2xWQKgkFqzK/roH3cYHi69+dS42Zg28dJ
-FfEvFNsjj5Wp66uHlTawfbIjXEbLddd0AMH2y6ab6C2E18CyeKJkTzUhoJ5PJLi9K8jGfY67P2cI
-mRg3j7X4NtoJAv+zsYwcFSJbQu0AtVx8Wp4ci9kBDQsWkBCw2fZqVhk0jLakyFEtdK5Eb2FSFfkx
-ZMlIps98sWejne7PpFr4RAswinSHsBHBmGkytg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_87de46b2-69f8-49ab-bd20-6e1aac6ce32e"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>IvmhEnO2TdDitjs55vpzLLo4xXjY6SbAlcQ5OnxQcWn17vAsBZQoRaLgssdrr9cADSflNTC/cq6l
+ksQpq9LKtw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_d0ae9cad-ac61-43a7-b54a-25062ea376b8"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>bQJ0Q4vtMGhzSuQO//wutR1QnyeJ0e0A4PbzpFYGevmo9PGb7XVaqSXk7dKrhEs2d5BN5bGnabv+
+oyEwFF9feA==</DigestValue></Reference></SignedInfo><SignatureValue>UGNaofJYRYr3Bnjzo3JIF6Pmu1LMgCHxxa6ioOjSnpXdnp6SHtfPjGoO9jfwaESDWvhElSqvD0GU
+9pPAnA+FQO3ddpgGVVoqC0e0JFVuMKTtG30onQ180JoKqSjoJz/X3qJbSVG0Eou+d4kXX8oVnE6b
+Q7JMpE2HwDVuN/h9cRl8Uq00iuBQYyefz5D6A+N/nDLRDCTNIAdqLoCLTc6zBF87B1yxJkVNjjd/
+/zT3B/6mss5lJzOP0Ob/m2o8sVx1ABlNuN6WJlE4LLg/cLzzN6YeCTgfL00TP4iaNkFn1oAPwXww
+2MyA25gDNIGHClCUqdYMq15eUSLf51qH+V1DSw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -957,4 +957,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_2b5583dd-fa73-4ec6-81f2-4c160fc4a339" Target="#_52b83d38-89be-4db4-b498-f92fc21ffdcf"><Timestamp>2019-11-06 10:07:02</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_d0ae9cad-ac61-43a7-b54a-25062ea376b8" Target="#_87de46b2-69f8-49ab-bd20-6e1aac6ce32e"><Timestamp>2019-11-06 10:08:49</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
