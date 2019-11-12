@@ -771,7 +771,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select distinct deal_id, product_id, partner_id, eotp, product_name from esales_orders where product_id is null or partner_id is null or eotp is null or len(product_name) &gt; 40&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select distinct deal_id, product_id, partner_id, eotp, product_name&#13;&#10;from esales_orders&#13;&#10;where product_id is null&#13;&#10;or partner_id is null&#13;&#10;or eotp is null&#13;&#10;or (len(product_name) &gt; 40 and year = (select min(year) from esales_orders) and month = (select min(month) from esales_orders where year = (select min (year) from esales_orders)))&quot;"/>
     <elementParameter field="LABEL" name="NOTE" show="false" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" show="false" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -1390,27 +1390,6 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="96">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//System.out.println(input_row.product_name);&#10;String[] product_name = input_row.product_name.trim().split(&quot;/&quot;);&#10;String dateParts[] = product_name[1].split(&quot;-&quot;);&#10;double excelDate = 0;&#10;int days = 0;&#10;Calendar cal;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yy&quot;);&#10;//System.out.println(dateParts[0] + &quot; - &quot; + dateParts[1]);&#10;&#10;for (int i=0; i&lt;2; i++) {&#10;&#9;excelDate = Double.parseDouble(dateParts[i]);&#10;&#9;days = (int) excelDate - 2;  //number of days&#10;&#9;//int seconds = (int) ((excelDate-days) * 86400);  //number of seconds in .6 days&#10;&#10;&#9;//create calendar set to 01-Jan-1900&#10;&#9;cal = Calendar.getInstance();&#10;&#9;cal.set(Calendar.YEAR, 1900);&#10;&#9;cal.set(Calendar.MONTH, 0);&#10;&#9;cal.set(Calendar.DAY_OF_MONTH, 1);&#10;&#10;&#9;//Add days and seconds to get required date/time&#10;&#9;cal.add(Calendar.DATE, days);&#10;&#9;//cal.add(Calendar.SECOND, seconds);&#10;&#10;&#9;//cal.getTime() returns a java.util.Date, print it out...&#10;&#9;dateParts[i] = format1.format(cal.getTime());&#10;&#9;}&#10;&#10;output_row = input_row;&#10;output_row.product_name = product_name[0] + &quot;/ &quot; + dateParts[0] + &quot;-&quot; + dateParts[1];&#10;&#10;//System.out.println(product_name[0] + &quot;/ &quot; + dateParts[0] + &quot;-&quot; + dateParts[1]);"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="import java.util.Calendar;&#10;import java.util.Date;&#10;import java.text.SimpleDateFormat;"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="matched" name="tJavaRow_2">
-      <column comment="" defaultValue="" key="false" length="-1" name="year" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="-1" name="month" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="partner_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="book_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="direction" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="currency" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eOTP" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="deal_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-    </metadata>
-  </node>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFileInputExcel_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
@@ -1758,18 +1737,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6511bd63-2354-473f-a4b2-0d5538b0f871"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>miRS/suNIIPUHC9A6qM+NVDOc+FhauQrdb35pPU9W42eUhCTudaM23Cou7kxOwtX9ugOvAA5WAed
-mLgZ0tAD8Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_98543448-6a94-4bd5-91d3-b09732cad99f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+GPYUopN882P0HkBIrYc4Sjzx1mvuBdqo7PQfXtbSt+yTNQDiNbQ84dzNgGYeC3UpjPEU7R2IbgI
-xybL7ujBdA==</DigestValue></Reference></SignedInfo><SignatureValue>RRX3PA5i9YPDqnt+ZDXxwECSDIXhejj11VqqH3A2cQ0vJVlQ76GxA7XNqRDiWozIZtG5Kt9apgg0
-UDfXBZIh35xbIaKnzfI6+D/V+YqB2XucPLlFUARc04ivLEzsravLmGDZ3W9wtPQeKXvuMV6dkgP/
-hBJpLEbY7y2LSr7AGAlObvY6Rb+//xRGRQZ8dZhfZZvZFhD92R2wcCNelbZtrK8++Sh/PXx9oqTU
-muQI15+FHA0WZcuOcjaNsAAueIh5yRZa9S9XxkOVk2tB7B7JKJb8BjpwGrOLkC1I8NeHjtJl0MFa
-Go9sSzFIvLiqP/lghMB54oLPJdrct5lPbekJKQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_ef2ce08f-737a-462e-ae9d-3cffa05d2369"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>TQHTrKBHXXddzbhdiR6RjuUJQi9Yd9BJKVw9vd2vtxl3NrtU5jmK/ui7hzyNA8mvNSVzHcYoF3CC
+3jZRBYiARQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_8e70e155-ce0e-4b93-9d87-8c35c4282a69"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>LCAIV1DueFpbt82Zaxmm1w55rql9yCxwnN0xrRfbYNuDb5beMEpct8Po1ln56TNJmDC6NuRNl9Do
+jGCMlXOlzg==</DigestValue></Reference></SignedInfo><SignatureValue>I8FNvFGUCDmqk1lLYQiDBbJnLAFzrozqVj/k1B9jEXLbYkPZoMATLaL80KYA2htDqi2behSp0jQP
+hFTxJsRVNgEB/hOyotjaGP9kDG6GrmtgF6WhiHY13BBOdQYlFpRDLOZR7ZgsGaMn0jzdvoMGFCJw
+UZuFNxJqmLFpwMHzuZqdu0CwKMRDUYx92l+7uEcz1+6SkFg2Y4azOcDPeJezhKhsdCTo2KmgGyrr
+09a35roHNE6D2WEUg0LEmpGDd+qw+owdwtDZu2tHgquglb8khqmUXEc5XLp77gYcwITnBPcBYqmW
+z6H8GcuoIt89dgoZA/NqKBlanUItfgpkONGcSg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -1793,4 +1767,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_98543448-6a94-4bd5-91d3-b09732cad99f" Target="#_6511bd63-2354-473f-a4b2-0d5538b0f871"><Timestamp>2019-11-12 15:20:22</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_8e70e155-ce0e-4b93-9d87-8c35c4282a69" Target="#_ef2ce08f-737a-462e-ae9d-3cffa05d2369"><Timestamp>2019-11-12 15:25:59</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
