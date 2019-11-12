@@ -949,7 +949,7 @@
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
     <elementParameter field="CHECK" name="READ_REAL_VALUE" show="false" value="false"/>
-    <elementParameter field="CHECK" name="STOPREAD_ON_EMPTYROW" value="false"/>
+    <elementParameter field="CHECK" name="STOPREAD_ON_EMPTYROW" value="true"/>
     <elementParameter field="CHECK" name="NOVALIDATE_ON_CELL" show="false" value="false"/>
     <elementParameter field="CHECK" name="SUPPRESS_WARN" show="false" value="false"/>
     <elementParameter field="CLOSED_LIST" name="GENERATION_MODE" value="USER_MODE"/>
@@ -1234,7 +1234,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="if (input_row.product_name != null) {&#10;System.out.println(input_row.product_name);&#10;String[] product_name = input_row.product_name.trim().split(&quot;/&quot;);&#10;System.out.println(0);&#10;String dateParts[] = product_name[1].split(&quot;-&quot;);&#10;System.out.println(1);&#10;double excelDate = 0;&#10;int days = 0;&#10;Calendar cal;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yy&quot;);&#10;System.out.println(dateParts[0] + &quot; - &quot; + dateParts[1]);&#10;&#10;for (int i=0; i&lt;2; i++) {&#10;&#9;excelDate = Double.parseDouble(dateParts[i]);&#10;&#9;days = (int) excelDate - 2;  //number of days&#10;&#9;//int seconds = (int) ((excelDate-days) * 86400);  //number of seconds in .6 days&#10;&#10;&#9;//create calendar set to 01-Jan-1900&#10;&#9;cal = Calendar.getInstance();&#10;&#9;cal.set(Calendar.YEAR, 1900);&#10;&#9;cal.set(Calendar.MONTH, 0);&#10;&#9;cal.set(Calendar.DAY_OF_MONTH, 1);&#10;&#10;&#9;//Add days and seconds to get required date/time&#10;&#9;cal.add(Calendar.DATE, days);&#10;&#9;//cal.add(Calendar.SECOND, seconds);&#10;&#10;&#9;//cal.getTime() returns a java.util.Date, print it out...&#10;&#9;dateParts[i] = format1.format(cal.getTime());&#10;&#9;}&#10;&#10;System.out.println(product_name[0] + &quot;/ &quot; + dateParts[0] + &quot;-&quot; + dateParts[1]);&#10;}"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(input_row.product_name);&#10;String[] product_name = input_row.product_name.trim().split(&quot;/&quot;);&#10;System.out.println(0);&#10;String dateParts[] = product_name[1].split(&quot;-&quot;);&#10;System.out.println(1);&#10;double excelDate = 0;&#10;int days = 0;&#10;Calendar cal;&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yy&quot;);&#10;System.out.println(dateParts[0] + &quot; - &quot; + dateParts[1]);&#10;&#10;for (int i=0; i&lt;2; i++) {&#10;&#9;excelDate = Double.parseDouble(dateParts[i]);&#10;&#9;days = (int) excelDate - 2;  //number of days&#10;&#9;//int seconds = (int) ((excelDate-days) * 86400);  //number of seconds in .6 days&#10;&#10;&#9;//create calendar set to 01-Jan-1900&#10;&#9;cal = Calendar.getInstance();&#10;&#9;cal.set(Calendar.YEAR, 1900);&#10;&#9;cal.set(Calendar.MONTH, 0);&#10;&#9;cal.set(Calendar.DAY_OF_MONTH, 1);&#10;&#10;&#9;//Add days and seconds to get required date/time&#10;&#9;cal.add(Calendar.DATE, days);&#10;&#9;//cal.add(Calendar.SECOND, seconds);&#10;&#10;&#9;//cal.getTime() returns a java.util.Date, print it out...&#10;&#9;dateParts[i] = format1.format(cal.getTime());&#10;&#9;}&#10;&#10;System.out.println(product_name[0] + &quot;/ &quot; + dateParts[0] + &quot;-&quot; + dateParts[1]);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="import java.util.Calendar;&#10;import java.util.Date;&#10;import java.text.SimpleDateFormat;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_2"/>
@@ -1707,13 +1707,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_df3baa6d-40d6-499d-8463-0ef4bec82189"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>6WpkTyRX+NM6vozd/Ar+nVLCy9msIIcy1ZSt6pUXRb8TPsSZsWh2cbpV9T73tke8nsAEacA0wcXB
-4/A8PhrYAA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_436581a7-5225-45af-92a6-7e03f9aecdd1"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>E7XysGpLb41KIucR1zQThdkDc+eWQtOSj7DQ2Jg0t1LFJe/nqEUHvIBN2RwQ6dGYrkLeUz3oOKwX
-YFMlPOYnZg==</DigestValue></Reference></SignedInfo><SignatureValue>sNtedwAaz7zBE+G4KuzxYYySEJE9SEM+TGwjTGeJj5pe0RcSy8tz+pEQBiewZOH0ylPPxqYQbjfO
-GIcP2j9zatmEPu6pb7p3To+0PJXJeMJu47sX+hOu6QKpo2u4dY7Hpb2OqFczPxUjQjR6gz29b/ek
-g/MHz936+VN2XvqOMffzttExmi2y9/rqbSDgUQ8gTig0IXNe29MxA+dk+AkyzQTJVVCUh/osqoZE
-Z+dYxcABi0RKVUWDyRO9lrIKTwAfYCxlUJmhjsvyw+3q7uARzViG0CaLhXJjfnv4fXEkOvg0SRrE
-FGJZCYEKgbFoK1YMqYXcXEloMwi9vkfojNdBrw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_23f80c95-a09c-48a7-8ce9-49bcda14f5fc"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PZj/BY/kG2TWSZoAT5hPLSyH4N4QFLRRz1HEAWaf78rVg/jq2GN7YFrRuEvn6Vhp4I8jD6lFBdQZ
+ikZhZ49e1g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_479e4c22-b0ab-42ae-96eb-ee923bd5d8f9"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5iVDw4vKwSBPYHapq/NpwyjD67jZajgCViphlVUSgvwX60maocMZr9xaKeJZBlWzpYgDTyOgsIsB
+RuHGdNRkQw==</DigestValue></Reference></SignedInfo><SignatureValue>23tRzNswodkCFXQZxB8UxlFXsQAvnU8bd7P9R4VdHyUAX4FxWwhSdlSWNlzOEqk/DVjrhyBdyzdq
+ovjvQrZ3d7IuAxk2ZL+pGPuERWV3pPky/5H2fyXhaVwmI42dJPQ13IHzwmzjmseDR2wrrzMlI5af
+GUDVCZxXRnbuKv9PoLbeC1vGMOeOcXaxjit9BGN7Z6rGPY+Ny40wIbGUJ6BuqjaHsxjTvqqHoOPK
+5Xvgdtf6b/SSYKpPN32TTejGIuW99GBxJzVlrqld122Fa2aTczoGQx50Pa05V5lFW7cag0ohQ3vr
+oHl8nSSiiZqNC6+Qyqd2ubyDEaOU2M5krg+SlA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -1737,4 +1737,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_436581a7-5225-45af-92a6-7e03f9aecdd1" Target="#_df3baa6d-40d6-499d-8463-0ef4bec82189"><Timestamp>2019-11-12 14:13:08</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_479e4c22-b0ab-42ae-96eb-ee923bd5d8f9" Target="#_23f80c95-a09c-48a7-8ce9-49bcda14f5fc"><Timestamp>2019-11-12 14:14:20</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
