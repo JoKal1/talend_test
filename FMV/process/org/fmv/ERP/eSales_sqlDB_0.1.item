@@ -789,6 +789,8 @@
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="eotp"/>
       <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="product_name"/>
+      <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="TEXT" name="LABEL" value="get_faulty"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -797,11 +799,12 @@
       <column comment="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="partner_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="352" posY="832">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="String msg = ((String)globalMap.getOrDefault(&quot;mailMsg&quot;, &quot;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Deal ticket&lt;/th&gt;&lt;th&gt;Produit&lt;/th&gt;&lt;th&gt;Partenaire&lt;/th&gt;&lt;th&gt;eOTP&lt;/th&gt;&lt;/tr&gt;&quot;));&#10;msg = msg +&#10; &quot;&lt;tr&gt;&quot; +&#10; &quot;&lt;td&gt;&quot; + input_row.deal_id + &quot;&lt;/td&gt;&quot; +&#10; &quot;&lt;td&gt;&quot; + input_row.product_id + &quot;&lt;/td&gt;&quot; +&#10; &quot;&lt;td&gt;&quot; + input_row.partner_id + &quot;&lt;/td&gt;&quot; +&#10; &quot;&lt;td&gt;&quot; + input_row.eotp + &quot;&lt;td&gt;&quot; + &#10; &quot;&lt;/tr&gt;&quot;;&#10;&#10;globalMap.put(&quot;mailMsg&quot;, msg);&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="String msg = ((String)globalMap.getOrDefault(&quot;mailMsg&quot;, &quot;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Deal ticket&lt;/th&gt;&lt;th&gt;Produit&lt;/th&gt;&lt;th&gt;Partenaire&lt;/th&gt;&lt;th&gt;eOTP&lt;/th&gt;&lt;/tr&gt;&quot;));&#10;msg = msg +&#10; &quot;&lt;tr&gt;&quot; +&#10; &quot;&lt;td&gt;&quot; + input_row.deal_id + &quot;&lt;/td&gt;&quot; +&#10; &quot;&lt;td&gt;&quot; + input_row.product_id + &quot;&lt;/td&gt;&quot; +&#10; &quot;&lt;td&gt;&quot; + input_row.partner_id + &quot;&lt;/td&gt;&quot; +&#10; &quot;&lt;td&gt;&quot; + input_row.eotp + &quot;&lt;/td&gt;&quot; + &#10; &quot;&lt;td&gt;&quot; + input_row.product_name + &quot;&lt;/td&gt;&quot; + &#10; &quot;&lt;/tr&gt;&quot;;&#10;&#10;globalMap.put(&quot;mailMsg&quot;, msg);&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set_faulty_table"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -1548,6 +1551,11 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
   </connection>
   <connection connectorName="FLOW" label="faulty" lineStyle="0" metaname="tDBInput_3" offsetLabelX="0" offsetLabelY="0" source="tDBInput_3" target="tJavaRow_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="product_name"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="faulty"/>
   </connection>
@@ -1755,13 +1763,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c1c13a2a-35a2-41e3-b945-f1cdc9c7fe00"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>4dzaQKJ7KLXHZCL8kx/QMMWxUZjCU6fpQYQ+Tce01LbK73890nGS2RzmJndEoRmH5QIhmu0NQiav
-TW4/0jP17Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_d05f4d09-987f-4916-8aee-b88fa0dcc99e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>nEXqhYnFuV2vPit6lf/kmDHUcavUKxnjfOyeMXff5UuNp3VoAhsZM7x0YubtOk/ka0sybtOuSFxT
-6QVL9RrylA==</DigestValue></Reference></SignedInfo><SignatureValue>UXBY+sONEbxxzr7JDsYKn6A4Gt0DWsIqdcS6zISTtQ9gxiLmIY+hc2cuoZrpd/x+NxsXZhCf10ox
-RDITb8777is7XOf0AFyslZm0zKqnN2gvvGa/jEa4NffjuUtUrUjngqnLQgVWdsjaYYY3SSDCAJTA
-PALyCt95tj5Ut2I85ZTHv+bSzcNXP8VH+GacxKRls8tVgJEdjV7Nud58UWC8Wa4gNdalmnarIO2e
-Vthadz7ePRUpR0yMSeXKvpz9UnqDACvndRug5QKqiw2td4ffR/qd3abLrcpHiMmMEnTUccAqb5oY
-/7fg+G6B8G9CHqt9mWwdw0Zn8uqI7XcOCtKeXQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6511bd63-2354-473f-a4b2-0d5538b0f871"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>miRS/suNIIPUHC9A6qM+NVDOc+FhauQrdb35pPU9W42eUhCTudaM23Cou7kxOwtX9ugOvAA5WAed
+mLgZ0tAD8Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_98543448-6a94-4bd5-91d3-b09732cad99f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+GPYUopN882P0HkBIrYc4Sjzx1mvuBdqo7PQfXtbSt+yTNQDiNbQ84dzNgGYeC3UpjPEU7R2IbgI
+xybL7ujBdA==</DigestValue></Reference></SignedInfo><SignatureValue>RRX3PA5i9YPDqnt+ZDXxwECSDIXhejj11VqqH3A2cQ0vJVlQ76GxA7XNqRDiWozIZtG5Kt9apgg0
+UDfXBZIh35xbIaKnzfI6+D/V+YqB2XucPLlFUARc04ivLEzsravLmGDZ3W9wtPQeKXvuMV6dkgP/
+hBJpLEbY7y2LSr7AGAlObvY6Rb+//xRGRQZ8dZhfZZvZFhD92R2wcCNelbZtrK8++Sh/PXx9oqTU
+muQI15+FHA0WZcuOcjaNsAAueIh5yRZa9S9XxkOVk2tB7B7JKJb8BjpwGrOLkC1I8NeHjtJl0MFa
+Go9sSzFIvLiqP/lghMB54oLPJdrct5lPbekJKQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -1785,4 +1793,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_d05f4d09-987f-4916-8aee-b88fa0dcc99e" Target="#_c1c13a2a-35a2-41e3-b945-f1cdc9c7fe00"><Timestamp>2019-11-12 15:16:55</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_98543448-6a94-4bd5-91d3-b09732cad99f" Target="#_6511bd63-2354-473f-a4b2-0d5538b0f871"><Timestamp>2019-11-12 15:20:22</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
