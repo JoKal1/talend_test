@@ -7,6 +7,7 @@
     <contextParameter comment="" name="filename" prompt="filename?" promptNeeded="false" repositoryContextId="_95BCQAX-EeqCa8SdzTPSnw" type="id_String" value=""/>
     <contextParameter comment="" name="partner_id" prompt="partner_id?" promptNeeded="false" repositoryContextId="_95BCQAX-EeqCa8SdzTPSnw" type="id_String" value=""/>
     <contextParameter comment="" name="po_item" prompt="po_item?" promptNeeded="false" repositoryContextId="_95BCQAX-EeqCa8SdzTPSnw" type="id_Integer" value=""/>
+    <contextParameter comment="" name="count" prompt="count?" promptNeeded="false" type="id_Integer" value="0"/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="512"/>
@@ -494,7 +495,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="-224" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_6"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.count = row1.count;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.count = row1.count;&#10;System.out.println(context.count);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_6">
@@ -505,15 +506,15 @@
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
   </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tLoop_1" offsetLabelX="0" offsetLabelY="0" source="tLoop_1" target="tFileList_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
+  </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tLoop_1" offsetLabelX="0" offsetLabelY="0" source="tLoop_1" target="tJava_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
-  </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tLoop_1" offsetLabelX="0" offsetLabelY="0" source="tLoop_1" target="tFileList_1">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tLoop_2">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
@@ -588,7 +589,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate6"/>
   </connection>
   <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_3" offsetLabelX="0" offsetLabelY="0" source="tJava_3" target="tJava_4">
-    <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Integer)globalMap.get(&quot;tFileList_1_NB_FILE&quot;))%100 == 0 || tFileList"/>
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Integer)globalMap.get(&quot;tFileList_1_NB_FILE&quot;))%100 == 0 || ((Integer)globalMap.get(&quot;tFileList_1_NB_FILE&quot;)) == context.count"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tJava_3" offsetLabelX="0" offsetLabelY="0" source="tJava_3" target="tFileCopy_1">
@@ -640,13 +641,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_553a7d18-894f-4391-bce3-fdaaed3e9436"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>yXIkKUcFV2rsZtR5QhXfLxhs5tgMFCNjt302Iur97E2OQDKRe19NDA1LWFPn33kxfsflpHDdnu4t
-IPMFm9nqnA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_7fb4c1aa-2c80-4712-92e6-ee930f58ef32"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>MnSBHKMt9EeGvEqH7EsOibz5z4LXnEDlNTlkPkeHfHA8ts2qYUcAYAdQf7xHLrm+kc4aB4BpVhwD
-9+YlyzRrfA==</DigestValue></Reference></SignedInfo><SignatureValue>inB1TvWiDzabHXfROu3RGad7Bg1UJmhLirZSs7PBLCXzRTaS2pd7uyUzBlVG0USxOJNx1XBOpH2a
-YRODHYjpx1lqLCnGkOnpBMnNh18Lv31h+qX9BYHWmzK1/YNDYNTLzl0r2dsyA4EkpULdKDznvYWM
-r56B1ky5zBALZP4ehPvp9piQYjzx1Qn9y4GVuY/mw/7u+/TF1o5Op6SULfcgs+SWRZikpoFgc4jS
-XTjUISbO3sfhsGL/TdgSMcD8Mo0/Ev/gj4S7ZZUe7WvJjDQ5E+21+PftW1s0Gn93eFrdUuetcdP9
-vRR/7hIFZjKngw1H7dk7WlfViKvKh3Guf9Jstw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_e0421e9a-acf5-4bbe-976f-eab633e20c5b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>EEC6JeZLG0iKAAJh1QN5sPsWoU5X6ToDtCmjgRgZ5YY8jq3kNN+y+RtWMqKWpVNYNHuKteNcmjDa
+1uTW7Sd1+w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_dfda9ea0-afa7-446f-9444-b53b76fb9da4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>O5W4sD+OQ1XUULSiiS1NW7Zwnt5S8yBU/2Qf0LuTJTdF8WwMsIxP3rsXW4+aNYaOLlZLYAnAeRX/
+3p6PmufrKg==</DigestValue></Reference></SignedInfo><SignatureValue>EFal8P6NHGjX4PB2yvOWA7n8rSkkkNjxg/PM7FSxeT90RJPiC5zRKalP30i3X6q4SA2OqreaO1IV
+4Bj8UcjF+6nme4QZwVx2ytkVJUMsBXVpdm5UClJ12XWuOSEifgE8AqFmrQnCK8VTaeitjnvPv2Ii
+2tprVgkVlUnOhSaRV+zi92rv2nC74xqNV0RDQStfrWhHXZsUzm76mk//4Exj8drPTc2s0Ie9AL7p
+i565SZ7NM0rZDqN5+clKAnWLERlVUZMkLkEqo3ZZWE9jMxoeAubdKqch7hi3o/RgciVerHR9y/Ej
+x7CSWXt9hxu5yLd8OxZGKEXK8W+f8+oG8oL7GQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -670,4 +671,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_7fb4c1aa-2c80-4712-92e6-ee930f58ef32" Target="#_553a7d18-894f-4391-bce3-fdaaed3e9436"><Timestamp>2019-11-13 13:22:36</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_dfda9ea0-afa7-446f-9444-b53b76fb9da4" Target="#_e0421e9a-acf5-4bbe-976f-eab633e20c5b"><Timestamp>2019-11-13 13:25:57</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
