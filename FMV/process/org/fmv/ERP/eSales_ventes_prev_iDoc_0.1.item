@@ -10,7 +10,7 @@
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
-    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="0"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="96"/>
     <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" show="false" value=""/>
     <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" show="false" value=""/>
     <elementParameter field="TEXT" name="OOZIE_HADOOP_DISTRIBUTION" show="false" value=""/>
@@ -273,19 +273,19 @@
     <elementParameter field="LABEL" name="NOTE2" value="To use this component, you need to register the SAP Java Connectors sapjco3.jar in the module view"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA"/>
-    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
-    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
-    <elementParameter field="TEXT" name="CLIENT" value="&quot;100&quot;"/>
-    <elementParameter field="TEXT" name="USERID" value="&quot;com_talend&quot;"/>
-    <elementParameter field="PASSWORD" name="PASSWORD" value="JR2QA/2jh49xBg0icybNVg=="/>
-    <elementParameter field="TEXT" name="LANGUAGE" value="&quot;EN&quot;"/>
-    <elementParameter field="TEXT" name="HOSTNAME" value="&quot;192.168.160.5&quot;"/>
-    <elementParameter field="TEXT" name="SYSTEMNUMBER" value="&quot;00&quot;"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tSAPConnection_1"/>
+    <elementParameter field="TEXT" name="CLIENT" show="false" value="&quot;100&quot;"/>
+    <elementParameter field="TEXT" name="USERID" show="false" value="&quot;com_talend&quot;"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" show="false" value="JR2QA/2jh49xBg0icybNVg=="/>
+    <elementParameter field="TEXT" name="LANGUAGE" show="false" value="&quot;EN&quot;"/>
+    <elementParameter field="TEXT" name="HOSTNAME" show="false" value="&quot;192.168.160.5&quot;"/>
+    <elementParameter field="TEXT" name="SYSTEMNUMBER" show="false" value="&quot;00&quot;"/>
     <elementParameter field="COLUMN_LIST" name="IDOC_COLUMN" value="idoc"/>
     <elementParameter field="CHECK" name="FROM_XML" value="false"/>
     <elementParameter field="FILE" name="FILE_IDOC_XML" show="false" value="&quot;&quot;"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
-    <elementParameter field="TABLE" name="SAP_PROPERTIES">
+    <elementParameter field="TABLE" name="SAP_PROPERTIES" show="false">
       <elementValue elementRef="PROPERTY" value="&quot;api.use_z_talend_read_table&quot;"/>
       <elementValue elementRef="VALUE" value="&quot;true&quot;"/>
     </elementParameter>
@@ -330,6 +330,34 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileCopy_1"/>
   </node>
+  <node componentName="tSAPConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="-32">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPConnection_1"/>
+    <elementParameter field="LABEL" name="NOTE1" value="(To use this component, you need first to add the SAP Java Connector (sapjco.jar or sapjco3.jar) in the Modules view)"/>
+    <elementParameter field="LABEL" name="NOTE2_1" value="The selected SAP JCO version allow you to share this SAP connection only with tSAPBAPI and tSAPTableInput"/>
+    <elementParameter field="LABEL" name="NOTE2_2" show="false" value="The selected SAP JCO version does not allow you to share this SAP connection with tSAPBAPI and tSAPTableInput"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="TALENDSAP"/>
+    <elementParameter field="CLOSED_LIST" name="SERVERTYPE" value="ApplicationServer"/>
+    <elementParameter field="TEXT" name="CLIENT" value="&quot;100&quot;"/>
+    <elementParameter field="TEXT" name="USERID" value="&quot;com_talend&quot;"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" value="JR2QA/2jh49xBg0icybNVg=="/>
+    <elementParameter field="TEXT" name="LANGUAGE" value="&quot;EN&quot;"/>
+    <elementParameter field="TEXT" name="HOSTNAME" value="&quot;192.168.160.5&quot;"/>
+    <elementParameter field="TEXT" name="SYSTEMNUMBER" value="&quot;00&quot;"/>
+    <elementParameter field="TEXT" name="SYSTEMID" show="false" value="&quot;PRD&quot;"/>
+    <elementParameter field="TEXT" name="GROUPNAME" show="false" value="&quot;tGroup&quot;"/>
+    <elementParameter field="LABEL" name="NOTE_DATASOURCE" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
+    <elementParameter field="TEXT" name="SAP_DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TABLE" name="SAP_PROPERTIES">
+      <elementValue elementRef="PROPERTY" value="&quot;api.use_z_talend_read_table&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;true&quot;"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="FTP_HTTP_FUNCTION" value="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="S4_HANA_TEST"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tJava_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
@@ -367,6 +395,9 @@
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate3"/>
   </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tSAPConnection_1" offsetLabelX="0" offsetLabelY="0" source="tSAPConnection_1" target="tFileList_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk2"/>
+  </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
@@ -377,13 +408,18 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b032f972-33d7-4b29-abae-42ac680b20c3"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PqYlnrn/9KBn8orZDO5w3RmGUTjHpdcB8tv98NAOEJhH9yVnap6CfhGAFpfO+kJrsX/XhpDpgOgu
-mt8mJ7RNxw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_2df3bcc8-adfc-43ce-9e57-547d3b17ad2f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>zFZZI8Nuv7j8vVLs6lCv1oMelTGgjHf2zDY+V091hWTm6416GYLXkTPIfIMkR9QWXEFSYw73JdvU
-d2bKvLSl+A==</DigestValue></Reference></SignedInfo><SignatureValue>SY7Cm/afVXquQdNJCOUNYASzgISeRsMiU/8buNz/lQS3cWyCXtvjG7L8/OXCbZbUCOIvDMw9NdFH
-lSMZQ80SJKoDOROPFQiewAHQ962Mi1nPvuhweKfLdlXUuvbJGie9jG7C+Fw8LW1RBMsA+fwnyOCd
-UdYY4JA0laiQp+M40lJ4mWkquwZyrszftq63d9SK3d6yTf182i52eQ4dbQ2Z7CJB7V4qntSxL3sI
-UnaGuNE0yvFWYE03+DEo7R40AxqHAdC7E9+QTD8avDPMG/4ktYarECn2wVgtCNs6Cdrtcu9aOcN3
-LMvyAJeESm3eD27ZmosMq3yasE8Q7o6jrLZjRw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPConnection_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_1a96278f-d66f-4816-b32a-8923f087626f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ppcLROq9d7zqxovjQ0fzs8m2rfPwrK+wjJf5lD9K7G9e4XqfEWoOmOuEEzqrgKXskEO1f2SBbu2T
+gB4Nd4hQlg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a3a9e917-b8bd-45ed-8902-b965f7ce296e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>dx2iV2btcufWYMGlpWF8t55Fg7R4PnqTyEgTQ5jp4iOd3wkdoLMpewlGaBjixhdQETaYLpxjjVo4
+hJXCAyAmbw==</DigestValue></Reference></SignedInfo><SignatureValue>GK+Dy3FSfIu5OB2wSi3iDaKsI8JQR7u7povG+teU+eEEVVSkTiO9aTKQVy0hy4pK8rUw8z8lNDol
+ukryHarlOakcn6ZTsyqHdTMgQ6ypSabvcVEHk9TLWbDtKIquMdu3+7VAutoZqFVc31lAjwl0YsYs
+4mRWb2cYn/x6BpzDRpmaX1qQoDbfjJXZNSxq6hNShXEnEH7VPWmtlA5LS4vScv7zX+feRYopVFPA
+OAk1PnX6cTt/LcYR6LdV8YbrtxoP0rbMmWTbZoqKYqIKcEC9QIr9ZrDWftcCDBSIArz8uRNlS+sp
+62tEAAt/ctF6FjqVtUeushKx2g1n83tbY/yAzA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -407,4 +443,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_2df3bcc8-adfc-43ce-9e57-547d3b17ad2f" Target="#_b032f972-33d7-4b29-abae-42ac680b20c3"><Timestamp>2019-11-13 14:58:55</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a3a9e917-b8bd-45ed-8902-b965f7ce296e" Target="#_1a96278f-d66f-4816-b32a-8923f087626f"><Timestamp>2019-11-13 15:06:30</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
