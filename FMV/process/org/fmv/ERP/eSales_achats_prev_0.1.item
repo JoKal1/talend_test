@@ -183,7 +183,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="448" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_3"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="Date date = new Date();&#10;Calendar cal = Calendar.getInstance();&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;yyyyMMdd&quot;);&#10;&#10;cal.setTime(date);&#10;cal.set(Calendar.DAY_OF_MONTH, 1);&#10;cal.add(Calendar.MONTH, ((Integer)globalMap.get(&quot;tLoop_2_CURRENT_VALUE&quot;)));&#10;cal.set(Calendar.DATE, -1);&#10;&#10;globalMap.put(&quot;year&quot;, cal.get(Calendar.YEAR));&#10;globalMap.put(&quot;month&quot;, cal.get(Calendar.MONTH));&#10;&#10;context.delivery_date = format1.format(cal.getTime());&#10;System.out.println(context.delivery_date);"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="Date date = new Date();&#10;Calendar cal = Calendar.getInstance();&#10;SimpleDateFormat format1 = new SimpleDateFormat(&quot;yyyyMMdd&quot;);&#10;&#10;cal.setTime(date);&#10;cal.set(Calendar.DAY_OF_MONTH, 1);&#10;cal.add(Calendar.MONTH, ((Integer)globalMap.get(&quot;tLoop_2_CURRENT_VALUE&quot;)));&#10;cal.set(Calendar.DATE, -1);&#10;&#10;globalMap.put(&quot;year&quot;, cal.get(Calendar.YEAR));&#10;globalMap.put(&quot;month&quot;, cal.get(Calendar.MONTH));&#10;&#10;context.delivery_date = format1.format(cal.getTime());&#10;/*System.out.println(context.delivery_date);*/"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="import java.util.Calendar;&#10;import java.util.Date;&#10;import java.text.SimpleDateFormat;"/>
     <elementParameter field="TEXT" name="LABEL" value="set_delivery"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -292,7 +292,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaFlex_1"/>
     <elementParameter field="CHECK" name="DATA_AUTO_PROPAGATE" value="true"/>
     <elementParameter field="MEMO_JAVA" name="CODE_START" value="context.po_item = 0;"/>
-    <elementParameter field="MEMO_JAVA" name="CODE_MAIN" value="ordersXML.productSAPID = orders.product_id;&#10;ordersXML.quantity = orders.quantity;&#10;ordersXML.price = orders.price;&#10;ordersXML.eotp = orders.eotp;&#10;ordersXML.ref_name = orders.ref_name.trim();&#10;context.po_item += 10;&#10;ordersXML.po_item = context.po_item;&#10;context.filename = &quot;achat_&quot; + orders.partner_id + &quot;_CHF.xml&quot;;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE_MAIN" value="/*ordersXML.productSAPID = orders.product_id;&#10;ordersXML.quantity = orders.quantity;&#10;ordersXML.price = orders.price;&#10;ordersXML.eotp = orders.eotp;*/&#10;ordersXML.ref_name = orders.ref_name.trim();&#10;context.po_item += 10;&#10;ordersXML.po_item = context.po_item;&#10;context.filename = &quot;achat_&quot; + orders.partner_id + &quot;_CHF.xml&quot;;"/>
     <elementParameter field="MEMO_JAVA" name="CODE_END" value=""/>
     <elementParameter field="CHECK" name="Version_V2_0" show="false" value="false"/>
     <elementParameter field="CHECK" name="Version_V3_2" show="false" value="false"/>
@@ -301,7 +301,7 @@
     <elementParameter field="TEXT" name="LABEL" value="set_poItem"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="matched" name="tJavaFlex_1">
-      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
@@ -313,14 +313,14 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputXML_1"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Temp/eSales_S4Hana/destination/achatPrev_&quot; + ((String)globalMap.get(&quot;partners.partner_id&quot;)) + &quot;_&quot; + ((String)globalMap.get(&quot;currency&quot;)) + &quot;_&quot; + context.delivery_date + &quot;.xml&quot;"/>
     <elementParameter field="CHECK" name="INPUT_IS_DOCUMENT" value="false"/>
-    <elementParameter field="COLUMN_LIST" name="DOCUMENT_COL" show="false" value="productSAPID"/>
+    <elementParameter field="COLUMN_LIST" name="DOCUMENT_COL" show="false" value="product_id"/>
     <elementParameter field="TEXT" name="ROW_TAG" value="&quot;orders&quot;"/>
     <elementParameter field="CHECK" name="SPLIT" value="false"/>
     <elementParameter field="TEXT" name="SPLIT_EVERY" show="false" value="1000"/>
     <elementParameter field="CHECK" name="CREATE" value="true"/>
     <elementParameter field="TABLE" name="ROOT_TAGS"/>
     <elementParameter field="TABLE" name="MAPPING">
-      <elementValue elementRef="SCHEMA_COLUMN" value="productSAPID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="product_id"/>
       <elementValue elementRef="AS_ATTRIBUTE" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN_NAME" value="true"/>
       <elementValue elementRef="LABEL" value="&quot;label&quot;"/>
@@ -347,9 +347,9 @@
     </elementParameter>
     <elementParameter field="CHECK" name="USE_DYNAMIC_GROUPING" value="false"/>
     <elementParameter field="TABLE" name="GROUP_BY" show="false">
-      <elementValue elementRef="COLUMN" value="productSAPID"/>
+      <elementValue elementRef="COLUMN" value="product_id"/>
       <elementValue elementRef="LABEL" value="&quot;partner_id&quot;"/>
-      <elementValue elementRef="COLUMN" value="productSAPID"/>
+      <elementValue elementRef="COLUMN" value="product_id"/>
       <elementValue elementRef="LABEL" value="&quot;currency&quot;"/>
     </elementParameter>
     <elementParameter field="CHECK" name="FLUSHONROW" value="false"/>
@@ -364,7 +364,7 @@
     <elementParameter field="TEXT" name="LABEL" value="setXML"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="matched" name="tFileOutputXML_1">
-      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
@@ -415,7 +415,7 @@
     <elementParameter field="TEXT" name="LOOP_QUERY" value="&quot;/root/orders&quot;"/>
     <elementParameter field="TABLE" name="MAPPING">
       <elementValue elementRef="SCHEMA_COLUMN" value="productSAPID"/>
-      <elementValue elementRef="QUERY" value="&quot;productSAPID&quot;"/>
+      <elementValue elementRef="QUERY" value="&quot;product_id&quot;"/>
       <elementValue elementRef="NODECHECK" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="quantity"/>
       <elementValue elementRef="QUERY" value="&quot;quantity&quot;"/>
@@ -825,13 +825,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_0532ae12-d2c6-4f23-9952-3c8fd8f32bf6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>iC3ugSN87qpcedM9h4FNCjeFHnjwP86KZyd76yza4ZWNFM+YZUMzPFtg0B/pGhJw44/JFP4tN/QH
-Cz4qrpRdFQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_68a2cfd2-0e3f-4f6d-8f40-9eb2c8edbc64"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>BAdYHLaVB3s9QHiPcqXWbluxBwfepIOU5IRrnCeygTZI4ly9xxY/U3KCb8vExHZocNlX5C3e4KLV
-ZxG2PXty5g==</DigestValue></Reference></SignedInfo><SignatureValue>33Wm8d7AzePuQ7oayhqoBgAmbK6T5S6ghZ3I/NyJjuJmyK1/XJa1kGe3hYmJ9h1UdJ3JPi2ZAhuN
-9ivnPn0JLslbboXGbqd61pGq7r1llzziFe++xdweYknL3axAC6FqoaxiAc7km4/fhH6RHFJXE36r
-etTuEacuz/zIrA4AMH3g7M3vG2YbCU5zvb/sbaZyr0Fc5fUIFAtawGIEYBelgmiBc0+/EGmGNWey
-h01yni3XlIkrrZrTFpEAx1MkegZgpnP4oN86HJ6sfmwNCaO8RYu9K25mK3huhV0yYCvKLsGVgcOa
-6FnGHfH3UvhLWFIJeADKLB/JrLSKW7sGa93ZDw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_a8206cfa-5649-42a6-bcf1-336a661c8be3"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>TLWH6e/oMGl8un98EQ+zDJbScEdirNNnPyBpHV6THebgGL3qFawFMmBu+o/moZuKds4Z5e0jKlvw
+HceUEIzjyQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_836a6c71-d131-47fe-8d3b-553d73125aef"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>drGwpC7GPwnPL/rL2pd06XB5JbK6pajv+9yvW/dko9rX9XRr/ya9zZm4Rxg7OF8XsZonyhGUtN0l
+vrQgK/ROfA==</DigestValue></Reference></SignedInfo><SignatureValue>AtQ3qgM9SSVL/cIFUEnXaXjK3iXf57b7EdfLyMvwRa0j/8stHhV4ZF/ouQMevVC8b48qzfBuHMme
+0XI2ApWS1m2Dt0+sb1GE8JS0Nsk7PlvnWZkWo+iozKabKctSQ8UxtLBPV93npAKlRDnG6QB49Ra2
+aTPW2fIEzqj80BpvnKQ71l1Ur4byPLr6xt8H3IfaCHcz+PKJok1brTTOdkzBuKmQ/3j42YSKGvq/
+kwJ5IQo45QEmK7MnfbV2eGGZdMz9q5X3QBZuRYX7Z7c46HHDuwRwdQJZqY0VKy2SM30Czn+JhD0E
+IgjHMMUupdMTCE3DTQsywUEDOiI2FmOD0UX5NQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -855,4 +855,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_68a2cfd2-0e3f-4f6d-8f40-9eb2c8edbc64" Target="#_0532ae12-d2c6-4f23-9952-3c8fd8f32bf6"><Timestamp>2019-11-13 15:38:00</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_836a6c71-d131-47fe-8d3b-553d73125aef" Target="#_a8206cfa-5649-42a6-bcf1-336a661c8be3"><Timestamp>2019-11-15 09:41:59</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
