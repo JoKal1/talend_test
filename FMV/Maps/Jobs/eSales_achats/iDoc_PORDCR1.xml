@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root t='190' id='1' V190='11' inStruct='' outStruct='Structures/IDocs/PORDCR103.xml' outputRep='181' nextMap='' outputStructUserName='PORDCR103' V1='4' name='iDoc_PORDCR1' incarnation='15097'>
-  <outputMapElem t='200' id='4' V200='8' structElemExists='true' usedCount='1' V283='2' occurMaxTimes='1' minSize='-1' maxSize='-1' groupType='1' repHandlerStruct='' visible='true' inheritsFrom='' V281='13' V1='4' name='PORDCR103' description='Create Purchase Order'>
+<root t='190' id='1' V190='11' inStruct='Structures/Jobs/eSales_achats/esales_orders_xml.xml' outStruct='Structures/IDocs/PORDCR103.xml' inputRep='172' outputRep='181' nextMap='' inputStructUserName='esales_orders_xml' outputStructUserName='PORDCR103' V1='4' name='iDoc_PORDCR1' incarnation='15198'>
+  <inputMapElem t='200' id='1725' V200='8' input='true' structElemExists='true' usedCount='3' V283='2' occurMinTimes='1' occurMaxTimes='1' minSize='-1' maxSize='-1' groupType='1' repHandlerStruct='' visible='true' inheritsFrom='' V281='13' V1='4' name='root'>
     <mapNode t='190' idref='1'/>
+  </inputMapElem>
+  <outputMapElem t='200' id='4' V200='8' structElemExists='true' usedCount='4' V283='2' occurMaxTimes='1' minSize='-1' maxSize='-1' groupType='1' repHandlerStruct='' visible='true' inheritsFrom='' V281='13' modifiedFromParent_loop='true' V1='4' name='PORDCR103' description='Create Purchase Order'>
+    <mapNode t='190' idref='1'/>
+    <loop>SimpleLoop([autoAdded="true"],in$/root,{Filter},{Sort Keys},{Contexts})</loop>
     <child t='200' id='5' V200='8' structElemExists='true' usedCount='1' V283='2' occurMinTimes='1' occurMaxTimes='1' minSize='-1' maxSize='-1' inheritsFromCopyRule='28' groupType='1' repHandlerStruct='' visible='true' inheritsFrom='Structures/Segments/EDI_DC40.xml' V281='13' V1='4' name='EDI_DC40' description='Control record'>
       <mapNode t='190' idref='1'/>
       <delimTerminator>\n</delimTerminator>
@@ -5254,6 +5258,9 @@
       </child>
     </child>
   </outputMapElem>
+  <inputRepRuntime t='692' id='1726' V692='1' unnamedElemsNamespace='1' V690='1'>
+    <namespaceContainers t='220' ref='Namespace Containers/Jobs_eSales_achats.xml'/>
+  </inputRepRuntime>
   <outputRepRuntime t='704' id='1745' V704='1' idoctyp='PORDCR103' V690='1' encoding='UTF-8'>
   </outputRepRuntime>
   <valueSets></valueSets>
@@ -5293,11 +5300,15 @@
   <valueSets>1|2|3|4|5|6</valueSets>
   <valueSets>A|B|C|D|E</valueSets>
   <valueSets>X|Y</valueSets>
+  <inputXmlRepRuntime t='692' idref='1726'/>
   <outputXmlRepRuntime t='692' id='1746' V692='1' V690='1'>
   </outputXmlRepRuntime>
   <child t='165' id='2' V1='4' name='Document Bindings'>
     <child t='166' id='1724' V166='5' docType='2' V1='4' name='out$/PORDCR103'>
       <elemNode t='200' idref='4'/>
+    </child>
+    <child t='166' id='1727' V166='5' docType='1' docReposPath='/FMV/Sample Data/Jobs/eSales_achats/esales_orders_xml/achat_0000012977_EUR' V1='4' name='in$/root'>
+      <elemNode t='200' idref='1725'/>
     </child>
   </child>
   <child t='201' id='3' V1='4' name='Inherits From'>
