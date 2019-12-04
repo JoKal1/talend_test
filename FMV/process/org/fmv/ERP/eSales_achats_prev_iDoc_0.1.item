@@ -6,7 +6,7 @@
     <contextParameter comment="" name="filename" prompt="filename?" promptNeeded="false" repositoryContextId="_95BCQAX-EeqCa8SdzTPSnw" type="id_String" value=""/>
     <contextParameter comment="" name="partner_id" prompt="partner_id?" promptNeeded="false" repositoryContextId="_95BCQAX-EeqCa8SdzTPSnw" type="id_String" value=""/>
     <contextParameter comment="" name="po_item" prompt="po_item?" promptNeeded="false" repositoryContextId="_95BCQAX-EeqCa8SdzTPSnw" type="id_Integer" value=""/>
-    <contextParameter comment="" name="doc_type" prompt="doc_type?" promptNeeded="false" type="id_String" value="&quot;ZCM7&quot;"/>
+    <contextParameter comment="" name="doc_type" prompt="doc_type?" promptNeeded="false" type="id_String" value="&quot;ZEN2&quot;"/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
@@ -121,7 +121,7 @@
   </parameters>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_1"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/eSales_S4Hana/destination/processed&quot;"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/eSales_S4Hana/destination/process&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
     <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="YES"/>
@@ -144,7 +144,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="String filepath = ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;));&#10;context.partner_id = filepath.substring(10, 20);&#10;context.currency = filepath.substring(21, 24);&#10;context.delivery_date = filepath.substring(25, 33);&#10;context.doc_type = &quot;ZCM7&quot;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="String filepath = ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;));&#10;context.partner_id = filepath.substring(10, 20);&#10;context.currency = filepath.substring(21, 24);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set_context"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -158,60 +158,86 @@
   </node>
   <node componentName="tFileInputXML" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputXML_1"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_a0FI0BZlEeqVfa3eaR9Pbw"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_a0FI0BZlEeqVfa3eaR9Pbw - eSales_orders"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_1_CURRENT_FILEPATH&quot;))"/>
     <elementParameter field="TEXT" name="LOOP_QUERY" value="&quot;/root/orders&quot;"/>
     <elementParameter field="TABLE" name="MAPPING">
-      <elementValue elementRef="SCHEMA_COLUMN" value="productSAPID"/>
-      <elementValue elementRef="QUERY" value="&quot;productSAPID&quot;"/>
-      <elementValue elementRef="NODECHECK" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="quantity"/>
-      <elementValue elementRef="QUERY" value="&quot;quantity&quot;"/>
-      <elementValue elementRef="NODECHECK" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="price"/>
-      <elementValue elementRef="QUERY" value="&quot;price&quot;"/>
-      <elementValue elementRef="NODECHECK" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="eotp"/>
-      <elementValue elementRef="QUERY" value="&quot;eotp&quot;"/>
-      <elementValue elementRef="NODECHECK" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="po_item"/>
       <elementValue elementRef="QUERY" value="&quot;po_item&quot;"/>
-      <elementValue elementRef="NODECHECK" value="false"/>
+      <elementValue elementRef="NODECHECK" value=""/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="partner_id"/>
+      <elementValue elementRef="QUERY" value="&quot;partner_id&quot;"/>
+      <elementValue elementRef="NODECHECK" value=""/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="product_id"/>
+      <elementValue elementRef="QUERY" value="&quot;product_id&quot;"/>
+      <elementValue elementRef="NODECHECK" value=""/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="quantity"/>
+      <elementValue elementRef="QUERY" value="&quot;quantity&quot;"/>
+      <elementValue elementRef="NODECHECK" value=""/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="price"/>
+      <elementValue elementRef="QUERY" value="&quot;price&quot;"/>
+      <elementValue elementRef="NODECHECK" value=""/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="eotp"/>
+      <elementValue elementRef="QUERY" value="&quot;eotp&quot;"/>
+      <elementValue elementRef="NODECHECK" value=""/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="product_name"/>
+      <elementValue elementRef="QUERY" value="&quot;product_name&quot;"/>
+      <elementValue elementRef="NODECHECK" value=""/>
       <elementValue elementRef="SCHEMA_COLUMN" value="ref_name"/>
       <elementValue elementRef="QUERY" value="&quot;ref_name&quot;"/>
-      <elementValue elementRef="NODECHECK" value="false"/>
+      <elementValue elementRef="NODECHECK" value=""/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="fully_supply"/>
+      <elementValue elementRef="QUERY" value="&quot;fully_supply&quot;"/>
+      <elementValue elementRef="NODECHECK" value=""/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="delivery_date"/>
+      <elementValue elementRef="QUERY" value="&quot;delivery_date&quot;"/>
+      <elementValue elementRef="NODECHECK" value=""/>
     </elementParameter>
-    <elementParameter field="TEXT" name="LIMIT" value=""/>
+    <elementParameter field="TEXT" name="LIMIT" value="-1"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:REPOSITORY_SCHEMA_TYPE" show="false" value="_a0FI0BZlEeqVfa3eaR9Pbw - eSales_orders"/>
     <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
     <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
     <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
     <elementParameter field="CHECK" name="IGNORE_NS" value="false"/>
     <elementParameter field="CHECK" name="IGNORE_DTD" value="false"/>
-    <elementParameter field="FILE" name="TMP_FILENAME" show="false" value="&quot;C:/Users/admintalend/workspace-remote-prod/temp.xml&quot;"/>
+    <elementParameter field="FILE" name="TMP_FILENAME" show="false" value="&quot;C:/Talend/Talend-Studio-20180411_1414-V7.0.1/workspace/temp.xml&quot;"/>
     <elementParameter field="CHECK" name="USE_SEPARATOR" value="false"/>
     <elementParameter field="TEXT" name="FIELD_SEPARATOR" show="false" value="&quot;,&quot;"/>
     <elementParameter field="CLOSED_LIST" name="GENERATION_MODE" value="Dom4j"/>
     <elementParameter field="CHECK" name="CHECK_DATE" value="false"/>
-    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
-    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-1&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="CUSTOM"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
-    <elementParameter field="TEXT" name="LABEL" value="get_xml_order"/>
+    <elementParameter field="TEXT" name="LABEL" value="eSales_orders"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tFileInputXML_1">
-      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="po_item" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ref_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    <metadata connector="FLOW" label="eSales_orders" name="tFileInputXML_1">
+      <column comment="" key="false" length="-1" name="po_item" nullable="true" pattern="" precision="0" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="partner_id" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="product_id" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="quantity" nullable="true" pattern="" precision="0" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="price" nullable="true" pattern="" precision="0" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="eotp" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="product_name" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="ref_name" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="fully_supply" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="delivery_date" nullable="true" pattern="" precision="0" type="id_Integer" usefulColumn="true"/>
     </metadata>
-    <metadata connector="REJECT" name="REJECT">
-      <column comment="" key="false" length="-1" name="productSAPID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="eotp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="po_item" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ref_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    <metadata connector="REJECT" label="eSales_orders" name="REJECT">
+      <column comment="" key="false" length="-1" name="po_item" nullable="true" pattern="" precision="0" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="partner_id" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="product_id" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="quantity" nullable="true" pattern="" precision="0" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="price" nullable="true" pattern="" precision="0" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="eotp" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="product_name" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="ref_name" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="fully_supply" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="0" name="delivery_date" nullable="true" pattern="" precision="0" type="id_Integer" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -220,7 +246,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tHMap_1"/>
     <elementParameter field="LABEL" name="MAPPATH_HELP" value="To create a new map based on the input and output of tHMap,&#10;use Open Map Editor below. To use an existing map, select the Map Path&#10;below and then use Open Map Editor."/>
     <elementParameter field="EXTERNAL" name="MAP_EDITOR" value=""/>
-    <elementParameter field="HMAP_PATH" name="HMAP_PATH" value="&quot;Jobs/eSales_achats/tHMap_3&quot;"/>
+    <elementParameter field="HMAP_PATH" name="HMAP_PATH" value="&quot;Jobs/eSales_achats/iDoc_PORDCR1&quot;"/>
     <elementParameter field="RADIO" name="SOURCE_AS_MAP" value="true"/>
     <elementParameter field="RADIO" name="SOURCE_AS_STRING" show="false" value="false"/>
     <elementParameter field="RADIO" name="AS_MAP" show="false" value="false"/>
@@ -232,8 +258,8 @@
     <elementParameter field="TEXT" name="TARGET_TDM_STRUCT_INCARNATION" show="false" value=""/>
     <elementParameter field="TEXT" name="SOURCE_GENERATED_TDM_STRUCT_PATH" show="false" value=""/>
     <elementParameter field="TEXT" name="TARGET_GENERATED_TDM_STRUCT_PATH" show="false" value=""/>
-    <elementParameter field="TEXT" name="SINGLE_COLUMN_OBJECTTYPE" show="false" value="true"/>
-    <elementParameter field="TEXT" name="SINGLE_COLUMN_STRING" show="false" value="false"/>
+    <elementParameter field="TEXT" name="SINGLE_COLUMN_OBJECTTYPE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="SINGLE_COLUMN_STRING" show="false" value="true"/>
     <elementParameter field="TEXT" name="SINGLE_COLUMN_BYTEARRAY" show="false" value="false"/>
     <elementParameter field="TEXT" name="SINGLE_COLUMN_DOCUMENT" show="false" value="false"/>
     <elementParameter field="TEXT" name="HIDE_INPUT_SET" show="false" value="false"/>
@@ -251,37 +277,33 @@
     <elementParameter field="CHECK" name="MAP_ROW_BY_ROW" value="false"/>
     <elementParameter field="CLOSED_LIST" name="LOG" value="infrequent"/>
     <elementParameter field="CLOSED_LIST" name="EXCEPTION" value="64"/>
-    <elementParameter field="TEXT" name="LABEL" value="map_to_idoc"/>
+    <elementParameter field="TEXT" name="LABEL" value="iDoc_PORDCR1"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="iDoc">
+    <metadata connector="FLOW" label="idoc" name="idoc">
       <column comment="" key="false" length="-1" name="idoc" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tSAPIDocOutput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="96">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPIDocOutput_1"/>
-    <elementParameter field="LABEL" name="NOTE" show="false" value="To use this component, you need to register the SAP Java Connectors (sapjco3.jar and sapidoc3.jar) in the module view"/>
-    <elementParameter field="LABEL" name="NOTE2" value="To use this component, you need to register the SAP Java Connectors sapjco3.jar in the module view"/>
-    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA"/>
-    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
-    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tSAPConnection_1"/>
-    <elementParameter field="TEXT" name="CLIENT" show="false" value="&quot;100&quot;"/>
-    <elementParameter field="TEXT" name="USERID" show="false" value="&quot;com_talend&quot;"/>
-    <elementParameter field="PASSWORD" name="PASSWORD" show="false" value="JR2QA/2jh49xBg0icybNVg=="/>
-    <elementParameter field="TEXT" name="LANGUAGE" show="false" value="&quot;EN&quot;"/>
-    <elementParameter field="TEXT" name="HOSTNAME" show="false" value="&quot;192.168.160.5&quot;"/>
-    <elementParameter field="TEXT" name="SYSTEMNUMBER" show="false" value="&quot;00&quot;"/>
-    <elementParameter field="COLUMN_LIST" name="IDOC_COLUMN" value="idoc"/>
-    <elementParameter field="CHECK" name="FROM_XML" value="false"/>
-    <elementParameter field="FILE" name="FILE_IDOC_XML" show="false" value="&quot;&quot;"/>
-    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
-    <elementParameter field="TABLE" name="SAP_PROPERTIES" show="false">
-      <elementValue elementRef="PROPERTY" value="&quot;api.use_z_talend_read_table&quot;"/>
-      <elementValue elementRef="VALUE" value="&quot;true&quot;"/>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="96">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_3"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="idoc"/>
+      <elementValue elementRef="LENGTH" value="10"/>
     </elementParameter>
-    <elementParameter field="TEXT" name="LABEL" value="send_idoc"/>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tSAPIDocOutput_1">
+    <metadata connector="FLOW" name="tLogRow_3">
       <column comment="" key="false" length="-1" name="idoc" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
@@ -315,7 +337,7 @@
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/eSales_S4Hana/destination/processed&quot;"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/eSales_S4Hana/destination/process&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
     <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="YES"/>
@@ -333,6 +355,7 @@
     <elementParameter field="CHECK" name="IFEXCLUDE" value="false"/>
     <elementParameter field="TEXT" name="EXCLUDEFILEMASK" show="false" value="&quot;*.txt&quot;"/>
     <elementParameter field="CHECK" name="FORMAT_FILEPATH_TO_SLASH" value="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="list_purchases2"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
   <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="224" posY="224">
@@ -347,8 +370,38 @@
     <elementParameter field="CHECK" name="REPLACE_FILE" value="true"/>
     <elementParameter field="CHECK" name="CREATE_DIRECTORY" value="true"/>
     <elementParameter field="CHECK" name="FAILON" value="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="move_to_done"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileCopy_1"/>
+  </node>
+  <node componentName="tSAPIDocOutput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPIDocOutput_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
+    <elementParameter field="LABEL" name="NOTE" show="false" value="To use this component, you need to register the SAP Java Connectors (sapjco3.jar and sapidoc3.jar) in the module view"/>
+    <elementParameter field="LABEL" name="NOTE2" value="To use this component, you need to register the SAP Java Connectors sapjco3.jar in the module view"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_5M-XsKh5Eemk3IeFa5OsAA"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tSAPConnection_1"/>
+    <elementParameter field="TEXT" name="CLIENT" show="false" value="&quot;100&quot;"/>
+    <elementParameter field="TEXT" name="USERID" show="false" value="&quot;com_talend&quot;"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" show="false" value="JR2QA/2jh49xBg0icybNVg=="/>
+    <elementParameter field="TEXT" name="LANGUAGE" show="false" value="&quot;EN&quot;"/>
+    <elementParameter field="TEXT" name="HOSTNAME" show="false" value="&quot;192.168.160.5&quot;"/>
+    <elementParameter field="TEXT" name="SYSTEMNUMBER" show="false" value="&quot;00&quot;"/>
+    <elementParameter field="COLUMN_LIST" name="IDOC_COLUMN" value="idoc"/>
+    <elementParameter field="CHECK" name="FROM_XML" value="false"/>
+    <elementParameter field="FILE" name="FILE_IDOC_XML" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="TABLE" name="SAP_PROPERTIES" show="false">
+      <elementValue elementRef="PROPERTY" value="&quot;api.use_z_talend_read_table&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;true&quot;"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="LABEL" value="send_idoc"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tSAPIDocOutput_1">
+      <column comment="" key="false" length="-1" name="idoc" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
   </node>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tJava_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
@@ -363,18 +416,18 @@
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
   </connection>
-  <connection connectorName="FLOW" label="xmlData" lineStyle="0" metaname="tFileInputXML_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputXML_1" target="tHMap_1">
+  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tFileInputXML_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputXML_1" target="tHMap_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
+  </connection>
+  <connection connectorName="FLOW" label="idoc" lineStyle="0" metaname="idoc" offsetLabelX="0" offsetLabelY="0" source="tHMap_1" target="tLogRow_3">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
-      <elementValue elementRef="TRACE_COLUMN" value="ref_name"/>
+      <elementValue elementRef="TRACE_COLUMN" value="idoc"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="xmlData"/>
-  </connection>
-  <connection connectorName="FLOW" label="iDoc" lineStyle="0" metaname="iDoc" offsetLabelX="0" offsetLabelY="0" source="tHMap_1" target="tSAPIDocOutput_1">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iDoc"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="idoc"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tSAPConnection_1" offsetLabelX="0" offsetLabelY="0" source="tSAPConnection_1" target="tFileList_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
@@ -399,13 +452,18 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_3083a13d-dfb7-440d-a59f-f77e0e775ab8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>S+goUmC2uTvBUoRA+91bBgvnqpg6iRC6jT92w8WmOJSFcIsJr05aMxSEHtlVeA8FrBpu1QC4DjpV
-jbjYF/p3Ow==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_2cb90ddc-67cd-4bfc-8b1f-2a7a299ad79f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>uAUGmiCx3JNPE/ewWvwRQH5d8zY6uyj1M4uD3ROVBoNoqtrSvaCflPLO7pUBNQi3/RTHR+PFPMk2
-as8n4h8lSw==</DigestValue></Reference></SignedInfo><SignatureValue>P+I43E8Oc8/QJm6BqNRyRtWL25jP5TfBLAQOKHL4IVwqhfsOIuprD4t6yxgDH3+9swAwiwwitEie
-BASqInvFaVZukvoKqkAroIHk7avva2+KspjtNc1RUZUN91qJO+4nXX2bQbt6TH3g/JfoQR+36OTD
-ddXujqPifVOKf8bGtpbOR0HZoHBWdroo0JlhazoSC6mk3DGPfKBA8plVItcohfv7VT7wcbC/npq1
-2vZUny31KBo0Yazs5P+N+k7ZPanBJWYJVhTykDkohtyWMd6P139zOYVSX0Am0sL1XdlhbzkpEV3e
-sPEgxRrpoipA1pGWTNTrJeQeCMk9SZdbuE0aIw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPIDocOutput_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_90f8c85a-095f-44af-a1f4-6046d3d373d1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>2MvcU/zDiO5WeCA9enKojJ7uZi/swQGfFELahLHodsl+IzsoAaxXAikqPWpJJGwALdup5DEx4mDW
+QhGqkhsz5A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_77ec6bde-2d27-4665-a1ad-adbac46de0eb"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>E2iT6Qymtb22kiKHSBTbehPQF5PUl/4CClMLPFntyDBehkZHxhLwLTygjsUvHzPa+DjrZJ7lpaFG
+8PxgaczPRA==</DigestValue></Reference></SignedInfo><SignatureValue>2MQiU2D+zHv9v+GIx4ppIpfuLBsZ5CncbDOwBKbEpndCzd3524tnWFrCKqy9cVPdsmP8ukJ9th2e
+IoB0ClE6dK6rp/slaZ7Yj0jKpgxOV2paQaCrE/K76ywx3SJF1gGX80yTqpqDt+n4snQ9Y+wwjVtj
+i0JrbFlD4X1jnWuQlQwIMpvALZfb+YqPzBTUaD5S1SZdl43uHwfP0c+UjmHdMkMQzmechYe1OTOf
+rsaqZoZyl3PeQAivpZCZUe0pfyub6gEvw/wvEb1CEmpYSxNDcEohoWhYfLWy0bZOpukfcpck5dkx
+YzcTNLEWOl8XErkKixMzdAr9Hb+65z+/bgCk4w==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -429,4 +487,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_2cb90ddc-67cd-4bfc-8b1f-2a7a299ad79f" Target="#_3083a13d-dfb7-440d-a59f-f77e0e775ab8"><Timestamp>2019-12-03 14:39:53</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_77ec6bde-2d27-4665-a1ad-adbac46de0eb" Target="#_90f8c85a-095f-44af-a1f4-6046d3d373d1"><Timestamp>2019-12-04 08:52:18</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
