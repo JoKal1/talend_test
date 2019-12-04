@@ -111,7 +111,7 @@
     <routinesParameter id="_W9zaFtX-Eeil3oUGBkSqXg" name="TalendStringUtil"/>
     <routinesParameter id="_W9qQJtX-Eeil3oUGBkSqXg" name="TalendString"/>
   </parameters>
-  <node componentName="tFileInputXML" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="320">
+  <node componentName="tFileInputXML" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputXML_2"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Temp/eSales_S4Hana/destination/achatPrev_0000012905_CHF.xml&quot;"/>
     <elementParameter field="TEXT" name="LOOP_QUERY" value="&quot;/root/orders&quot;"/>
@@ -190,60 +190,93 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tHMap" componentVersion="1.0" offsetLabelX="0" offsetLabelY="0" posX="224" posY="192">
+  <node componentName="tHMap" componentVersion="1.0" offsetLabelX="0" offsetLabelY="0" posX="256" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tHMap_1"/>
     <elementParameter field="LABEL" name="MAPPATH_HELP" value="To create a new map based on the input and output of tHMap,&#10;use Open Map Editor below. To use an existing map, select the Map Path&#10;below and then use Open Map Editor."/>
     <elementParameter field="EXTERNAL" name="MAP_EDITOR" value=""/>
-    <elementParameter field="HMAP_PATH" name="HMAP_PATH" value="&quot;Jobs/eSales_achats/iDoc_PORDCR1&quot;"/>
-    <elementParameter field="RADIO" name="SOURCE_AS_MAP" show="false" value="false"/>
-    <elementParameter field="RADIO" name="SOURCE_AS_STRING" value="true"/>
-    <elementParameter field="RADIO" name="AS_MAP" show="false" value="true"/>
-    <elementParameter field="RADIO" name="AS_STRING" show="false" value="false"/>
-    <elementParameter field="RADIO" name="AS_BYTEARRAY" show="false" value="false"/>
-    <elementParameter field="RADIO" name="AS_INPUTSTREAM" show="false" value="false"/>
+    <elementParameter field="HMAP_PATH" name="HMAP_PATH" value="&quot;Jobs/sandbox/tHMap_1&quot;"/>
+    <elementParameter field="RADIO" name="SOURCE_AS_MAP" value="true"/>
+    <elementParameter field="RADIO" name="SOURCE_AS_STRING" show="false" value="false"/>
+    <elementParameter field="RADIO" name="AS_MAP" show="false" value="false"/>
+    <elementParameter field="RADIO" name="AS_STRING" value="true"/>
+    <elementParameter field="RADIO" name="AS_BYTEARRAY" value="false"/>
+    <elementParameter field="RADIO" name="AS_INPUTSTREAM" value="false"/>
     <elementParameter field="RADIO" name="AS_DOCUMENT" show="false" value="false"/>
-    <elementParameter field="TEXT" name="SOURCE_TDM_STRUCT_INCARNATION" show="false" value=""/>
-    <elementParameter field="TEXT" name="TARGET_TDM_STRUCT_INCARNATION" show="false" value=""/>
-    <elementParameter field="TEXT" name="SOURCE_GENERATED_TDM_STRUCT_PATH" show="false" value=""/>
-    <elementParameter field="TEXT" name="TARGET_GENERATED_TDM_STRUCT_PATH" show="false" value=""/>
-    <elementParameter field="TEXT" name="SINGLE_COLUMN_OBJECTTYPE" show="false" value="true"/>
-    <elementParameter field="TEXT" name="SINGLE_COLUMN_STRING" show="false" value="false"/>
+    <elementParameter field="TEXT" name="SOURCE_TDM_STRUCT_INCARNATION" show="false" value="19"/>
+    <elementParameter field="TEXT" name="SOURCE_GENERATED_TDM_STRUCT_PATH" show="false" value="Structures/Jobs/sandbox/tHMap_1/row1.xml"/>
+    <elementParameter field="TEXT" name="SINGLE_COLUMN_OBJECTTYPE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="SINGLE_COLUMN_STRING" show="false" value="true"/>
     <elementParameter field="TEXT" name="SINGLE_COLUMN_BYTEARRAY" show="false" value="false"/>
     <elementParameter field="TEXT" name="SINGLE_COLUMN_DOCUMENT" show="false" value="false"/>
     <elementParameter field="TEXT" name="HIDE_INPUT_SET" show="false" value="false"/>
     <elementParameter field="TEXT" name="HIDE_OUTPUT_SET" show="false" value="false"/>
-    <elementParameter field="TEXT" name="SHOW_INPUT_STRING" show="false" value="true"/>
-    <elementParameter field="TEXT" name="SHOW_INPUT_MAP" show="false" value="false"/>
-    <elementParameter field="TEXT" name="SHOW_OUTPUT_STRING" show="false" value="false"/>
+    <elementParameter field="TEXT" name="SHOW_INPUT_STRING" show="false" value="false"/>
+    <elementParameter field="TEXT" name="SHOW_INPUT_MAP" show="false" value="true"/>
+    <elementParameter field="TEXT" name="SHOW_OUTPUT_STRING" show="false" value="true"/>
     <elementParameter field="TEXT" name="SHOW_OUTPUT_MAP" show="false" value="false"/>
     <elementParameter field="TEXT" name="SHOW_OUTPUT_DOCUMENT" show="false" value="false"/>
     <elementParameter field="RADIO" name="IS_NEW" show="false" value="false"/>
-    <elementParameter field="TEXT" name="SHOW_OUTPUT_BYTES" show="false" value="false"/>
+    <elementParameter field="TEXT" name="SHOW_OUTPUT_BYTES" show="false" value="true"/>
     <elementParameter field="RADIO" name="INCONNECTIONS_SYNCED" show="false" value="true"/>
-    <elementParameter field="RADIO" name="OUTCONNECTIONS_SYNCED" show="false" value="true"/>
+    <elementParameter field="RADIO" name="OUTCONNECTIONS_SYNCED" show="false" value="false"/>
     <elementParameter field="TEXT" name="HMAP_VAR_PATH" value="&quot;&quot;"/>
     <elementParameter field="CHECK" name="MAP_ROW_BY_ROW" value="false"/>
     <elementParameter field="CLOSED_LIST" name="LOG" value="infrequent"/>
     <elementParameter field="CLOSED_LIST" name="EXCEPTION" value="64"/>
-    <elementParameter field="TEXT" name="LABEL" value="iDoc_PORDCR1"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="iDoc" name="iDoc">
+      <column comment="" key="false" length="-1" name="idoc" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="idoc"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogRow_1">
+      <column comment="" key="false" length="-1" name="idoc" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
   </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tFileInputXML_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputXML_2" target="tHMap_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
+  </connection>
+  <connection connectorName="FLOW" label="iDoc" lineStyle="0" metaname="iDoc" offsetLabelX="0" offsetLabelY="0" source="tHMap_1" target="tLogRow_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="idoc"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iDoc"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputXML_2"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_7273969c-d2a4-4d3d-a07b-0dc2e9e76675"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0a+zVanOYutVvv9IUjuq+7gzrIPHpv6C+mpm3MgTyf/WLubpq69cu6V3zSGT2uGVu5NVj3a4q6vb
-Qt9Gk0VYtw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_63ed451a-a8c8-4060-9f87-e83e2c712945"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>CfKt80phzW6amo4/4R/gn+feRAZylk7hCMEOJ0lykZeqsbpLOGEFDRiLfOD328mkv8LbyKQq7eWP
-y+LItLT1iA==</DigestValue></Reference></SignedInfo><SignatureValue>jPlD8YVbPCOrLo+nu9yy3wI7TukQHJwfjSEjFEFKyFie7nRDahhDG/CVHkngfaQZwTk1Ct9a+0w+
-3r/GiyPHc4YrF7Lr1tNeBOkgGh3XL9uRsCHlMqFb2DKUA7yutwFEo1XYJU+7zAtfKfqxUxA8B9uv
-oHsC425IdeGdE4r2FykA9VHQhsrTrAXV9MZo59Abtb/ntIDdx2HiJyZrZrdBnhTssonj3I1KVVy3
-Q+2ayxIoUQMzezXLXCkRRkRqpHM9OL0Ol0/URPI5V5xpW72/L3hnPejBIzl/eyOvyPBvBnqPWKmJ
-cRC53Q8BMNFEH/i1ZTVwwc9X9874FKOJwyftvw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b23b6b98-0321-47b9-b379-2110d65db3be"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>rMAOjqa9283Dybl9Bo6BSnp0ZvXIq6rqelDlRWY5d7KxU43aOCnYIA5LdwTAqFUH4oe8HJapvgaM
+CzvWpnhzmQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_0112cbd6-ad57-42b7-af59-00d5dec150ec"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>oRi56vu4wVz+rYLvm+uMdgRNmYbw3lgjEWo37u8kyyepwC0/LcYx+LIW0dMbihLpc42dTRvQXHlE
+BKspntX8ng==</DigestValue></Reference></SignedInfo><SignatureValue>PlGdLkLP1d8fgN+tTTURZqVKZcQwnul+ohMKIcdXtaeHi5p9DOeBr1H0kpg4pPNwCBYDp6Ogau6J
+BNJv4xxOtc9Q3sSUSWe45cu55g+F2l9GVo65tyC2hS8/pJtNk16bR9j62d5yhIOnhLzeTqDEftZX
+zVXBbiQXlQT5XEoTpBYwVUIJD0EbYFsC0yJbS32XKB8HSdisuahKb+TN1toNgsEPYD90bp5arsTj
+8p3bgKxVGyZVeBHYseKzMMU3Ar+VLZTj2mTEGa65/UgbrSXbSemsaaKAgum4eGXiFcjTsc6VdRTf
+QiTMUd4C2amllP0ONffPN0Wxx1cdT3ncy3BSOw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -267,4 +300,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_63ed451a-a8c8-4060-9f87-e83e2c712945" Target="#_7273969c-d2a4-4d3d-a07b-0dc2e9e76675"><Timestamp>2019-12-04 07:29:49</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_0112cbd6-ad57-42b7-af59-00d5dec150ec" Target="#_b23b6b98-0321-47b9-b379-2110d65db3be"><Timestamp>2019-12-04 08:03:23</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
