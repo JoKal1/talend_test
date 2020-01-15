@@ -332,7 +332,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.fileName = outConfig.file;&#10;context.amenagement = outConfig.measure;&#10;context.directory = outConfig.directory;&#10;context.columnID = outConfig.columnID;&#10;&#10;System.out.println(context.directory + &quot;-&quot; + context.fileName);"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.fileName = outConfig.file;&#10;context.amenagement = outConfig.measure;&#10;context.directory = outConfig.directory;&#10;context.columnID = outConfig.columnID;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="processXML"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -419,16 +419,9 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="416">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;//fmvtsenergy/Data_flow$/export/rapports/&quot; + context.directory + &quot;/&quot; + context.fileName);"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJava_2"/>
-  </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_3"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="Dynamic columns = csvData.values;&#10;&#10;System.out.println(context.amenagement);&#10;&#10;output_row.amenagement = context.amenagement;&#10;output_row.prix_cible = &quot;&quot; + columns.getColumnValue(Integer.parseInt(context.columnID));&#10;&#10;/*Dynamic columns = row3.dynamic;&#10; &#10;for (int i = 0; i &lt; columns.getColumnCount(); i++) {  &#10;    DynamicMetadata columnMetadata = columns.getColumnMetadata(i);  &#10;    System.out.println(columnMetadata.getName() + &quot;: &quot; + &#10;columns.getColumnValue(i) + &quot;; &quot; + columnMetadata.getType());&#10;} */"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="Dynamic columns = csvData.values;&#10;&#10;output_row.amenagement = context.amenagement;&#10;output_row.prix_cible = &quot;&quot; + columns.getColumnValue(Integer.parseInt(context.columnID));&#10;&#10;/*Dynamic columns = row3.dynamic;&#10; &#10;for (int i = 0; i &lt; columns.getColumnCount(); i++) {  &#10;    DynamicMetadata columnMetadata = columns.getColumnMetadata(i);  &#10;    System.out.println(columnMetadata.getName() + &quot;: &quot; + &#10;columns.getColumnValue(i) + &quot;; &quot; + columnMetadata.getType());&#10;} */"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="processCSV"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -669,12 +662,7 @@
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate4"/>
   </connection>
-  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileList_1" target="tJava_2">
-    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
-    <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate7"/>
-  </connection>
-  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" outputId="3" source="tFileList_1" target="tFileCopy_1">
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileList_1" target="tFileCopy_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
@@ -789,13 +777,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_8bfc6ec8-bbf9-4f0b-a67d-bd6d002f6266"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>dOkPri1eQlNIJ41AwOdcqCcoNw20RwheVQ62ax2xQY2fwWbD+wJEDpZR8DvmdDRD/bTPg2VhRFlg
-8QiazY9nIg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_b91fa8f1-e3e8-4bd4-97ba-9c60636cb2a4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>MuA3piD9+YCIu5JOc2nauD7TnOqJ3LITA1iaVjnoxaaqR08vNWPomsGMhGcAixjn0hvmPOTg4C66
-s6YEIwTWEQ==</DigestValue></Reference></SignedInfo><SignatureValue>bzGpCTJ8aINGHh6RRxcyPkyjKvhD1bKx33QCcX+UVhzVayAbBEZGmTJ3arknl8KcbMa3A2fJzqsx
-5nLenN2xgu4V9DSA5cEeHpvxfpdvqYQU7MRK6OzLN7aHCthahb70LhNAJRS927vg50eHm/SdNNy1
-d1+xUR7pH6gHUG31FYI0MM6C+RymHm1AO14PYvKdBpReoS9nj585jDRQoRxGqzAhFSZKT+SZZzcK
-VTzelo/knlrJAoOjM295QsPHdK9ylXDFeFSW/kExy+zy4JiksbntnQxqHS0tbE/4PRMtjb/CLHKk
-3DlA5gG9MlW61N7v/zkMVZvQQf0zC0FZmsExZg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c2e2ea74-16a6-4c48-a7a7-ddfd57e5b070"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PmFlPkfbMGkxGLkb6lKYJkh/1/CijkbrC6vUKevzuiGB81djph0RLwMArBnNxDt81n8pIjwLY0+E
+XYfrT186/g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_77d64a06-e882-4d78-b3cc-45ff77212657"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+Y1fCVDaW8fGD1OP4xFQ1Ft8biGdXZzYas6pZkxUuodGadTsUuKHV5fZVwL2tLhzHx6blNurmZzT
+jxFGlEV03A==</DigestValue></Reference></SignedInfo><SignatureValue>EWHRxxmtz6dfxwpQwf8UdGh37wIebgEpC/sT8/F+zmRasR6jmhF6COkMHPVgV+l4eX1JlfJev7qB
+A/W8gwcmyQXCHnqur3zIXhcMnWZyqM1Y4IYOG9HTYQWcuh81OUT9qJ7B4s82tTRN8QTwOJWoSyor
+K2FtjW97Q6Flq1h2JzR2ELy7yhin2oF0sJiRreZ/gropTnwYhQhIKvA6V2/Tvc6xKDyxgCUpb4A0
+MB4WRm0tQvsZQl8mLiK/JzXoY0RJcwGJGKK613SWbPuzgtZVyhVXMST4rDy/gnnMCs8qY+B4JdtS
+vecGhKUcOSGkIxuHRd6+rKC6+VDFL0lGCkezQA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -819,4 +807,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_b91fa8f1-e3e8-4bd4-97ba-9c60636cb2a4" Target="#_8bfc6ec8-bbf9-4f0b-a67d-bd6d002f6266"><Timestamp>2020-01-15 14:13:24</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_77d64a06-e882-4d78-b3cc-45ff77212657" Target="#_c2e2ea74-16a6-4c48-a7a7-ddfd57e5b070"><Timestamp>2020-01-15 14:15:35</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
