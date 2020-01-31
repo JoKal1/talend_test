@@ -155,7 +155,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select partner_sac_id, product_id, quantity, price, (quantity*price*eur_chf_rate) as 'total CHF', eotp, product_name, ref_name, full_supply, delivery_date, currency, direction from esales_orders&#13;&#10;where cast(year as varchar(4)) + '' + cast(month as varchar(2)) != cast(year(sysdatetime()) as varchar (4)) + cast(month(sysdatetime())-1 as varchar(2))&#13;&#10;and quantity &gt; 0&#13;&#10;order by partner_id&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select partner_sac_id, product_id, quantity, price, (quantity*price*eur_chf_rate) as 'total_chf', eotp, product_name, ref_name, full_supply, delivery_date, currency, direction from esales_orders&#13;&#10;where cast(year as varchar(4)) + '' + cast(month as varchar(2)) != cast(year(sysdatetime()) as varchar (4)) + cast(month(sysdatetime())-1 as varchar(2))&#13;&#10;and quantity &gt; 0&#13;&#10;order by partner_id&quot;"/>
     <elementParameter field="LABEL" name="NOTE" show="false" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" show="false" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -232,7 +232,7 @@
       <elementValue elementRef="IS_AUTO_SIZE" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="price"/>
       <elementValue elementRef="IS_AUTO_SIZE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="total"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="total_chf"/>
       <elementValue elementRef="IS_AUTO_SIZE" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="eotp"/>
       <elementValue elementRef="IS_AUTO_SIZE" value="false"/>
@@ -267,7 +267,7 @@
       <column comment="" key="false" length="18" name="product_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="15" name="quantity" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="15" name="price" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="total" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="FLOAT" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="total_chf" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="12" name="eotp" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="100" name="product_name" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="50" name="ref_name" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
@@ -299,13 +299,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_108e2188-02d1-4b23-8f1d-25f2cf2e23a9"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>7keeyWOoXKmKcfKngOSnPbERYW9Cx1MbPbUPoemv0wr15I69XVRWeoBj15tXoZ6mQBlYNyJ+V72J
-EovM0Q8nrw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_11b1c616-96b1-44ad-8f7e-56327a3a8728"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Uh7uFTin9ZC2rJOljUNdcjMEEI+Fy+iAOI91zSYHaaZqZqCMZIX6IGmliSb93/JMdvJOFAeAdx6D
-hSFkMMfg3Q==</DigestValue></Reference></SignedInfo><SignatureValue>bJxrnYq4cAFXVSlIdgSte/NbH4X/Qx0RrPQ+Ay8V626DRKgxDTSUgE/+Ro/R+SGRPZeiHOnSVasW
-iOxgNfS0akcKQLQ7ATdn1nZ76RXoo2+/uSXzupmnWyQBYPu/9YVdDrQtvuUzNXx9L0OMpXoWLvsD
-Xt7/TNv29enlPtvpd7vsZFUm2Q+pE/msRLwZAumaL2RP2kqno2pBVjEw+Ytrx8Nm9/l03CDW7UsG
-Ul7Ei92yrBbUpNXJXV5dyF5pf+G9HMDC9Upx59N9R7P+O/dSuAGYcurcjP6AM/nfRxj7HQqy2Rxz
-CJ2B4h1k2asZJbqPPHmeSihSkvxcVXBJAoi2aw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_696875e0-4e0e-406c-b9e1-253bc27a0431"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>/YI07+XuleBx05hxLhQeUGlXDeREQAUrOzdfFR2pVl+Am2LO2ZT+17IiJTTpl5zZ2em7AJdJ/PYp
+9BqBYjRp/g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f03c8f73-454c-4287-ac8f-55654d4f1293"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>cGdmTtMUIKTfjJo22E6x+2ID29yTIoZ7z8kmM3XYopEHH1w4h9AUApXFiZ20eGkkpHZXViBbgM49
+463sGxOcWg==</DigestValue></Reference></SignedInfo><SignatureValue>DDjhC6oOCT2Lwu9BT+M2JrF/cg5KWxpugOsG5nttBhGk1K8qVKfZBL6FtEM1rgRYop/NwV1he6nl
+A8W8J+tBGUHaPPeo+xAhC0LF3I98u3FVMUcBL9OXSX3TJ37LlwXFL+tBY4cyrsAIMrjtz0/KZ6Z7
+B5pSuImN/pzDyd/MtEcsokOSzFk3utsk1EVpneyUWQwnKWFzwPNaxVMKnu3A3le/x2A2yO5stWI4
++WIIskycUbgcroYscO/g/EZkoEKJGOGgMnUbhKZnv7orERRwwQz3o9a0sCu4qLaQITPtY43COaB5
+3Dj75SiOElIRA+U/u2jCwvUMK1NMNuvQl0Oztg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -329,4 +329,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_11b1c616-96b1-44ad-8f7e-56327a3a8728" Target="#_108e2188-02d1-4b23-8f1d-25f2cf2e23a9"><Timestamp>2020-01-31 09:13:08</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f03c8f73-454c-4287-ac8f-55654d4f1293" Target="#_696875e0-4e0e-406c-b9e1-253bc27a0431"><Timestamp>2020-01-31 09:15:16</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
