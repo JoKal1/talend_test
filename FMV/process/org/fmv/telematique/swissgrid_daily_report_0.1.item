@@ -120,8 +120,7 @@
     <elementParameter field="CHECK" name="ERROR" value="false"/>
     <elementParameter field="CHECK" name="GLOBEXPRESSIONS" value="true"/>
     <elementParameter field="TABLE" name="FILES">
-      <elementValue elementRef="FILEMASK" value="&quot;*.xlsx&quot;"/>
-      <elementValue elementRef="FILEMASK" value="&quot;*.xls&quot;"/>
+      <elementValue elementRef="FILEMASK" value="&quot;SH_Uist_*.xlsx&quot;"/>
     </elementParameter>
     <elementParameter field="RADIO" name="ORDER_BY_NOTHING" value="true"/>
     <elementParameter field="RADIO" name="ORDER_BY_FILENAME" value="false"/>
@@ -327,10 +326,63 @@
       <column comment="" key="false" length="-1" name="state" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="tFTPPut" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFTPPut_1"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="__AbbwEjlEeqR4M8kbk-yww"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;ftpedm.swissgrid.ch&quot;"/>
+    <elementParameter field="TEXT" name="PORT" value="21"/>
+    <elementParameter field="TEXT" name="FTPS_PORT" show="false" value="21"/>
+    <elementParameter field="TEXT" name="USERNAME" value="&quot;f9874&quot;"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" value="AmfI7+CenhTmFNtIhGkoRy/94DawDkKk"/>
+    <elementParameter field="CHECK" name="SFTP" value="false"/>
+    <elementParameter field="CHECK" name="FTPS" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="AUTH_METHOD" show="false" value="&quot;&quot;"/>
+    <elementParameter field="FILE" name="PRIVATEKEY" show="false" value="&quot;&quot;"/>
+    <elementParameter field="PASSWORD" name="PASSPHRASE" show="false" value="0RMsyjmybrE="/>
+    <elementParameter field="DIRECTORY" name="LOCALDIR" value="&quot;//10.240.11.16/Swissgrid_Trace$/&quot;"/>
+    <elementParameter field="TEXT" name="REMOTEDIR" value="&quot;in&quot;"/>
+    <elementParameter field="CHECK" name="MOVE_TO_THE_CURRENT_DIRECTORY" show="false" value="true"/>
+    <elementParameter field="FILE" name="KEYSTORE_FILE" show="false" value="&quot;&quot;"/>
+    <elementParameter field="PASSWORD" name="KEYSTORE_PASS" show="false" value="0RMsyjmybrE="/>
+    <elementParameter field="CLOSED_LIST" name="MODE" value="ascii"/>
+    <elementParameter field="CLOSED_LIST" name="OVERWRITE" value="never"/>
+    <elementParameter field="CHECK" name="APPEND" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="SFTPOVERWRITE" show="false" value="overwrite"/>
+    <elementParameter field="CLOSED_LIST" name="FTPSOVERWRITE" show="false" value="always"/>
+    <elementParameter field="LABEL" name="NOTE_CUSTOMER" show="false" value="Note: File can not be renamed while using &quot;append&quot; mode in SFTP"/>
+    <elementParameter field="CHECK" name="PERL5_REGEX" value="false"/>
+    <elementParameter field="TABLE" name="FILES">
+      <elementValue elementRef="FILEMASK" value="&quot;SH_Uist_*.csv&quot;"/>
+      <elementValue elementRef="NEWNAME" value="&quot;&quot;"/>
+    </elementParameter>
+    <elementParameter field="CLOSED_LIST" name="CONNECT_MODE" value="PASSIVE"/>
+    <elementParameter field="CLOSED_LIST" name="SECURITY_MODE" show="false" value="IMPLICIT"/>
+    <elementParameter field="CHECK" name="USE_ENCODING" show="false" value="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
+    <elementParameter field="CHECK" name="USE_PROXY" value="false"/>
+    <elementParameter field="TEXT" name="PROXY_HOST" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="PROXY_PORT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="PROXY_USERNAME" show="false" value="&quot;&quot;"/>
+    <elementParameter field="PASSWORD" name="PROXY_PASSWORD" show="false" value="0RMsyjmybrE="/>
+    <elementParameter field="CHECK" name="IGNORE_FAILURE_AT_QUIT" value="false"/>
+    <elementParameter field="OPENED_LIST" name="FTPS_PROT" show="false" value="&quot;P&quot;"/>
+    <elementParameter field="TEXT" name="FTPS_PROTECTION_BUFF_SIZE" show="false" value="0"/>
+    <elementParameter field="TEXT" name="LABEL" value="Swissgrid_EDM"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tFTPPut_1"/>
+  </node>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFileInputExcel_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFTPPut_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
   </connection>
   <connection connectorName="FLOW" label="header_data" lineStyle="0" metaname="tFileInputExcel_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_1" target="tFileOutputDelimited_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
@@ -353,13 +405,18 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6504a055-25d1-4204-adca-73e66a791a6b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>kubdkae8FgrogGsC9DD+9pwSVfQX7qLG7BFXeQrUNlYvvA9RgUOJEg/puZWCB5yIHo9505BEvNEt
-sTA9iAzd0Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_73ba2a7f-60b4-4482-b714-8bb09bd0ded5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>pc1de+DeJLk6PB8ScN1pvUWKreoEfdtYZRMJl9uWO/8P37NrTQHBQfm0eCAx80y8K4Oh1yoBY3kk
-MiWkLii1kw==</DigestValue></Reference></SignedInfo><SignatureValue>hWXW6xCfMACgX2s68kAHKv4/pvKie7XpF7NDlOxVQCoVik10f4C299Fm7kVhWoE9STwilmB+aRm2
-9ZU2buIo6nLNYv08H/Pi+/MMwieqXKvyEg1IIYli0YZeA1JDGf/8pN8yDLesgiV+feSQvZhYX8b7
-69BjAAXdivJr8R2e9391fKyS9u/FTg8H9IYeWJdfvj8BSH5gyryXKeR2SvAjzvhcVw8ziFgf4gUW
-08TEj/USnkNP8yGPVflnZYwmo6kE0Yt+HxTvNTUx2MWzI/x3raPw1MZPEe4RHHELbvpBIaISEosm
-PS9NUYKqCED8bdaycG6qzA0wcwcd3vh/x1+h7A==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFTPPut_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_15627732-958b-48a3-bdf4-cee941c56c59"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>mxJC7WGpcXjBM3uDvEDeg+6DQf74uwyQ1agabBOlbIEW1ExJF/fD87SaF/OdBQnIH2aCtSCxi/VE
+2BJZQzIDTQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3fd05127-a05b-4694-be4e-c743221b9b5f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Ka+873qf7N58ezkbxsGadEYFbql5ZhFa3BqqW5e5PrlV3k98nBcJDKwHug/XYt46S1FWI2gGyuyF
+EvO7K9DnmA==</DigestValue></Reference></SignedInfo><SignatureValue>q3NEcgOsuiNI+qql8vvVDvuPpXLUPrWf0KKMl1GJ3H4pIVCwxs1Ie1oY5thtd42963t4bwCicXTN
+C9znslH4Zzpf+UceDIBEoRrvZ/KPcw+zKeH/vDTdOid1WBfxVuHq/lkd0oL94MXY/hbgdoQ+fLQb
+tIHVmbQ7wqiGabgWBGHXKPNLi4veWs2gDZyERMEas34tzd5k6M6hZIY+yFTcO5GlXEPeA98VQzIG
+vuHaRVBaIet4QF3kFphQzh8u1YambyhVUqN3VUZrIkXNb4OONBOaOQq5nB2luBQM/W5jQpT0PKYJ
+3OhfuDEmqVjMVcK9t8PxvwRDpfpRQw1omn27uQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -383,4 +440,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_73ba2a7f-60b4-4482-b714-8bb09bd0ded5" Target="#_6504a055-25d1-4204-adca-73e66a791a6b"><Timestamp>2020-02-06 12:55:35</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3fd05127-a05b-4694-be4e-c743221b9b5f" Target="#_15627732-958b-48a3-bdf4-cee941c56c59"><Timestamp>2020-02-06 13:49:19</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
