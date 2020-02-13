@@ -268,7 +268,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="352" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="if (input_row.ID_SAP != null)&#10;&#9;{&#10;&#9;if (input_row.ID_SAP.equals(context.partner_id))&#10;&#9;&#9;{&#10;&#9;&#9;context.nr_ref_facture = input_row.Nr_Ref_facture;&#10;&#9;&#9;}&#10;&#9;}&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="if (input_row.ID_SAP != null)&#10;&#9;{&#10;&#9;if (input_row.ID_SAP.equals(context.partner_id))&#10;&#9;&#9;{&#10;&#9;&#9;context.nr_ref_facture = input_row.Nr_Ref_facture;&#10;&#9;&#9;System.out.println(&quot;in&quot;);&#10;&#9;&#9;}&#10;&#9;}&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set_ref_facture"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -559,7 +559,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="String filepath = ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;));&#10;context.partner_id = filepath.substring(6, 16);&#10;context.currency = filepath.substring(17, 20);&#10;&#10;DateFormat dateFormat = new SimpleDateFormat(&quot;yyyyMMdd&quot;);&#10;DateFormat refDateFormat = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Date currentDate = new Date();&#10;Calendar c = Calendar.getInstance();&#10;&#10;c.setTime(currentDate);&#10;c.add(Calendar.DATE, -c.get(Calendar.DAY_OF_MONTH));&#10;&#10;Date newDate = c.getTime();&#10;context.delivery_date = dateFormat.format(newDate);&#10;&#10;String endDate = refDateFormat.format(newDate);&#10;&#10;c.add(Calendar.DATE, -(c.get(Calendar.DAY_OF_MONTH)-1));&#10;newDate = c.getTime();&#10;&#10;System.out.println(context.partner_id + &quot;-&quot; + context.nr_ref_facture);&#10;&#10;context.ref_name = refDateFormat.format(newDate) + &quot;-&quot; + endDate;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="String filepath = ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;));&#10;context.partner_id = filepath.substring(6, 16);&#10;context.currency = filepath.substring(17, 20);&#10;&#10;DateFormat dateFormat = new SimpleDateFormat(&quot;yyyyMMdd&quot;);&#10;DateFormat refDateFormat = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);&#10;Date currentDate = new Date();&#10;Calendar c = Calendar.getInstance();&#10;&#10;c.setTime(currentDate);&#10;c.add(Calendar.DATE, -c.get(Calendar.DAY_OF_MONTH));&#10;&#10;Date newDate = c.getTime();&#10;context.delivery_date = dateFormat.format(newDate);&#10;&#10;String endDate = refDateFormat.format(newDate);&#10;&#10;c.add(Calendar.DATE, -(c.get(Calendar.DAY_OF_MONTH)-1));&#10;newDate = c.getTime();&#10;&#10;//System.out.println(context.partner_id + &quot;-&quot; + context.nr_ref_facture);&#10;&#10;context.ref_name = refDateFormat.format(newDate) + &quot;-&quot; + endDate;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="import java.text.DateFormat;&#10;import java.text.SimpleDateFormat;&#10;import java.util.Calendar;&#10;import java.util.Date;"/>
     <elementParameter field="TEXT" name="LABEL" value="set_context2"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -856,13 +856,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_7ae8a338-4657-4d36-a5f9-da680e2d5df7"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>GiZFQJU+EL7GO/yseJ2TJTLMOZlGw0pjzDsakBElk0mfo6pttwIErLH4WQ/pFvvWa8obvJRVqbqf
-fXbFFsiFvw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f9ee3501-4d9c-4641-9ee9-ed84b5733f57"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Oy40fGZXEqvzOacDH9/H3m1+mwZrsN02pECETsRW8JCfBDkNr+Xv3EdMa4I/UyuLdyKndw5r2AQk
-kS5hWf/tsA==</DigestValue></Reference></SignedInfo><SignatureValue>NF+Cj6tEq1FDMtHaRjDotQrJhsfRgTPa5y3N1plW3Wsj9osyk5j+NRSbshYKe9hjijDxnBUVNNpz
-MACiKoV46UTEGkONfyAH/8Of6DxD3Te44mbORzXZJcUae9qP1ohSQMo3C/psTfQACL+Y61zr8Y2X
-trUrJr8bXkfM+5z+6PPFlOQOC1NdMOA6P6DGl1RMTdCsa+6ZxNIZ2EM9hQm37fe3zjpI3uPknMUx
-4Xgp5/b2oKByh3hxeHz23aQpySwMtlJWBrFzedEAMGjzmV6rO82Cb/uFYx2bYDldDUJ9MazSqeO/
-akvM2bcRLjTffJl6C6jfW+Ts5bjDM2NyrEJkkw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_e8134a78-fba2-481e-a8e3-b84c5cae8547"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>WHuljRXmwlY1fsx9P2WCGGKZ4Vw+EXunueTS8upsEM2CpqWJsdAVhA9Tx/wqpIvRnaEJ2Wwhz3/4
+DTflOY7HUg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_bc9e11ad-6811-474f-a42d-1b7a70aff777"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0PGF39jk6FpYDMyhPX/6Azpm0dIsFma+FqDnD1XvVek8E2kE1EUjphpiJveAT9YTuK6LQf3mTqZI
+09sD1HuzFA==</DigestValue></Reference></SignedInfo><SignatureValue>Dk8eadciFac+Fi6iyRjmLVFKoFZ4gdsr85bEHjURMUKKMU4p44Aqs0chIFvTE2+m87ELsh0beTxD
+6JxahvI+3xzKleAJliLLkby57/BAn9DeviPo54nIdK+k5Oep0W+5Dg8upek06fSL24ifoGJsphsq
+3Q2sI3PDyIC5gtM/r3kz0co7lkHy2L+qEK2zomsuELLbgD4Opsvu5fa745K+qda3qOYjxjXlURvO
+roDQx+6kht4ua7C9ZPPch+EiyzzHQMfuVmizUiDdnORQBK3V4wj6fdcSzY9fNUgKOTGuM3FPBjfm
+wd/SpV4lSaSdoh2w/AP6CdthSPAoCJxVnue8hQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -886,4 +886,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f9ee3501-4d9c-4641-9ee9-ed84b5733f57" Target="#_7ae8a338-4657-4d36-a5f9-da680e2d5df7"><Timestamp>2020-02-13 10:06:54</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_bc9e11ad-6811-474f-a42d-1b7a70aff777" Target="#_e8134a78-fba2-481e-a8e3-b84c5cae8547"><Timestamp>2020-02-13 10:07:49</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
