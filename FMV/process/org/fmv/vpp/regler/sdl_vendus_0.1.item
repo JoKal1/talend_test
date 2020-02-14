@@ -234,7 +234,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="int seq = Numeric.sequence(&quot;s1&quot;, 1, 1);&#10;&#10;DateFormat dateFormat = new SimpleDateFormat(&quot;dd_MM_yy&quot;);&#10;Date currentDate = new Date();&#10;&#10;String today = dateFormat.format(currentDate);&#10;&#10;if (input_row.description.equals(&quot;PRL_&quot; + today) &amp;&amp; !found)&#10;&#9;{&#10;&#9;System.out.println(seq);&#10;&#9;context.found = true;&#10;&#9;context.day = input_row.description;&#10;&#9;context.sum = input_row.value;&#10;&#9;}&#10;&#9;&#10;if (context.found)&#10;&#9;{&#10;&#9;if (context.day.equals(input_row.description))&#10;&#9;&#9;{&#10;&#9;&#9;context.sum += input_row.value;&#10;&#9;&#9;}&#10;&#9;else &#10;&#9;&#9;{&#10;&#9;&#9;System.out.println(&quot;Write &quot; + context.day + &quot; -&gt; &quot; + context.sum);&#10;&#9;&#9;context.day = input_row.description;&#10;&#9;&#9;context.sum = input_row.value;&#10;&#9;&#9;}&#10;&#9;}&#10;&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="int seq = Numeric.sequence(&quot;s1&quot;, 1, 1);&#10;&#10;DateFormat dateFormat = new SimpleDateFormat(&quot;dd_MM_yy&quot;);&#10;Date currentDate = new Date();&#10;&#10;String today = dateFormat.format(currentDate);&#10;&#10;if (input_row.description.equals(&quot;PRL_&quot; + today) &amp;&amp; !context.found)&#10;&#9;{&#10;&#9;System.out.println(seq);&#10;&#9;context.found = true;&#10;&#9;context.day = input_row.description;&#10;&#9;context.sum = input_row.value;&#10;&#9;}&#10;&#9;&#10;if (context.found)&#10;&#9;{&#10;&#9;if (context.day.equals(input_row.description))&#10;&#9;&#9;{&#10;&#9;&#9;context.sum += input_row.value;&#10;&#9;&#9;}&#10;&#9;else &#10;&#9;&#9;{&#10;&#9;&#9;System.out.println(&quot;Write &quot; + context.day + &quot; -&gt; &quot; + context.sum);&#10;&#9;&#9;context.day = input_row.description;&#10;&#9;&#9;context.sum = input_row.value;&#10;&#9;&#9;}&#10;&#9;}&#10;&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="import java.text.DateFormat;&#10;import java.text.SimpleDateFormat;&#10;import java.util.Calendar;&#10;import java.util.Date;"/>
     <elementParameter field="TEXT" name="LABEL" value="process_xls"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -265,13 +265,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b03d026c-9866-4c14-a3c0-f70a12c86b1e"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>97FhRgmXeruyhOf7oS0xG6H9My04esqD4UqQatgXq0yXlLjjOtabVrTSfUO/ZbkYIIUqAvosX34n
-yrPuljuHLQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a8f5a1aa-f4db-4cc5-803a-2bd05fada5c4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>1ydSdStrxdmqU7LuFSp+oMQVUnyQlDD+/Xjs7mjnQhgpMHs20CcyC64vokEnLeQ+OCNq1SJT5cZj
-4iROzX9qKA==</DigestValue></Reference></SignedInfo><SignatureValue>N1lWbtehdUza1s1mWhJ7xvj5AxlgE012Ve8qgDmxhocyO0HMKCzr6R2LwHOtKbJ4M/I+5JKudEN0
-97mmOTilvD3FJuqtr5Xr53p6XoziQIX1cINJS2x1FuocVQlMjIwdO/Ia3HoaEZl+5pk0lORS1j8M
-Sk9RnemfjTt+aazpYw/mTCOsYRVN05oGxR3JfEnt2gDTdkJhSrpwsRbMEjoQfc5rlML0p293hfst
-LpblBWMJtgmhgYZU4zUoO1J1y1kxaj32g3Rse5ro/r2CRTk0pWxX0FHEQsjhTGEuLYBoZ2W1fn0G
-7FGa9hj/p9GAi+jvS8KSoHww5xP9yo39IpgSyg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_1bbc4a31-d32f-4b02-8fbe-677a99ae8483"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>gbsdSJk8iPJULXLw5jT9HCaEeEVAZzT73ERcwSUntLw9Fg57kqf0Y+KdsknGeOkyc4l7wVQV047Z
+NI3aWrKJMA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_2a9d1927-3f4c-4471-8749-3be8734f6e1c"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>poNaIYMjIv16NRVa7VjfKCV/12RwlZ6MVCc+WIiU5WXEcaEY6XX5heei57cwkDH6k8CyTszieAZ/
+4LcGgqk20w==</DigestValue></Reference></SignedInfo><SignatureValue>euLwpXJZLvnJ0yLG3Ju0AXLDe63vlJa+cLPjSUhoSSQhujDMp/7/n2lXFL5El+5naEU84aPkhEjF
+uGZ2OyvFb+h7Vc8NZBdNy//V5vm6lyB4QI07oc4TcJE1Rt1B050fP1DAvo4HsfOplECJXz29XFYx
+NFWywkazK2YTCkgW5SVyZUPp+J6R7xziHdEuimo709h11HQBDovfdeJUUDSPauLkHbkacSbAv0/W
+cfH5XuPELvI1g8Q1m6eaxiqiTcEGSt6qIflUHmmCOSBqjofcgZZHc3Oxr2WM3QdZPmNw4APU1c/X
+eLbFrJr/pOh+770Huvir0bedlrseRY4ipDvYQw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -295,4 +295,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a8f5a1aa-f4db-4cc5-803a-2bd05fada5c4" Target="#_b03d026c-9866-4c14-a3c0-f70a12c86b1e"><Timestamp>2020-02-14 13:22:53</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_2a9d1927-3f4c-4471-8749-3be8734f6e1c" Target="#_1bbc4a31-d32f-4b02-8fbe-677a99ae8483"><Timestamp>2020-02-14 13:23:09</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
