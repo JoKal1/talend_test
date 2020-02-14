@@ -3,6 +3,7 @@
     <contextParameter comment="" name="found" prompt="found?" promptNeeded="false" type="id_Boolean" value="false"/>
     <contextParameter comment="" name="sum" prompt="sum?" promptNeeded="false" type="id_Integer" value="0"/>
     <contextParameter comment="" name="day" prompt="day?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="first" prompt="first?" promptNeeded="false" type="id_String" value=""/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
@@ -234,11 +235,17 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="int seq = Numeric.sequence(&quot;s1&quot;, 1, 1);&#10;&#10;DateFormat dateFormat = new SimpleDateFormat(&quot;dd_MM_yy&quot;);&#10;Date currentDate = new Date();&#10;&#10;String today = dateFormat.format(currentDate);&#10;&#10;if (context.found)&#10;&#9;{&#10;&#9;if (context.day.equals(input_row.description))&#10;&#9;&#9;{&#10;&#9;&#9;context.sum += input_row.value;&#10;&#9;&#9;}&#10;&#9;else &#10;&#9;&#9;{&#10;&#9;&#9;System.out.println(&quot;Write &quot; + context.day + &quot; -&gt; &quot; + context.sum);&#10;&#9;&#9;context.day = input_row.description;&#10;&#9;&#9;context.sum = input_row.value;&#10;&#9;&#9;}&#10;&#9;}&#10;else if (input_row.description.equals(&quot;PRL_&quot; + today))&#10;&#9;{&#10;&#9;System.out.println(seq);&#10;&#9;context.found = true;&#10;&#9;context.day = input_row.description;&#10;&#9;context.sum = input_row.value;&#10;&#9;}"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="import java.text.DateFormat;&#10;import java.text.SimpleDateFormat;&#10;import java.util.Calendar;&#10;import java.util.Date;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="DateFormat dateFormat = new SimpleDateFormat(&quot;dd_MM_yy&quot;);&#10;Date currentDate = new Date();&#10;&#10;String today = dateFormat.format(currentDate);&#10;&#10;if (context.found)&#10;&#9;{&#10;&#9;if (context.day.equals(input_row.description))&#10;&#9;&#9;{&#10;&#9;&#9;context.sum += input_row.value;&#10;&#9;&#9;}&#10;&#9;else &#10;&#9;&#9;{&#10;&#9;&#9;CSVWriter writer = new CSVWriter(new FileWriter(&quot;data.csv&quot;, true));&#10;&#9;&#9;String [] record = &quot;PRL;1;2;0;&quot; + input_row.value + &quot;&quot;.split(&quot;;&quot;);&#10;&#9;&#10;&#9;&#9;writer.writeNext(record);&#10;&#9;&#9;writer.close();&#10;&#9;&#9;&#10;&#9;&#9;System.out.println(&quot;Write &quot; + context.day + &quot; -&gt; &quot; + context.sum);&#10;&#9;&#9;context.day = input_row.description;&#10;&#9;&#9;context.sum = input_row.value;&#10;&#9;&#9;}&#10;&#9;}&#10;else if (input_row.description.equals(&quot;PRL_&quot; + today))&#10;&#9;{&#10;&#9;context.found = true;&#10;&#9;context.day = input_row.description;&#10;&#9;context.sum = input_row.value;&#10;&#9;&#10;&#9;CSVWriter writer = new CSVWriter(new FileWriter(&quot;data.csv&quot;));&#10;&#9;String [] record = &quot;Type;Début;Fin;Négatif;Positif&quot;.split(&quot;;&quot;);&#10;&#9;&#10;&#9;writer.writeNext(record);&#10;&#9;writer.close();&#10;&#9;}"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="import java.text.DateFormat;&#10;import java.text.SimpleDateFormat;&#10;import java.util.Calendar;&#10;import java.util.Date;&#10;&#10;import java.io.File;&#10;import java.io.FileNotFoundException;&#10;import java.io.PrintWriter;&#10;&#10;import java.io.FileWriter;"/>
     <elementParameter field="TEXT" name="LABEL" value="process_xls"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJavaRow_1"/>
+    <metadata connector="FLOW" name="tJavaRow_1">
+      <column comment="" key="false" length="-1" name="Type" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Timestamp_debut" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Timestamp_fin" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Negatif" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Positif" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+    </metadata>
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
@@ -248,12 +255,35 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_1"/>
   </node>
-  <connection connectorName="FLOW" label="sdl_data" lineStyle="0" metaname="tFileInputExcel_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_1" target="tJavaRow_1">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false"/>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogRow_1"/>
+  </node>
+  <connection connectorName="FLOW" label="xls_data" lineStyle="0" metaname="tFileInputExcel_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_1" target="tJavaRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="sdl_data"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="xls_data"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tJava_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
+  </connection>
+  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tLogRow_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputExcel_1"/>
@@ -265,13 +295,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_8f7310cd-d639-4d81-8968-0ea260e8bd2f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>h6Kt2Cqk8zBoilbkNP5i584OvH3vf8a/nLIROCgrC2u9NWHLQ2A6rjAVFKerLfrEWglkWd+gaH82
-RpcMzhC3Jw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_43ebcde6-db66-4570-b369-5353618d7f39"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Tx2uDORTcLWHpArfzf/aqmEZj6ochgxro6GVryuKcikky0pu1kpelDk4UFdtBqSl0Ti6iXNzxllx
-OCntGJdtzw==</DigestValue></Reference></SignedInfo><SignatureValue>Snmheptrm22AfNXJigXdO6sFQv1eJfjcQ9ngzYegvaUbdVhDfYyYOvaQZ/BbQn82Sq12z7NGrZYf
-ffE98866fown1RxyFDT9o1+2Jb73rDkr2JjV4xk68xpMhqeJ/YTU3t07yjyQKQlMuFXKpUOYSsF7
-rkbvhWxm3xdPO0S2CtLNnepaH4eabDs7azDQL6hHaCqpd9Vlp+ixZkRNNmECMsPH+y14wFXnErSS
-fEEk2x6CWgpnMra7m69xtv8jC8W7QnJcFgNrPTCtFBiMFhbmO7W6x7uzhVA4p7gh291xEGISGR3B
-tx2/sf/tgtePtapnae1Nf9hIR2ep+5spdNWqaw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_a7894261-d797-4c12-8286-fc257bd4b11b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>N2TEFyud2sXDHfXEmnL/HLh9MQGIt2a2mWC+SB+cpPUH54OlzirXzzQpbm8kuQD5lK0Nb8t/4Zdy
+IxYg5XV3zw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_82c83c59-2f35-4ccc-826b-80f701301580"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>zO/5XH/BjYRcnW/FA8EHqy5DDPSwDqXiqSSZdIlFr0uKSRUbewuqvQyfSvvNvciOnEo+EfRYU5MO
+4MppPSMu5Q==</DigestValue></Reference></SignedInfo><SignatureValue>GXeg2SF1+lmKM5+NiMkQRZr8tq125H2tC1g6Jk7UuzJzwuVUJe0masPfq6D6ywFesa3xgfingPV2
+sXJw60Y4wrPr4lF5/9IKRRwFfShqwOT6d4EBvgBwjN2/nrha2ZiLsfOh3jCnFA8UGCMuFaD5ARC7
+DoGJAgQTXxezi+pTcOfCLLpJKRAHPn7V2l4oNeoeO5sQIkK20dAQ0y8DxJTQOu5WAsSLEfveQEQb
+2Uq1fJvG8REoT6inq8Au8smZapx1QyEe0qiOfafyFGqWYDSoRFYgThYgUqKwbMp6ftTgIM/ZrYWC
+Bbszg9O+K9wl3fiEUC3hvU/1If7ufdmTo7DIqg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -295,4 +325,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_43ebcde6-db66-4570-b369-5353618d7f39" Target="#_8f7310cd-d639-4d81-8968-0ea260e8bd2f"><Timestamp>2020-02-14 13:25:25</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_82c83c59-2f35-4ccc-826b-80f701301580" Target="#_a7894261-d797-4c12-8286-fc257bd4b11b"><Timestamp>2020-02-14 14:28:52</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
