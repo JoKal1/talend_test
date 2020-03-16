@@ -242,9 +242,40 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="-64">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="-64">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_2"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="timestamp"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="value"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="status"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="LABEL" value="show_data"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogRow_2">
+      <column comment="" key="false" length="-1" name="timestamp" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="status" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="-64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="DateFormat dateFormat = new SimpleDateFormat(&quot;dd.MM.yyyy HH:mm&quot;);&#10;Calendar dateObj = Calendar.getInstance();&#10;&#10;dateObj.setTime(new Date());&#10;dateObj.set(Calendar.MINUTE, 0);&#10;dateObj.add(Calendar.HOUR_OF_DAY,  2);&#10;&#10;FileWriter fstream = new FileWriter(&quot;C:/Temp/GBFlex/ompex_out.csv&quot;, false);&#10;BufferedWriter out = new BufferedWriter(fstream);&#10;&#10;out.write(&quot;Beginn Lieferun;Ende Lieferung;QTY BUY [MWh];QTY SELL [MWh];PRICE BUY [EUR];PRICE SELL [EUR]&quot;);&#10;out.newLine();&#10;&#10;String start = dateFormat.format(dateObj.getTime());&#10;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;String end = dateFormat.format(dateObj.getTime());&#10;float price_buy = 0;&#10;float price_sell = 0;&#10;&#10;System.out.println(row1);&#10;&#10;if(context.qty_buy &gt; 0) {&#10;&#9;price_buy = row1.value;&#10;&#9;}&#10;else {&#10;&#9;price_sell = row1.value;&#10;&#9;}&#10;&#9;&#10;out.write(start + &quot;;&quot; + end + &quot;;&quot; + (context.qty_buy == null ? &quot;&quot; : context.qty_buy) + &quot;;&quot; + (context.qty_sell == null ? &quot;&quot; : context.qty_sell) + &quot;;&quot; + price_buy + &quot;;&quot; + price_sell);&#10;&#10;for (int i = 1; i&lt;=24; i++) {&#10;&#9;start = dateFormat.format(dateObj.getTime());&#10;&#9;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;&#9;end = dateFormat.format(dateObj.getTime());&#10;&#9;&#10;&#9;out.newLine();&#10;&#9;out.write(start + &quot;;&quot; + end + &quot;;;;;&quot;);&#10;&#9;}&#10;&#9;&#9;&#10;out.close();"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="DateFormat dateFormat = new SimpleDateFormat(&quot;dd.MM.yyyy HH:mm&quot;);&#10;Calendar dateObj = Calendar.getInstance();&#10;&#10;dateObj.setTime(new Date());&#10;dateObj.set(Calendar.MINUTE, 0);&#10;dateObj.add(Calendar.HOUR_OF_DAY,  2);&#10;&#10;FileWriter fstream = new FileWriter(&quot;C:/Temp/GBFlex/ompex_out.csv&quot;, false);&#10;BufferedWriter out = new BufferedWriter(fstream);&#10;&#10;out.write(&quot;Beginn Lieferun;Ende Lieferung;QTY BUY [MWh];QTY SELL [MWh];PRICE BUY [EUR];PRICE SELL [EUR]&quot;);&#10;out.newLine();&#10;&#10;String start = dateFormat.format(dateObj.getTime());&#10;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;String end = dateFormat.format(dateObj.getTime());&#10;float price_buy = 0;&#10;float price_sell = 0;&#10;&#10;System.out.println(data);&#10;&#10;if(context.qty_buy &gt; 0) {&#10;&#9;price_buy = data.value;&#10;&#9;}&#10;else {&#10;&#9;price_sell = data.value;&#10;&#9;}&#10;&#9;&#10;out.write(start + &quot;;&quot; + end + &quot;;&quot; + (context.qty_buy == null ? &quot;&quot; : context.qty_buy) + &quot;;&quot; + (context.qty_sell == null ? &quot;&quot; : context.qty_sell) + &quot;;&quot; + price_buy + &quot;;&quot; + price_sell);&#10;&#10;for (int i = 1; i&lt;=24; i++) {&#10;&#9;start = dateFormat.format(dateObj.getTime());&#10;&#9;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;&#9;end = dateFormat.format(dateObj.getTime());&#10;&#9;&#10;&#9;out.newLine();&#10;&#9;out.write(start + &quot;;&quot; + end + &quot;;;;;&quot;);&#10;&#9;}&#10;&#9;&#9;&#10;out.close();"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value=""/>
     <elementParameter field="TEXT" name="LABEL" value="write_output"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -598,9 +629,13 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tsData"/>
   </connection>
-  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tExtractJSONFields_1" offsetLabelX="0" offsetLabelY="0" source="tExtractJSONFields_1" target="tJava_2">
+  <connection connectorName="FLOW" label="json" lineStyle="0" metaname="tExtractJSONFields_1" offsetLabelX="0" offsetLabelY="0" source="tExtractJSONFields_1" target="tLogRow_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="json"/>
+  </connection>
+  <connection connectorName="FLOW" label="data" lineStyle="0" metaname="tLogRow_2" offsetLabelX="0" offsetLabelY="0" source="tLogRow_2" target="tJava_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="data"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tJava_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
@@ -713,13 +748,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_eb262b0c-8088-47b7-8226-6e664865cd49"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>fkA44Q9etRz7VqGRuR5FMWjvrakVcQMkIlyQP5CskRQ+NY8gvxgEcLpdG7f/GC2JmH8uFz1Hi6oC
-LKYz8Eu/Lw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_de021333-12be-46b4-9854-9cd7dd5844ce"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>2QqMqhYHd7k6dYEkIAg1tFS3cOV2nVPVU9U7v/0gmNzTbcQIOkK48re2+DgBFUuERtG1+L9pe0mW
-gMQd912HsQ==</DigestValue></Reference></SignedInfo><SignatureValue>CihXI+t8H5XZFV+V9biM1rjmAkc7UKO7RzKGFPh3FN4BrMVLhCIZL7+HSPHoCg7Ha9fQhHkkvaVR
-BxeoC/ZI8XFRWa2yf/47eBfLXTMzFYqVjNJwhrluaSj+IRw5MUHpIO0yFtISVgSiVg7ga5faqRkr
-YktLEvbel6h586HKMqd1zPSt+7U2itXGFqlrSisDAsvxwvmexDeWPHCTkKBC5+5Zu2rKOujfNV5h
-5HzBfAG7Shme0jSkttJ9ZMbsgg+pOFAowhQbw4cguvB0+RVWgdpREZmLQjSpPW+ePadLo+f5ogsq
-o3c2FKMBn5PcWb+2HSEcIW7zPW164Ur+2YrgPw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c0f870d3-904d-4e30-ac91-37c9e52c7358"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>DZqtvts8EseIZ2Uz5YMiDMIx6i47a9FQZdIjAs8L9TMsPVMdS0Yoh9gz7Z+drlcKVBStJq0u/+xb
+md8KbzHG8A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ecf0184f-6ce1-4b55-b031-e250006ec0d1"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>gO8ba3nV6ydlYyX/wI07aZCLUQCRXsPTW50h6nyVCoYyqqB+fSMxa+BjjKIRBNRcyUxbKAqkEYrP
+MbCjx6z56g==</DigestValue></Reference></SignedInfo><SignatureValue>aKTz+Ut7R2nJGkBZfQtC6KhV6+Gup9dsL3Jdg4H+SAnuBcA6IhTZoJ2tVfKruX3X4UwdBad3j9Mc
+64c6/qZZodRvqE74ZSrgIJ2LWxZH6pfsxO4cwB+3aGI4VsYL4f3Oum3wtj09kC64eSl9SE6FUXIC
+CVcq9oXiOdL0xPrWOutZ52YZ1n+58QYTncAKyMQKSa60EjJYiyPQ85Fgrc63Hxum03lRPHuwTF+P
+dCCAbdXkvbOEE6zR1PVnHRjWPnsqSHAHP0klzB7RBxqh0yO1IHm4bU/ayjDZzdBjsyJv048v+WTZ
+L8X9IU2Y2h3yTTQKiLGp50tPtzMdeZytBzQGDg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -743,4 +778,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_de021333-12be-46b4-9854-9cd7dd5844ce" Target="#_eb262b0c-8088-47b7-8226-6e664865cd49"><Timestamp>2020-03-16 13:28:57</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ecf0184f-6ce1-4b55-b031-e250006ec0d1" Target="#_c0f870d3-904d-4e30-ac91-37c9e52c7358"><Timestamp>2020-03-16 15:42:08</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
