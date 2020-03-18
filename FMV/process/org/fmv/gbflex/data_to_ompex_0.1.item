@@ -7,6 +7,7 @@
     <contextParameter comment="" name="qty_sell" prompt="qty_sell?" promptNeeded="false" type="id_Float" value="0"/>
     <contextParameter comment="" name="qty_buy" prompt="qty_buy?" promptNeeded="false" type="id_Float" value="0"/>
     <contextParameter comment="" name="ts_value" prompt="ts_value?" promptNeeded="false" type="id_Double" value=""/>
+    <contextParameter comment="" name="ts_file" prompt="ts_file?" promptNeeded="false" type="id_String" value=""/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
@@ -119,7 +120,7 @@
     <routinesParameter id="_W9zaFtX-Eeil3oUGBkSqXg" name="TalendStringUtil"/>
     <routinesParameter id="_W9qQJtX-Eeil3oUGBkSqXg" name="TalendString"/>
   </parameters>
-  <node componentName="tRESTClient" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="256" posY="-64">
+  <node componentName="tRESTClient" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRESTClient_1"/>
     <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
     <elementParameter field="TEXT" name="URL" value="&quot;http://fmvwls2.net.fmv.ch:7013&quot;"/>
@@ -191,7 +192,7 @@
       <column defaultValue="" key="false" length="1024" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tExtractJSONFields" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="-64">
+  <node componentName="tExtractJSONFields" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="512" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tExtractJSONFields_1"/>
     <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
     <elementParameter field="CLOSED_LIST" name="READ_BY" value="JSONPATH"/>
@@ -243,7 +244,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="-64">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_3"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.ts_value = input_row.value;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
@@ -526,9 +527,9 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_3"/>
   </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="384" posY="64">
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="384" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="DateFormat dateFormat = new SimpleDateFormat(&quot;dd.MM.yyyy HH:mm&quot;);&#10;Calendar dateObj = Calendar.getInstance();&#10;&#10;dateObj.setTime(new Date());&#10;dateObj.set(Calendar.MINUTE, 0);&#10;dateObj.add(Calendar.HOUR_OF_DAY,  2);&#10;&#10;FileWriter fstream = new FileWriter(&quot;C:/Temp/GBFlex/ompex_out.csv&quot;, false);&#10;BufferedWriter out = new BufferedWriter(fstream);&#10;&#10;out.write(&quot;Beginn Lieferun;Ende Lieferung;QTY BUY [MWh];QTY SELL [MWh];PRICE BUY [EUR];PRICE SELL [EUR]&quot;);&#10;out.newLine();&#10;&#10;String start = dateFormat.format(dateObj.getTime());&#10;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;String end = dateFormat.format(dateObj.getTime());&#10;double price_buy = 0;&#10;double price_sell = 0;&#10;&#10;System.out.println(context.ts_value);&#10;&#10;if(context.qty_buy &gt; 0) {&#10;&#9;price_buy = context.ts_value * 1.3;&#10;&#9;}&#10;else {&#10;&#9;price_sell = context.ts_value * 0.7;&#10;&#9;}&#10;&#9;&#10;context.qty_buy = context.qty_buy == null ? 0 : context.qty_buy;&#10;context.qty_sell = context.qty_sell == null ? 0 : context.qty_sell;&#10;context.qty_buy = context.qty_buy &gt; 15 ? 15 : context.qty_buy;&#10;context.qty_sell = context.qty_sell &gt; 15 ? 15 : context.qty_sell;&#10;&#9;&#10;out.write(start + &quot;;&quot; + end + &quot;;&quot; + (context.qty_buy == 0 ? &quot;&quot; : context.qty_buy) + &quot;;&quot; + (context.qty_sell == 0 ? &quot;&quot; : context.qty_sell) + &quot;;&quot; + price_buy + &quot;;&quot; + price_sell);&#10;&#10;for (int i = 1; i&lt;=24; i++) {&#10;&#9;start = dateFormat.format(dateObj.getTime());&#10;&#9;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;&#9;end = dateFormat.format(dateObj.getTime());&#10;&#9;&#10;&#9;out.newLine();&#10;&#9;out.write(start + &quot;;&quot; + end + &quot;;;;;&quot;);&#10;&#9;}&#10;&#9;&#9;&#10;out.close();"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="DateFormat dateFormat = new SimpleDateFormat(&quot;dd.MM.yyyy HH:mm&quot;);&#10;DateFormat dF_filename = new SimpleDateFormat(&quot;yyyyMMdd_HHmmss&quot;);&#10;Calendar dateObj = Calendar.getInstance();&#10;&#10;dateObj.setTime(new Date());&#10;&#10;String date_filename = dF_filename.format(dateObj.getTime());&#10;&#10;dateObj.set(Calendar.MINUTE, 0);&#10;dateObj.add(Calendar.HOUR_OF_DAY,  2);&#10;&#10;FileWriter fstream = new FileWriter(&quot;C:/Temp/GBFlex/Flex_ToSell_OMPEX-&quot; + date_filename + &quot;.csv&quot;, false);&#10;BufferedWriter out = new BufferedWriter(fstream);&#10;&#10;out.write(&quot;Beginn_Lieferung;Ende_Lieferung;QTY_BUY;QTY_SELL;PRICE_BUY;PRICE_SELL;&quot; + context.ts_file);&#10;out.newLine();&#10;&#10;String start = dateFormat.format(dateObj.getTime());&#10;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;String end = dateFormat.format(dateObj.getTime());&#10;double price_buy = 0;&#10;double price_sell = 0;&#10;&#10;System.out.println(context.ts_value);&#10;&#10;if(context.qty_buy &gt; 0) {&#10;&#9;price_buy = context.ts_value * 1.3;&#10;&#9;}&#10;else {&#10;&#9;price_sell = context.ts_value * 0.7;&#10;&#9;}&#10;&#9;&#10;context.qty_buy = context.qty_buy == null ? 0 : context.qty_buy;&#10;context.qty_sell = context.qty_sell == null ? 0 : context.qty_sell;&#10;context.qty_buy = context.qty_buy &gt; 15 ? 15 : context.qty_buy;&#10;context.qty_sell = context.qty_sell &gt; 15 ? 15 : context.qty_sell;&#10;&#9;&#10;out.write(start + &quot;;&quot; + end + &quot;;&quot; + (context.qty_buy == 0 ? &quot;&quot; : context.qty_buy) + &quot;;&quot; + (context.qty_sell == 0 ? &quot;&quot; : context.qty_sell) + &quot;;&quot; + price_buy + &quot;;&quot; + price_sell);&#10;&#10;for (int i = 1; i&lt;=24; i++) {&#10;&#9;start = dateFormat.format(dateObj.getTime());&#10;&#9;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;&#9;end = dateFormat.format(dateObj.getTime());&#10;&#9;&#10;&#9;out.newLine();&#10;&#9;out.write(start + &quot;;&quot; + end + &quot;;;;;&quot;);&#10;&#9;}&#10;&#9;&#9;&#10;out.close();"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value=""/>
     <elementParameter field="TEXT" name="LABEL" value="write_output"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -538,7 +539,7 @@
       <column comment="" key="false" length="-1" name="status" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="64">
+  <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="896" posY="-32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSendMail_1"/>
     <elementParameter field="TEXT" name="TO" value="&quot;jakob.kolinski@fmv.ch&quot;"/>
     <elementParameter field="TEXT" name="FROM" value="&quot;gbflex@fmv.ch&quot;"/>
@@ -568,6 +569,123 @@
     <elementParameter field="TEXT" name="LABEL" value="send_error"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tSendMail_1"/>
+  </node>
+  <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="512" posY="-32">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/GBFlex&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
+    <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="YES"/>
+    <elementParameter field="CHECK" name="ERROR" value="false"/>
+    <elementParameter field="CHECK" name="GLOBEXPRESSIONS" value="true"/>
+    <elementParameter field="TABLE" name="FILES">
+      <elementValue elementRef="FILEMASK" value="&quot;Flex_ToSell_GBFlex-*.csv&quot;"/>
+    </elementParameter>
+    <elementParameter field="RADIO" name="ORDER_BY_NOTHING" value="true"/>
+    <elementParameter field="RADIO" name="ORDER_BY_FILENAME" value="false"/>
+    <elementParameter field="RADIO" name="ORDER_BY_FILESIZE" value="false"/>
+    <elementParameter field="RADIO" name="ORDER_BY_MODIFIEDDATE" value="false"/>
+    <elementParameter field="RADIO" name="ORDER_ACTION_ASC" value="true"/>
+    <elementParameter field="RADIO" name="ORDER_ACTION_DESC" value="false"/>
+    <elementParameter field="CHECK" name="IFEXCLUDE" value="false"/>
+    <elementParameter field="TEXT" name="EXCLUDEFILEMASK" show="false" value="&quot;*.txt&quot;"/>
+    <elementParameter field="CHECK" name="FORMAT_FILEPATH_TO_SLASH" value="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="get_source"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="608" posY="-32">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputDelimited_1"/>
+    <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
+    <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_2_CURRENT_FILEPATH&quot;))"/>
+    <elementParameter field="CHECK" name="CSV_OPTION" value="false"/>
+    <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;"/>
+    <elementParameter field="OPENED_LIST" name="CSVROWSEPARATOR" show="false" value="&quot;\n&quot;"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;;&quot;"/>
+    <elementParameter field="TEXT" name="ESCAPE_CHAR" show="false" value="&quot;&quot;&quot;"/>
+    <elementParameter field="TEXT" name="TEXT_ENCLOSURE" show="false" value="&quot;&quot;&quot;"/>
+    <elementParameter field="TEXT" name="HEADER" value="0"/>
+    <elementParameter field="TEXT" name="FOOTER" value="0"/>
+    <elementParameter field="TEXT" name="LIMIT" value="1"/>
+    <elementParameter field="CHECK" name="REMOVE_EMPTY_ROW" value="true"/>
+    <elementParameter field="CHECK" name="UNCOMPRESS" value="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="DIRECTORY" name="TEMP_DIR" show="false" value="&quot;C:/Talend/Talend-Studio-20180411_1414-V7.0.1/workspace&quot;"/>
+    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
+    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
+    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
+    <elementParameter field="CHECK" name="RANDOM" value="false"/>
+    <elementParameter field="TEXT" name="NB_RANDOM" show="false" value="10"/>
+    <elementParameter field="CHECK" name="TRIMALL" value="false"/>
+    <elementParameter field="TABLE" name="TRIMSELECT">
+      <elementValue elementRef="SCHEMA_COLUMN" value="start_ts"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="end_ts"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="qty_buy"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="qty_sell"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="price_buy"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="price_sell"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ts_file"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="CHECK_FIELDS_NUM" value="false"/>
+    <elementParameter field="CHECK" name="CHECK_DATE" value="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="SPLITRECORD" value="false"/>
+    <elementParameter field="CHECK" name="ENABLE_DECODE" value="false"/>
+    <elementParameter field="TABLE" name="DECODE_COLS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="start_ts"/>
+      <elementValue elementRef="DECODE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="end_ts"/>
+      <elementValue elementRef="DECODE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="qty_buy"/>
+      <elementValue elementRef="DECODE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="qty_sell"/>
+      <elementValue elementRef="DECODE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="price_buy"/>
+      <elementValue elementRef="DECODE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="price_sell"/>
+      <elementValue elementRef="DECODE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ts_file"/>
+      <elementValue elementRef="DECODE" value="false"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="DESTINATION" show="false" value=""/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="LABEL" value="source_file"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tFileInputDelimited_1">
+      <column comment="" key="false" length="-1" name="start_ts" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="end_ts" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="qty_buy" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="qty_sell" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="price_buy" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="price_sell" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="ts_file" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="REJECT" name="REJECT">
+      <column comment="" key="false" length="-1" name="start_ts" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="end_ts" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="qty_buy" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="qty_sell" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="price_buy" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="price_sell" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="ts_file" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="-32">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_4"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.ts_file = input_row.ts_file.substring(0,16);&#10;"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="get_ts_file"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJavaRow_4"/>
   </node>
   <connection connectorName="RESPONSE" label="tsData" lineStyle="0" metaname="tRESTClient_1" offsetLabelX="0" offsetLabelY="0" source="tRESTClient_1" target="tExtractJSONFields_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
@@ -607,10 +725,15 @@
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tRESTClient_1">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk3"/>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFileList_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk7"/>
   </connection>
   <connection connectorName="FLOW" label="flex_data" lineStyle="0" metaname="tFileInputDelimited_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_2" target="tJavaRow_2">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="ts_file"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="flex_data"/>
   </connection>
@@ -629,6 +752,23 @@
   <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tSendMail_1">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="(context.qty_buy &lt; 1 &amp;&amp; context.qty_sell &lt; 1) || (context.qty_buy &gt; 0 &amp;&amp; context.qty_sell &lt; 0)"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
+  </connection>
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tFileInputDelimited_1">
+    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
+    <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tRESTClient_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk3"/>
+  </connection>
+  <connection connectorName="FLOW" label="header_data" lineStyle="0" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tJavaRow_4">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="ts_file"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="header_data"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRESTClient_1"/>
@@ -702,13 +842,18 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_953556a3-d8c4-4b69-9844-b48a7b622375"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>8ee9siQ5uVWoAXgPDNWkFvwWmKg6v0ofWR66UrPj9/zfSLwb0JcCVGeSd9VykANurF5A9q3WrNf2
-E/qzr/61ng==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_dfd024f9-dc36-4484-a911-f786e626ad97"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>JQ7qI6F8T5QQZkwlqq17haL0nX4zfwD9gl2znbd0WVGFz/P6s7goR6IFQ5TfDUeAwHMQidvEEye6
-oi4jKTXXZA==</DigestValue></Reference></SignedInfo><SignatureValue>2WL0gourovE5YUKR84jVM9uLh/A9jk3mbSmOjA6MKDA1e9SQBGOXLSJs9iDiJO7k9vuJu2KM38of
-6a8lQ78UF01US1ttB5KyomMmlg1coV42IKVjmsX+cqCKtOp2Eu3bnaS3Smm79jFOifMn/PKbpSd+
-aWdxlj9edXTx7paI0MZT8eN4X4gienVj7wUTQdO9c7DFBZ9BEaDcDddZb5sNe/gfWayo5NdHuRpb
-rSjdU7F76toZhOtgl/3ufNGcI+8whfq6UHsf56X8untpydfgNCPPjRSQfgM5kbnDYJqlxpJIvJXp
-pzTNfpG8fbEltlFqjSvmGBeSSjijaFj6/TdhWQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_71ece204-93ff-4595-b8ca-c471e7189554"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Eeruxx7iSuoKmgCNJGYkanf+ZdYy8ILgkY7wvPb5+ryVWD95NT0C6eDy1suUbyxYoDnFDfaHrGan
+mzsfH8Dh4A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a93ec90c-2f16-46f9-ab5c-ff8dbe01ab91"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>m4lWd3nWxA01Fmqxqt49hR4JMcipH7ai5a54VI8EVRyBB4edQd3nvDn2V26J8Flu360q5BtR/0lq
+gsBL8EYAzA==</DigestValue></Reference></SignedInfo><SignatureValue>XQ26lGts25Ktiz7d9lj7R/k0x0GEgm9FWqNCX85xtFVkC1rzkGdti8OnWaGH70rGrMoonM3i/Cuh
+OgSNyGCfhnzdcKWw0CqRfuxzddrFHzN/FTKR6M84cKQg0K7CxZE6NUijR0m0Yib3ohFrKPQ/kblN
+MQ18x4UdoLcmKTvcpOAruQo73uN2PyvrjW/JCuFEhJ9n/nzMfDpNJpvCTiVoSHctaAOtPvinh5lr
+lDWEfZxK/rihtwvOI0/8/lF8AKNBcnfP5oeGenK4RpDnkd2XcRqjXO3XzbwtX7iX6Hd9+FABI+V8
+dRXsy7KP4DPRDfVW9NcnGTpavGU3otxjS7DxRw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -732,4 +877,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_dfd024f9-dc36-4484-a911-f786e626ad97" Target="#_953556a3-d8c4-4b69-9844-b48a7b622375"><Timestamp>2020-03-17 08:29:11</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a93ec90c-2f16-46f9-ab5c-ff8dbe01ab91" Target="#_71ece204-93ff-4595-b8ca-c471e7189554"><Timestamp>2020-03-18 06:56:35</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
