@@ -8,6 +8,7 @@
     <contextParameter comment="" name="qty_buy" prompt="qty_buy?" promptNeeded="false" type="id_Float" value="0"/>
     <contextParameter comment="" name="ts_value" prompt="ts_value?" promptNeeded="false" type="id_Double" value=""/>
     <contextParameter comment="" name="ts_file" prompt="ts_file?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="filename" prompt="filename?" promptNeeded="false" type="id_String" value="&quot;C:/Temp/Import/GBFlex/Data/GBFlex/Flex_ToSell_OMPEX-&quot;"/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
@@ -367,7 +368,7 @@
     <elementParameter field="PASSWORD" name="PASSPHRASE" show="false" value="0RMsyjmybrE="/>
     <elementParameter field="FILE" name="KEYSTORE_FILE" value="&quot;C:/Temp/GBFlex/Config/gbflex_keystore.jks&quot;"/>
     <elementParameter field="PASSWORD" name="KEYSTORE_PASS" value="QMgM/J/TYZjM2SwaYQXqfrDu3ai0CkAY"/>
-    <elementParameter field="DIRECTORY" name="LOCALDIR" value="&quot;C:/Temp/GBFlex&quot;"/>
+    <elementParameter field="DIRECTORY" name="LOCALDIR" value="&quot;C:/Temp/Import/GBFlex/Data/GBFlex&quot;"/>
     <elementParameter field="TEXT" name="REMOTEDIR" value="&quot;/gbflex_staging_export/v1&quot;"/>
     <elementParameter field="CHECK" name="MOVE_TO_THE_CURRENT_DIRECTORY" show="false" value="true"/>
     <elementParameter field="CLOSED_LIST" name="MODE" show="false" value="ascii"/>
@@ -399,7 +400,7 @@
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="512" posY="-192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_1"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/GBFlex&quot;"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/Import/GBFlex/Data/GBFlex&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
     <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="YES"/>
@@ -531,7 +532,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="384" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="DateFormat dateFormat = new SimpleDateFormat(&quot;dd.MM.yyyy HH:mm&quot;);&#10;DateFormat dF_filename = new SimpleDateFormat(&quot;yyyyMMdd_HHmmss&quot;);&#10;Calendar dateObj = Calendar.getInstance();&#10;&#10;dateObj.setTime(new Date());&#10;&#10;String date_filename = dF_filename.format(dateObj.getTime());&#10;&#10;dateObj.set(Calendar.MINUTE, 0);&#10;dateObj.add(Calendar.HOUR_OF_DAY,  2);&#10;&#10;FileWriter fstream = new FileWriter(&quot;C:/Temp/GBFlex/Flex_ToSell_OMPEX-&quot; + date_filename + &quot;.csv&quot;, false);&#10;BufferedWriter out = new BufferedWriter(fstream);&#10;&#10;out.write(&quot;Beginn_Lieferung;Ende_Lieferung;QTY_BUY;QTY_SELL;PRICE_BUY;PRICE_SELL;&quot; + context.ts_file);&#10;out.newLine();&#10;&#10;String start = dateFormat.format(dateObj.getTime());&#10;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;String end = dateFormat.format(dateObj.getTime());&#10;double price_buy = 0;&#10;double price_sell = 0;&#10;&#10;System.out.println(context.ts_value + &quot;-&quot; + context.qty_buy + &quot;-&quot; + context.qty_sell);&#10;&#10;if((context.qty_buy == null ? 0 : context.qty_buy) &gt; 0) {&#10;&#9;price_buy = context.ts_value * 1.3;&#10;&#9;}&#10;else {&#10;&#9;price_sell = context.ts_value * 0.7;&#10;&#9;}&#10;&#9;&#10;context.qty_buy = context.qty_buy == null ? 0 : context.qty_buy;&#10;context.qty_sell = context.qty_sell == null ? 0 : context.qty_sell;&#10;context.qty_buy = context.qty_buy &gt; 15 ? 15 : context.qty_buy;&#10;context.qty_sell = context.qty_sell &gt; 15 ? 15 : context.qty_sell;&#10;&#9;&#10;out.write(start + &quot;;&quot; + end + &quot;;&quot; + (context.qty_buy == 0 ? &quot;&quot; : context.qty_buy) + &quot;;&quot; + (context.qty_sell == 0 ? &quot;&quot; : context.qty_sell) + &quot;;&quot; + price_buy + &quot;;&quot; + price_sell);&#10;&#10;for (int i = 1; i&lt;=24; i++) {&#10;&#9;start = dateFormat.format(dateObj.getTime());&#10;&#9;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;&#9;end = dateFormat.format(dateObj.getTime());&#10;&#9;&#10;&#9;out.newLine();&#10;&#9;out.write(start + &quot;;&quot; + end + &quot;;;;;&quot;);&#10;&#9;}&#10;&#9;&#9;&#10;out.close();"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="DateFormat dateFormat = new SimpleDateFormat(&quot;dd.MM.yyyy HH:mm&quot;);&#10;DateFormat dF_filename = new SimpleDateFormat(&quot;yyyyMMdd_HHmmss&quot;);&#10;Calendar dateObj = Calendar.getInstance();&#10;&#10;dateObj.setTime(new Date());&#10;&#10;String date_filename = dF_filename.format(dateObj.getTime());&#10;&#10;dateObj.set(Calendar.MINUTE, 0);&#10;dateObj.add(Calendar.HOUR_OF_DAY,  2);&#10;&#10;FileWriter fstream = new FileWriter(context.filename + date_filename + &quot;.csv&quot;, false);&#10;BufferedWriter out = new BufferedWriter(fstream);&#10;&#10;out.write(&quot;Beginn_Lieferung;Ende_Lieferung;QTY_BUY;QTY_SELL;PRICE_BUY;PRICE_SELL;&quot; + context.ts_file);&#10;out.newLine();&#10;&#10;String start = dateFormat.format(dateObj.getTime());&#10;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;String end = dateFormat.format(dateObj.getTime());&#10;double price_buy = 0;&#10;double price_sell = 0;&#10;&#10;System.out.println(context.ts_value + &quot;-&quot; + context.qty_buy + &quot;-&quot; + context.qty_sell);&#10;&#10;if((context.qty_buy == null ? 0 : context.qty_buy) &gt; 0) {&#10;&#9;price_buy = context.ts_value * 1.3;&#10;&#9;}&#10;else {&#10;&#9;price_sell = context.ts_value * 0.7;&#10;&#9;}&#10;&#9;&#10;context.qty_buy = context.qty_buy == null ? 0 : context.qty_buy;&#10;context.qty_sell = context.qty_sell == null ? 0 : context.qty_sell;&#10;context.qty_buy = context.qty_buy &gt; 15 ? 15 : context.qty_buy;&#10;context.qty_sell = context.qty_sell &gt; 15 ? 15 : context.qty_sell;&#10;&#9;&#10;out.write(start + &quot;;&quot; + end + &quot;;&quot; + (context.qty_buy == 0 ? &quot;&quot; : context.qty_buy) + &quot;;&quot; + (context.qty_sell == 0 ? &quot;&quot; : context.qty_sell) + &quot;;&quot; + price_buy + &quot;;&quot; + price_sell);&#10;&#10;for (int i = 1; i&lt;=24; i++) {&#10;&#9;start = dateFormat.format(dateObj.getTime());&#10;&#9;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;&#9;end = dateFormat.format(dateObj.getTime());&#10;&#9;&#10;&#9;out.newLine();&#10;&#9;out.write(start + &quot;;&quot; + end + &quot;;;;;&quot;);&#10;&#9;}&#10;&#9;&#9;&#10;out.close();"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value=""/>
     <elementParameter field="TEXT" name="LABEL" value="write_output"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -574,7 +575,7 @@
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="-32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/GBFlex&quot;"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/Import/GBFlex/Data/GBFlex&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
     <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="YES"/>
@@ -691,7 +692,7 @@
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="256" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_3"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/GBFlex&quot;"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/Import/GBFlex/Data/GBFlex&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
     <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="YES"/>
@@ -741,7 +742,7 @@
     <elementParameter field="CLOSED_LIST" name="AUTH_METHOD" value="PASSWORD"/>
     <elementParameter field="FILE" name="PRIVATEKEY" show="false" value="&quot;&quot;"/>
     <elementParameter field="PASSWORD" name="PASSPHRASE" show="false" value="0RMsyjmybrE="/>
-    <elementParameter field="DIRECTORY" name="LOCALDIR" value="&quot;C:/Temp/GBFlex&quot;"/>
+    <elementParameter field="DIRECTORY" name="LOCALDIR" value="&quot;C:/Temp/Import/GBFlex/Data/GBFlex&quot;"/>
     <elementParameter field="TEXT" name="REMOTEDIR" value="&quot;/ID/ToSell&quot;"/>
     <elementParameter field="CHECK" name="MOVE_TO_THE_CURRENT_DIRECTORY" show="false" value="true"/>
     <elementParameter field="FILE" name="KEYSTORE_FILE" show="false" value="&quot;&quot;"/>
@@ -956,13 +957,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_386d16f5-5148-478c-94bc-a71c3ced11ca"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>CvEq4VSa/q2d92Nr7dNEjaR5fvp+l6xZQXVzS34ja4fd2Nf8mEiIY+QM3XNFloiwIZCdBVg0vSgQ
-fushr7s7zQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_d3599201-65bf-4e9a-99e5-80350555b372"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>XunwHjiyKRtMBIe3XTXHxnJHf8u3xuVKBmiClG87iK1PTeGL2DzAELv0f/QJrOl5qEBTJY+4scXI
-9Kk3mcpRqA==</DigestValue></Reference></SignedInfo><SignatureValue>UyLOf3uo1yibSrzSU0aWjGRUawjy/286xL9vTTfo6kRM8JbzPqyBChEkxUshB+yRXciwuMMg5o86
-0jqiv1Cj4dNoiH5HftnD60A1Ou8U2SLs5bQ0OkasVf+oxFi4eUe2Vu8m0PNVAFFxbn8Rh3qDnsIo
-SVmCL3nJvHwHQNOoTjfCTTEoj8Ljf9L13nP0fuk6SwS4ROZ5vh9PtBX59/kQPSSNq4re1lx2wL+F
-2RZQu8gABMJ1rwEs5apH0C+mfoataaAy16cY1u7dxiclEz29t2Ny3EgC+gr+7c9NRp6vVJ5hXVNB
-fwt8FGFWdcCTuVMPm7xKwKsaV9z34h27JOa8Fg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_0b4675a8-eba2-40f7-a62c-3bdee4712fa1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>2R1c11aKfUySCeOeO67u6Q0NDK3HK7rS+td7pam/XxP/qGtFhT8/2dzoz5RmD3pYCYb3B/Y41xoD
+yqSQ2z7kLg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_25b8c55f-6a33-465b-b270-0ba697efe884"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>lB9vJO2xUx7eh3i5FqIxMEz96tDBuDZx/HlkJYsjIpXHWVDlq5IoxzSvAGCXwx88hWTozPwDfCXr
+qgsNaKynmQ==</DigestValue></Reference></SignedInfo><SignatureValue>2ZQmem6vQEJKD3V0eMGZhBkxvSKY1XUgLPfSmcC4/7+MKbPpxAqwacBqNL7lgPvnvUadB1OsSHzr
+C5kOzAom/km8yE3YtIyKCKTMK6y2IoA8daMhBS8c2fj2mMRYGabOTHIOLYAaEfMF+So5CZNfSqw6
+N3e5RfwR8PLCMSMRZpd66LXlkUE5vG5uURfUGI5Yl8lkkrng+V74FNb5Dvi3JihuzcKaQWtvF0fy
+eftvRX/v9dSx5yV8DUIigV2pObS3ReKNVPJsf8VOH8MQ6B7+YWa184hXguhiGo2TsbWO3xXbqrCz
+16GdYj64yLp4ukRZwap/SUPV89FZGmJSkiPUZQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -986,4 +987,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_d3599201-65bf-4e9a-99e5-80350555b372" Target="#_386d16f5-5148-478c-94bc-a71c3ced11ca"><Timestamp>2020-03-20 07:24:57</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_25b8c55f-6a33-465b-b270-0ba697efe884" Target="#_0b4675a8-eba2-40f7-a62c-3bdee4712fa1"><Timestamp>2020-03-20 07:29:37</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
