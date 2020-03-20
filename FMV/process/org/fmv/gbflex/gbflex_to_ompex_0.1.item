@@ -123,7 +123,6 @@
   </parameters>
   <node componentName="tRESTClient" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRESTClient_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
     <elementParameter field="TEXT" name="URL" value="&quot;http://fmvwls2.net.fmv.ch:7013&quot;"/>
     <elementParameter field="TEXT" name="PATH" value="&quot;/ords/aws_ec_fmv/ws_api/timeseries&quot;"/>
@@ -196,7 +195,6 @@
   </node>
   <node componentName="tExtractJSONFields" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="512" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tExtractJSONFields_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
     <elementParameter field="CLOSED_LIST" name="READ_BY" value="JSONPATH"/>
     <elementParameter field="CLOSED_LIST" name="JSON_PATH_VERSION" value="2_1_0"/>
@@ -249,7 +247,6 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_3"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.ts_value = input_row.value;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set_ts_value"/>
@@ -536,7 +533,6 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="384" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="DateFormat dateFormat = new SimpleDateFormat(&quot;dd.MM.yyyy HH:mm&quot;);&#10;DateFormat dF_filename = new SimpleDateFormat(&quot;yyyyMMdd_HHmmss&quot;);&#10;Calendar dateObj = Calendar.getInstance();&#10;&#10;dateObj.setTime(new Date());&#10;&#10;String date_filename = dF_filename.format(dateObj.getTime());&#10;&#10;dateObj.set(Calendar.MINUTE, 0);&#10;dateObj.add(Calendar.HOUR_OF_DAY,  2);&#10;&#10;FileWriter fstream = new FileWriter(context.filename + date_filename + &quot;.csv&quot;, false);&#10;BufferedWriter out = new BufferedWriter(fstream);&#10;&#10;out.write(&quot;Beginn_Lieferung;Ende_Lieferung;QTY_BUY;QTY_SELL;PRICE_BUY;PRICE_SELL;&quot; + context.ts_file);&#10;out.newLine();&#10;&#10;String start = dateFormat.format(dateObj.getTime());&#10;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;String end = dateFormat.format(dateObj.getTime());&#10;double price_buy = 0;&#10;double price_sell = 0;&#10;&#10;//System.out.println(context.ts_value + &quot;-&quot; + context.qty_buy + &quot;-&quot; + context.qty_sell);&#10;&#10;if((context.qty_buy == null ? 0 : context.qty_buy) &gt; 0) {&#10;&#9;price_buy = context.ts_value * 1.3;&#10;&#9;}&#10;else {&#10;&#9;price_sell = context.ts_value * 0.7;&#10;&#9;}&#10;&#9;&#10;context.qty_buy = context.qty_buy == null ? 0 : context.qty_buy;&#10;context.qty_sell = context.qty_sell == null ? 0 : context.qty_sell;&#10;context.qty_buy = context.qty_buy &gt; 15 ? 15 : context.qty_buy;&#10;context.qty_sell = context.qty_sell &gt; 15 ? 15 : context.qty_sell;&#10;&#9;&#10;out.write(start + &quot;;&quot; + end + &quot;;&quot; + (context.qty_buy == 0 ? &quot;&quot; : context.qty_buy) + &quot;;&quot; + (context.qty_sell == 0 ? &quot;&quot; : context.qty_sell) + &quot;;&quot; + price_buy + &quot;;&quot; + price_sell);&#10;&#10;for (int i = 1; i&lt;=24; i++) {&#10;&#9;start = dateFormat.format(dateObj.getTime());&#10;&#9;dateObj.add(Calendar.HOUR_OF_DAY, 1);&#10;&#9;end = dateFormat.format(dateObj.getTime());&#10;&#9;&#10;&#9;out.newLine();&#10;&#9;out.write(start + &quot;;&quot; + end + &quot;;;;;&quot;);&#10;&#9;}&#10;&#9;&#9;&#10;out.close();"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value=""/>
     <elementParameter field="TEXT" name="LABEL" value="write_output"/>
@@ -549,7 +545,6 @@
   </node>
   <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSendMail_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="TEXT" name="TO" value="&quot;jakob.kolinski@fmv.ch&quot;"/>
     <elementParameter field="TEXT" name="FROM" value="&quot;gbflex@fmv.ch&quot;"/>
     <elementParameter field="CHECK" name="NEED_PERSONAL_NAME" value="false"/>
@@ -698,7 +693,6 @@
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="256" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_3"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/Import/GBFlex/Data/GBFlex&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
@@ -722,7 +716,6 @@
   </node>
   <node componentName="tFileDelete" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileDelete_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_3_CURRENT_FILEPATH&quot;))"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" show="false" value="&quot;C:/Talend/Talend-Studio-20180411_1414-V7.0.1/workspace/delete_folder&quot;"/>
     <elementParameter field="TEXT" name="PATH" show="false" value="&quot;C:/Talend/Talend-Studio-20180411_1414-V7.0.1/workspace/delete_folder or delete_file&quot;"/>
@@ -736,7 +729,6 @@
   </node>
   <node componentName="tFTPPut" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFTPPut_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_Ndw2AGp6EeqlrNSDUE5aiA"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
@@ -829,16 +821,13 @@
   </node>
   <connection connectorName="RESPONSE" label="tsData" lineStyle="0" metaname="tRESTClient_1" offsetLabelX="0" offsetLabelY="0" source="tRESTClient_1" target="tExtractJSONFields_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tsData"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRESTClient_1" offsetLabelX="0" offsetLabelY="0" source="tRESTClient_1" target="tJava_2">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk6"/>
   </connection>
   <connection connectorName="FLOW" label="json" lineStyle="0" metaname="tExtractJSONFields_1" offsetLabelX="0" offsetLabelY="0" source="tExtractJSONFields_1" target="tJavaRow_3">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="json"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tJava_1">
@@ -885,11 +874,9 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="flex_data"/>
   </connection>
   <connection connectorName="COMPONENT_ERROR" label="OnComponentError" lineStyle="5" metaname="tFileInputDelimited_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_2" target="tSendMail_1">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentError2"/>
   </connection>
   <connection connectorName="COMPONENT_ERROR" label="OnComponentError" lineStyle="5" metaname="tJavaRow_2" offsetLabelX="7" offsetLabelY="-18" source="tJavaRow_2" target="tSendMail_1">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentError1"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_3" offsetLabelX="0" offsetLabelY="0" source="tJava_3" target="tFTPGet_3">
@@ -897,11 +884,9 @@
   </connection>
   <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tSendMail_1">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="(context.qty_buy &lt; 1 &amp;&amp; context.qty_sell &lt; 1) || (context.qty_buy &gt; 0 &amp;&amp; context.qty_sell &gt; 0)"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tFTPPut_2">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk8"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tFileInputDelimited_1">
@@ -910,7 +895,6 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tRESTClient_1">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk3"/>
   </connection>
   <connection connectorName="FLOW" label="header_data" lineStyle="0" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tJavaRow_4">
@@ -929,11 +913,9 @@
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_3" offsetLabelX="0" offsetLabelY="0" source="tFileList_3" target="tFileDelete_2">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate3"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFTPPut_2" offsetLabelX="0" offsetLabelY="0" source="tFTPPut_2" target="tFileList_3">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk9"/>
   </connection>
   <subjob>
@@ -1028,13 +1010,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_13d90476-8fc0-4134-b79c-712bb0c9605d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>W0CVr5WNiOib+7UZRf2fSZKsk43EFWrtaGqff/WxsY6qua/9YnVY/mSMW84NRXayxfRIJrd6MO3M
-p4TEnu6nEA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_2bb0f16c-3844-4995-9761-de58d771d17b"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>JpRWo3H9wHCg8ovmRPOATgCzHiKgA3rEF2UT9O3LPO9Zz1qpiJA7/s2meI4Ar3LThRMq17aLXrVn
-1zaB37GrIw==</DigestValue></Reference></SignedInfo><SignatureValue>ydS5NjJBFsW67/bpPL7zlqYin9PyKFAqGxE1JQ9uVw6OeNabF369hXi75ALoBxedyqZ9Gcj9JAzQ
-ASjpDnmhMLhJaNlOV3G/rp75RcswFjW5V++OgNR4LXA/nAvqu1yWAhqTz+7TH870GNmRlJLpH4vx
-3TQd5smN0gurEbRz3YnmKHR2JoMA+ghfJenjinnQ3YqwhpV7mNSmqQtMwYhs73Xfy3jx/PwooAcN
-S8Uy8R6TvbVwoPXgPki4arnrW6QM8M0nCLDroUeBz936avuqN8Wwe0M7H+EFZFHeoRiNoYVYsit8
-oNm2Wn5QJ5U6sehM39F59L3ZRelj62q2EhUUDQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_968e9499-0237-4d05-acb2-b76bbed50ecb"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>U+5kXoUXe2Q7dr/VXZ8izgSHNU+4gWAWmcM7cAWJLDuxkG1u3dPVTf/yUPT4aU1+MhysuTwZ7e2U
+lNcfNZuYww==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_fd0747cc-f19a-464c-89b4-3cae0e391448"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Uu+8azW23XJlbmZi51w+o4qDLdX6GCVlv9A0NacDnl+a7INqbDEQUlEQvZh0g+ffLMEzOyUJ8FuB
+CGpSX05liw==</DigestValue></Reference></SignedInfo><SignatureValue>msDE2Cgb3FGA6LVl+0EsHzcjkJPSCHIqYnigLR8GEx62WBQiRh7hjiNACmdfhx+QM7M+BoKQS1ea
++/UKbhmOpaElG3A4JVrcfxgm2axXMTvqMnkODx+6ixec00lX1HMVyMZZZu0E8fx3hZgSK3GrlmiE
+XmS8NK+0Zu2fQYF9V+JhwvDrUYgzNqEkak3NrFzIDMB2zRWvQet2SCvGnKG65qfUHZ9A2N8cYAgf
+PWBi2VVkMrkYkrySKnJbDoTO7O/4xZvLA37Gwks2r2Oa4puYETfp3xStjH+e3tUZYTHici3d36Go
+vBl0qxafsuaSEQOp5fewxUgJm1w7Sh3y1w8rIA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -1058,4 +1040,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_2bb0f16c-3844-4995-9761-de58d771d17b" Target="#_13d90476-8fc0-4134-b79c-712bb0c9605d"><Timestamp>2020-03-20 10:47:38</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_fd0747cc-f19a-464c-89b4-3cae0e391448" Target="#_968e9499-0237-4d05-acb2-b76bbed50ecb"><Timestamp>2020-03-20 10:49:10</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
