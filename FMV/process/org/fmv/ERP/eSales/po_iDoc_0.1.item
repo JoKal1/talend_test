@@ -149,6 +149,7 @@
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/eSales_S4Hana/destination/&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
@@ -172,6 +173,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="String filepath = ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;));&#10;context.partner_id = filepath.substring(6, 16);&#10;context.currency = filepath.substring(17, 20);&#10;context.doc_type = &quot;ZEN1&quot;;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="setContext"/>
@@ -186,6 +188,7 @@
   </node>
   <node componentName="tFileInputXML" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputXML_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_a0FI0BZlEeqVfa3eaR9Pbw"/>
     <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
@@ -272,6 +275,7 @@
   </node>
   <node componentName="tHMap" componentVersion="1.0" offsetLabelX="0" offsetLabelY="0" posX="480" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tHMap_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="LABEL" name="MAPPATH_HELP" value="To create a new map based on the input and output of tHMap,&#10;use Open Map Editor below. To use an existing map, select the Map Path&#10;below and then use Open Map Editor."/>
     <elementParameter field="EXTERNAL" name="MAP_EDITOR" value=""/>
     <elementParameter field="HMAP_PATH" name="HMAP_PATH" value="&quot;Jobs/eSales_achats/tHMap_1&quot;"/>
@@ -312,6 +316,7 @@
   </node>
   <node componentName="tSAPIDocOutput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPIDocOutput_3"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="LABEL" name="NOTE" show="false" value="To use this component, you need to register the SAP Java Connectors (sapjco3.jar and sapidoc3.jar) in the module view"/>
     <elementParameter field="LABEL" name="NOTE2" value="To use this component, you need to register the SAP Java Connectors sapjco3.jar in the module view"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
@@ -712,6 +717,7 @@
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/eSales_S4Hana/destination/&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
@@ -735,6 +741,7 @@
   </node>
   <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileCopy_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_2_CURRENT_FILEPATH&quot;))"/>
     <elementParameter field="CHECK" name="ENABLE_COPY_DIRECTORY" value="false"/>
     <elementParameter field="DIRECTORY" name="SOURCE_DERECTORY" show="false" value="&quot;C:/Talend/Talend-Studio-20180411_1414-V7.0.1/workspace&quot;"/>
@@ -755,22 +762,27 @@
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tJava_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFileList_2">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk3"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tFileInputXML_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate3"/>
   </connection>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tFileInputXML_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputXML_1" target="tHMap_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <connection connectorName="FLOW" label="idoc" lineStyle="0" metaname="idoc" offsetLabelX="0" offsetLabelY="0" source="tHMap_1" target="tSAPIDocOutput_3">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="idoc"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tLoop_1" offsetLabelX="0" offsetLabelY="0" source="tLoop_1" target="tJava_3">
@@ -779,6 +791,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate7"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tLoop_1" offsetLabelX="0" offsetLabelY="0" source="tLoop_1" target="tFileList_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tJava_3" offsetLabelX="0" offsetLabelY="0" source="tJava_3" target="tDBInput_2">
@@ -868,6 +881,7 @@
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tFileCopy_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate8"/>
   </connection>
   <subjob>
@@ -932,13 +946,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6457dd04-13fe-426e-8177-25e228d6ac63"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>6ErU+l+mFIxd+SkwjrskoqwZ6eWcKWtF7HsrgFAp2s5PO3MIhUvV+0UmLEydL3DyFh/EXEOBlPxZ
-Sm65QpySDw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_22471339-ad93-46ee-9b12-37ad40ee5e97"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ymhCdJ3aiYatG7EGuhGNsclSZkAzCjsbz2cS2fsM70t0jAT94k9tT2aE0SKREMhnHIBqr2X0Exma
-tOI0KVrw6w==</DigestValue></Reference></SignedInfo><SignatureValue>31pYVhRRfW0pclq27st5fuQD+TwiBUSKwB4upBMyjK27V512sFya4NLH6mMSRp8DI8wgoeKhFNIc
-7v/UnTk11a0fSUBl5UtH3RmCD0S0D5zh3ba5pi0Cr50ZsyKVHsU7v13I2/wo98okHl8ttWEePz5P
-n0zp5KiHasNRdrfCxpRlBjpdU26mgG4tIuvUc4BbRxtpP7gL4obD+qMuzs975IqBK7VHQqCTqQuY
-ve93zHA9n21L1wg6UINeRTJc2Z59j6qvy7XF/0VbmRuPI6OQvMJyHllez0A3lcgr7JHEtwRVKI6f
-2XzLtPrNySQLgBjND50w61ZfMuNkQ1AM+Rt9Vw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6cb3e9fa-84b3-4e08-b15e-bd6419b99826"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>l6wdZ8IOJUwu5PkDE/FacbHotIqPWK/LSv2Hvrpgffh9YRKWqQJWho0wfLrzeT4zZyjoQ9NomBXE
+F741FWRtQw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_d9e0a75e-e894-4bcc-8ada-de1570cf287e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>NylybnaeixWaNYCj2voLbFzS52WgaOvNLxV1iQJiV716b6szUlsGaLohv37RVqIqwXsWXqIiVbRh
+/WDGSREHdQ==</DigestValue></Reference></SignedInfo><SignatureValue>jpGIDhmk1oQJHWjnag0c5Ne0PnHuh0sbK3I52PkM+YxB0CxvfZSTXHGVf9FSJA5MWkCzZOcKWbrC
+gcMkQ1uuXVo7cnq2E6k21aVkDlEBa2rZ69Y2lcWEdRc2yMhYNXQow4zOosidsSKAk6wcEXxWvP4z
+of8mN3hk1f4oCyw8hAHljfDv0pZSZ/oYH1DwstPn7heH8eTnny0JW3zN6AV3fFlbdVVXkB8fk9l+
+QOWQdkM+1OWoOS+iQVzTBbNO0xGAszyzpiHM3Dz0JAp8fTHl6DTw4B5DNiyO/AJXhUAfIu2iIpG9
+kJTugzhkPDoiDNoNwB1Xk38PM+fff0AkUcmcRA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -962,4 +976,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_22471339-ad93-46ee-9b12-37ad40ee5e97" Target="#_6457dd04-13fe-426e-8177-25e228d6ac63"><Timestamp>2020-03-17 06:59:03</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_d9e0a75e-e894-4bcc-8ada-de1570cf287e" Target="#_6cb3e9fa-84b3-4e08-b15e-bd6419b99826"><Timestamp>2020-04-01 05:50:12</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
