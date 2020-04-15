@@ -310,6 +310,33 @@
       <column comment="" key="false" length="-1" name="idoc" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="tSAPIDocOutput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPIDocOutput_3"/>
+    <elementParameter field="LABEL" name="NOTE" show="false" value="To use this component, you need to register the SAP Java Connectors (sapjco3.jar and sapidoc3.jar) in the module view"/>
+    <elementParameter field="LABEL" name="NOTE2" value="To use this component, you need to register the SAP Java Connectors sapjco3.jar in the module view"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_oW6KkCJsEeq8c8NP0TJh-w"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="TEXT" name="CLIENT" value="&quot;100&quot;"/>
+    <elementParameter field="TEXT" name="USERID" value="&quot;com_talend&quot;"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" value="6ToUc2c2KN5re7sN2+oJjA73eodb6f4d"/>
+    <elementParameter field="TEXT" name="LANGUAGE" value="&quot;EN&quot;"/>
+    <elementParameter field="TEXT" name="HOSTNAME" value="&quot;192.168.160.7&quot;"/>
+    <elementParameter field="TEXT" name="SYSTEMNUMBER" value="&quot;00&quot;"/>
+    <elementParameter field="COLUMN_LIST" name="IDOC_COLUMN" value="idoc"/>
+    <elementParameter field="CHECK" name="FROM_XML" value="false"/>
+    <elementParameter field="FILE" name="FILE_IDOC_XML" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="TABLE" name="SAP_PROPERTIES">
+      <elementValue elementRef="PROPERTY" value="&quot;api.z_talend_read_table &quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;true&quot;"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tSAPIDocOutput_3">
+      <column comment="" key="false" length="-1" name="idoc" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
   <node componentName="tLoop" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="224" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLoop_1"/>
     <elementParameter field="RADIO" name="FORLOOP" value="true"/>
@@ -685,7 +712,6 @@
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/Temp/eSales_S4Hana/destination/&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
@@ -709,7 +735,6 @@
   </node>
   <node componentName="tFileCopy" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileCopy_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_2_CURRENT_FILEPATH&quot;))"/>
     <elementParameter field="CHECK" name="ENABLE_COPY_DIRECTORY" value="false"/>
     <elementParameter field="DIRECTORY" name="SOURCE_DERECTORY" show="false" value="&quot;C:/Talend/Talend-Studio-20180411_1414-V7.0.1/workspace&quot;"/>
@@ -724,34 +749,6 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileCopy_1"/>
   </node>
-  <node componentName="tSAPIDocOutput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="320">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPIDocOutput_3"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
-    <elementParameter field="LABEL" name="NOTE" show="false" value="To use this component, you need to register the SAP Java Connectors (sapjco3.jar and sapidoc3.jar) in the module view"/>
-    <elementParameter field="LABEL" name="NOTE2" value="To use this component, you need to register the SAP Java Connectors sapjco3.jar in the module view"/>
-    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_oW6KkCJsEeq8c8NP0TJh-w"/>
-    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
-    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
-    <elementParameter field="TEXT" name="CLIENT" value="&quot;100&quot;"/>
-    <elementParameter field="TEXT" name="USERID" value="&quot;com_talend&quot;"/>
-    <elementParameter field="PASSWORD" name="PASSWORD" value="6ToUc2c2KN5re7sN2+oJjA73eodb6f4d"/>
-    <elementParameter field="TEXT" name="LANGUAGE" value="&quot;EN&quot;"/>
-    <elementParameter field="TEXT" name="HOSTNAME" value="&quot;192.168.160.7&quot;"/>
-    <elementParameter field="TEXT" name="SYSTEMNUMBER" value="&quot;00&quot;"/>
-    <elementParameter field="COLUMN_LIST" name="IDOC_COLUMN" value="idoc"/>
-    <elementParameter field="CHECK" name="FROM_XML" value="false"/>
-    <elementParameter field="FILE" name="FILE_IDOC_XML" show="false" value="&quot;&quot;"/>
-    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
-    <elementParameter field="TABLE" name="SAP_PROPERTIES">
-      <elementValue elementRef="PROPERTY" value="&quot;api.z_talend_read_table &quot;"/>
-      <elementValue elementRef="VALUE" value="&quot;true&quot;"/>
-    </elementParameter>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tSAPIDocOutput_3">
-      <column comment="" key="false" length="-1" name="idoc" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-    </metadata>
-  </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tDBConnection_2" offsetLabelX="0" offsetLabelY="0" source="tDBConnection_2" target="tJava_4">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
   </connection>
@@ -761,7 +758,6 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFileList_2">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk3"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tFileInputXML_1">
@@ -775,7 +771,6 @@
   </connection>
   <connection connectorName="FLOW" label="idoc" lineStyle="0" metaname="idoc" offsetLabelX="0" offsetLabelY="0" source="tHMap_1" target="tSAPIDocOutput_3">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="idoc"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tLoop_1" offsetLabelX="0" offsetLabelY="0" source="tLoop_1" target="tJava_3">
@@ -873,7 +868,6 @@
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tFileCopy_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate8"/>
   </connection>
   <subjob>
@@ -938,18 +932,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSAPIDocOutput_3"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_15280f5b-6bb3-4970-9dd8-e133b4bc6f46"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>q+tXR9MsvSLN7S7gWIl7mAERQK7yiyUQjBsiKOf1ZOazA+yYZoBxRjJr2GH6WD3EcUISQ6T9MGbp
-l9lxiD2UqA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3c6b2e0c-1a47-46b5-895f-fd9a773bdecc"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>kIj9y4rUceAaQJnfiPCBioM0T81IJ1pvdCo/Z3nRgW2/+VKJz41HIpubwiInbCuebHJsT4c4PdEq
-2t1lc0Ym7A==</DigestValue></Reference></SignedInfo><SignatureValue>k6XFLaWsncB1wJLeRoUdCcVF5/Jul4X5Nrzu8LPHJUKxLN753/nhjji4KDJsT2u4VJ15nnOjOqwF
-9+C1/ThUjVYAk6fPFyfk/JvT7fVrAxv4qR5uRrW69izbRMdYdgzZb9yRUvSRP9eAS9dl4g6xk/Rc
-U2wOAnc463YWamlvSq3nRwjVUMyi6bzYyWgCCUA6U/WJq1Zu8N7+rmrNmfSyx6PPcCmvyfMxcWeM
-vusfjwZSd/8uRIlwntOcGRBS16T2ew/jPYnYeIu4w7mVYu60RVAXyYnUE+7Tbmb7DthWoReEhQjU
-uO9JStL8hB/8bydFwSJV46JqxjC9PRKK+R/rfA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_dd04fb7b-270d-4be6-b260-f7f8dc3335b9"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Nksv2/vSqs8tAkvBiLn6f/uD0FGoqq3KUcEOX2jWoZGkdqlGsPwCtGsHItb9eYrJaSVIzi/5qBAX
+rEoxyx/k1Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_07e8a74c-b139-4fed-9747-07e28ebe4729"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>QcNphWkXG6dcpOin/LHx0HJnJwAgcC3CpgAdNqUCvn1OW0kQB88llDbq9gp3mJXMDoinQcJyhvGo
+gwo7+ZN8JA==</DigestValue></Reference></SignedInfo><SignatureValue>ttiFW5l2hg1Hkf/hszD5uGJPphRoHdbyPSbvl8tLq6CeVNwF6dDDXKRN+bc3NEskgARy82rC+Xn9
+YHi1TTCz+tKRoprupa9F6Qe84D8Cv9bVDebuFsSL6iJO6XB1/g5JZfDGkw84oAwNOypBFGf/9Zrn
+0EhJtVZ4x6eTNA4GfI3/A9ZIrNChu9wVVUJ2Ra7Ug2oBLF+4+HtBAXWjIMQCeZFEckhzx2YXfHIC
+DBk4scg/SjibhIdJmsL8wMhK1lJvEm07RLn5OBqpCrJxxUFj+ycboKSAPHLOONHTOTAElbKb4QJq
+TWF6hg36clhUCW1GPqpyWcEzcEpsYtvTBj4V8A==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -973,4 +962,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3c6b2e0c-1a47-46b5-895f-fd9a773bdecc" Target="#_15280f5b-6bb3-4970-9dd8-e133b4bc6f46"><Timestamp>2020-04-15 04:43:50</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_07e8a74c-b139-4fed-9747-07e28ebe4729" Target="#_dd04fb7b-270d-4be6-b260-f7f8dc3335b9"><Timestamp>2020-04-15 04:52:08</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
