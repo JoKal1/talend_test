@@ -6,6 +6,7 @@
     <contextParameter comment="" name="fileName" prompt="fileName?" promptNeeded="false" type="id_String" value=""/>
     <contextParameter comment="" name="filePath" prompt="filePath?" promptNeeded="false" type="id_String" value="&quot;//fmvatvise/received$/&quot;"/>
     <contextParameter comment="" name="timeStampREST" prompt="timeStampREST?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="warming_mail_to" prompt="warming_mail_to?" promptNeeded="false" type="id_String" value="&quot;jakob.kolinski@fmv.ch&quot;"/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
@@ -246,7 +247,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="672" posY="-192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(context.found);&#10;&#10;if(context.found) {&#10;&#9;DateFormat dateFormat = new SimpleDateFormat(&quot;dd_MM_yy&quot;);&#10;&#9;Date currentDate = new Date();&#10;&#9;Calendar cal = Calendar.getInstance();&#10;&#9;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy HH:mm&quot;);&#10;&#10;&#9;cal.setTime(currentDate);&#10;&#9;cal.set(Calendar.HOUR_OF_DAY, 0);&#10;&#9;cal.set(Calendar.MINUTE, 0);&#10;&#9;cal.set(Calendar.DAY_OF_MONTH, Integer.valueOf(context.day.substring(4, 6)));&#10;&#9;cal.set(Calendar.MONTH, Integer.valueOf(context.day.substring(7, 9))-1);&#10;&#9;&#9;&#9;&#9;&#10;&#9;String start = format1.format(cal.getTime());&#10;&#9;&#10;&#9;cal.add(Calendar.DAY_OF_MONTH, 1);&#10;&#9;&#10;&#9;String end = format1.format(cal.getTime());&#10;&#9;&#9;&#10;&#9;FileWriter fstream = new FileWriter(context.fileName, true);&#10;&#9;BufferedWriter out = new BufferedWriter(fstream);&#10;&#10;&#9;out.newLine(); &#10;&#9;out.write(&quot;PRL;&quot; + start + &quot;;&quot; + end + &quot;;&quot; + context.sum + &quot;;&quot; + context.sum);&#10;&#9;out.close();&#10;&#10;&#9;/*System.out.println(&quot;Write &quot; + context.day + &quot; -&gt; &quot; + context.sum);*/&#10;&#9;}"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="if(context.found) {&#10;&#9;DateFormat dateFormat = new SimpleDateFormat(&quot;dd_MM_yy&quot;);&#10;&#9;Date currentDate = new Date();&#10;&#9;Calendar cal = Calendar.getInstance();&#10;&#9;SimpleDateFormat format1 = new SimpleDateFormat(&quot;dd.MM.yyyy HH:mm&quot;);&#10;&#10;&#9;cal.setTime(currentDate);&#10;&#9;cal.set(Calendar.HOUR_OF_DAY, 0);&#10;&#9;cal.set(Calendar.MINUTE, 0);&#10;&#9;cal.set(Calendar.DAY_OF_MONTH, Integer.valueOf(context.day.substring(4, 6)));&#10;&#9;cal.set(Calendar.MONTH, Integer.valueOf(context.day.substring(7, 9))-1);&#10;&#9;&#9;&#9;&#9;&#10;&#9;String start = format1.format(cal.getTime());&#10;&#9;&#10;&#9;cal.add(Calendar.DAY_OF_MONTH, 1);&#10;&#9;&#10;&#9;String end = format1.format(cal.getTime());&#10;&#9;&#9;&#10;&#9;FileWriter fstream = new FileWriter(context.fileName, true);&#10;&#9;BufferedWriter out = new BufferedWriter(fstream);&#10;&#10;&#9;out.newLine(); &#10;&#9;out.write(&quot;PRL;&quot; + start + &quot;;&quot; + end + &quot;;&quot; + context.sum + &quot;;&quot; + context.sum);&#10;&#9;out.close();&#10;&#10;&#9;/*System.out.println(&quot;Write &quot; + context.day + &quot; -&gt; &quot; + context.sum);*/&#10;&#9;}"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value=""/>
     <elementParameter field="TEXT" name="LABEL" value="process_last_row"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -357,12 +358,47 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_3"/>
   </node>
+  <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="672" posY="-32">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSendMail_1"/>
+    <elementParameter field="TEXT" name="TO" value="&quot;jakob.kolinski&quot;"/>
+    <elementParameter field="TEXT" name="FROM" value="&quot;sdl_vendus@fmv.ch&quot;"/>
+    <elementParameter field="CHECK" name="NEED_PERSONAL_NAME" value="false"/>
+    <elementParameter field="TEXT" name="PERSONAL_NAME" show="false" value="&quot;sender&quot;"/>
+    <elementParameter field="TEXT" name="CC" value=""/>
+    <elementParameter field="TEXT" name="BCC" value=""/>
+    <elementParameter field="TEXT" name="SUBJECT" value="&quot;SDL Vendus: notification&quot;"/>
+    <elementParameter field="MEMO_MESSAGE" name="MESSAGE" value="&quot;Pas de SDL vendus pour le &quot; context.day"/>
+    <elementParameter field="CHECK" name="CHECK_ATTACHMENT" value="true"/>
+    <elementParameter field="TABLE" name="ATTACHMENTS"/>
+    <elementParameter field="TABLE" name="HEADERS"/>
+    <elementParameter field="TEXT" name="SMTP_HOST" value="&quot;smtp.provider.com&quot;"/>
+    <elementParameter field="TEXT" name="SMTP_PORT" value="25"/>
+    <elementParameter field="CHECK" name="SSL" value="false"/>
+    <elementParameter field="CHECK" name="STARTTLS" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="IMPORTANCE" value="Normal"/>
+    <elementParameter field="CHECK" name="NEED_AUTH" value="true"/>
+    <elementParameter field="TEXT" name="AUTH_USERNAME" value="&quot;username&quot;"/>
+    <elementParameter field="PASSWORD" name="AUTH_PASSWORD" value="PoLvNyVG2XWndNDdLn696A=="/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
+    <elementParameter field="CLOSED_LIST" name="TEXT_SUBTYPE" value="plain"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="SET_LOCALHOST" value="false"/>
+    <elementParameter field="TEXT" name="LOCALHOST" show="false" value="&quot;localhost&quot;"/>
+    <elementParameter field="TEXT" name="LABEL" value="no_sdl_warning"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tSendMail_1"/>
+  </node>
   <connection connectorName="FLOW" label="xls_data" lineStyle="0" metaname="tFileInputExcel_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputExcel_1" target="tJavaRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="xls_data"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tJava_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tSendMail_1">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="!context.found"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tJava_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk2"/>
@@ -435,13 +471,18 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_10994dc9-a8f3-4e3f-8a5e-a7dc590d446c"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>F4XqejqQet7hpJ7ip8WIk/pjfjR9BhqqRdZQuNWYH/iXEqkoQzGw1mmDu7JetSzYPZOWDtszJHTg
-tXaQND6yhA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_245461d3-9ff6-46eb-a8d2-4aca43905995"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>HUQv63ujn+LG01tUSb9rai0kLXIOqz43mNepCuleF+LiWEvB9S5YNzg74O6n8YXRSlPp4dTN8p52
-h3F37kxAoQ==</DigestValue></Reference></SignedInfo><SignatureValue>u0JarGkWRRLhN0hHuAM1Lgt/IosHwjbcvbERDDybWxeysmRD8uqIy0QGpn5aE7wWEh+wj7aZ1zh4
-QvUMLoE4sEvLmNS/JAQuo/Sxcx/OyTNmJFPHmjmIyJxzlrkrS5IJsbN6w9O6j5L1WPuxPSMJi2D8
-0/ARm8KtX6QpEq9+x2WZ/34AwAOoXoa6Z7ZnYP0SQAnr4qUPJTRIpflO3QJpKvfV6v4KsBJzmj6w
-nju2bysFMItc3qk9WDkNUd/m1oU41h4+48dc1luHBYUU/zqWyPl3gWDyglJqkwkP0tThYmrvG+06
-9jPTr72xIkKXpk9ZATShoQZ3T0owYhKeN9MXeg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSendMail_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_06621da6-cd51-40b8-b617-b8b21febc1d8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>SAq4eNqRTN+5WZ1u330Z5YeD8lvw7OGQXbPrSQ/TOD3goZV7Rpss69rq5FFE0/JUpPpaHBvGEY1a
+9XhLd9g44g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_931b3899-92bd-4f33-a44d-80a99f9b68d1"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>mmS2m1935N/Ao5UXpsCgDqe3Lgd/LC8BHUTl1/c3D/RoKpl5wDlaQ4CFNsBq+enGG3FvDo9oNn/W
+Jgt79f5/Tg==</DigestValue></Reference></SignedInfo><SignatureValue>tT2HCiE+DTX66ym+LaFrjjyFlqXAPJYl+Vdbx6/2ciY6KxPlXrTTAhFugXi7aX8o4QPKn+1HZKoM
+2XYETRncoSd6ZJc3C7wL7SjK0LNfs5hvC+i9WijKaKIprl8yBq10Qbbd3wMseiBLs5YBR+L++9Yl
+fe328T2B0Y9Ov3tdoBTcONrxEsD0olj5MTbJ+M43eQW6OdU4zeog0VPAKQczo5kCzj+/ONqr4DCN
+dW+maNBGeUW1hq2ocUvNxwf9QCGEzIBO5MePVYP6s7r8zypFXKqoJX6Kj/RPjSct0EhB/CMR/Tlj
+ugn93N/u7fgNjaYO1Mv5OoEYC7PQAGrIwRagWQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=Default code-signing certificate,OU=R&amp;D,O=Talend Inc.,ST=Paris,C=FR</X509SubjectName><X509Certificate>MIIFYzCCA0ugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjTELMAkGA1UEBhMCRlIxDjAMBgNVBAgM
 BVBhcmlzMQ4wDAYDVQQHDAVQYXJpczEUMBIGA1UECgwLVGFsZW5kIEluYy4xDDAKBgNVBAsMA1Im
 RDEWMBQGA1UEAwwNVGFsZW5kIFImRCBDQTEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAdGFsZW5k
 LmNvbTAeFw0xODAxMTgwMDA2MTJaFw0yMTAxMTcwMDA2MTJaMGwxCzAJBgNVBAYTAkZSMQ4wDAYD
@@ -465,4 +506,4 @@ r3/fbKJ02Ni9kCnkY8wQS1yn45UNl1woSjryza4f4uLKGkrrIsUPXK+Vy4A1Il8XgFfmrtgA8m9s
 EHyu0OyAJH/agWN+GLhF/ssp26oXhiYqTkG4sQtNRFQG0isaYf/JWSt3f8Q+7/pnZpz4mfEAFimI
 BBLzRwDA6x9qqOn0RXxBo9pH16EO3SXPLR64cJum8B/RI/i8H6OkQDO1tEiE6UeceZk++U7fnD3c
 6i9Km85GTgQi6REsVZGIL/tZNIzN//qPwi7cDo3Cf/xmPrIKQhHJaxCqmbjGDmC8AXOaqNfWotVX
-Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_245461d3-9ff6-46eb-a8d2-4aca43905995" Target="#_10994dc9-a8f3-4e3f-8a5e-a7dc590d446c"><Timestamp>2020-04-17 05:45:44</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+Wy2dcglW62PDszE/HKh9</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_931b3899-92bd-4f33-a44d-80a99f9b68d1" Target="#_06621da6-cd51-40b8-b617-b8b21febc1d8"><Timestamp>2020-04-17 05:50:34</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
